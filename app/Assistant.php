@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class InventoryItem extends Model
+class Assistant extends Model
 {
     //
 }

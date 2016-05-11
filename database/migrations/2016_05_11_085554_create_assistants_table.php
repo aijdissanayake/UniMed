@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSalaryPaymentsTable extends Migration
+class CreateAssistantsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,14 +12,14 @@ class CreateSalaryPaymentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('salarypayments', function (Blueprint $table) {
+        Schema::create('assistants', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('empId')->unsigned();
-            $table->foreign('empId')->references('id')->on('employees');
             $table->string('firstName');
             $table->string('lastName');
             $table->decimal('basicSalary',7,2);
-            $table->decimal('paidAmount',7,2);
+            $table->date('employedDate');
+            $table->boolean('employed')->default(true);
+            $table->date('resignationDate');
             
             $table->timestamps();
         });
@@ -32,6 +32,6 @@ class CreateSalaryPaymentsTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('assistants');
     }
 }
