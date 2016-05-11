@@ -6,7 +6,7 @@
     "type": "project",
     "require": {
         "php": ">=5.5.9",
-        "laravel/framework": "5.2.*",
+        "laravel/framework": "5.2.*"
 		"apache/log4php": "2.3.0"
     },
     "require-dev": {
