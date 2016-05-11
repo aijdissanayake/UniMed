@@ -17,7 +17,7 @@ class CreateAssistantsTable extends Migration
             $table->string('firstName');
             $table->string('lastName');
             $table->decimal('basicSalary',7,2);
-            $table->date('employedDate');
+            $table->date('employedDate')->default(date(d, m, Y));
             $table->boolean('employed')->default(true);
             $table->date('resignationDate');
             
