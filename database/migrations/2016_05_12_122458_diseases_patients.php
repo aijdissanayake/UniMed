@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class PatientVisit extends Migration
+class DiseasesPatients extends Migration
 {
     /**
      * Run the migrations.
@@ -12,17 +12,13 @@ class PatientVisit extends Migration
      */
     public function up()
     {
-        Schema::create('patientVisits', function (Blueprint $table) {
-            $table->increment('visitID');
+        Schema::create('diseases_patients', function (Blueprint $table) {
             $table->integer('patientID')
-                    ->unsigned()
-                    ->index();
+                    ->primary()
+                    ->unsigned();
             $table->foreign('patientID')
                     ->references('patientID')->on('patients');
-            $table->string('diagnosis')->nullable();
-            $table->string('prognosis')->nullable();
-            $table->string('prescDrugs')->nullable();
-            $table->date('nextVisitDate')->nullable();
+            $table->integer('disease');
             $table->timestamps();
         });
     }

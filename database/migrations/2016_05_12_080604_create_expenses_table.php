@@ -12,7 +12,7 @@ class CreateExpensesTable extends Migration
      */
     public function up()
     {
-        Schema::create('expensePayments', function ($table) {
+        Schema::create('expensePayments', function (Blueprint $table) {
             $table->increments('paymentID')
                     ->unique();
             $table->integer('paymentType');

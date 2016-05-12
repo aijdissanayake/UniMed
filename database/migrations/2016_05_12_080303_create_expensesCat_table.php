@@ -12,7 +12,7 @@ class CreateExpensesCatTable extends Migration
      */
     public function up()
     {
-        Schema::create('ExpensesCatalog', function ($table) {
+        Schema::create('ExpensesCatalog', function (Blueprint $table) {
             $table->increments('expenseID')
                     ->unique();
             $table->string('expenseName');
