@@ -13,7 +13,12 @@ class CreateDrugsTable extends Migration
     public function up()
     {
         Schema::create('drugs', function (Blueprint $table) {
-            $table->increments('id');
+            $table->integer('drugID')
+                    ->primary()
+                    ->unsigned();
+            $table->foreign('drugID')
+                    ->references('inventoryID')->on('inventory_items');
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }

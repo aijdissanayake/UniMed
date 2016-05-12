@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateInventoryItemsTable extends Migration
+class LabTestCat extends Migration
 {
     /**
      * Run the migrations.
@@ -12,13 +12,14 @@ class CreateInventoryItemsTable extends Migration
      */
     public function up()
     {
-        Schema::create('inventory_items', function (Blueprint $table) {
-            $table->increments('inventoryID')
-                    ->unique();
-            $table->string('type');
-            $table->string('description')->nullable();
+        Schema::create('labTestCatalog', function ($table) {
+            $table->increments('id')->unique();
+            $table->string('testName');
+            $table->string('description');
+            $table->decimal('fee',5,2);
             $table->timestamps();
         });
+        
     }
 
     /**
@@ -28,6 +29,6 @@ class CreateInventoryItemsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('inventory_items');
+        //
     }
 }

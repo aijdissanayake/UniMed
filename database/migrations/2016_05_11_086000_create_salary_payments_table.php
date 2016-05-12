@@ -13,15 +13,16 @@ class CreateSalaryPaymentsTable extends Migration
     public function up()
     {
         Schema::create('salarypayments', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id')
+                    ->unique();
             $table->integer('empId')->unsigned();
             $table->foreign('empId')
-                    ->references('id')->on('assistants');
+                    ->references('assistantID')->on('assistants');
             $table->string('firstName');
             $table->string('lastName');
             $table->decimal('basicSalary',7,2);
             $table->decimal('paidAmount',7,2);
-            
+            $table->string('remarks')->nullable();
             $table->timestamps();
         });
     }

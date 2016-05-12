@@ -13,13 +13,19 @@ class CreatePatientsTable extends Migration
     public function up()
     {
         Schema::create('patients', function (Blueprint $table) {
-            $table->increments('id');
+            $table->integer('patientID')
+                    ->primary()
+                    ->unsigned();
+            $table->foreign('patientID')
+                    ->references('id')->on('users');
             $table->string('firstName');
             $table->string('lastName');
             $table->integer('age');
+            $table->string('bloodType');
             $table->string('locale');
             $table->integer('telephoneNo');
-            $table->boolean('hasAppointment');
+            $table->boolean('hasAppointment')->default(false);
+            $table->boolean('hasleft')->default(false);
             $table->timestamps();
         });
     }

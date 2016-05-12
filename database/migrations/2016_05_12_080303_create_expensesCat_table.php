@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFeesCatalogue extends Migration
+class CreateExpensesCatTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,7 +12,14 @@ class CreateFeesCatalogue extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('ExpensesCatalog', function ($table) {
+            $table->increments('expenseID')
+                    ->unique();
+            $table->string('expenseName');
+            $table->string('description');
+            $table->timestamps();
+        });
+        
     }
 
     /**

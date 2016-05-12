@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAssistantsTable extends Migration
+class CreateLabTechsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,20 +12,19 @@ class CreateAssistantsTable extends Migration
      */
     public function up()
     {
-        Schema::create('assistants', function (Blueprint $table) {
-            $table->integer('assistantID')
-                    ->primary()
+        Schema::create('labTechs', function (Blueprint $table) {
+            $table->integer('labTechID')
+                    ->unique()
                     ->unsigned();
-            $table->foreign('assistantID')
+            $table->foreign('labTechID')
                     ->references('id')->on('users');
             $table->integer('NIC');
             $table->string('firstName');
             $table->string('lastName');
-            $table->decimal('basicSalary',7,2);
-            $table->date('employedDate');
-            $table->boolean('employed')->default(true);
-            $table->date('resignationDate');
-            
+            $table->integer('age');
+            $table->integer('telephoneNo');
+            $table->string('homeAddress')->nullable();
+            $table->string('labAddress');
             $table->timestamps();
         });
     }
@@ -37,6 +36,6 @@ class CreateAssistantsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('assistants');
+        Schema::drop('lab_teches');
     }
 }

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLabTestCatalogue extends Migration
+class CreateExpensesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,13 @@ class CreateLabTestCatalogue extends Migration
      */
     public function up()
     {
-        Schema::create('labTestCatalog', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('testName');
-            $table->string('description');
-            $table->integer('fee',5,2);
+        Schema::create('expensePayments', function ($table) {
+            $table->increments('paymentID')
+                    ->unique();
+            $table->integer('paymentType');
+            $table->integer('paidByID');
+            $table->decimal('value',9,2);
+            $table->string('remarks')->nullable();
             $table->timestamps();
         });
     }
