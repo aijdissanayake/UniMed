@@ -5,12 +5,12 @@
     <title>Unicare Medical Centre</title>
     
     
-    <link rel="stylesheet" href="css/login_reset.css">
+    <link rel="stylesheet" href="Login/css/reset.css">
 
     <link rel="stylesheet prefetch" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900|RobotoDraft:400,100,300,500,700,900">
-<link rel="stylesheet prefetch" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+	<link rel="stylesheet prefetch" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
-        <link rel="stylesheet" href="css/login_style.css">
+    <link rel="stylesheet" href="Login/css/style.css">
 
     
     
@@ -25,7 +25,7 @@
 <div class="pen-title">
   <h1>Unicare Medical Centre</h1>
 </div>
-<div class="rerun"><img src="img/UnicareLogo.png"></div>
+<div class="rerun"><img src="Login/UnicareLogo.png"></div>
 <div class="container">
   <div class="card"></div>
   <div class="card">
