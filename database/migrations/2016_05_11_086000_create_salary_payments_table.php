@@ -15,7 +15,8 @@ class CreateSalaryPaymentsTable extends Migration
         Schema::create('salarypayments', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('empId')->unsigned();
-            $table->foreign('empId')->references('id')->on('assistants');
+            $table->foreign('empId')
+                    ->references('id')->on('assistants');
             $table->string('firstName');
             $table->string('lastName');
             $table->decimal('basicSalary',7,2);

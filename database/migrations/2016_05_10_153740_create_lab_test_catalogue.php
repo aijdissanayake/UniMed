@@ -12,7 +12,13 @@ class CreateLabTestCatalogue extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('labTestCatalog', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('testName');
+            $table->string('description');
+            $table->integer('fee',5,2);
+            $table->timestamps();
+        });
     }
 
     /**

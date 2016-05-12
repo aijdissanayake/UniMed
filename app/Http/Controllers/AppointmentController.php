@@ -8,5 +8,7 @@ use App\Http\Requests;
 
 class AppointmentController extends Controller
 {
-    //
+    public function createAppointment($param) {
+        
+    }
 }
