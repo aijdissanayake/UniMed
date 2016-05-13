@@ -25,4 +25,4 @@ Route::get('/home', 'HomeController@index');
 
 Route::get('patients/addpatient', 'PatientController@regPatient');
 
-Route::post('patients', 'PatientController@createPatient');
+Route::post('patients/test', 'PatientController@createPatient');

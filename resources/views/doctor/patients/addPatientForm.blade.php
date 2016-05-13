@@ -5,9 +5,9 @@
   <meta name="description" content="website description">
   <meta name="keywords" content="website keywords, website keywords">
   
-  <link rel="stylesheet" type="text/css" href="./Patients.blade_files/css">
-  <link rel="stylesheet" type="text/css" href="./Patients.blade_files/css(1)">
-  <link rel="stylesheet" type="text/css" href="./Patients.blade_files/style.css">
+  <link rel="stylesheet" type="text/css" href="/patient/style/css">
+  <link rel="stylesheet" type="text/css" href="/patient/style/css(1)">
+  <link rel="stylesheet" type="text/css" href="/patient/style/style.css">
 </head>
 
 <body>
@@ -31,17 +31,20 @@
     <div id="site_content">
       <div id="content">
         <h2>Patient Registration/Edit</h2>
-        <form action="{{ url('patients') }}" method="post">
+        <form action="{{ url('patients/test') }}" method="post">
             {{ csrf_field() }}
           <div class="form_settings">
             <p><span>First Name</span><input type="text" name="firstName" value=""></p>
             <p><span>Last Name</span><input type="text" name="lastName" value=""></p>
-			<p><span>Email</span><input type="text" name="email" value=""></p>
+            <p><span>Email</span><input type="text" name="email" value=""></p>
+            <p><span>Birth Year</span><input type="text" name="birthYear" value=""></p>
             <p><span>Contact No.</span><input type="text" name="contactNo" value=""></p>
             <p><span>Locale</span><input type="text" name="locale" value=""></p>
             <p><span>Blood Group</span><input type="text" name="bloodGroup" value=""></p>
-            <p><span>Remarks</span><textarea rows="4" cols="50" name="remarks"></textarea></p>
-            <p><span>Checkbox example</span><input class="checkbox" type="checkbox" name="name" value=""></p>
+            <p><span>Gender</span>
+                <input class="checkbox" type="radio" name="gender" value="male" checked>Male
+                <input class="checkbox" type="radio" name="gender" value="female">Female<br>
+            </p>
             <p><span>Dropdown list example</span><select id="id" name="name"><option value="1">Example 1</option><option value="2">Example 2</option></select></p>
             <p style="padding-top: 15px"><input class="submit" type="submit" name="submitButton" value="Register"></p>
           </div>
