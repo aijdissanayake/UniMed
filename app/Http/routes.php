@@ -1,31 +1,20 @@
 <?php
 
 /*
-  |--------------------------------------------------------------------------
-  | Application Routes
-  |--------------------------------------------------------------------------
-  |
-  | Here is where you can register all of the routes for an application.
-  | It's a breeze. Simply tell Laravel the URIs it should respond to
-  | and give it the controller to call when that URI is requested.
-  |
- */
+|--------------------------------------------------------------------------
+| Application Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register all of the routes for an application.
+| It's a breeze. Simply tell Laravel the URIs it should respond to
+| and give it the controller to call when that URI is requested.
+|
+*/
 
 Route::get('/', function () {
-    return view('UnicareLoginPage.index');
+    return view('welcome');
 });
 
-/*
- *  Assistant methods
- *  */
+Route::auth();
 
-
-
-
-/*
- * Testing custom routes
- */
-
-Route::get('about', function() {
-    return 'Emrys In Da House';
-});
+Route::get('/home', 'HomeController@index');
