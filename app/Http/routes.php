@@ -18,3 +18,11 @@ Route::get('/', function () {
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
+
+/*
+ * Patient routes
+ */
+
+Route::get('patients/addpatient', 'PatientController@regPatient');
+
+Route::post('patients', 'PatientController@createPatient');
