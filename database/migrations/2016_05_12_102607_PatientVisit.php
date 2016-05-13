@@ -13,7 +13,7 @@ class PatientVisit extends Migration
     public function up()
     {
         Schema::create('patientVisits', function (Blueprint $table) {
-            $table->increment('visitID');
+            $table->increments('visitID');
             $table->integer('patientID')
                     ->unsigned()
                     ->index();
