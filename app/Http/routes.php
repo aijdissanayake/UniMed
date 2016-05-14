@@ -26,9 +26,11 @@ Route::get('/home', 'HomeController@index');
 
 // Doctor's views
 Route::get('doctor/home',['as'=>'homeTab', 'uses'=> 'DoctorController@home']);
+Route::get('doctor/patients', ['as'=>'patientsTab', 'uses'=>'DoctorController@viewPatientTab']);
 Route::get('doctor/finance',['as'=>'financeTab', 'uses'=> 'DoctorController@viewFinanceTab']);
 
-Route::get('doctor/patients', ['as'=>'patientsTab', 'uses'=>'DoctorController@viewPatientTab']);
+Route::get('doctor/inventory', ['as'=>'inventoryTab', 'uses'=>'DoctorController@viewInventoryTab']);
+Route::get('doctor/lab', ['as'=>'labTab', 'uses'=>'DoctorController@viewLabTab']);
 
 Route::get('doctor/patients/addpatient', ['as'=>'addPatient', 'uses' => 'DoctorController@regPatient']);
 

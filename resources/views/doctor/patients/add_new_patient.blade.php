@@ -8,7 +8,7 @@
   <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine&amp;v1" />
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" />
-  <link rel="stylesheet" type="text/css" href="style/add_new_patient_style.css" />
+  <link rel="stylesheet" type="text/css" href="/style/add_new_patient_style.css" />
 </head>
 
 <body>
@@ -16,7 +16,7 @@
     <div id="header">
       <div id="logo">
         <h1>Unicare Medical</h1>
-        <div class="slogan"><img src="style/logo.png" /></div>
+        <div class="slogan"><img src="/style/logo.png" /></div>
       </div>
       <div id="heading"><h2> New Patient Registration</h2></div>
     </div>

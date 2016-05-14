@@ -7,7 +7,7 @@
 <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
 <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine&amp;v1" />
 <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" />
-<link rel="stylesheet" type="text/css" href="style/style.css" />
+<link rel="stylesheet" type="text/css" href="/style/style.css" />
 </head>
 
 <body>
@@ -15,16 +15,16 @@
   <div id="header">
     <div id="logo">
       <h1>Unicare Medical</h1>
-      <div class="slogan"><img src="style/logo.png" /></div>
+      <div class="slogan"><img src="/style/logo.png" /></div>
     </div>
     <div id="menubar">
       <ul id="menu">
         <!-- put class="current" in the li tag for the selected page - to highlight which page you're on -->
-        <li><a href="index.html">Home</a></li>
-        <li><a href="patients.html">Patients</a></li>
-        <li><a href="finance.html">Finance</a></li>
-        <li class="current"><a href="inventory.html">Inventory</a></li>
-        <li><a href="lab.html">Lab</a></li>
+        <li><a href="{{route('homeTab')}}">Home</a></li>
+          <li><a href="{{route('patientsTab')}}">Patients</a></li>
+          <li><a href="{{route('financeTab')}}">Finance</a></li>
+          <li class='current'><a href="{{route('inventoryTab')}}">Inventory</a></li>
+          <li><a href="{{route('labTab')}}">Lab</a></li>
       </ul>
     </div>
   </div>
@@ -102,45 +102,45 @@
   </div>
 </div>
 <script>
-    $('#a_type').on('change', function(e){
-        console.log(e);
-        var state_id = e.target.value;
+ï¿½ ï¿½ $('#a_type').on('change', function(e){
+ï¿½ ï¿½ ï¿½ ï¿½ console.log(e);
+ï¿½ ï¿½ ï¿½ ï¿½ var state_id = e.target.value;
 		
 
-        $.get('{{ url('information') }}/create/ajax-state?state_id=' + state_id, function(data) {
-            console.log(data);
-            $('#a_items').empty();
-            $.each(data, function(index,subCatObj){
-                $('#a_items').append(''+subCatObj.name+'');
-            });
-        });
-    });
+ï¿½ ï¿½ ï¿½ ï¿½ $.get('{{ url('information') }}/create/ajax-state?state_id=' + state_id, function(data) {
+ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ console.log(data);
+ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ $('#a_items').empty();
+ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ $.each(data, function(index,subCatObj){
+ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ $('#a_items').append(''+subCatObj.name+'');
+ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ });
+ï¿½ ï¿½ ï¿½ ï¿½ });
+ï¿½ ï¿½ });
 	$('#r_type').on('change', function(e){
-        console.log(e);
-        var state_id = e.target.value;
+ï¿½ ï¿½ ï¿½ ï¿½ console.log(e);
+ï¿½ ï¿½ ï¿½ ï¿½ var state_id = e.target.value;
 		
 
-        $.get('{{ url('information') }}/create/ajax-state?state_id=' + state_id, function(data) {
-            console.log(data);
-            $('#r_items').empty();
-            $.each(data, function(index,subCatObj){
-                $('#r_items').append(''+subCatObj.name+'');
-            });
-        });
-    });
+ï¿½ ï¿½ ï¿½ ï¿½ $.get('{{ url('information') }}/create/ajax-state?state_id=' + state_id, function(data) {
+ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ console.log(data);
+ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ $('#r_items').empty();
+ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ $.each(data, function(index,subCatObj){
+ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ $('#r_items').append(''+subCatObj.name+'');
+ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ });
+ï¿½ ï¿½ ï¿½ ï¿½ });
+ï¿½ ï¿½ });
 	$('#s_type').on('change', function(e){
-        console.log(e);
-        var state_id = e.target.value;
+ï¿½ ï¿½ ï¿½ ï¿½ console.log(e);
+ï¿½ ï¿½ ï¿½ ï¿½ var state_id = e.target.value;
 		
 
-        $.get('{{ url('information') }}/create/ajax-state?state_id=' + state_id, function(data) {
-            console.log(data);
-            $('#s_items').empty();
-            $.each(data, function(index,subCatObj){
-                $('#s_items').append(''+subCatObj.name+'');
-            });
-        });
-    });
+ï¿½ ï¿½ ï¿½ ï¿½ $.get('{{ url('information') }}/create/ajax-state?state_id=' + state_id, function(data) {
+ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ console.log(data);
+ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ $('#s_items').empty();
+ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ $.each(data, function(index,subCatObj){
+ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ $('#s_items').append(''+subCatObj.name+'');
+ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ });
+ï¿½ ï¿½ ï¿½ ï¿½ });
+ï¿½ ï¿½ });
   </script>
 </body>
 </html>

@@ -20,7 +20,7 @@ class DoctorController extends Controller
 {
 
     public function home() {
-        return view('doctor.index');
+        return view('doctor.index.index');
     }
     
     /*
@@ -29,11 +29,11 @@ class DoctorController extends Controller
     
     
     public function viewPatientTab() {
-        return view('doctor.patientTab');
+        return view('doctor.patients.patientsTab');
     }
     
     public function regPatient() {
-        return view('doctor.patients.addPatientForm');
+        return view('doctor.patients.add_new_patient');
     }
     
     public function storePatient(Request $request) {
@@ -101,7 +101,15 @@ class DoctorController extends Controller
      */
     
     public function viewFinanceTab() {
-        return view('doctor.finance');        
+        return view('doctor.finance.finance');        
+    }
+    
+    public function viewInventoryTab() {
+        return view('doctor.inventory.inventory');        
+    }
+    
+    public function viewLabTab() {
+        return view('doctor.lab.lab');        
     }
     
     
