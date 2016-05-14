@@ -5,8 +5,9 @@
   <meta name="description" content="website description">
   <meta name="keywords" content="website keywords, website keywords">
   
-  <link rel="stylesheet" type="text/css" href="/patient/style/css">
-  <link rel="stylesheet" type="text/css" href="/patient/style/css(1)">
+<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine&amp;v1" />
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" />
+
   <link rel="stylesheet" type="text/css" href="/patient/style/style.css">
 </head>
 
@@ -20,8 +21,8 @@
       <div id="menubar">
         <ul id="menu">
           <!-- put class="current" in the li tag for the selected page - to highlight which page you're on -->
-          <li><a href="file:///D:/Emrys/unimed/resources/views/Patient/index.html">Home</a></li>
-          <li class="current"><a href="file:///D:/Emrys/unimed/resources/views/Patient/patients.html">Patients</a></li>
+          <li><a href="{{route('homeTab')}}">Home</a></li>
+          <li class="current"><a href="{{route('patientsTab')}}">Patients</a></li>
           <li><a href="file:///D:/Emrys/unimed/resources/views/Patient/finance.html">Finance</a></li>
           <li><a href="file:///D:/Emrys/unimed/resources/views/Patient/inventory.html">Inventory</a></li>
           <li><a href="file:///D:/Emrys/unimed/resources/views/Patient/lab.html">Lab</a></li>
@@ -31,7 +32,7 @@
     <div id="site_content">
       <div id="content">
         <h2>Patient Registration/Edit</h2>
-        <form action="{{ url('patients/test') }}" method="post">
+        <form action="{{ route('patientAdded') }}" method="post">
             {{ csrf_field() }}
           <div class="form_settings">
             <p><span>First Name</span><input type="text" name="firstName" value=""></p>

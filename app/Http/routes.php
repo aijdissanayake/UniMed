@@ -20,9 +20,15 @@ Route::auth();
 Route::get('/home', 'HomeController@index');
 
 /*
- * Patient routes
+ * Doctor's control routes
  */
 
-Route::get('patients/addpatient', 'PatientController@regPatient');
+Route::get('doctor/home',['as'=>'homeTab', 'uses'=> 'DoctorController@home']);
+Route::get('doctor/finance',['as'=>'financeTab', 'uses'=> 'DoctorController@viewFinanceTab']);
 
-Route::post('patients/test', 'PatientController@createPatient');
+Route::get('doctor/patients', ['as'=>'patientsTab', 'uses'=>'DoctorController@viewPatientTab']);
+
+Route::get('doctor/patients/addpatient', ['as'=>'addPatient', 'uses' => 'DoctorController@regPatient']);
+
+Route::post('doctor/patients/test', ['as'=>'patientAdded','uses'=>'DoctorController@createPatient']);
+

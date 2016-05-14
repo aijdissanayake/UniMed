@@ -7,8 +7,24 @@ use App\User;
 use App\Patient;
 
 
-class PatientController extends Controller
+class DoctorController extends Controller
 {
+    
+    
+    
+    public function home() {
+        return view('doctor.index');
+    }
+    
+    /*
+     * patient tab tasks
+     */
+    
+    
+    public function viewPatientTab() {
+        return view('doctor.patientTab');
+    }
+    
     public function regPatient() {
         return view('doctor.patients.addPatientForm');
     }
@@ -41,5 +57,19 @@ class PatientController extends Controller
         
         return view('doctor/patients/test');
     }
+    
+    
+    /*
+     * Finance Tab & tasks
+     */
+    
+    public function viewFinanceTab() {
+        return view('doctor.finance');        
+    }
+    
+    public function functionName($param) {
+        
+    }
+    
     
 }
