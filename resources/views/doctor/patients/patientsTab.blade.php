@@ -32,16 +32,16 @@
     <div id="site_content">
       <div id="content">
         <p><h2>Registered Patients' Details</h2></p>
-        <form action="#" method="post">
+        <!--<form action="{{route('searchPatients')}}" method="post">-->
         <div class="form_settings">
-		<p><span>Search patient by</span>
+<!--		<p><span>Search patient by</span>
 		<select id="id" name="name"><option value="1">First Name</option><option value="2">Last Name</option><option value="2">Telephone No.</option></select>
 		<input type="text" name="name" placeholder="Enter value here" value="" />
 		<input class="submit" type="submit" name="searchButton" value="Search" />
-		</p>
-		
+		</p>-->
+		@include('doctor.patients.searchForm')
         </div>
-        </form>
+        <!--</form>-->
         <table style="width:100%; border-spacing:0;">
           <tr><th width = 20%>Details</th><th>Description</th></tr>
           <tr><td>First Name</td><td></td></tr>
@@ -53,7 +53,10 @@
           <tr><td>Remarks</td><td></td></tr>
         </table>
         <div class="form_settings">
-        <input class="submit" type="submit" name="addNewPatient" value="Add a New Patient" />
+            <a href="{{route('addPatient')}}">
+            <input class="submit" type="submit" name="addNewPatient" 
+               value="Add a New Patient" />
+            </a>
         </div>
       </div>
     </div>

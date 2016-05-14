@@ -78,14 +78,30 @@ class DoctorController extends Controller
     public function searchPatient() {
         
         $inputs = Input::all(); // inputs is an array!!
-        $name = $inputs['patientName'];
+        
+        $type = $inputs['col_name'];
+        $value = $inputs['value'];
+        
+        if ($type==1){
+            $col_name = 'firstName';
+        } elseif ($type==2){
+            $col_name = 'lastName';
+        } elseif ($type==3){
+            $col_name = 'telephoneNo';
+        }
                 
         
-        $patients = Patient::where('firstName', 'LIKE', '%'.$inputs['patientName'].'%')->get();
+        $patients = Patient::where($col_name, 'LIKE', '%'.$value.'%')->get();
         
         // patients is an array of patient objects!!
         
-        return view('doctor.patients.searchResults2', compact('patients'));
+        if ($patients->isEmpty()){
+            return view('doctor.patients.searchResultsEmpty');
+        }
+        
+        
+        
+        return view('doctor.patients.searchResults', compact('patients'));
     }
     
 //    public function showPatient($id) {

@@ -25,16 +25,19 @@
         <h2>Patient Registration Details</h2>
         <form action="#" method="post">
           <div class="form_settings">
-            <p><span>First Name</span><input type="text" name="name" value="" /></p>
-            <p><span>Last Name</span><input type="text" name="name" value="" /></p>
-            <p><span>Contact No.</span><input type="text" name="name" value="" /></p>
-            <p><span>Email</span><input type="text" name="name" value="" /></p>
-            <p><span>Locale</span><input type="text" name="name" value="" /></p>
-            <p><span>Blood Group</span><input type="text" name="name" value="" /></p>
+              <p><span>First Name</span><input type="text" name="name" value="" required=""/></p>
+              <p><span>Last Name</span><input type="text" name="name" value=""  required=""/></p>
+              <p><span>Contact No.</span><input type="text" name="name" value="" required="" /></p>
+              <p><span>Email</span><input type="text" name="name" value="" required=""/></p>
+              <p><span>Locale</span><input type="text" name="name" value=""/></p>
+              <p><span>Blood Group</span><input type="text" name="name" value=""  required=""/></p>
             <p><span>Remarks</span><textarea rows="4" cols="50" name="name"></textarea></p>
-            <p align = "right" style="padding-top: 15px"><input class="submit" type="submit" name="submitButton" value="Register" /><input class="submit" type="submit" name="updateButton" value="Update" /><a href="patients.html"><input class="submit" type="submit" name="backButton" value="Back" /></a></p>
+            <p align = "right" style="padding-top: 15px">
+                <input class="submit" type="submit" name="submitButton" value="Register" />
+                <input class="submit" type="submit" name="updateButton" value="Update" />
           </div>
         </form>
+        <a class='form_settings' href="{{route('patientsTab')}}"><input class="submit" type="submit" name="backButton" value="Back" /></a></p>
       </div>
     </div>
     <div id="footer">
