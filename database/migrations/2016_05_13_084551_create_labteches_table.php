@@ -14,10 +14,11 @@ class CreateLabtechesTable extends Migration
     {
         Schema::create('labteches', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id');
             $table->integer('NIC');
             $table->string('firstName');
             $table->string('lastName');
-            $table->integer('age');
+            $table->integer('birthYear');
             $table->integer('telephoneNo');
             $table->string('homeAddress')->nullable();
             $table->string('labAddress');

@@ -23,6 +23,8 @@ Route::get('/home', 'HomeController@index');
  * Doctor's control routes
  */
 
+
+// Doctor's views
 Route::get('doctor/home',['as'=>'homeTab', 'uses'=> 'DoctorController@home']);
 Route::get('doctor/finance',['as'=>'financeTab', 'uses'=> 'DoctorController@viewFinanceTab']);
 
@@ -30,5 +32,30 @@ Route::get('doctor/patients', ['as'=>'patientsTab', 'uses'=>'DoctorController@vi
 
 Route::get('doctor/patients/addpatient', ['as'=>'addPatient', 'uses' => 'DoctorController@regPatient']);
 
-Route::post('doctor/patients/test', ['as'=>'patientAdded','uses'=>'DoctorController@createPatient']);
+Route::post('doctor/patients/test', ['as'=>'patientAdded','uses'=>'DoctorController@storePatient']);
+
+// Doctor's views' methods
+
+
+
+
+/*
+ * Patient's control routes
+ */
+
+
+
+
+/*
+ * Assistant's control routes
+ */
+
+
+
+
+/*
+ * Lab Tech's control routes
+ */
+
+
 
