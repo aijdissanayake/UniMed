@@ -56,6 +56,9 @@ class DoctorController extends Controller
 
         $user->role = 'patient';
         $user->save();
+        $logMessage= "User Added : Name > ".$name." email: " .$request['email'] ;
+        $log->fatal($logMessage); 
+        
         
         /*
          * now create patient
@@ -69,6 +72,8 @@ class DoctorController extends Controller
         $patient->locale = $request['locale'];
         $patient->bloodType = $request['bloodGroup'];
         $patient->save();
+        $logMessage= "Patient Added : Name > ".$name." email: " .$request['email']." BirthYear > ".$request['birthYear']."telephoneNo >".$request['contactNo']."" ;
+        $log->fatal($logMessage);
         
         return view('doctor/patients/test');
     }
