@@ -34,7 +34,14 @@
                     <p><h2>Registered Patients' Details</h2></p>
 
                     <div class="form_settings">
-                        <span>Patient's Name</span><input type="text" name="name" value="" /><input class="submit" type="submit" name="searchButton" value="Search" />
+                        <span>Patient's Name</span>
+<!--                        <form action="{{ route('searchPatients') }}">
+                        <input type="text" name="patientName" value="" />
+                        <a href="{{route('searchPatients')}}">
+                            &#128269;
+                        </a>
+                        </form>-->
+                        @include('searchForm')
                     </div>
 
                     <table style="width:100%; border-spacing:0;">

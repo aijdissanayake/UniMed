@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class patient extends Model
 {
     public function getUser() {
-        return $this->hasOne('App\User');
+        return $this->belongsTo('App\User','user_id','id');
     }
     
     public function getPatientVisits() {

@@ -5,11 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Patient;
-use Logger;
+use Illuminate\Support\Facades\Input;
+//use Logger;
 
 // Insert the path where you unpacked log4php
     // Tell log4php to use our configuration file.
-Logger::configure('D:\Emrys\unimed\config.xml');
+//Logger::configure('H:\Emrys\merovingienne\testLara');
 
  
 
@@ -18,10 +19,6 @@ Logger::configure('D:\Emrys\unimed\config.xml');
 class DoctorController extends Controller
 {
 
- 
-
-    
-    
     public function home() {
         return view('doctor.index');
     }
@@ -44,7 +41,7 @@ class DoctorController extends Controller
          * create user first
          */
         // Fetch a logger, it will inherit settings from the root logger
-        $log = Logger::getLogger('myLogger');
+//        $log = Logger::getLogger('myLogger');
         $user = new User();
         
         $name = $request['firstName']." ".$request['lastName'];
@@ -56,8 +53,8 @@ class DoctorController extends Controller
 
         $user->role = 'patient';
         $user->save();
-        $logMessage= "User Added : Name > ".$name." email: " .$request['email'] ;
-        $log->fatal($logMessage); 
+//        $logMessage= "User Added : Name > ".$name." email: " .$request['email'] ;
+//        $log->fatal($logMessage); 
         
         
         /*
@@ -72,11 +69,31 @@ class DoctorController extends Controller
         $patient->locale = $request['locale'];
         $patient->bloodType = $request['bloodGroup'];
         $patient->save();
-        $logMessage= "Patient Added : Name > ".$name." email: " .$request['email']." BirthYear > ".$request['birthYear']."telephoneNo >".$request['contactNo']."" ;
-        $log->fatal($logMessage);
+//        $logMessage= "Patient Added : Name > ".$name." email: " .$request['email']." BirthYear > ".$request['birthYear']."telephoneNo >".$request['contactNo']."" ;
+//        $log->fatal($logMessage);
         
         return view('doctor/patients/test');
     }
+    
+    public function searchPatient() {
+        
+        $inputs = Input::all(); // inputs is an array!!
+        $name = $inputs['patientName'];
+                
+        
+        $patients = Patient::where('firstName', 'LIKE', '%'.$inputs['patientName'].'%')->get();
+        
+        // patients is an array of patient objects!!
+        
+        return view('doctor.patients.searchResults2', compact('patients'));
+    }
+    
+//    public function showPatient($id) {
+//        $patient = Patient::find($id);
+//        
+//        return view('doctor.patients.view', compact('patient'));
+//    }
+    
     
     
     /*

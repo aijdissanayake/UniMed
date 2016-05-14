@@ -1,4 +1,4 @@
-<?php
+    <?php
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +33,10 @@ Route::get('doctor/patients', ['as'=>'patientsTab', 'uses'=>'DoctorController@vi
 Route::get('doctor/patients/addpatient', ['as'=>'addPatient', 'uses' => 'DoctorController@regPatient']);
 
 Route::post('doctor/patients/test', ['as'=>'patientAdded','uses'=>'DoctorController@storePatient']);
+
+//Route::get('doctor/patients/{id}', 'DoctorController@showPatient');
+
+Route::post('doctor/patients/search',['as'=>'searchPatients','uses'=>'DoctorController@searchPatient']);
 
 // Doctor's views' methods
 
