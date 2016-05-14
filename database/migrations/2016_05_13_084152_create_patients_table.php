@@ -17,7 +17,8 @@ class CreatePatientsTable extends Migration
             $table->integer('user_id');
             $table->string('firstName');
             $table->string('lastName');
-            $table->integer('age');
+            $table->string('gender');
+            $table->integer('birthYear');
             $table->string('bloodType');
             $table->string('locale');
             $table->integer('telephoneNo');
