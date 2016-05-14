@@ -16,6 +16,7 @@ class CreateIncomesTable extends Migration
             $table->increments('id');
             $table->integer('incomeType');
             $table->integer('receivedByID'); // receipt handler
+            $table->dateTimeTz('receiptDate');
             $table->decimal('value',9,2);
             $table->string('remarks')->nullable();
             $table->timestamps();

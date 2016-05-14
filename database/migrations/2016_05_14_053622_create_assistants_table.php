@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDoctorsTable extends Migration
+class CreateAssistantsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,15 @@ class CreateDoctorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('doctors', function (Blueprint $table) {
+        Schema::create('assistants', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');
-            $table->string('doctorName');
-            $table->integer('RegNo');
+            $table->integer('NIC');
+            $table->string('firstName');
+            $table->string('lastName');
+            $table->integer('birthYear');
+            $table->integer('telephoneNo');
+            $table->string('homeAddress')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +32,6 @@ class CreateDoctorsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('doctors');
+        Schema::drop('assistants');
     }
 }

@@ -16,6 +16,7 @@ class CreateExpensesTable extends Migration
             $table->increments('id');
             $table->integer('paymentType');
             $table->integer('paidByID'); // marks the employee who finalized the payment
+            $table->dateTimeTz('paymentDate');
             $table->decimal('value',9,2);
             $table->string('remarks')->nullable();
             $table->timestamps();

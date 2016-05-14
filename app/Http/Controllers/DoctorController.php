@@ -39,7 +39,7 @@ class DoctorController extends Controller
         return view('doctor.patients.addPatientForm');
     }
     
-    public function createPatient(Request $request) {
+    public function storePatient(Request $request) {
         /*
          * create user first
          */
@@ -52,23 +52,22 @@ class DoctorController extends Controller
         $user->name = $name;
         $user->password = "unicare101";
         $user->email = $request['email'];
-        $logMessage= "User Added : Name > ".$name." email: " .$request['email'] ;
-        $log->fatal($logMessage);    
+
+
+        $user->role = 'patient';
         $user->save();
         
         /*
          * now create patient
          */
         $patient = new Patient();
-        
+        $patient->user_id = $user->id;
         $patient->firstName = $request['firstName'];
         $patient->lastName = $request['lastName'];
         $patient->birthYear = $request['birthYear'];
         $patient->telephoneNo = $request['contactNo'];
         $patient->locale = $request['locale'];
         $patient->bloodType = $request['bloodGroup'];
-        $logMessage= "Patient Added : Name > ".$name." email: " .$request['email']." BirthYear > ".$request['birthYear']."telephoneNo >".$request['contactNo']."" ;
-        $log->fatal($logMessage);  
         $patient->save();
         
         return view('doctor/patients/test');
