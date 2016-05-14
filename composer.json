@@ -8,8 +8,7 @@
         "php": ">=5.5.9",
         "laravel/framework": "5.2.*",
 		"apache/log4php": "2.3.0",
-		"doctrine/dbal": "v2.5.4",
-		"zizaco/entrust": "5.2.x-dev"
+		"doctrine/dbal": "v2.5.4"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
