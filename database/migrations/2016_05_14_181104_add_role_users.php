@@ -5,6 +5,13 @@ use Illuminate\Database\Migrations\Migration;
 
 class AddRoleUsers extends Migration
 {
+    /*
+     * This migration is only for the purpose of adding
+     * a role column to the users table
+     */
+    
+    
+    
     /**
      * Run the migrations.
      *

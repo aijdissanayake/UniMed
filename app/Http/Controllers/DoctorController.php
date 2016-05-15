@@ -64,6 +64,7 @@ class DoctorController extends Controller
         $patient->user_id = $user->id;
         $patient->firstName = $request['firstName'];
         $patient->lastName = $request['lastName'];
+        $patient->gender = $request['gender'];
         $patient->birthYear = $request['birthYear'];
         $patient->telephoneNo = $request['contactNo'];
         $patient->locale = $request['locale'];
@@ -103,6 +104,38 @@ class DoctorController extends Controller
         
         return view('doctor.patients.searchResults', compact('patients'));
     }
+    
+    public function searchLabReports() {
+        
+        $inputs = Input::all(); // inputs is an array!!
+        
+        $type = $inputs['col_name'];
+        $value = $inputs['value'];
+        
+        
+        // configure query.
+        if ($type==1){
+            $col_name = 'firstName';
+        } elseif ($type==2){
+            $col_name = 'lastName';
+        } elseif ($type==3){
+            $col_name = 'telephoneNo';
+        }
+                
+        
+        $patients = Patient::where($col_name, 'LIKE', '%'.$value.'%')->get();
+        
+        // patients is an array of patient objects!!
+        
+        if ($patients->isEmpty()){
+            return view('doctor.lab.searchResultsEmpty');
+        }
+        
+        
+        
+        return view('doctor.lab.searchResults', compact('patients'));
+    }
+    
     
 //    public function showPatient($id) {
 //        $patient = Patient::find($id);

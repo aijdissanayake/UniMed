@@ -40,6 +40,8 @@ Route::post('doctor/patients/test', ['as'=>'patientAdded','uses'=>'DoctorControl
 
 Route::post('doctor/patients/search',['as'=>'searchPatients','uses'=>'DoctorController@searchPatient']);
 
+Route::post('doctor/patients/searchLabReports',['as'=>'searchLabReports','uses'=>'DoctorController@searchLabReports']);
+
 // Doctor's views' methods
 
 

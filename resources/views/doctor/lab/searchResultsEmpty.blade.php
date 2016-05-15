@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>Unicare - Lab</title>
+  <title>Unicare - Patients</title>
   <meta name="description" content="website description" />
   <meta name="keywords" content="website keywords, website keywords" />
   <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
@@ -16,25 +16,31 @@
     <div id="header">
       <div id="logo">
         <h1>Unicare Medical</h1>
-        <div class="slogan"><img src="/style/logo.png" /></div>
+        <div class="slogan"></div>
       </div>
       <div id="menubar">
-        
+        <ul id="menu">
+          <!-- put class="current" in the li tag for the selected page - to highlight which page you're on -->
+          <li><a href="{{route('homeTab')}}">Home</a></li>
+          <li><a href="{{route('patientsTab')}}">Patients</a></li>
+          <li><a href="{{route('financeTab')}}">Finance</a></li>
+          <li><a href="{{route('inventoryTab')}}">Inventory</a></li>
+          <li><a href="{{route('labTab')}}">Lab</a></li>
+        </ul>
       </div>
     </div>
     <div id="site_content">
       <div id="content">
-        <!-- insert the finance content here -->
-        <h1 >Lab report viewer</h1>
-        </p>
         
-        <form action="#" method="get">
-        <div class="form_settings">
-        <input class="submit" type="submit" name="searchButton" value="Go back" />
-        </div>
-        </form>
-      </div>
-    </div>
+          <h2>
+              Search Results
+          </h2>
+
+		  <p>Oops. Sorry but your search matched no one in our database.
+		  <a href="{{route('labTab')}}">Try again?</a>
+		  </p>
+          
+          
     <div id="footer">
       <p>&nbsp;</p>
     </div>

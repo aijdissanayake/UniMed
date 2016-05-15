@@ -31,16 +31,17 @@
     </div>
     <div id="site_content">
       <div id="content">
-        <!-- insert the finance content here -->
-        <div id="searchReport">
-        <h2>Search Lab Reports</h2>
-        <form action="#" method="post" >
-         <span ><b>Patient's Name</b></span><span> </span><input type="text" name="name" value="" /><input class="submit" type="submit" name="searchButton" value="Search" style="float:none" />
-        </form>
+        <div class='form_settings'>
+            <p><h2>Search Lab Reports</h2></p>
+        @include('doctor.lab.searchForm')
+<!--        <form action="#" method="post" >
+         <span ><b>Patient's Name</b></span><span> </span>
+         <input type="text" name="name" value="" /><input class="submit" type="submit" name="searchButton" value="Search" style="float:none" />
+        </form>-->
         </div>
         
         <div class="Lab_divsetting">
-        	<h2>Recent Lab Reports</h2>
+            <p><h2>Recent Lab Reports</h2></p>
             <table style="width:100%; border-spacing:0;">
               <tr><th width = "40%">Patient</th><th>Report type </th></tr>
               <tr><td></td><td></td></tr>

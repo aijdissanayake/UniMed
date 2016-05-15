@@ -261,7 +261,7 @@ ul#menu li a:hover
 .form_settings span
 { padding: 5px 0; 
   float: left; 
-  width: 170px; 
+  width: 160px; 
   text-align: left;}
   
 .form_settings input, .form_settings textarea
@@ -376,7 +376,7 @@ table tr td
  }
  
  .Lab_divsetting{
-	 width:50%; 
+	 width:100%; 
 	 float:left; 
 	 overflow:hidden;
  }

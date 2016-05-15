@@ -14,7 +14,6 @@ class CreateLabReportTypesTable extends Migration
     {
         Schema::create('lab_report_types', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('lab_report_id');
             $table->string('lab_report_type');
             $table->string('fee');
         });
