@@ -13,4 +13,12 @@ class patient extends Model
     public function getPatientVisits() {
         return $this->hasMany('App\patientVisit');
     }
+    
+    public function getAppointments() {
+        return $this->hasMany('App\appointment');
+    }
+    
+    public function getFullBloodReports() {
+        return $this->hasMany('App\fullBloodReport','patient_id','id');
+    }
 }

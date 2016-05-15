@@ -30,9 +30,19 @@ class User extends Authenticatable
      */
     
     public function getPatient() {
-        return $this->hasOne('App\Patient');
+        return $this->hasOne('App\patient','user_id','id');
     }
     
+    public function getDoctor() {
+        return $this->hasOne('App\doctor','user_id','id');
+    }
     
+    public function getLabTech() {
+        return $this->hasOne('App\labtech','user_id','id');
+    }
+    
+    public function getAssistant() {
+        return $this->hasOne('App\assistant','user_id','id');
+    }
     
 }
