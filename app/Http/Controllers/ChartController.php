@@ -8,7 +8,7 @@ class ChartController extends Controller
 
 {   
     public function statForm(){
-        return view('statistics');
+        return view('doctor/charts/statform');
     }
      public function backToStat(){
         return view('statistics');
