@@ -25,23 +25,23 @@ Route::get('/home', 'HomeController@index');
 
 
 // Doctor's views
-Route::get('doctor/home',['as'=>'homeTab', 'uses'=> 'DoctorController@home']);
-Route::get('doctor/patients', ['as'=>'patientsTab', 'uses'=>'DoctorController@viewPatientTab']);
-Route::get('doctor/finance',['as'=>'financeTab', 'uses'=> 'DoctorController@viewFinanceTab']);
+Route::get('doc',['as'=>'homeTab', 'uses'=> 'DoctorController@home']);
+Route::get('doc/patients', ['as'=>'patientsTab', 'uses'=>'DoctorController@viewPatientTab']);
+Route::get('doc/finance',['as'=>'financeTab', 'uses'=> 'DoctorController@viewFinanceTab']);
 
-Route::get('doctor/inventory', ['as'=>'inventoryTab', 'uses'=>'DoctorController@viewInventoryTab']);
-Route::get('doctor/lab', ['as'=>'labTab', 'uses'=>'DoctorController@viewLabTab']);
+Route::get('doc/inventory', ['as'=>'inventoryTab', 'uses'=>'DoctorController@viewInventoryTab']);
+Route::get('doc/lab', ['as'=>'labTab', 'uses'=>'DoctorController@viewLabTab']);
 
-Route::get('doctor/patients/addpatient', ['as'=>'addPatient', 'uses' => 'DoctorController@regPatient']);
+Route::get('doc/patients/addpatient', ['as'=>'addPatient', 'uses' => 'DoctorController@regPatient']);
 
-Route::post('doctor/patients/test', ['as'=>'patientAdded','uses'=>'DoctorController@storePatient']);
+Route::post('doc/patients/test', ['as'=>'patientAdded','uses'=>'DoctorController@storePatient']);
 
 //Route::get('doctor/patients/{id}', 'DoctorController@showPatient');
 
-Route::post('doctor/patients/search',['as'=>'searchPatients','uses'=>'DoctorController@searchPatient']);
-Route::get('doctor/patients/edit/{id}',['as'=>'editPatient','uses'=>'DoctorController@editPatient']);
+Route::post('doc/patients/search',['as'=>'searchPatients','uses'=>'DoctorController@searchPatient']);
+Route::get('doc/patients/edit/{id}',['as'=>'editPatient','uses'=>'DoctorController@editPatient']);
 
-Route::post('doctor/patients/searchLabReports',['as'=>'searchLabReports','uses'=>'DoctorController@searchLabReports']);
+Route::post('doc/patients/searchLabReports',['as'=>'searchLabReports','uses'=>'DoctorController@searchLabReports']);
 
 // Doctor's views' methods
 
@@ -52,9 +52,8 @@ Route::post('doctor/patients/searchLabReports',['as'=>'searchLabReports','uses'=
  * Patient's control routes
  */
 
-Route::get('patient/home',['as'=>'patientHome', 'uses'=> 'PatientController@home']);
-Route::get('patient/lab',['as'=>'patientLabTab', 'uses'=> 'PatientController@viewLabTab']);
-
+Route::get('pat',['as'=>'patient', 'uses'=> 'PatientController@home']);
+Route::get('pat/lab',['as'=>'patientLabTab', 'uses'=> 'PatientController@viewLabTab']);
 
 /*
  * Assistant's control routes

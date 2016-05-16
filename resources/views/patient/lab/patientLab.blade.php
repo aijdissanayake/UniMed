@@ -21,7 +21,7 @@
       <div id="menubar">
         <ul id="menu">
           <!-- put class="current" in the li tag for the selected page - to highlight which page you're on -->
-          <li><a href="{{route('patientHome')}}">Home</a></li>          
+          <li><a href="{{route('patient')}}">Home</a></li>          
           <li class="current"><a href="{{route('patientLabTab')}}">Lab</a></li>
         </ul>
       </div>
