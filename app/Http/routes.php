@@ -43,6 +43,9 @@ Route::get('doc/patients/edit/{id}',['as'=>'editPatient','uses'=>'DoctorControll
 
 Route::post('doc/patients/searchLabReports',['as'=>'searchLabReports','uses'=>'DoctorController@searchLabReports']);
 
+Route::post('doc/patients/stat/patientvisits', ['as'=>'patientsVisitsStat', 'uses' => 'ChartController@display']);
+Route::get('doc/patients/stat', ['as'=>'stats', 'uses' => 'ChartController@statForm']);
+Route::get('doc/patients',['as'=>'test', 'uses'=> 'ChartController@test']);
 // Doctor's views' methods
 
 
