@@ -13,10 +13,9 @@ class CreateFullBloodReportsTable extends Migration
     public function up()
     {
        Schema::create('full_blood_report', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('patient_id')->primary();
+            $table->increments('refNo');
+            $table->integer('patient_id')->index();
             $table->string('name');
-            $table->integer('referenceNo');
             $table->integer('age');
             $table->string('gender');
             $table->string('refferedBy');
