@@ -41,7 +41,7 @@ class ChartController extends Controller
           array_push($dataArray,$noOfpateints);
         }
         if(count($dataArray)==0) {
-            return view('statistics');
+            return view('doctor/charts/statform');
         }
         else{
         // set tick positions to dynamically change the graph scalling
@@ -56,6 +56,6 @@ class ChartController extends Controller
     $arrayChart["series"] = [
         array("name" => "Patients", "data" => $dataArray)];
       //pass the array to the html file and display   
-    return view('chart1' ,compact('arrayChart'));
+    return view('doctor/charts/' ,compact('arrayChart'));
         }
 }}

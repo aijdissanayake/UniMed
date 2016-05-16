@@ -8,7 +8,7 @@
   <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine&amp;v1" />
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" />
-  <link rel="stylesheet" type="text/css" href="/style/style2.css" />
+  <link rel="stylesheet" type="text/css" href="/style/style.css" />
   
   <meta charset="utf-8">
   <link rel="stylesheet" href="style/jquery-ui.css">
@@ -30,7 +30,7 @@
     </div>
     <div id="site_content">
       <div id="content">
-        <form action="{{route('stats')}}" method="post">
+        <form action="{{route('patientsVisitsStat')}}" method="post">
             {{ csrf_field() }}
           <div class="form_settings">
           	<h2>Statistics</h2>

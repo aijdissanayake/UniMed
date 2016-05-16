@@ -46,7 +46,7 @@ Route::post('doc/patients/searchLabReports',['as'=>'searchLabReports','uses'=>'D
 // Doctors Charts
 Route::get('doc/patients/stats', ['as'=>'stats', 'uses' => 'ChartController@statForm']);
 Route::post('doc/patients/stat/patientvisits', ['as'=>'patientsVisitsStat', 'uses' => 'ChartController@display']);
-Route::get('doc/patients',['as'=>'test', 'uses'=> 'ChartController@test']);
+Route::get('doc/patients/test',['as'=>'test', 'uses'=> 'ChartController@test']);
 // Doctor's views' methods
 
 
