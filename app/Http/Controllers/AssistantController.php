@@ -23,4 +23,12 @@ class AssistantController extends Controller
     public function viewLabTab() {
         return view('assistant.lab');
     }
+    
+    public function viewRep() {
+        return view('assistant.viewReport');
+    }
+    
+    public function addTransRec() {
+        return view('assistant.new_transaction_record');
+    }
 }

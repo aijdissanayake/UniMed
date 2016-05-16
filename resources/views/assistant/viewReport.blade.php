@@ -1,22 +1,15 @@
-<!DOCTYPE HTML>
-<html>
+@extends('layouts.appLayout')
 
-<head>
-  <title>Unicare - Lab</title>
-  <meta name="description" content="website description" />
-  <meta name="keywords" content="website keywords, website keywords" />
-  <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
-  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine&amp;v1" />
-  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" />
-  <link rel="stylesheet" type="text/css" href="style/style.css" />
-</head>
+@section('header')
+<title>Unicare - Lab</title>
+@stop
 
+@section('body')
 <body>
   <div id="main">
     <div id="header">
       <div id="logo">
         <h1>Unicare Medical</h1>
-        <div class="slogan"><img src="style/logo.png" /></div>
       </div>
       <div id="menubar">
         
@@ -40,4 +33,4 @@
     </div>
   </div>
 </body>
-</html>
+@stop
