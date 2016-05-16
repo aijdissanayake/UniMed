@@ -44,6 +44,15 @@ class DoctorController extends Controller
     
     public function storePatient(Request $request) {
         /*
+         * validating data
+         */
+        
+        $this->validate($request, [
+            'email' => 'unique:users,email',
+        ]);
+        
+        
+        /*
          * create user first
          */
         // Fetch a logger, it will inherit settings from the root logger
