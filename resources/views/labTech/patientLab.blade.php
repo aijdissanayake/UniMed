@@ -1,28 +1,20 @@
-<!DOCTYPE HTML>
-<html>
+@extends('layouts.appLayout')
 
-<head>
+@section('header')
   <title>Unicare - Lab</title>
-  <meta name="description" content="website description" />
-  <meta name="keywords" content="website keywords, website keywords" />
-  <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
-  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine&amp;v1" />
-  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" />
-  <link rel="stylesheet" type="text/css" href="style/style.css" />
-</head>
+@stop
 
+@section('body')
 <body>
   <div id="main">
     <div id="header">
       <div id="logo">
         <h1>Unicare Medical</h1>
-        <div class="slogan"><img src="style/logo.png" /></div>
       </div>
       <div id="menubar">
         <ul id="menu">
-          <!-- put class="current" in the li tag for the selected page - to highlight which page you're on -->
-          <li><a href="patientHome.html">Home</a></li>          
-          <li class="current"><a href="patientLab.html">Lab</a></li>
+          <li><a href="{{route('lt')}}">Home</a></li>          
+          <li class="current"><a href="{{route('ltLab')}}">Lab</a></li>
         </ul>
       </div>
     </div>
@@ -39,4 +31,4 @@
     </div>
   </div>
 </body>
-</html>
+@stop

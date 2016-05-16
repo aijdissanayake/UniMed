@@ -68,10 +68,13 @@ Route::get('ast/finance', ['as'=>'astFinance', 'uses'=>'AssistantController@view
 Route::get('ast/lab', ['as'=>'astLab', 'uses'=>'AssistantController@viewLabTab']);
 Route::get('ast/inventory', ['as'=>'astInventory', 'uses'=>'AssistantController@viewInvTab']);
 Route::get('ast/reports', ['as'=>'astReports', 'uses'=>'AssistantController@viewRep']);
+Route::get('ast/newtrec', ['as'=>'astAddTRec','uses'=>'AssistantController@addTransRec']);
 
 /*
  * Lab Tech's control routes
  */
 
-
+Route::get('lt', ['as'=>'lt', 'uses'=>'LabTechController@home']);
+Route::post('lt/newRep', ['as'=>'ltNewRep', 'uses'=>'LabTechController@newReport']);
+Route::get('lt/pat', ['as'=>'ltLab', 'uses'=>'LabTechController@patientLab']);
 
