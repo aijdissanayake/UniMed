@@ -1,10 +1,10 @@
 <html>
     <head>
-        <title>{{$patient->name}}</title>
+        <title>Patient results</title>
     </head>
     <body>
-        <h2>{{$patient->bloodType}}</h2>
-        {{$patient->firstName}}
+        <h2>{{$user->name}}</h2>
+        {{$user->role}}
 
     </body>
 </html>

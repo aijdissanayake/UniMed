@@ -39,6 +39,7 @@ Route::post('doctor/patients/test', ['as'=>'patientAdded','uses'=>'DoctorControl
 //Route::get('doctor/patients/{id}', 'DoctorController@showPatient');
 
 Route::post('doctor/patients/search',['as'=>'searchPatients','uses'=>'DoctorController@searchPatient']);
+Route::get('doctor/patients/edit/{id}',['as'=>'editPatient','uses'=>'DoctorController@editPatient']);
 
 Route::post('doctor/patients/searchLabReports',['as'=>'searchLabReports','uses'=>'DoctorController@searchLabReports']);
 
@@ -51,7 +52,8 @@ Route::post('doctor/patients/searchLabReports',['as'=>'searchLabReports','uses'=
  * Patient's control routes
  */
 
-
+Route::get('patient/home',['as'=>'patientHome', 'uses'=> 'PatientController@home']);
+Route::get('patient/lab',['as'=>'patientLabTab', 'uses'=> 'PatientController@viewLabTab']);
 
 
 /*

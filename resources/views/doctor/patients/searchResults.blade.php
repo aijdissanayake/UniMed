@@ -39,8 +39,8 @@
           <table class="table table-striped"  style='font-family: trebuchet ms'>
               <thead>
             <tr>
-                <th width='45px' style='text-align: center'>id</th>
-                <th width='75px' style='text-align: center'>user_id</th>
+                <th width='85px' style='text-align: center'>Patient ID</th>
+                <th width='75px' style='text-align: center'>User ID</th>
                 <th width='135px' style='text-align: center'>First name</th>
                 <th width='135px' style='text-align: center'>Last name</th>
                 <th></th>
@@ -53,11 +53,12 @@
                 <td width='75px' style='text-align: center'>{{$patient->user_id}}</td>
                 <td width='135px' style='text-align: center'>{{$patient->firstName}}</td>
                 <td width='135px' style='text-align: center'>{{$patient->lastName}}</td>
-                <td width='75px' style='text-align: center'>Edit</td>
+                <td width='75px' style='text-align: center'>
+                    <a href="{{route('editPatient', [$patient->user_id])}}">Edit</a>
+                </td>
                 <td width='150px' style='text-align: center'>
-                    <a href="">Add visit record
-                    </a>
-                    </td>
+                    <a href="">Add visit record</a>
+                </td>
             </tr>
             
             @endforeach

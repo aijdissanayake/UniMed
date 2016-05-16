@@ -36,6 +36,12 @@ class DoctorController extends Controller
         return view('doctor.patients.add_new_patient');
     }
     
+    public function editPatient($id){
+        $user = User::find($id);
+        
+        return view('doctor.patients.view', compact('user'));
+    }
+    
     public function storePatient(Request $request) {
         /*
          * create user first
@@ -47,7 +53,7 @@ class DoctorController extends Controller
         $name = $request['firstName']." ".$request['lastName'];
         
         $user->name = $name;
-        $user->password = "unicare101";
+        $user->password = bcrypt("unicare101");
         $user->email = $request['email'];
 
 
@@ -65,6 +71,7 @@ class DoctorController extends Controller
         $patient->firstName = $request['firstName'];
         $patient->lastName = $request['lastName'];
         $patient->gender = $request['gender'];
+//        $patient->gender = 'male';
         $patient->birthYear = $request['birthYear'];
         $patient->telephoneNo = $request['contactNo'];
         $patient->locale = $request['locale'];

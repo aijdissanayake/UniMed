@@ -8,17 +8,17 @@
   <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine&amp;v1" />
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" />
-  <link rel="stylesheet" type="text/css" href="style/style.css" />
+  <link rel="stylesheet" type="text/css" href="/style/style.css" />
   
     <!--  jQuery -->
-<script type="text/javascript" src="style/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="/style/jquery-1.11.3.min.js"></script>
 
 <!-- Isolated Version of Bootstrap, not needed if your site already used Bootstrap -->
-<link rel="stylesheet" href="style/bootstrap-iso.css" />
+<link rel="stylesheet" href="/style/bootstrap-iso.css" />
 
 <!-- Bootstrap Date-Picker Plugin -->
-<script type="text/javascript" src="style/bootstrap-datepicker.min.js"></script>
-<link rel="stylesheet" href="style/bootstrap-datepicker3.css"/>
+<script type="text/javascript" src="/style/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet" href="/style/bootstrap-datepicker3.css"/>
 
 </head>
 
@@ -27,13 +27,13 @@
     <div id="header">
       <div id="logo">
         <h1>Unicare Medical</h1>
-        <div class="slogan"><img src="style/logo.png" /></div>
+        <div class="slogan"><img src="/style/logo.png" /></div>
       </div>
       <div id="menubar">
         <ul id="menu">
           <!-- put class="current" in the li tag for the selected finance - to highlight which finance you're on -->
-          <li class="current"><a href="patientHome.html">Home</a></li>
-          <li><a href="patientLab.html">Lab</a></li>
+          <li class="current"><a href="{{route('patientHome')}}">Home</a></li>
+          <li><a href="{{route('patientLabTab')}}">Lab</a></li>
         </ul>
       </div>
     </div>
