@@ -56,6 +56,6 @@ class ChartController extends Controller
     $arrayChart["series"] = [
         array("name" => "Patients", "data" => $dataArray)];
       //pass the array to the html file and display   
-    return view('doctor/charts/' ,compact('arrayChart'));
+    return view('doctor.charts.patientsVisitsChart' ,compact('arrayChart'));
         }
 }}
