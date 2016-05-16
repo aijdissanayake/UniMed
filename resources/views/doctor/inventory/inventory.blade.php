@@ -8,6 +8,7 @@
 <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine&amp;v1" />
 <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" />
 <link rel="stylesheet" type="text/css" href="/style/style.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.3/jquery.min.js"></script>
 </head>
 
 <body>
@@ -102,45 +103,27 @@
   </div>
 </div>
 <script>
-� � $('#a_type').on('change', function(e){
-� � � � console.log(e);
-� � � � var state_id = e.target.value;
-		
 
-� � � � $.get('{{ url('information') }}/create/ajax-state?state_id=' + state_id, function(data) {
-� � � � � � console.log(data);
-� � � � � � $('#a_items').empty();
-� � � � � � $.each(data, function(index,subCatObj){
-� � � � � � � � $('#a_items').append(''+subCatObj.name+'');
-� � � � � � });
-� � � � });
-� � });
-	$('#r_type').on('change', function(e){
-� � � � console.log(e);
-� � � � var state_id = e.target.value;
-		
 
-� � � � $.get('{{ url('information') }}/create/ajax-state?state_id=' + state_id, function(data) {
-� � � � � � console.log(data);
-� � � � � � $('#r_items').empty();
-� � � � � � $.each(data, function(index,subCatObj){
-� � � � � � � � $('#r_items').append(''+subCatObj.name+'');
-� � � � � � });
-� � � � });
-� � });
-	$('#s_type').on('change', function(e){
-� � � � console.log(e);
-� � � � var state_id = e.target.value;
-		
+  $('#a_type').on('change', function (e) {
 
-� � � � $.get('{{ url('information') }}/create/ajax-state?state_id=' + state_id, function(data) {
-� � � � � � console.log(data);
-� � � � � � $('#s_items').empty();
-� � � � � � $.each(data, function(index,subCatObj){
-� � � � � � � � $('#s_items').append(''+subCatObj.name+'');
-� � � � � � });
-� � � � });
-� � });
-  </script>
+    var state_id = e.target.value;
+    var select = document.getElementById('a_items');
+
+
+    if (state_id == "Equipments") {
+      console.log(e);
+      $('#a_items').empty();
+      select.options[select.options.length] = new Option('sample_equip', 'eq');
+    }
+    else{
+      $('#a_items').empty();
+      select.options[select.options.length] = new Option('sample_med', 'eq');
+    }
+
+
+  });
+
+</script>
 </body>
 </html>
