@@ -30,8 +30,8 @@
       </div>
     </div>
     <div id="site_content">
-      <div id="content">
-        <p><h2>Registered Patients' Details</h2></p>
+      <div id="content" >
+        
         <!--<form action="{{route('searchPatients')}}" method="post">-->
         <div class="form_settings">
 <!--		<p><span>Search patient by</span>
@@ -42,6 +42,13 @@
 		@include('doctor.patients.searchForm')
         </div>
         <!--</form>-->
+        
+        <div><p>
+      
+            
+          <h2>Last Session Summary</h2>
+      </p>
+                
         <table style="width:100%; border-spacing:0;">
           <tr><th width = 20%>Details</th><th>Description</th></tr>
           <tr><td>First Name</td><td></td></tr>
@@ -52,12 +59,17 @@
           <tr><td>Blood Group</td><td></td></tr>
           <tr><td>Remarks</td><td></td></tr>
         </table>
-        <div class="form_settings">
+      <p><div class="form_settings">
             <a href="{{route('addPatient')}}">
             <input class="submit" type="submit" name="addNewPatient" 
                value="Add a New Patient" />
             </a>
         </div>
+      <div class="form_settings"  >
+            <a href="{{route('stats')}}">
+            <input class="submit" type="submit" name="addNewPatient" 
+               value=" Patient Statistics " />
+            </a></div></p>
       </div>
     </div>
     <div id="footer">
