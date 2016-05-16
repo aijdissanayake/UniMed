@@ -23,10 +23,10 @@
   <div id="main">
     <div id="header">
       <div id="logo">
-        <h1>Unicare Medical</h1>
-        <div class="slogan"><img src="style/logo.png" /></div>
+          <h1 style="margin-left:0px">Unicare Medical</h1>
+        
       </div>
-      <div id="heading"><h2>Statistics Viewer</h2></div>
+      <div  id="heading"><h2 style="margin-left:28px">Statistics Viewer</h2></div>
     </div>
     <div id="site_content">
       <div id="content">
@@ -35,22 +35,32 @@
           <div class="form_settings">
           	<h2>Statistics</h2>
           	<p>Select a period to view requested statistics</p>
-			<p><span>From</span><input type="date" name="fromDatePicker" id="datepicker"></p>
+			<p><span>From :</span><input type="date" name="fromDatePicker" id="datepicker"></p>
 			<script>
 				$(function() {
 				$( "#datepicker" ).datepicker();
 				});
 			</script>
-			<p><span>To</span><input type="date" name="toDatePicker" id="datepicker"></p>
+			<p><span>To&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</span><input type="date" name="toDatePicker" id="datepicker"></p>
 			<script>
 				$(function() {
 				$( "#datepicker" ).datepicker();
 				});
 			</script>
-            <p align = "right" style="padding-top: 15px"><input class="submit" type="submit" name="submitButton" value="View Statistics" /></p>
+            <p align = "right" style="padding-top: 15px"> 
+                
+               <input class="submit" type="submit" name="submitButton" value="View Statistics" />
+            </p>
+            
           </div>
         </form>
-		
+          <p align = "right" style="padding-top: 15px">
+	<div class="form_settings" align = "right" >
+            <a href="{{route('patientsTab')}}">
+            <input class="submit" type="submit" name="PatientsStat" 
+               value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Back&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" />
+            </a></div> 
+           </p>
       </div>
     </div>
     <div id="footer">
