@@ -59,8 +59,11 @@ Route::get('pat/lab',['as'=>'patientLabTab', 'uses'=> 'PatientController@viewLab
  * Assistant's control routes
  */
 
-
-
+Route::get('ast', ['as'=>'ast', 'uses'=>'AssistantController@home']);
+Route::get('ast/finance', ['as'=>'astFinance', 'uses'=>'AssistantController@viewFinTab']);
+Route::get('ast/lab', ['as'=>'astLab', 'uses'=>'AssistantController@viewLabTab']);
+Route::get('ast/inventory', ['as'=>'astInventory', 'uses'=>'AssistantController@viewInvTab']);
+Route::get('ast/reports', ['as'=>'astReports', 'uses'=>'AssistantController@viewRep']);
 
 /*
  * Lab Tech's control routes

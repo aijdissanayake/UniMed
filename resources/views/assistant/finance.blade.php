@@ -21,11 +21,10 @@
       <div id="menubar">
         <ul id="menu">
           <!-- put class="current" in the li tag for the selected finance - to highlight which finance you're on -->
-          <li><a href="index.html">Home</a></li>
-          <li></li>
-          <li class="current"><a href="finance.html">Finance</a></li>
-          <li><a href="inventory.html">Inventory</a></li>
-          <li><a href="lab.html">Lab</a></li>
+          <li><a href="{{route('ast')}}">Home</a></li>
+          <li class="current"><a href="{{route('astFinance')}}">Finance</a></li>
+          <li><a href="{{route('astInventory')}}">Inventory</a></li>
+          <li><a href="{{route('astLab')}}">Lab</a></li>
         </ul>
       </div>
     </div>
