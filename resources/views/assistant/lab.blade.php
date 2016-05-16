@@ -1,15 +1,15 @@
 @extends('layouts.appLayout')
+
 @section('header')
   <title>Unicare - Lab</title>
-  <meta name="description" content="website description" />
-  <meta name="keywords" content="website keywords, website keywords" />
-@endsection
+@stop
+
+@section('body')
 <body>
   <div id="main">
     <div id="header">
       <div id="logo">
         <h1>Unicare Medical</h1>
-        <div class="slogan"><img src="/style/logo.png" /></div>
       </div>
       <div id="menubar">
         <ul id="menu">
@@ -63,4 +63,4 @@
     </div>
   </div>
 </body>
-</html>
+@stop

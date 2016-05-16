@@ -43,6 +43,10 @@ Route::get('doc/patients/edit/{id}',['as'=>'editPatient','uses'=>'DoctorControll
 
 Route::post('doc/patients/searchLabReports',['as'=>'searchLabReports','uses'=>'DoctorController@searchLabReports']);
 
+// Doctors Charts
+Route::get('doc/patients/stats', ['as'=>'stats', 'uses' => 'ChartController@statForm']);
+Route::post('doc/patients/stat/patientvisits', ['as'=>'patientsVisitsStat', 'uses' => 'ChartController@display']);
+Route::get('doc/patients/test',['as'=>'test', 'uses'=> 'ChartController@test']);
 // Doctor's views' methods
 
 
@@ -64,10 +68,13 @@ Route::get('ast/finance', ['as'=>'astFinance', 'uses'=>'AssistantController@view
 Route::get('ast/lab', ['as'=>'astLab', 'uses'=>'AssistantController@viewLabTab']);
 Route::get('ast/inventory', ['as'=>'astInventory', 'uses'=>'AssistantController@viewInvTab']);
 Route::get('ast/reports', ['as'=>'astReports', 'uses'=>'AssistantController@viewRep']);
+Route::get('ast/newtrec', ['as'=>'astAddTRec','uses'=>'AssistantController@addTransRec']);
 
 /*
  * Lab Tech's control routes
  */
 
-
+Route::get('lt', ['as'=>'lt', 'uses'=>'LabTechController@home']);
+Route::post('lt/newRep', ['as'=>'ltNewRep', 'uses'=>'LabTechController@newReport']);
+Route::get('lt/pat', ['as'=>'ltLab', 'uses'=>'LabTechController@patientLab']);
 
