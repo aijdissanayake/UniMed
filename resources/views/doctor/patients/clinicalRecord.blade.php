@@ -30,11 +30,11 @@
     <div id="site_content">
       <div id="content">
         <h2>Clinical Record</h2>
-        <form action="#" method="post">
+        <form action="{{route('storePatientVisitRecord',[$patient->id, $patient])}}" method="post">
           <div class="form_settings">
             <p><span>PatientID</span>{{$patient->id}}</p>
             <p><span>Patient name</span>{{$patient->firstName}} {{$patient->lastName}}</p>
-            <p><span>Diagnosis</span><textarea rows="4" cols="50" name="diagnosis"></textarea></p>
+            <p><span>Diagnosis</span><textarea rows="4" cols="50" name="diagnosis" required=""></textarea></p>
             <p><span>Prognosis</span><textarea rows="4" cols="50" name="prognosis"></textarea></p>
             <p><span>Prescribed Drugs</span><textarea rows="4" cols="50" name="prescDrugs"></textarea></p>
             <p><span>Special Remarks</span><textarea rows="4" cols="50" name="remarks"></textarea></p>

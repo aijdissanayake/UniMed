@@ -159,7 +159,25 @@ class DoctorController extends Controller
         return view('doctor.patients.clinicalRecord', compact('patient'));
     }
     
-    
+    public function storePatientVisitRecord($id, $patient, Request $request) {
+        $newVRec = new patientVisit();
+        
+        $newVRec->patientID = $patient->id;
+        
+        $newVRec->diagnosis = $request['diagnosis'];
+        
+        if ($request['prognosis']!=""){
+            $newVRec->prognosis = $request['prognosis'];
+        }
+        
+        if ($request['remarks']!=""){
+            $newVRec->remarks = $request['remarks'];
+        }
+        
+        $newVRec->save();
+        
+        return view('doctor.patients.clinicalRecord', compact('newVRec'));
+    }
 //    public function showPatient($id) {
 //        $patient = Patient::find($id);
 //        
