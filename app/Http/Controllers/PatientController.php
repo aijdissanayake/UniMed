@@ -24,9 +24,10 @@ class PatientController extends Controller
     public function createAppointment(){
         
         $inputs = Input::all();
-        $appDate = Input[appointmentDate];
-        $appSession = Input[session];
+        $appDate = $inputs['appointmentDate'];
+        $appSession = $inputs['session'];
         
+        print  $appDate ."  ". $appSession;
     }
     
 }

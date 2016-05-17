@@ -17,7 +17,8 @@ class ChartController extends Controller
         //get selected date range
         $inputs=Input::all();
         $fromDate= $inputs['fromDatePicker'];
-        $toDate=$inputs['toDatePicker']; //where('status', '<', 5)
+        $toDate=$inputs['toDatePicker'];
+        //where('status', '<', 5)
         // get an array of objects grouped by the created date 	
         $createddate = \App\patientVisit::where('created_at','<=',$toDate )->where('created_at','>=',$fromDate)->groupBy ( 'created_at')->get ();
         //create new array that contains the dates of grouped array
