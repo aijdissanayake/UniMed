@@ -56,7 +56,7 @@
             </select>
           </label></p>
             <br>
-            <input class="submit" type="submit" name="appointmentDate" value="Reserve Appointment" />	
+            <input class="submit" type="submit" name="appointmentButton"  />	
                 <br><br>
                 </div>
                 </form>

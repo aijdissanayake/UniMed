@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Input;
 
+//use Illuminate\Support\Facades\Auth;
+
 class PatientController extends Controller
 {
     public function home() {
@@ -24,9 +26,11 @@ class PatientController extends Controller
     public function createAppointment(){
         
         $inputs = Input::all();
-        $appDate = Input[appointmentDate];
-        $appSession = Input[session];
-        
+        $appDate = $inputs['appointmentDate'];
+        $appSession = $inputs['session'];
+        $id = \Illuminate\Support\Facades\Auth::user()->id ;
+        print  $appDate ."  ". $appSession ." " . $id;
+         
     }
     
 }
