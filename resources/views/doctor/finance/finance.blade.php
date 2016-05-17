@@ -8,17 +8,13 @@
   <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine&amp;v1" />
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" />
-  <link rel="stylesheet" type="text/css" href="/style/style.css" />
+  <link rel="stylesheet" type="text/css" href="style/style.css" />
   
-  <!--  jQuery -->
-<script type="text/javascript" src="/style/jquery-1.11.3.min.js"></script>
-
-<!-- Isolated Version of Bootstrap, not needed if your site already used Bootstrap -->
-<link rel="stylesheet" href="/style/bootstrap-iso.css" />
-
-<!-- Bootstrap Date-Picker Plugin -->
-<script type="text/javascript" src="style/bootstrap-datepicker.min.js"></script>
-<link rel="stylesheet" href="/style/bootstrap-datepicker3.css"/>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="style/jquery-ui.css">
+  <script src="style/jquery-1.10.2.js"></script>
+  <script src="style/jquery-ui.js"></script>
+  <link rel="stylesheet" href="/resources/demos/style.css" />
 </head>
 
 <body>
@@ -86,71 +82,23 @@
           <tr><td>Less: Expenses</td><td></td></tr>
           <tr><td>Gross Profit</td><td></td></tr>
         </table>
+        <form action="#" method="post">
         <h2>Financial Summary of a given Time Period</h2>
-        <div class="bootstrap-iso">
-         <div class="container-fluid">
-          <div class="row">
-           <div class="col-md-6 col-sm-6 col-xs-12">
-        
-            <!-- Form code begins -->
-            <form method="post">
-              <div class="form-group col-md-11"> <!-- Date input -->
-                <label class="control-label" for="date">From</label>
-                <input class="form-control" id="fromDate" name="fromDate" placeholder="dd/mm/yyyy" type="text"/>
-              </div>
-              <div class="form-group"> <!-- Submit button -->
-                <!--<button class="btn btn-primary " name="submit" type="submit">Submit</button>-->
-              </div>
-             </form>
-             <!-- Form code ends --> 
-        
-           </div>
-         </div>    
-        </div>
-        <script>
-		 	var date_input=$('input[name="fromDate"]'); //our date input has the name "date"
-			var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-			var options={
-        		format: 'dd/mm/yyyy',
-        		container: container,
-        		todayHighlight: true,
-        		autoclose: true,
-    		};
-    		date_input.datepicker(options); //initiali110/26/2015 8:20:59 PM ze plugin
-		</script>
-        </div>
-        <div class="bootstrap-iso">
-         <div class="container-fluid">
-          <div class="row">
-           <div class="col-md-6 col-sm-6 col-xs-12">
-        
-            <!-- Form code begins -->
-            <form method="post">
-              <div class="form-group col-md-11"> <!-- Date input -->
-                <label class="control-label" for="date">To</label>
-                <input class="form-control" id="toDate" name="toDate" placeholder="dd/mm/yyyy" type="text"/>
-              </div>
-              <div class="form-group"> <!-- Submit button -->
-                <!--<button class="btn btn-primary " name="submit" type="submit">Submit</button>-->
-              </div>
-             </form>
-             <!-- Form code ends --> 
-        
-           </div>
-         </div>    
-        </div>
-        <script>
-		 	var date_input=$('input[name="toDate"]'); //our date input has the name "date"
-			var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-			var options={
-        		format: 'dd/mm/yyyy',
-        		container: container,
-        		todayHighlight: true,
-        		autoclose: true,
-    		};
-    		date_input.datepicker(options); //initiali110/26/2015 8:20:59 PM ze plugin
-		</script>
-        </div>
+        <div class="form_settings">
+        <p><span>From</span><input type="date" id="datepicker"></p>
+			<script>
+				$(function() {
+				$( "#datepicker" ).datepicker();
+				});
+			</script>
+			<p><span>To</span><input type="date" id="datepicker"></p>
+			<script>
+				$(function() {
+				$( "#datepicker" ).datepicker();
+				});
+			</script>
+            </div>
+         </form>
         <div class="form_settings">
         <p align = "right" style="padding-top: 15px"><input class="submit" type="submit" name="newTransaction" value="Show Transaction Summary" /></p>
         </div>
