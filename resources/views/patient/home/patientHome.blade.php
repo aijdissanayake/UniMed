@@ -28,8 +28,8 @@
       <div id="menubar">
         <ul id="menu">
           <!-- put class="current" in the li tag for the selected finance - to highlight which finance you're on -->
-          <li class="current"><a href="patientHome.html">Home</a></li>
-          <li><a href="patientLab.html">Lab</a></li>
+          <li class="current"><a href="{{route('patient')}}">Home</a></li>
+          <li><a href="{{route('patientLabTab')}}">Lab</a></li>
         </ul>
       </div>
     </div>

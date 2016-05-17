@@ -37,19 +37,19 @@
                     <form action="{{route('patientAdded')}}" method="post">
                         {{ csrf_field() }}
                         <div class="form_settings">
-                            <p><span>First Name</span><input type="text" name="firstName" value="old_firstName" required=""/>
+                            <p><span>First Name</span><input type="text" name="firstName" value="{{old('firstName')}}" required=""/>
                                 Note: Default password will be set to "unicare101"</p>
-                            <p><span>Last Name</span><input type="text" name="lastName" value="old_lastName"  required=""/></p>
-                            <p><span>Birth Year</span><input type="text" name="birthYear" value="old_birthYear"  required=""/></p>
+                            <p><span>Last Name</span><input type="text" name="lastName" value="{{old('lastName')}}"  required=""/></p>
+                            <p><span>Birth Year</span><input type="text" name="birthYear" value="{{old('birthYear')}}"  required=""/></p>
                             <p><span>Gender</span>
                                 <input class="checkbox" type="radio" name="gender" value="male" checked>Male
                                 <input class="checkbox" type="radio" name="gender" value="female">Female<br>
                             </p>
-                            <p><span>Email</span><input type="text" name="email" value="" required=""/></p>
-                            <p><span>Contact No.</span><input type="text" name="contactNo" value="" required="" /></p>
-                            <p><span>Locale</span><input type="text" name="locale" value=""/></p>
-                            <p><span>Blood Group</span><input type="text" name="bloodGroup" value=""  required=""/></p>
-                            <p><span>Remarks</span><textarea rows="4" cols="50" name="remarks"></textarea></p>
+                            <p><span>Email</span><input type="text" name="email" value="{{old('email')}}" required=""/></p>
+                            <p><span>Contact No.</span><input type="text" name="contactNo" value="{{old('contactNo')}}" required="" /></p>
+                            <p><span>Locale</span><input type="text" name="locale" value="{{old('locale')}}"/></p>
+                            <p><span>Blood Group</span><input type="text" name="bloodGroup" value="{{old('bloodGroup')}}"  required=""/></p>
+                            <p><span>Remarks</span><textarea rows="4" cols="50" name="remarks" value="{{old('remarks')}}"></textarea></p>
 
                             <p align = "right" style="padding-top: 15px">
                                 <input class="submit" type="submit" name="submitButton" value="Register" />

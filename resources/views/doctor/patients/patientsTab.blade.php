@@ -67,7 +67,7 @@
         </div>
       <div class="form_settings"  >
             <a href="{{route('stats')}}">
-            <input class="submit" type="submit" name="addNewPatient" 
+            <input class="submit" type="submit" name="PatientsStat" 
                value=" Patient Statistics " />
             </a></div></p>
       </div>
