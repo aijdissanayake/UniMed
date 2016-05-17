@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\drug;
+use App\equipment;
 use Illuminate\Http\Request;
 use App\User;
 use App\Patient;
@@ -39,7 +41,6 @@ class DoctorController extends Controller
     
     public function editPatient($id){
         $user = User::find($id);
-        
         return view('doctor.patients.view', compact('user'));
     }
     
@@ -205,12 +206,17 @@ class DoctorController extends Controller
     }
     
     public function viewInventoryTab() {
-        return view('doctor.inventory.inventory');        
+        $drugs = drug::all();
+        $equip = equipment::all();
+        $items = array($drugs,$equip); //this array is used to create drop down menus.
+        return view('doctor.inventory.inventory', compact('items'));
     }
     
     public function viewLabTab() {
         return view('doctor.lab.lab');        
     }
+
+    
     
     
     
