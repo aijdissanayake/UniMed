@@ -39,8 +39,9 @@
 		  <p>Oops. Sorry but your search matched no one in our database.
 		  <a href="{{route('patientsTab')}}">Try again?</a>
 		  </p>
-          
-          
+                  <div class="form_settings"
+          @include('doctor.patients.searchForm')
+          </di</div>
     <div id="footer">
       <p>&nbsp;</p>
     </div>

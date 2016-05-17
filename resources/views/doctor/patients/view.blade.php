@@ -3,8 +3,8 @@
         <title>Patient results</title>
     </head>
     <body>
-        <h2>{{$user->name}}</h2>
-        {{$user->role}}
+        <h2>{{$newVRec->patientID}}</h2>
+        {{$newVRec->diagnosis}}
 
     </body>
 </html>

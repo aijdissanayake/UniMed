@@ -47,7 +47,7 @@ Route::group(['middleware' => 'authorizer:doctor'], function() {
     Route::post('doc/patients/search', ['as' => 'searchPatients', 'uses' => 'DoctorController@searchPatient']);
     Route::get('doc/patients/edit/{id}', ['as' => 'editPatient', 'uses' => 'DoctorController@editPatient']);
     Route::get('doc/patients/createRecord/{id}', ['as' => 'createPatientVisitRecord', 'uses'=>'DoctorController@createPatientVisitRecord']);
-    Route::get('doc/patients/storeRecord/{id}', ['as' => 'storePatientVisitRecord', 'uses'=>'DoctorController@storePatientVisitRecord']);
+    Route::post('doc/patients/storeRecord/{id}', ['as' => 'storePatientVisitRecord', 'uses'=>'DoctorController@storePatientVisitRecord']);
 
     Route::post('doc/patients/searchLabReports', ['as' => 'searchLabReports', 'uses' => 'DoctorController@searchLabReports']);
 
