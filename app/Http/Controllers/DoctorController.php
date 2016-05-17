@@ -153,6 +153,13 @@ class DoctorController extends Controller
     }
     
     
+    public function createPatientVisitRecord($id) {
+        $patient = User::find($id)->getPatient;
+        
+        return view('doctor.patients.clinicalRecord', compact('patient'));
+    }
+    
+    
 //    public function showPatient($id) {
 //        $patient = Patient::find($id);
 //        
