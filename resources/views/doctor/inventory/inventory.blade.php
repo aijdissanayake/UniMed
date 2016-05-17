@@ -89,7 +89,9 @@
           </label>&nbsp;
           <label>Select item:
             <select id="s_items" class="form-control input-sm" name="s_items">
-              <option value=""></option>
+              @foreach($items[0] as $item)
+              <option value={{$item->drugName}}>{{$item->drugName}}</option>
+              @endforeach
             </select>
           </label>&nbsp;&nbsp;&nbsp;
           
