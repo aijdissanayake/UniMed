@@ -8,7 +8,7 @@
   <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine&amp;v1" />
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" />
-  <link rel="stylesheet" type="text/css" href="style/style.css" />
+  <link rel="stylesheet" type="text/css" href="/style/style.css" />
   
   <meta charset="utf-8">
   <link rel="stylesheet" href="style/jquery-ui.css">
@@ -22,11 +22,9 @@
     <div id="header">
       <div id="logo">
         <h1>Unicare Medical</h1>
-        <div class="slogan"><img src="/style/logo.png" /></div>
       </div>
       <div id="menubar">
         <ul id="menu">
-          <!-- put class="current" in the li tag for the selected finance - to highlight which finance you're on -->
           <li><a href="{{route('homeTab')}}">Home</a></li>
           <li><a href="{{route('patientsTab')}}">Patients</a></li>
           <li class="current"><a href="{{route('financeTab')}}">Finance</a></li>

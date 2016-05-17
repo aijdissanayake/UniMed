@@ -27,4 +27,9 @@ class LabTechController extends Controller
         
     }
     
+    public function createNewFBR(Request $request) {
+//        $name = $request->
+        
+    }
+    
 }

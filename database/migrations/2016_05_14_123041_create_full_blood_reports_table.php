@@ -16,9 +16,6 @@ class CreateFullBloodReportsTable extends Migration
             $table->increments('refNo');
             $table->integer('patient_id')->index();
             $table->string('name');
-            $table->integer('age');
-            $table->string('gender');
-            $table->string('refferedBy');
             $table->string('leucocytesCount');
             $table->string('lcNeutrophils');
             $table->string('lcLymphocytes');
