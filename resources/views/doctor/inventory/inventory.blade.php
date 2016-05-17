@@ -39,14 +39,23 @@
         <div class="form-group">
         <form action="#" method="post">
           <label>Select item type:
-            <select name="type" id="a_type" class="form-control input-sm">
-              <option value="Drugs">Drugs</option>
-              <option value="Equipments">Equipments</option>
-            </select>
+
           </label>&nbsp;
+          <select name="type" id="a_type" class="form-control input-sm">
+            <option value="Drugs" selected="selected">Drugs</option>
+            <option value="Equipments" >Equipments</option>
+          </select>
+
           <label>Select item:
-            <select id="a_items" class="form-control input-sm" name="a_items">
-              <option value=""></option>
+            <select id="a_drugs" class="form-control input-sm" name="a_drugs">
+              @foreach($items[0] as $item)
+                <option value={{$item->drugName}}>{{$item->drugName}}</option>
+              @endforeach
+            </select>
+            <select id="a_equips" class="form-control input-sm" name="a_equips">
+              @foreach($items[1] as $item)
+                <option value={{$item->equipmentName}}>{{$item->equipmentName}}</option>
+              @endforeach
             </select>
           </label>&nbsp;&nbsp;&nbsp;
           <label>quantity</label>&nbsp;<input type="text" name="name" value="" />
@@ -62,13 +71,20 @@
         <form action="#" method="post">
           <label>Select item type:
             <select name="r_type" id="r_type" class="form-control input-sm">
-              <option value="Drugs">Drugs</option>
+              <option value="Drugs" selected="selected">Drugs</option>
               <option value="Equipments">Equipments</option>
             </select>
           </label>&nbsp;
           <label>Select item:
-            <select id="r_items" class="form-control input-sm" name="r_items">
-              <option value=""></option>
+            <select id="r_drugs" class="form-control input-sm" name="r_drugs">
+              @foreach($items[0] as $item)
+                <option value={{$item->drugName}}>{{$item->drugName}}</option>
+              @endforeach
+            </select>
+            <select id="r_equips" class="form-control input-sm" name="r_equips">
+              @foreach($items[1] as $item)
+                <option value={{$item->equipmentName}}>{{$item->equipmentName}}</option>
+              @endforeach
             </select>
           </label>&nbsp;&nbsp;&nbsp;
           <label>quantity</label>&nbsp;<input type="text" name="name" value="" />
@@ -83,14 +99,19 @@
          <form action="#" method="post">
           <label>Select item type:
             <select name="type" id="s_type" class="form-control input-sm">
-              <option value="Drugs">Drugs</option>
+              <option value="Drugs" selected="selected">Drugs</option>
               <option value="Equipments">Equipments</option>
             </select>
           </label>&nbsp;
           <label>Select item:
-            <select id="s_items" class="form-control input-sm" name="s_items">
+            <select id="s_drugs" class="form-control input-sm" name="s_drugs">
               @foreach($items[0] as $item)
               <option value={{$item->drugName}}>{{$item->drugName}}</option>
+              @endforeach
+            </select>
+            <select id="s_equips" class="form-control input-sm" name="s_equips">
+              @foreach($items[1] as $item)
+                <option value={{$item->equipmentName}}>{{$item->equipmentName}}</option>
               @endforeach
             </select>
           </label>&nbsp;&nbsp;&nbsp;
@@ -106,6 +127,9 @@
 </div>
 <script>
 
+  document.getElementById('a_equips').style.visibility = 'hidden';
+  document.getElementById('r_equips').style.visibility = 'hidden';
+  document.getElementById('s_equips').style.visibility = 'hidden';
 
   $('#a_type').on('change', function (e) {
 
@@ -115,12 +139,54 @@
 
     if (state_id == "Equipments") {
       console.log(e);
-      $('#a_items').empty();
-      select.options[select.options.length] = new Option('sample_equip', 'eq');
+      document.getElementById('a_drugs').style.visibility = 'hidden';
+      document.getElementById('a_equips').style.visibility = 'visible';
+
     }
     else{
-      $('#a_items').empty();
-      select.options[select.options.length] = new Option('sample_med', 'eq');
+      document.getElementById('a_equips').style.visibility = 'hidden';
+      document.getElementById('a_drugs').style.visibility = 'visible';
+    }
+
+
+  });
+
+  $('#r_type').on('change', function (e) {
+
+    var state_id = e.target.value;
+    var select = document.getElementById('r_items');
+
+
+    if (state_id == "Equipments") {
+      console.log(e);
+      document.getElementById('r_drugs').style.visibility = 'hidden';
+      document.getElementById('r_equips').style.visibility = 'visible';
+
+    }
+    else{
+      document.getElementById('r_equips').style.visibility = 'hidden';
+      document.getElementById('r_drugs').style.visibility = 'visible';
+    }
+
+
+  });
+
+
+  $('#s_type').on('change', function (e) {
+
+    var state_id = e.target.value;
+    var select = document.getElementById('s_items');
+
+
+    if (state_id == "Equipments") {
+      console.log(e);
+      document.getElementById('s_drugs').style.visibility = 'hidden';
+      document.getElementById('s_equips').style.visibility = 'visible';
+
+    }
+    else{
+      document.getElementById('s_equips').style.visibility = 'hidden';
+      document.getElementById('s_drugs').style.visibility = 'visible';
     }
 
 

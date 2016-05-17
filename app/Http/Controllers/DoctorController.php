@@ -173,13 +173,15 @@ class DoctorController extends Controller
     public function viewInventoryTab() {
         $drugs = drug::all();
         $equip = equipment::all();
-        $items = array($drugs,$equip);
+        $items = array($drugs,$equip); //this array is used to create drop down menus.
         return view('doctor.inventory.inventory', compact('items'));
     }
     
     public function viewLabTab() {
         return view('doctor.lab.lab');        
     }
+
+    
     
     
     
