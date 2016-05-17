@@ -37,14 +37,33 @@
 <div id="content">
       <!-- insert the finance content here -->
       <h2>Online Appointment Reservation</h2>
+      <form action="{{route('appointment')}}" method="post">
+            {{ csrf_field() }}
 		<div class="form_settings">
-        <p><span>Reservation Date</span><input type="date" id="reserveDate"></p><br>
-        <input class="submit" type="submit" name="reserveButton" value="Reserve Appointment" />
-		<br><br>
+        <p><span>Reservation Date :</span>
+            <input type="date" id="reserveDate" name="appointmentDate"/>
+                        <script>
+				$(function() {
+				$( "#datepicker" ).datepicker();
+				});
+			</script>
+        
+        <label>&nbsp;&nbsp; Session :
+            <select  name="session" id="sessionID" class="form-control input-sm">
+              <option value=1> 8am - 11am </option>
+              <option value=2> 12noon - 3pm </option>
+              <option value=3>4pm - 8pm</option>
+            </select>
+          </label></p>
+            <br>
+            <input class="submit" type="submit" name="appointmentButton"  />	
+                <br><br>
+                </div>
+                </form>
 		<h3><strong>Appointment Reservation Policy</strong></h3>
 		<div
             <ul>
-                <li>All reserved appoinments are given reservation order based priority.</li><br>
+                <li>All reserved appointments are given reservation order based priority.</li><br>
                 <li>Patients are advised to be present at the dispensary 10 minutes early.</li><br>
                 <li>Patients can roughly calculate his/her appointment time by assuming 10 mins for each patient.</li><br>
                 <li>If the patient is not available when his/her appointment number is called, then the next number will be called.</li><br>

@@ -35,13 +35,13 @@
           <div class="form_settings">
           	<h2>Statistics</h2>
           	<p>Select a period to view requested statistics</p>
-			<p><span>From :</span><input type="date" name="fromDatePicker" id="datepicker"></p>
+			<p><span>From :</span><input type="date" name="fromDatePicker" id="datepicker"/></p>
 			<script>
 				$(function() {
 				$( "#datepicker" ).datepicker();
 				});
 			</script>
-			<p><span>To&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</span><input type="date" name="toDatePicker" id="datepicker"></p>
+			<p><span>To&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</span><input type="date" name="toDatePicker" id="datepicker"/></p>
 			<script>
 				$(function() {
 				$( "#datepicker" ).datepicker();

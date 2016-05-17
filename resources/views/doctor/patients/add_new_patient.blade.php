@@ -42,8 +42,8 @@
                             <p><span>Last Name</span><input type="text" name="lastName" value="{{old('lastName')}}"  required=""/></p>
                             <p><span>Birth Year</span><input type="text" name="birthYear" value="{{old('birthYear')}}"  required=""/></p>
                             <p><span>Gender</span>
-                                <input class="checkbox" type="radio" name="gender" value="male" checked>Male
-                                <input class="checkbox" type="radio" name="gender" value="female">Female<br>
+                                <input class="checkbox" type="radio" name="gender" value=1 checked>Male
+                                <input class="checkbox" type="radio" name="gender" value=0>Female<br>
                             </p>
                             <p><span>Email</span><input type="text" name="email" value="{{old('email')}}" required=""/></p>
                             <p><span>Contact No.</span><input type="text" name="contactNo" value="{{old('contactNo')}}" required="" /></p>

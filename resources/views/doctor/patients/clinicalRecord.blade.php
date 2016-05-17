@@ -8,12 +8,12 @@
   <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine&amp;v1" />
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" />
-  <link rel="stylesheet" type="text/css" href="style/style2.css" />
+  <link rel="stylesheet" type="text/css" href="/style/view_clinical_report_style.css" />
   
   <meta charset="utf-8">
-  <link rel="stylesheet" href="style/jquery-ui.css">
-  <script src="style/jquery-1.10.2.js"></script>
-  <script src="style/jquery-ui.js"></script>
+  <link rel="stylesheet" href="/style/jquery-ui.css">
+  <script src="/style/jquery-1.10.2.js"></script>
+  <script src="/style/jquery-ui.js"></script>
   <link rel="stylesheet" href="/resources/demos/style.css" />
   
   
@@ -24,21 +24,21 @@
     <div id="header">
       <div id="logo">
         <h1>Unicare Medical</h1>
-        <div class="slogan"><img src="style/logo.png" /></div>
       </div>
       <div id="heading"><h2> New Clinical Record</h2></div>
     </div>
     <div id="site_content">
       <div id="content">
         <h2>Clinical Record</h2>
-        <form action="#" method="post">
+        <form action="{{route('storePatientVisitRecord',[$patient->id, $patient])}}" method="post">
           <div class="form_settings">
-            <p><span>PatientID</span><input type="text" name="name" value="" /></p>
-            <p><span>Diagnosis</span><textarea rows="4" cols="50" name="name"></textarea></p>
-            <p><span>Prognosis</span><textarea rows="4" cols="50" name="name"></textarea></p>
-            <p><span>Prescribed Drugs</span><textarea rows="4" cols="50" name="name"></textarea></p>
-            <p><span>Special Remarks</span><textarea rows="4" cols="50" name="name"></textarea></p>
-			<p><span>Next Visit Date</span><input type="date" id="datepicker"></p>
+            <p><span>PatientID</span>{{$patient->id}}</p>
+            <p><span>Patient name</span>{{$patient->firstName}} {{$patient->lastName}}</p>
+            <p><span>Diagnosis</span><textarea rows="4" cols="50" name="diagnosis" required=""></textarea></p>
+            <p><span>Prognosis</span><textarea rows="4" cols="50" name="prognosis"></textarea></p>
+            <p><span>Prescribed Drugs</span><textarea rows="4" cols="50" name="prescDrugs"></textarea></p>
+            <p><span>Special Remarks</span><textarea rows="4" cols="50" name="remarks"></textarea></p>
+			<p><span>Next Visit Date</span><input type="date" id="datepicker" name="nextVisitDate"></p>
 			<script>
 				$(function() {
 				$( "#datepicker" ).datepicker();
