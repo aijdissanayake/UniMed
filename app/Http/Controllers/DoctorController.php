@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Patient;
+use App\patientVisit;
 use Illuminate\Support\Facades\Input;
 //use Logger;
 
@@ -159,24 +160,33 @@ class DoctorController extends Controller
         return view('doctor.patients.clinicalRecord', compact('patient'));
     }
     
-    public function storePatientVisitRecord($id, $patient, Request $request) {
+    public function storePatientVisitRecord($id) {
+        $input = Input::all();
         $newVRec = new patientVisit();
         
-        $newVRec->patientID = $patient->id;
+        $newVRec->patientID = $id;
         
-        $newVRec->diagnosis = $request['diagnosis'];
+        $newVRec->diagnosis = $input['diagnosis'];
         
-        if ($request['prognosis']!=""){
-            $newVRec->prognosis = $request['prognosis'];
+        if ($input['prognosis']!=""){
+            $newVRec->prognosis = $input['prognosis'];
         }
         
-        if ($request['remarks']!=""){
-            $newVRec->remarks = $request['remarks'];
+        if ($input['prescDrugs']!=""){
+            $newVRec->prescDrugs = $input['prescDrugs'];
+        }
+        
+        if ($input['nextVisitDate']!=""){
+            $newVRec->nextVisitDate = $input['nextVisitDate'];
+        }
+        
+        if ($input['remarks']!=""){
+            $newVRec->remarks = $input['remarks'];
         }
         
         $newVRec->save();
         
-        return view('doctor.patients.clinicalRecord', compact('newVRec'));
+        return view('doctor.patients.view', compact('newVRec'));
     }
 //    public function showPatient($id) {
 //        $patient = Patient::find($id);
