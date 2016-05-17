@@ -41,7 +41,7 @@ class ChartController extends Controller
           array_push($dataArray,$noOfpateints);
         }
         if(count($dataArray)==0) {
-            return view('doctor/charts/statform');
+            return view('.doctor.charts.statform');
         }
         else{
         // set tick positions to dynamically change the graph scalling
