@@ -37,7 +37,7 @@
 <div id="content">
       <!-- insert the finance content here -->
       <h2>Online Appointment Reservation</h2>
-      <form action="{{route('patientsVisitsStat')}}" method="post">
+      <form action="{{route('appointment')}}" method="post">
             {{ csrf_field() }}
 		<div class="form_settings">
         <p><span>Reservation Date :</span>
@@ -49,7 +49,7 @@
 			</script>
         
         <label>&nbsp;&nbsp; Session :
-            <select  name="session" id="sessions" class="form-control input-sm">
+            <select  name="session" id="sessionID" class="form-control input-sm">
               <option value=1> 8am - 11am </option>
               <option value=2> 12noon - 3pm </option>
               <option value=3>4pm - 8pm</option>

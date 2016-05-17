@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Http\Requests;
+use Illuminate\Support\Facades\Input;
 
 class PatientController extends Controller
 {
@@ -19,6 +19,14 @@ class PatientController extends Controller
     
     public function viewLabTab() {
         return view('patient.lab.patientLab');
+    }
+    
+    public function createAppointment(){
+        
+        $inputs = Input::all();
+        $appDate = Input[appointmentDate];
+        $appSession = Input[session];
+        
     }
     
 }

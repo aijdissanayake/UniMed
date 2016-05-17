@@ -70,6 +70,8 @@ Route::group(['middleware' => 'authorizer:doctor'], function() {
 Route::group(['middleware' => 'authorizer:patient'], function() {
     Route::get('pat', ['as' => 'patient', 'uses' => 'PatientController@home']);
     Route::get('pat/lab', ['as' => 'patientLabTab', 'uses' => 'PatientController@viewLabTab']);
+    Route::post('pat/appointments', ['as' => 'appointment', 'uses' => 'PatientController@createAppointment']);
+    
 });
 
 
