@@ -3,7 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
-
+use Auth;
 class authorizer
 {
     /**
@@ -15,7 +15,9 @@ class authorizer
      */
     public function handle($request, Closure $next, $role)
     {
-        if ($request->user()->role!==$role && $request->user()->role!=='admin') {
+        if (Auth::guest()){
+            return redirect('login');
+        } elseif ($request->user()->role!==$role && $request->user()->role!=='admin') {
             return redirect('home');
         }
         return $next($request);
