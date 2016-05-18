@@ -1,8 +1,9 @@
 <!DOCTYPE HTML>
 <html>
 
-    <head>
-        @include('patient.navBarPatient')
+
+<head>
+  @include('patient.navBarPatient')
         <title>Unicare - Home</title>
         <meta name="description" content="website description" />
         <meta name="keywords" content="website keywords, website keywords" />
@@ -11,12 +12,12 @@
         <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" />
         <link rel="stylesheet" type="text/css" href="style/style.css" />
         <link rel="stylesheet" type="text/css" href="/style/style.css" />
-
-        <meta charset="utf-8">
-        <link rel="stylesheet" href="style/jquery-ui.css">
-        <script src="style/jquery-1.10.2.js"></script>
-        <script src="style/jquery-ui.js"></script>
-        <link rel="stylesheet" href="/resources/demos/style.css" />
+    
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style/jquery-ui.css">
+    <script src="style/jquery-1.10.2.js"></script>
+    <script src="style/jquery-ui.js"></script>
+    <link rel="stylesheet" href="/resources/demos/style.css" />
 
     </head>
 
@@ -63,7 +64,7 @@
                         </div>
                     </form>
                     <br>
-
+                    
                     @if($directing == 1)
                     @if($hasAppointment)
 
@@ -98,11 +99,10 @@
                             <li>Patients are advised to be present at the dispensary 10 minutes early.</li><br>
                             <li>Patients can roughly calculate his/her appointment time by assuming 10 mins for each patient.</li><br>
                             <li>If the patient is not available when his/her appointment number is called, then the next number will be called.</li><br>
-                            <li>In case of late arrival of a patient with a higher priority number and another patient is examined during the arrival, the       arrived patient will be called immediately after the current examination.</li><br>
+                            <li>In case of late arrival of a patient with a higher priority number and another patient is examined during the arrival,<br>&nbsp;&nbsp;&nbsp; the arrived patient will be called immediately after the current examination.</li><br>
                         </ul>
                     </div>
                 </div>
-                <h2>Reserved Appointment Details</h2>
 
                 <div class="form_settings">
                     <input class="submit" type="submit" name="cancelButton" value="Cancel Appointment" />
