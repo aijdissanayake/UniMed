@@ -69,7 +69,7 @@
       <div>
       	<h2 style="color:#F14E23">Remove item</h2>
         <div class="form-group">
-        <form action="#" method="post">
+        <form action="{{route('removeItem')}}" method="post">
           {{ csrf_field() }}
           <label>Select item type:
             <select name="r_type" id="r_type" class="form-control input-sm">
@@ -98,7 +98,7 @@
       <p></p>
       <div>
       	<h2 style="color:#F14E23">Search inventory</h2>
-         <form action="#" method="post">
+         <form action="{{route('searchItem')}}" method="post">
           <label>Select item type:
             <select name="type" id="s_type" class="form-control input-sm">
               <option value="Drugs" selected="selected">Drugs</option>
