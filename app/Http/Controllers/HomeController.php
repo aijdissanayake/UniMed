@@ -44,7 +44,7 @@ class HomeController extends Controller {
         } elseif ($user->role == 'labTech') {
             return view('labTech.labTechHome');
         } elseif ($user->role == 'admin'){
-            return view('admin.profiles.profile_doctor');
+            return view('admin.profile_admin');
         }
 //        return view('home');
         }

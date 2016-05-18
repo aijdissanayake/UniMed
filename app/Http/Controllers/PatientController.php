@@ -32,6 +32,14 @@ class PatientController extends Controller
         return view('patient.lab.patientLab');
     }
     
+    public function viewProfile() {
+        return view('patient.home.profile_patient');
+    }
+    
+    public function editProfile() {
+        return view('patient.home.profileEditable_patient');
+    }
+    
     public function createAppointment(){
         
         //takes inputs from the form

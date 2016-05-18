@@ -1,6 +1,7 @@
 @extends('layouts.appLayout')
 
 @section('header')
+@include('labTech.navBarLabTech')
   <title>Unicare - Lab</title>
 @stop
 

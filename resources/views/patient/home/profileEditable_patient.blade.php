@@ -2,6 +2,7 @@
 <html>
 
 <head>
+    @include('patient.navBarPatient')
   <title>Unicare - Patient's Profile Editor</title>
   <meta name="description" content="website description" />
   <meta name="keywords" content="website keywords, website keywords" />
@@ -28,11 +29,11 @@
           	<table style="width:70%; border-spacing:0;">
           <tr><td>First Name</td><td><input type="text" name="name" placeholder="Enter value here" value="" /></td></tr>
           <tr><td>Last Name</td><td><input type="text" name="name" placeholder="Enter value here" value="" /></td></tr>
-          <tr><td>Birth Year</td><td><input type="text" name="name" placeholder="Enter value here" value="" /></td></tr>
+          <tr><td>Birth Year</td><td><input type="tel" maxlength="4"  name="name" placeholder="Enter value here" value="" /></td></tr>
 		  <tr><td>Blood Type</td><td><input type="text" name="name" placeholder="Enter value here" value="" /></td></tr>
 		  <tr><td>Locale</td><td><input type="text" name="name" placeholder="Enter value here" value="" /></td></tr>
-		  <tr><td>Telephone No.</td><td><input type="text" name="name" placeholder="Enter value here" value="" /></td></tr>
-		  <tr><td>Gender</td><td><input align="left" type="radio" name="gender" value="male" checked /> Male<br><input type="radio" name="gender" value="female" /> Female<br></td></tr>
+                  <tr><td>Telephone No.</td><td><input type="tel" maxlength="10" name="name" placeholder="Enter value here" value="" /></td></tr>
+		  <tr><td>Gender</td><td><input align="left" type="radio" name="gender" value=1 checked /> Male<br><input type="radio" name="gender" value=0 /> Female<br></td></tr>
         </table>
 		<p align = "right" style="padding-top: 15px"><input class="submit" type="submit" name="submitButton" value="Update" /></p>
         
