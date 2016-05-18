@@ -10,8 +10,6 @@ and open the template in the editor.
         <title></title>
     </head>
     <body>
-        <?php
-        echo "user found";
-        ?>
+        {{$fullBloodReport}}
     </body>
 </html>
