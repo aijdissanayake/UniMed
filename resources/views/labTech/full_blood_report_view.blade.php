@@ -49,7 +49,7 @@
                             <tr><td>Platelet Count</td><td>{{$fullBloodReport->plateletCount}}</td><td>150 - 450</td></tr>
                         </table>
 
-                        <p align = "right" style="padding-top: 15px"><input class="submit" type="submit" name="submitButton" value="Download Copy" /></p>
+                        <p align = "right" style="padding-top: 15px"><a href="" class="submit">Download Copy</a></p>
                     </div>
                 </form>
             </div>

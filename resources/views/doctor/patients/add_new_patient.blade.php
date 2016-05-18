@@ -30,7 +30,7 @@
                     <div class="alert alert-danger" style="background-color: red">
                         <ul> 
                             @foreach ($errors->all() as $error)
-                            <li style="color: white">!!! ERROR:  {{ $error }}</li>
+                            <li style="color: white">ERROR:  {{ $error }}</li>
                             @endforeach
                         </ul>
                     </div>
@@ -41,7 +41,7 @@
                             <p><span>First Name</span><input type="text" name="firstName" value="{{old('firstName')}}" required=""/>
                                 Note: Default password will be set to "unicare101"</p>
                             <p><span>Last Name</span><input type="text" name="lastName" value="{{old('lastName')}}"  required=""/></p>
-                            <p><span>Birth Year</span><input type="tel" maxlength="4" name="birthYear" value="{{old('birthYear')}}"  required=""/></p>
+                            <p><span>Birth Year</span><input type="number" min="1900" max="2016"  maxlength="4" name="birthYear" value="{{old('birthYear')}}"  required=""/></p>
                             <p><span>Gender</span>
                                 <input class="checkbox" type="radio" name="gender" value=1 checked>Male
                                 <input class="checkbox" type="radio" name="gender" value=0>Female<br>

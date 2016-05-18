@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use Barryvdh\DomPDF\PDF;
 use App\fullBloodReport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
@@ -67,7 +68,6 @@ class LabTechController extends Controller
         $fullBloodReport->plateletCount = $request['plateletCount'];
         
         $fullBloodReport->save();
-        
         
         return view('labTech.full_blood_report_view', compact('fullBloodReport'));
     }
