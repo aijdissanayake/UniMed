@@ -73,9 +73,9 @@
            </div></h2>
            @endif
         @elseif ($directing == 3)
-            @if($hasAppointment)
-            <h2><div style=" width: 600px ; text-align:center ; background-color: red; color: white; font-size:20px ;">
-                    You already have an Appointment, cancel it to create a new appointment
+            @if(!$hasAppointment)
+            <h2><div style=" width: 600px ; text-align:center ; background-color: greenyellow; color: white; font-size:20px ;">
+                    Appointment Created
            </div></h2>
            @endif
         @elseif ($directing == 4)
