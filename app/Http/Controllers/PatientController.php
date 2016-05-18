@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 
 use Illuminate\Support\Facades\DB;
@@ -87,5 +88,14 @@ class PatientController extends Controller
            return view('patient.home.patientHome')->with('hasAppointment',$hasAppointment)->with('directing',$directing);
     }
     
+    }
+    
+    public function cancelAppointment(){
+        $user = Auth::user()->id;
+        $id = \App\patient::where('user_id','LIKE', $user)->get()[0]->id;
+        DB::table('patients')->where('user_id', 'LIKE', '%' . $id . '%')->update(['hasAppointment'=> '0']);
+        DB::table('appointments')->where('patient_id', 'LIKE', '%' . $id . '%')->orderBy('aDate','desc')->first()->delete();
+        echo $id;
+
     }
 }

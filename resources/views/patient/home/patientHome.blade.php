@@ -19,7 +19,6 @@
     <script src="style/jquery-ui.js"></script>
     <link rel="stylesheet" href="/resources/demos/style.css" />
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.3/jquery.min.js"></script>
 
 
 
@@ -51,7 +50,7 @@
                         <input type="date" id="reserveDate" name="appointmentDate"/>
                         <script>
                             $(function () {
-                                $("#reserveDate").datepicker({ minDate:0});
+                                $("#reserveDate").datepicker();
                             });
                         </script>
 
@@ -97,7 +96,7 @@
 
 
             <h3><strong>Appointment Reservation Policy</strong></h3>
-            <div
+            <div>
             <ul>
                 <li>All reserved appointments are given reservation order based priority.</li><br>
                 <li>Patients are advised to be present at the dispensary 10 minutes early.</li><br>
