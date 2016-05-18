@@ -13,7 +13,12 @@ use Illuminate\Support\Facades\DB;
 class PatientController extends Controller
 {
     public function home() {
-        return view('patient.home.patientHome');
+        $id = \Illuminate\Support\Facades\Auth::user()->id ;
+        $patient= \App\patient::where('user_id','LIKE', $id)->get()[0];
+        
+        $hasAppointment = $patient->hasAppointment;
+        //return view('patient.home.patientHome', compact('hasAppointment'));
+        return view('patient.home.patientHome')->with('hasAppointment', 'patient');
     }
     
     /*
@@ -35,7 +40,7 @@ class PatientController extends Controller
         $id = \Illuminate\Support\Facades\Auth::user()->id ;
         
         print  $appDate ."  ". $appSession ." " . $id."<br>";
-        // check whether 
+        // check whether patient has an appointment
         $hasAppointment = \App\patient::where('user_id','LIKE', $id)->get()[0]->hasAppointment;
          print $hasAppointment . "<br>";
         
@@ -45,6 +50,7 @@ class PatientController extends Controller
             ->update(['hasAppointment' => TRUE]);
         } 
         echo 'new '.\App\patient::where('user_id','LIKE', $id)->get()[0]->hasAppointment;;
+        echo "<script> alert(Im an alert box)</script>";
     }
     
 }

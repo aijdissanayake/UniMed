@@ -19,7 +19,7 @@
 </head>
 
 <body>
-  <div id="main">
+     <div id="main">
     <div id="header">
       <div id="logo">
         <h1>Unicare Medical</h1>
@@ -57,9 +57,18 @@
           </label></p>
             <br>
             <input class="submit" type="submit" name="appointmentButton"  />	
-                <br><br>
+                
                 </div>
                 </form>
+      <br>
+     
+           @if($hasAppointment)
+           <div style=" width: 220px ; text-align:center ; background-color: greenyellow; color: white; font-size:20px ; font-family:typewriter"> You have an Appointment </div>
+           @endif
+     
+           <br><br>          
+            
+   
 		<h3><strong>Appointment Reservation Policy</strong></h3>
 		<div
             <ul>
