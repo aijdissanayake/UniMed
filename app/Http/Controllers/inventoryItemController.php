@@ -91,7 +91,7 @@ class inventoryItemController extends Controller
             if($quantity<$currentStock){
                 DB::table('inventory_items')->where('itemName', 'LIKE', '%' . $name . '%')->update(['currStock'=>$currentStock-(int)$quantity]);
 
-                if($currentStock-$quantity<$minimum){         // logic to dispaly stock level critical warning
+                if($currentStock-$quantity<$minimum){         // logic to display stock level critical warning
                     DB::table('inventory_items')->where('itemName', 'LIKE', '%' . $name . '%')->update(['restockNeeded'=>'1']);
 
                 }
@@ -117,9 +117,7 @@ class inventoryItemController extends Controller
 
                 }
             }
-
         }
-
 
         $drugs = drug::all();
         $equip = equipment::all();
@@ -129,7 +127,23 @@ class inventoryItemController extends Controller
     }
 
     public function searchInventoryItem(){
+
         echo "search";
+
+        $input = Input::all();
+        $itemType = $input['s_type'];
+
+
+        if ($itemType == "Drugs") {
+
+            $name = $input['s_drugs'];
+            $requiredItem = \App\inventoryItem::where('itemName', 'LIKE', '%' . $name . '%')->get()[0];
+            $quantity = $requiredItem->currStock;
+        }else{
+            $name = $input['s_equips'];
+            $requiredItem = \App\inventoryItem::where('itemName', 'LIKE', '%' . $name . '%')->get()[0];
+            $quantity = $requiredItem->currStock;
+        }
     }
 
 }
