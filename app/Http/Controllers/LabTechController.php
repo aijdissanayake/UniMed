@@ -38,8 +38,14 @@ class LabTechController extends Controller
             $user = User::find($name);
             return view('labTech.test', compact('user'));
         }
-        
-        
+    }
+    
+    public function viewProfile() {
+        return view('labTech.profile_labTech');
+    }
+    
+    public function editProfile() {
+        return view('labTech.profileEditable_labTech');
     }
     
 }

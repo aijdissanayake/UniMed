@@ -2,6 +2,7 @@
 <html>
 
 <head>
+    @include('labTech.navBarLabTech')
   <title>Unicare - Lab Tech's Profile Editor</title>
   <meta name="description" content="website description" />
   <meta name="keywords" content="website keywords, website keywords" />

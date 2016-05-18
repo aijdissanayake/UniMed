@@ -2,6 +2,7 @@
 <html>
 
 <head>
+    @include('admin.navBarAdmin')
   <title>Unicare - Lab Tech's Profile</title>
   <meta name="description" content="website description" />
   <meta name="keywords" content="website keywords, website keywords" />

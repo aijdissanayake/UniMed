@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="style/navBar.css" />
+<link rel="stylesheet" type="text/css" href="/style/navBar.css" />
 <nav>
 	<ul>
 		<li>
@@ -38,7 +38,10 @@
 			</div>
 		</li>
 		<li style="float:right">
-			<a href="">Log Out</a>
+			<a href="/logout">Log Out</a>
+		</li>
+                <li style="float:right">
+			<a href="/admin">Home</a>
 		</li>
 	</ul>
 </nav>
