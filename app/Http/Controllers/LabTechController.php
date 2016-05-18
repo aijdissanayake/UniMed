@@ -27,4 +27,19 @@ class LabTechController extends Controller
         
     }
     
+    public function createNewFBR(Request $request) {
+        
+        /*
+         * check for a patient by this name.
+         */
+        $name = $request->name;
+        
+        if (User::find($name)){
+            $user = User::find($name);
+            return view('labTech.test', compact('user'));
+        }
+        
+        
+    }
+    
 }

@@ -22,11 +22,9 @@
     <div id="header">
       <div id="logo">
         <h1>Unicare Medical</h1>
-        <div class="slogan"><img src="/style/logo.png" /></div>
       </div>
       <div id="menubar">
         <ul id="menu">
-          <!-- put class="current" in the li tag for the selected finance - to highlight which finance you're on -->
           <li><a href="{{route('homeTab')}}">Home</a></li>
           <li><a href="{{route('patientsTab')}}">Patients</a></li>
           <li class="current"><a href="{{route('financeTab')}}">Finance</a></li>
