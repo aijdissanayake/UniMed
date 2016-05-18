@@ -41,6 +41,7 @@ Route::group(['middleware' => 'authorizer:doctor'], function() {
     Route::get('doc/patients/addpatient', ['as' => 'addPatient', 'uses' => 'DoctorController@regPatient']);
 
     Route::post('doc/patients/test', ['as' => 'patientAdded', 'uses' => 'DoctorController@storePatient']);
+    Route::post('doc/inventory',['as' => 'addItem',  'uses' => 'inventoryItemController@addInventoryItem']);
 
 //Route::get('doctor/patients/{id}', 'DoctorController@showPatient');
 

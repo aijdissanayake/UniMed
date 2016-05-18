@@ -37,15 +37,16 @@
       	<h2 style="color:#F14E23">Add item</h2>
         
         <div class="form-group">
-        <form action="#" method="post">
+        <form action="{{route('addItem')}}" method="post">
+          {{ csrf_field() }}
           <label>Select item type:
 
           </label>&nbsp;
-          <select name="type" id="a_type" class="form-control input-sm">
+
+          <select id="a_type" name="a_type"  class="form-control input-sm">
             <option value="Drugs" selected="selected">Drugs</option>
             <option value="Equipments" >Equipments</option>
           </select>
-
           <label>Select item:
             <select id="a_drugs" class="form-control input-sm" name="a_drugs">
               @foreach($items[0] as $item)
@@ -58,7 +59,7 @@
               @endforeach
             </select>
           </label>&nbsp;&nbsp;&nbsp;
-          <label>quantity</label>&nbsp;<input type="text" name="name" value="" />
+          <label>quantity</label>&nbsp;<input type="text" name="a_quantity" value="" />
           <input type="submit" name="Add" value="Add" />
          </form> 
         </div>
@@ -69,6 +70,7 @@
       	<h2 style="color:#F14E23">Remove item</h2>
         <div class="form-group">
         <form action="#" method="post">
+          {{ csrf_field() }}
           <label>Select item type:
             <select name="r_type" id="r_type" class="form-control input-sm">
               <option value="Drugs" selected="selected">Drugs</option>
@@ -87,7 +89,7 @@
               @endforeach
             </select>
           </label>&nbsp;&nbsp;&nbsp;
-          <label>quantity</label>&nbsp;<input type="text" name="name" value="" />
+          <label>quantity</label>&nbsp;<input type="text" name="r_quantity" value="" />
           <input type="submit" name="remove" value="Remove" />
          </form> 
         </div>
