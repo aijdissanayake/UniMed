@@ -18,10 +18,23 @@
         <div id="site_content">
             <div id="content">
                 <h2>Report Details</h2>
-                <form action="#" method="post">
+                <form action="{{route('ltNewFbr')}}" method="post">
                     {{ csrf_field() }}
                     <div class="form_settings">
-                        <p><span>Name</span><input type="text" name="name" value="" /></p>
+
+                        <div style="background-color: red; color: white">
+                            @if (count($errors) > 0)
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                            @endif
+                        </div>
+
+                        <p><span>Name</span><input type="text" name="name" value="" required="" /></p>
                         <!--<p><span>Referred by</span><input type="text" name="name" value="" /></p>-->
 
                         <p style="margin-top: 15px" align="center"><strong>Hematological Tests - Specimen: Blood - FULL BLOOD COUNT (FBC)</strong></p>
