@@ -27,7 +27,7 @@
     <div id="header">
       <div id="logo">
         <h1>Unicare Medical</h1>
-        <div class="slogan"><img src="style/logo.png" /></div>
+        
       </div>
       <div id="menubar">
         <ul id="menu">
@@ -77,10 +77,22 @@
            
            <h2><div  style=" width: 220px ; text-align:center ; background-color: greenyellow; color: white; font-size:20px ; ">You have an Appointment</div></h2>
            @endif
-        @else
+        @elseif ($directing == 2)
+            @if(!$hasAppointment)
+            <h2><div style=" width: 600px ; text-align:center ; background-color: red; color: white; font-size:20px ;">
+                    Sorry, All the Online Appointments are reserved. Please Contact Doctor for Arrangements.
+           </div></h2>
+           @endif
+        @elseif ($directing == 3)
+            @if(!$hasAppointment)
+            <h2><div style=" width: 600px ; text-align:center ; background-color: greenyellow; color: white; font-size:20px ;">
+                    Appointment Created
+           </div></h2>
+           @endif
+        @elseif ($directing == 4)
             @if($hasAppointment)
             <h2><div style=" width: 600px ; text-align:center ; background-color: red; color: white; font-size:20px ;">
-                    You already have an Appointment, Cancel it to create a new appointment
+                    You already have an Appointment, cancel it to create a new appointment
            </div></h2>
            @endif
         @endif

@@ -34,7 +34,7 @@
       <!-- insert the page content here -->
       
       <div>
-      	<h2 style="color:#F14E23">Add item</h2>
+      	<h2 style="color:#F14E23">Add items</h2>
         
         <div class="form-group">
         <form action="{{route('addItem')}}" method="post">
@@ -67,9 +67,9 @@
       <p></p>
       <p></p>
       <div>
-      	<h2 style="color:#F14E23">Remove item</h2>
+      	<h2 style="color:#F14E23">Remove items</h2>
         <div class="form-group">
-        <form action="#" method="post">
+        <form action="{{route('removeItem')}}" method="post">
           {{ csrf_field() }}
           <label>Select item type:
             <select name="r_type" id="r_type" class="form-control input-sm">
@@ -98,7 +98,8 @@
       <p></p>
       <div>
       	<h2 style="color:#F14E23">Search inventory</h2>
-         <form action="#" method="post">
+         <form action="{{route('searchItem')}}" method="post">
+           {{ csrf_field() }}
           <label>Select item type:
             <select name="type" id="s_type" class="form-control input-sm">
               <option value="Drugs" selected="selected">Drugs</option>
@@ -118,7 +119,7 @@
             </select>
           </label>&nbsp;&nbsp;&nbsp;
           
-          <input type="submit" name="remove" value="Search" />
+          <input type="submit" name="search" value="Search" />
          </form>               
       </div>
     </div>
@@ -193,6 +194,14 @@
 
 
   });
+
+
+  document.getElementById("demo").onclick = function() {myFunction()};
+
+  function myFunction() {
+    alert('fuckoff');
+  }
+
 
 </script>
 </body>

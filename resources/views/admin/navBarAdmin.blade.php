@@ -37,7 +37,8 @@
 				</ul>
 			</div>
 		</li>
-		<li style="float:right"><a href="">Log Out</a></li>
-		<li style="float:right"><a href="">My Account</a></li>
+		<li style="float:right">
+			<a href="">Log Out</a>
+		</li>
 	</ul>
 </nav>
