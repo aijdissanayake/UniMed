@@ -51,7 +51,7 @@ Route::group(['middleware' => 'authorizer:doctor'], function() {
 //Route::get('doctor/patients/{id}', 'DoctorController@showPatient');
 
     Route::post('doc/patients/search', ['as' => 'searchPatients', 'uses' => 'DoctorController@searchPatient']);
-    Route::get('doc/patients/edit/{id}', ['as' => 'editPatient', 'uses' => 'DoctorController@editPatient']);
+    Route::get('doc/patients/view/{id}', ['as' => 'viewPatient', 'uses' => 'DoctorController@viewPatientDetails']);
     Route::get('doc/patients/createRecord/{id}', ['as' => 'createPatientVisitRecord', 'uses'=>'DoctorController@createPatientVisitRecord']);
     Route::post('doc/patients/storeRecord/{id}', ['as' => 'storePatientVisitRecord', 'uses'=>'DoctorController@storePatientVisitRecord']);
 
