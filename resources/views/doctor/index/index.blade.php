@@ -2,6 +2,7 @@
 <html>
 
     <head>
+        @include('doctor.navBarDoctor')
         <title>Unicare - Home</title>
         <meta name="description" content="website description" />
         <meta name="keywords" content="website keywords, website keywords" />
@@ -11,24 +12,7 @@
         <link rel="stylesheet" type="text/css" href="/style/style.css" />
     </head>
     
-    <!--logout section-->
-    <ul class="nav navbar-nav navbar-right">
-        <!-- Authentication Links -->
-        @if (Auth::guest())
-        <li><a href="{{ url('/login') }}">Login</a></li>
-        @else
-        <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                {{ Auth::user()->name }} <span class="caret"></span>
-            </a>
-
-            <ul class="dropdown-menu" role="menu">
-                <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
-            </ul>
-        </li>
-        @endif
-    </ul>
-    <!--{{-- <script src="{{ elixir('js/app.js') }}"></script> --}}-->
+    
     <body>
         <div id="main">
             <div id="header">

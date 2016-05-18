@@ -34,6 +34,8 @@ Route::group(['middleware' => 'authorizer:doctor'], function() {
     Route::get('doc', ['as' => 'homeTab', 'uses' => 'DoctorController@home']);
     Route::get('doc/patients', ['as' => 'patientsTab', 'uses' => 'DoctorController@viewPatientTab']);
     Route::get('doc/finance', ['as' => 'financeTab', 'uses' => 'DoctorController@viewFinanceTab']);
+    Route::get('doc/profile', ['as'=>'dViewProfile', 'uses'=>'DoctorController@viewProfile']);
+    Route::get('doc/editProfile', ['as'=>'dEditProfile', 'uses'=>'DoctorController@editProfile']);
 
     Route::get('doc/inventory', ['as' => 'inventoryTab', 'uses' => 'DoctorController@viewInventoryTab']);
     Route::get('doc/lab', ['as' => 'labTab', 'uses' => 'DoctorController@viewLabTab']);
@@ -75,6 +77,8 @@ Route::group(['middleware' => 'authorizer:patient'], function() {
     Route::get('pat', ['as' => 'patient', 'uses' => 'PatientController@home']);
     Route::get('pat/lab', ['as' => 'patientLabTab', 'uses' => 'PatientController@viewLabTab']);
     Route::post('pat/appointments', ['as' => 'appointment', 'uses' => 'PatientController@createAppointment']);
+    Route::get('pat/profile', ['as'=>'pViewProfile', 'uses'=>'PatientController@viewProfile']);
+    Route::get('pat/editProfile', ['as'=>'pEditProfile', 'uses'=>'PatientController@editProfile']);
     
 });
 
@@ -93,6 +97,8 @@ Route::group(['middleware' => 'authorizer:assistant'], function() {
     Route::get('ast/inventory', ['as' => 'astInventory', 'uses' => 'AssistantController@viewInvTab']);
     Route::get('ast/reports', ['as' => 'astReports', 'uses' => 'AssistantController@viewRep']);
     Route::get('ast/newtrec', ['as' => 'astAddTRec', 'uses' => 'AssistantController@addTransRec']);
+    Route::get('ast/profile', ['as'=>'astViewProfile', 'uses'=>'AssistantController@viewProfile']);
+    Route::get('ast/editProfile', ['as'=>'astEditProfile', 'uses'=>'AssistantController@editProfile']);
 });
 
 
@@ -105,6 +111,16 @@ Route::group(['middleware' => 'authorizer:labTech'], function() {
     Route::get('lt', ['as' => 'lt', 'uses' => 'LabTechController@home']);
     Route::post('lt/newRep', ['as' => 'ltNewRep', 'uses' => 'LabTechController@newReport']);
     Route::get('lt/pat', ['as' => 'ltLab', 'uses' => 'LabTechController@patientLab']);
+    Route::get('lt/profile', ['as'=>'ltViewProfile', 'uses'=>'LabTechController@viewProfile']);
+    Route::get('lt/editProfile', ['as'=>'ltEditProfile', 'uses'=>'LabTechController@editProfile']);
 });
 
+/*
+ * Admin's control routes
+ */
 
+Route::group(['middleware' => 'authorizer:admin'], function() {
+    Route::get('admin', ['as' => 'adminHome', 'uses' => 'AdminController@home']);
+//    Route::post('admin/adddoc', ['as' => 'admin', 'uses' => 'AdminController@addDoc']);
+//    Route::get('admin/addpat', ['as' => 'ltLab', 'uses' => 'Admin@patientLab']);
+});

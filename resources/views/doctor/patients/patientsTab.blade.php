@@ -2,6 +2,7 @@
 <html>
 
 <head>
+    @include('doctor.navBarDoctor')
   <title>Unicare - Patients</title>
   <meta name="description" content="website description" />
   <meta name="keywords" content="website keywords, website keywords" />
@@ -49,19 +50,26 @@
           <h2>Recent Patient Visits</h2>
       </p>
                 
-        <table style="width:100%; border-spacing:0; word-break: break-all; word-wrap: break-word">
-          <tr><th width="2%" style="text-align:center">No.</th><th width="10%" style="text-align:center">First Name</th><th width="10%" style="text-align:center">Last Name</th><th style="text-align:center">Diagnosis</th><th style="text-align:center">Prognosis</th><th style="text-align:center">Remarks</th></tr>
-
-<!--          <tr><td></td><td></td><td></td><td></td><td></td><td></td>
-          <tr><td>2</td><td></td><td></td><td></td><td></td><td></td>
-          <tr><td>3</td><td></td><td></td><td></td><td></td><td></td>
-          <tr><td>4</td><td></td><td></td><td></td><td></td><td></td>
-          <tr><td>5</td><td></td><td></td><td></td><td></td><td></td>
-          <tr><td>6</td><td></td><td></td><td></td><td></td><td></td>
-          <tr><td>7</td><td></td><td></td><td></td><td></td><td></td>
-          <tr><td>8</td><td></td><td></td><td></td><td></td><td></td>
-          <tr><td>9</td><td></td><td></td><td></td><td></td><td></td>
-          <tr><td>10</td><td></td><td></td><td></td><td></td><td></td>-->
+        <table style="width:100%; border-spacing:0; word-break: break-all;
+word-wrap:break-word;overflow: hidden; text-overflow: ellipsis;">
+          <tr>
+              <th width="5%" style="text-align:center">No.</th>
+              <th width="10%" style="text-align:center">First Name</th>
+              <th width="10%" style="text-align:center">Last Name</th>
+              <th width="25%" style="text-align:center">Diagnosis</th>
+              <th width="25%" style="text-align:center">Prognosis</th>
+              <th width="25%" style="text-align:center">Remarks</th></tr>
+          <div style="display:none">{{$count=0}}</div>
+          @foreach ($patientVisits as $patientVisit)
+          <tr style="height: 25px">
+              <td style="height: 10px">{{$count=$count+1}}</td>
+              <td style="height: 10px">{{$patientVisit->getPatient->firstName}}</td>
+              <td style="height: 10px">{{$patientVisit->getPatient->lastName}}</td>
+              <td style="height: 10px">{{substr($patientVisit->diagnosis,0, 30)}}</td>
+              <td style="height: 10px">{{substr($patientVisit->prognosis,0,30)}}</td>
+              <td style="height: 10px">{{substr($patientVisit->remarks,0,30)}}</td>
+          </tr>
+          @endforeach
         </table>
       <p><div class="form_settings">
             <a href="{{route('addPatient')}}">

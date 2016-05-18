@@ -1,6 +1,7 @@
 @extends('layouts.appLayout')
 
 @section('header')
+@include('assistant.navBarAssistant')
   <title>Unicare - Finance</title>
 @stop
 

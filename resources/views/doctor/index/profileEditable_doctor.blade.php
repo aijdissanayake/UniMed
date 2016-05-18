@@ -2,7 +2,8 @@
 <html>
 
 <head>
-  <title>Unicare - Assistant's Profile Editor</title>
+    @include('doctor.navBarDoctor')
+  <title>Unicare - Doctor's Profile Editor</title>
   <meta name="description" content="website description" />
   <meta name="keywords" content="website keywords, website keywords" />
   <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
@@ -18,7 +19,7 @@
         <h1>Unicare Medical</h1>
         <div class="slogan"></div>
       </div>
-      <div id="heading"><h2>Assistant's Profile</h2></div>
+      <div id="heading"><h2>Doctor's Profile</h2></div>
     </div>
     <div id="site_content">
       <div id="content">
@@ -28,10 +29,7 @@
           	<table style="width:70%; border-spacing:0;">
           <tr><td>First Name</td><td><input type="text" name="name" placeholder="Enter value here" value="" /></td></tr>
           <tr><td>Last Name</td><td><input type="text" name="name" placeholder="Enter value here" value="" /></td></tr>
-          <tr><td>Birth Year</td><td><input type="text" name="name" placeholder="Enter value here" value="" /></td></tr>
-		  <tr><td>NIC</td><td><input type="text" name="name" placeholder="Enter value here" value="" /></td></tr>
-		  <tr><td>Telephone No.</td><td><input type="text" name="name" placeholder="Enter value here" value="" /></td></tr>
-		  <tr><td>Home Address</td><td><input type="text" name="name" placeholder="Enter value here" value="" /></td></tr>
+          <tr><td>Registered No.</td><td><input type="text" name="name" placeholder="Enter value here" value="" /></td></tr>
         </table>
 		<p align = "right" style="padding-top: 15px"><input class="submit" type="submit" name="submitButton" value="Update" /></p>
         

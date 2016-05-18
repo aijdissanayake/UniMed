@@ -2,7 +2,8 @@
 <html>
 
 <head>
-  <title>Unicare - Doctor's Profile</title>
+  <title>Unicare - Assistant's Profile</title>
+  @include('assistant.navBarAssistant')
   <meta name="description" content="website description" />
   <meta name="keywords" content="website keywords, website keywords" />
   <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
@@ -18,7 +19,7 @@
         <h1>Unicare Medical</h1>
         <div class="slogan"></div>
       </div>
-      <div id="heading"><h2>Doctor's Profile</h2></div>
+      <div id="heading"><h2>Assistant's Profile</h2></div>
     </div>
     <div id="site_content">
       <div id="content">
@@ -28,8 +29,11 @@
           	<table style="width:70%; border-spacing:0;">
           <tr><td>First Name</td><td></td></tr>
           <tr><td>Last Name</td><td></td></tr>
-          <tr><td>Registered Number</td><td></td></tr>
-          <tr><td>Email</td><td></td></tr>
+          <tr><td>Birth Year</td><td></td></tr>
+		  <tr><td>NIC</td><td></td></tr>
+		  <tr><td>Telephone No.</td><td></td></tr>
+		  <tr><td>Email</td><td></td></tr>
+		  <tr><td>Home Address</td><td></td></tr>
         </table>
           </div>
         </form>
