@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cb0666c3-9189-467c-8bcf-9b251c0fbd3e" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/Http/Controllers/PatientController.php" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nbproject/project.xml" afterPath="$PROJECT_DIR$/nbproject/project.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/patient/home/patientHome.blade.php" afterPath="$PROJECT_DIR$/resources/views/patient/home/patientHome.blade.php" />
-    </list>
+    <list default="true" id="cb0666c3-9189-467c-8bcf-9b251c0fbd3e" name="Default" comment="" />
     <ignored path="unimed.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -318,12 +313,12 @@
       <workItem from="1463428532527" duration="7000" />
       <workItem from="1463492373371" duration="6000" />
       <workItem from="1463502150332" duration="1000" />
-      <workItem from="1463551449570" duration="1559000" />
+      <workItem from="1463551449570" duration="1613000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8534000" />
+    <option name="totallyTimeSpent" value="8588000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
