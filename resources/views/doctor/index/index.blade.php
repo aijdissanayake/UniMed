@@ -36,29 +36,32 @@
                     <!-- insert the finance content here -->
 
                     <div id="appointments">Appointments
-                        <ol class="list">
-                            @foreach ($appointments as $appointment)
-                            <li>{{$appointment->getPatient->getUser->name}}</li>
-                            @endforeach
-                        </ol>
+                        <table style="width:50%; border-spacing:0;">
+                        <tr><th width = 40%>Patient</th><th>Appointment Date</th></tr>
+                        <?php $appointments = $homeData[0]; ?>
+                        @foreach ($appointments as $appointment)
+                        <tr><td>{{$appointment->getPatient->getUser->name}}</td><td>{{$appointment->aDate}}</td></tr>
+                        @endforeach
+                        </table>
                     </div>
                     <div id="inventory">Inventory Status
-                        <ol class="list">
-                            <li></li>
-                            <li></li>
-                            <li></li>
-
-                        </ol>
+                        <table style="width:50%; border-spacing:0;">
+                        <tr><th width = 40%>Inventory Item</th><th>Current Stock</th></tr>
+                        <?php $inventory = $homeData[1]; ?>
+                        @foreach ($inventory as $inventoryItem)
+                        <tr><td>{{$inventoryItem->itemName}}</td><td>{{$inventoryItem->currStock}}</td></tr>
+                        @endforeach
+                        </table>
                     </div>
                     <p></p>
                     <p></p>
-                    <div id="clarification">Clarification Requests
+                    <!--<div id="clarification">Clarification Requests
                         <ol class="list">
                             <li></li>
                             <li></li>
                             <li></li>
                         </ol> 
-                    </div>
+                    </div> -->
 
                     <p></p>
 

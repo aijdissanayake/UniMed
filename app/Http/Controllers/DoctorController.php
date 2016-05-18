@@ -29,7 +29,9 @@ class DoctorController extends Controller
     public function home()
     {
         $appointments = appointment::all();
-        return view('doctor.index.index', compact('appointments'));
+        $inventory = inventoryItem::all();
+        $homeData = array($appointments, $inventory);
+        return view('doctor.index.index', compact('homeData'));
     }
 
     /*
