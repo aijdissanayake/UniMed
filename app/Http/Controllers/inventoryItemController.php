@@ -35,6 +35,9 @@ class inventoryItemController extends Controller
 
             if($currentStock<$minimum && $minimum<$currentStock + $quantity){
                 //remove the warning
+                DB::table('inventory_items')->where('itemName', 'LIKE', '%' . $name . '%')->update(['restockNeeded'=>'0']);
+
+
             }
             DB::table('inventory_items')->where('itemName', 'LIKE', '%' . $name . '%')->update(['currStock'=>$currentStock+$quantity]);
 
@@ -54,6 +57,8 @@ class inventoryItemController extends Controller
 
             if($currentStock<$minimum && $minimum<$currentStock + $quantity){
                 //remove the warning
+                DB::table('inventory_items')->where('itemName', 'LIKE', '%' . $name . '%')->update(['restockNeeded'=>'0']);
+
             }
             DB::table('inventory_items')->where('itemName', 'LIKE', '%' . $name . '%')->update(['currStock'=>$currentStock+$quantity]);
 
@@ -85,7 +90,11 @@ class inventoryItemController extends Controller
 
             if($quantity<$currentStock){
                 DB::table('inventory_items')->where('itemName', 'LIKE', '%' . $name . '%')->update(['currStock'=>$currentStock-(int)$quantity]);
-                //add logic to dispaly stock level critical warning
+
+                if($currentStock-$quantity<$minimum){         // logic to dispaly stock level critical warning
+                    DB::table('inventory_items')->where('itemName', 'LIKE', '%' . $name . '%')->update(['restockNeeded'=>'1']);
+
+                }
             }
 
 
@@ -101,7 +110,12 @@ class inventoryItemController extends Controller
 
             if($quantity<$currentStock){
                 DB::table('inventory_items')->where('itemName', 'LIKE', '%' . $name . '%')->update(['currStock'=>$currentStock-(int)$quantity]);
-                //add logic to dispaly stock level critical warning
+
+                // logic to dispaly stock level critical warning
+                if($currentStock-$quantity<$minimum){         // logic to dispaly stock level critical warning
+                    DB::table('inventory_items')->where('itemName', 'LIKE', '%' . $name . '%')->update(['restockNeeded'=>'1']);
+
+                }
             }
 
         }
@@ -114,7 +128,7 @@ class inventoryItemController extends Controller
         //echo $currentStock;
     }
 
-    public function searchItem(){
+    public function searchInventoryItem(){
         echo "search";
     }
 

@@ -99,6 +99,7 @@
       <div>
       	<h2 style="color:#F14E23">Search inventory</h2>
          <form action="{{route('searchItem')}}" method="post">
+           {{ csrf_field() }}
           <label>Select item type:
             <select name="type" id="s_type" class="form-control input-sm">
               <option value="Drugs" selected="selected">Drugs</option>
@@ -118,7 +119,7 @@
             </select>
           </label>&nbsp;&nbsp;&nbsp;
           
-          <input type="submit" name="remove" value="Search" />
+          <input type="submit" name="search" value="Search" />
          </form>               
       </div>
     </div>
@@ -193,6 +194,14 @@
 
 
   });
+
+
+  document.getElementById("demo").onclick = function() {myFunction()};
+
+  function myFunction() {
+    alert('fuckoff');
+  }
+
 
 </script>
 </body>
