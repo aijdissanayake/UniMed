@@ -2,7 +2,8 @@
 <html>
 
 <head>
-  <title>Unicare - add_new_patients</title>
+    @include('doctor.navBarDoctor')
+  <title>Unicare - Update Patient</title>
   <meta name="description" content="website description" />
   <meta name="keywords" content="website keywords, website keywords" />
   <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
@@ -26,10 +27,10 @@
         <form action="{{route('patientAdded')}}" method="post">
             {{ csrf_field() }}
           <div class="form_settings">
-              <p><span>First Name</span><input type="text" name="firstName" value="" required=""/>
+              <p><span>First Name</span><input type="text" name="firstName" value="{{$patient->firstName}}" required=""/>
               Note: Default password will be set to "unicare101"</p>
-              <p><span>Last Name</span><input type="text" name="lastName" value=""  required=""/></p>
-              <p><span>Birth Year</span><input type="text" name="birthYear" value=""  required=""/></p>
+              <p><span>Last Name</span><input type="text" name="lastName" value="{{$patient->lastName}}"  required=""/></p>
+              <p><span>Birth Year</span><input type="text" name="birthYear" value="{{$patient->birthYear}}"  required=""/></p>
               <p><span>Gender</span>
                 <input class="checkbox" type="radio" name="gender" value="male" checked>Male
                 <input class="checkbox" type="radio" name="gender" value="female">Female<br>

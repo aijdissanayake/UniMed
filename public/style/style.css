@@ -336,7 +336,7 @@ table tr td
   
   #appointments{
 	  float:left;
-	  width:50%;
+	  width:100%;
 	  overflow:hidden;
 	  font: normal 150% 'Yanone Kaffeesatz', arial, sans-serif;
   	  color: #F14E23;
@@ -345,7 +345,7 @@ table tr td
   
   #inventory{
 	  float:left;
-      width:50%;
+      width:100%;
       overflow:hidden;
 	  font: normal 150% 'Yanone Kaffeesatz', arial, sans-serif;
   	  color: #F14E23;

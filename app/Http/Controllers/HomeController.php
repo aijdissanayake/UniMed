@@ -35,7 +35,7 @@ class HomeController extends Controller {
         $loginRec->save();
         
         if ($user->role == 'doctor') {
-            return view('doctor.index.index');
+            return app('App\Http\Controllers\DoctorController')->home();
         } elseif ($user->role == 'patient') {
             return app('App\Http\Controllers\PatientController')->home();
 //            return view('patient.home.patientHome');

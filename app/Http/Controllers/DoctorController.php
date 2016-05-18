@@ -29,20 +29,35 @@ class DoctorController extends Controller
     public function home()
     {
         $appointments = appointment::all();
-        return view('doctor.index.index', compact('appointments'));
+        $inventory = inventoryItem::all();
+        $homeData = array($appointments, $inventory);
+        return view('doctor.index.index', compact('homeData'));
     }
 
     /*
      * patient tab tasks
      */
 
-
+    public function viewProfile() {
+        return view('doctor.index.profile_doctor');
+    }
+    
+    public function editProfile() {
+        return view('doctor.index.profileEditable_doctor');
+    }
+    
     public function viewPatientTab()
     {
         $patientVisits = patientVisit::orderBy('created_at', 'desc')
                 ->take(10)
                 ->get();
         return view('doctor.patients.patientsTab', compact('patientVisits'));
+    }
+
+    public function viewPatientDetails($id)
+    {
+        $patient = patient::find($id);
+        return view('doctor.patients.viewPatient', compact('patient'));
     }
 
     public function regPatient()
@@ -63,9 +78,13 @@ class DoctorController extends Controller
          */
 
         $this->validate($request, [
+            'firstName' => 'alpha',
+            'lastName' => 'alpha',
+            'contactNo' => 'digits:10',
             'email' => 'unique:users,email',
+            'bloodGroup' => 'in:A+,A-,B+,B-,AB+,AB-,O-,O+'
         ]);
-
+        
 
         /*
          * create user first

@@ -2,6 +2,7 @@
 <html>
 
     <head>
+        @include('doctor.navBarDoctor')
         <title>Unicare - Home</title>
         <meta name="description" content="website description" />
         <meta name="keywords" content="website keywords, website keywords" />
@@ -11,24 +12,7 @@
         <link rel="stylesheet" type="text/css" href="/style/style.css" />
     </head>
     
-    <!--logout section-->
-    <ul class="nav navbar-nav navbar-right">
-        <!-- Authentication Links -->
-        @if (Auth::guest())
-        <li><a href="{{ url('/login') }}">Login</a></li>
-        @else
-        <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                {{ Auth::user()->name }} <span class="caret"></span>
-            </a>
-
-            <ul class="dropdown-menu" role="menu">
-                <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
-            </ul>
-        </li>
-        @endif
-    </ul>
-    <!--{{-- <script src="{{ elixir('js/app.js') }}"></script> --}}-->
+    
     <body>
         <div id="main">
             <div id="header">
@@ -52,29 +36,32 @@
                     <!-- insert the finance content here -->
 
                     <div id="appointments">Appointments
-                        <ol class="list">
-                            @foreach ($appointments as $appointment)
-                            <li>{{$appointment->getPatient->getUser->name}}</li>
-                            @endforeach
-                        </ol>
+                        <table style="width:50%; border-spacing:0;">
+                        <tr><th width = 40%>Patient</th><th>Appointment Date</th></tr>
+                        <?php $appointments = $homeData[0]; ?>
+                        @foreach ($appointments as $appointment)
+                        <tr><td>{{$appointment->getPatient->getUser->name}}</td><td>{{$appointment->aDate}}</td></tr>
+                        @endforeach
+                        </table>
                     </div>
                     <div id="inventory">Inventory Status
-                        <ol class="list">
-                            <li></li>
-                            <li></li>
-                            <li></li>
-
-                        </ol>
+                        <table style="width:50%; border-spacing:0;">
+                        <tr><th width = 40%>Inventory Item</th><th>Current Stock</th></tr>
+                        <?php $inventory = $homeData[1]; ?>
+                        @foreach ($inventory as $inventoryItem)
+                        <tr><td>{{$inventoryItem->itemName}}</td><td>{{$inventoryItem->currStock}}</td></tr>
+                        @endforeach
+                        </table>
                     </div>
                     <p></p>
                     <p></p>
-                    <div id="clarification">Clarification Requests
+                    <!--<div id="clarification">Clarification Requests
                         <ol class="list">
                             <li></li>
                             <li></li>
                             <li></li>
                         </ol> 
-                    </div>
+                    </div> -->
 
                     <p></p>
 
