@@ -26,10 +26,9 @@ class inventoryItemController extends Controller
         $quantity = $input['a_quantity'];
         $requiredItem = \App\inventoryItem::where('itemName', 'LIKE', '%' . $name . '%')->get()[0];
         $currentStock = $requiredItem->currStock;
-        DB::table('inventory_items')-where('itemName', 'LIKE', '%' . $name . '%')->update(['currStock'=>$currentStock+(int)$quantity]);
+        $minimum = $requiredItem->minStock;
+        DB::table('inventory_items')->where('itemName', 'LIKE', '%' . $name . '%')->update(['currStock'=>$currentStock+(int)$quantity]);
 
-
-        if ($itemType == "Drugs") {
 
 
 
@@ -40,9 +39,7 @@ class inventoryItemController extends Controller
 //            $newItem->save();
 
 
-        }else{
 
-        }
 
 
         $drugs = drug::all();
