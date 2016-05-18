@@ -55,7 +55,7 @@
                 <td width='135px' style='text-align: center'>{{$patient->firstName}}</td>
                 <td width='135px' style='text-align: center'>{{$patient->lastName}}</td>
                 <td width='75px' style='text-align: center'>
-                    <a href="{{route('editPatient', [$patient->user_id])}}">Edit</a>
+                    <a href="{{route('viewPatient', [$patient->user_id])}}">view</a>
                 </td>
                 <td width='150px' style='text-align: center'>
                     <a href="{{route('createPatientVisitRecord', [$patient->user_id])}}">Add visit record</a>
