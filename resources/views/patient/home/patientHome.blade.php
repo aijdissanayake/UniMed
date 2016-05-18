@@ -8,7 +8,11 @@
   <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine&amp;v1" />
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" />
+<<<<<<< HEAD
+  <link rel="stylesheet" type="text/css" href="style/style.css" />
+=======
   <link rel="stylesheet" type="text/css" href="/style/style.css" />
+>>>>>>> ed532a9d444676e8f662773e1fe07c35285355a8
     
     <meta charset="utf-8">
     <link rel="stylesheet" href="style/jquery-ui.css">
@@ -61,6 +65,13 @@
                 </div>
                 </form>
       <br>
+<<<<<<< HEAD
+     
+           @if($hasAppointment)
+           <div style=" width: 220px ; text-align:center ; background-color: greenyellow; color: white; font-size:20px ; font-family:typewriter"> You have an Appointment </div>
+           @endif
+     
+=======
         @if($directing == 1)
            @if($hasAppointment)
            
@@ -85,6 +96,7 @@
            </div></h2>
            @endif
         @endif
+>>>>>>> ed532a9d444676e8f662773e1fe07c35285355a8
            <br><br>          
             
    
@@ -99,7 +111,11 @@
             </ul>
         </div>
         </div>
+<<<<<<< HEAD
+	  <h2>Reserved Appointment Details</h2>
+=======
 	  
+>>>>>>> ed532a9d444676e8f662773e1fe07c35285355a8
 	   <div class="form_settings">
         <input class="submit" type="submit" name="cancelButton" value="Cancel Appointment" />
         </div>

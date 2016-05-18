@@ -49,9 +49,10 @@
           <h2>Recent Patient Visits</h2>
       </p>
                 
-        <table style="width:100%; border-spacing:0;">
+        <table style="width:100%; border-spacing:0; word-break: break-all; word-wrap: break-word">
           <tr><th width="2%" style="text-align:center">No.</th><th width="10%" style="text-align:center">First Name</th><th width="10%" style="text-align:center">Last Name</th><th style="text-align:center">Diagnosis</th><th style="text-align:center">Prognosis</th><th style="text-align:center">Remarks</th></tr>
-          <tr><td>1</td><td></td><td></td><td></td><td></td><td></td>
+
+<!--          <tr><td></td><td></td><td></td><td></td><td></td><td></td>
           <tr><td>2</td><td></td><td></td><td></td><td></td><td></td>
           <tr><td>3</td><td></td><td></td><td></td><td></td><td></td>
           <tr><td>4</td><td></td><td></td><td></td><td></td><td></td>
@@ -60,7 +61,7 @@
           <tr><td>7</td><td></td><td></td><td></td><td></td><td></td>
           <tr><td>8</td><td></td><td></td><td></td><td></td><td></td>
           <tr><td>9</td><td></td><td></td><td></td><td></td><td></td>
-          <tr><td>10</td><td></td><td></td><td></td><td></td><td></td>
+          <tr><td>10</td><td></td><td></td><td></td><td></td><td></td>-->
         </table>
       <p><div class="form_settings">
             <a href="{{route('addPatient')}}">
