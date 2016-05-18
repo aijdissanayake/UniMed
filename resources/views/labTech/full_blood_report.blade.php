@@ -18,6 +18,7 @@
             <div id="content">
                 <h2>Report Details</h2>
                 <form action="#" method="post">
+                    {{ csrf_field() }}
                     <div class="form_settings">
                         <p><span>Name</span><input type="text" name="name" value="" /></p>
                         <!--<p><span>Referred by</span><input type="text" name="name" value="" /></p>-->
@@ -44,7 +45,7 @@
                             <tr><td>MCV</td><td><input type="number" min="0" step ="0.1" name="mcv" placeholder="Enter value here" value="" /></td><td>80.0 - 99.0</td></tr>
                             <tr><td>MCHC</td><td><input type="number" min="0" step ="0.1" name="mchc" placeholder="Enter value here" value="" /></td><td>32.0 - 36.0</td></tr>
                             <tr><td>RDW</td><td><input type="number" min="0" step ="0.1" name="rdw" placeholder="Enter value here" value="" /></td><td>11.0 - 16.0</td></tr>
-                            <tr><td>Platelet Count</td><td><input type="number" min="0" step ="0.1" name="plateletCount" placeholder="Enter value here" value="" /></td><td>150 - 450</td></tr>
+                            <tr><td>Platelet Count</td><td><input type="number" min="0" step ="1" name="plateletCount" placeholder="Enter value here" value="" /></td><td>150 - 450</td></tr>
                         </table>
 
                         <p align = "right" style="padding-top: 15px"><input class="submit" type="submit" name="submitButton" value="Submit Report" /></p>
