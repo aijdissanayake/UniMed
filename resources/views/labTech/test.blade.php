@@ -12,7 +12,6 @@ and open the template in the editor.
     <body>
         <?php
         echo "user found";
-        echo $user->getPatient->firstName
         ?>
     </body>
 </html>

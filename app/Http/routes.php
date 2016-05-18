@@ -109,7 +109,8 @@ Route::group(['middleware' => 'authorizer:assistant'], function() {
 
 Route::group(['middleware' => 'authorizer:labTech'], function() {
     Route::get('lt', ['as' => 'lt', 'uses' => 'LabTechController@home']);
-    Route::post('lt/newRep', ['as' => 'ltNewRep', 'uses' => 'LabTechController@newReport']);
+    Route::get('lt/newRep', ['as' => 'ltNewRep', 'uses' => 'LabTechController@newReport']);
+    Route::post('lt/newfbr', ['as' => 'ltNewFbr', 'uses' => 'LabTechController@createNewFBR']);
     Route::get('lt/pat', ['as' => 'ltLab', 'uses' => 'LabTechController@patientLab']);
     Route::get('lt/profile', ['as'=>'ltViewProfile', 'uses'=>'LabTechController@viewProfile']);
     Route::get('lt/editProfile', ['as'=>'ltEditProfile', 'uses'=>'LabTechController@editProfile']);

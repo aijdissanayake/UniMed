@@ -23,7 +23,7 @@
             <div id="content">
                 <h2>New Lab Report Submission</h2>
                 <div class="form_settings">
-                    <form action="{{route('ltNewRep')}}" method='POST'>
+                    <form action="{{route('ltNewRep')}}" method='get'>
                         {{ csrf_field() }}
                         <span>Choose a report to submit</span>
                         <select id="id" name="reportType">
