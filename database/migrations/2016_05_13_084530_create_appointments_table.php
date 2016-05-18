@@ -12,6 +12,9 @@ class CreateAppointmentsTable extends Migration
      */
     public function up()
     {
+        /*
+         * session and app. number added later!
+         */
         Schema::create('appointments', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('patient_id');

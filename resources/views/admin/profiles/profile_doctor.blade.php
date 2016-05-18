@@ -2,13 +2,13 @@
 <html>
 
 <head>
-  <title>Unicare - add_new_patients</title>
+  <title>Unicare - My Profile</title>
   <meta name="description" content="website description" />
   <meta name="keywords" content="website keywords, website keywords" />
   <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine&amp;v1" />
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" />
-  <link rel="stylesheet" type="text/css" href="style/style2.css" />
+  <link rel="stylesheet" type="text/css" href="/style/style2.css" />
 </head>
 
 <body>
@@ -16,7 +16,6 @@
     <div id="header">
       <div id="logo">
         <h1>Unicare Medical</h1>
-        <div class="slogan"><img src="style/logo.png" /></div>
       </div>
       <div id="heading"><h2>Doctor's Profile</h2></div>
     </div>
