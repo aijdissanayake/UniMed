@@ -53,10 +53,9 @@
 
                     <div id="appointments">Appointments
                         <ol class="list">
-                            <li></li>
-                            <li></li>
-                            <li></li>
-
+                            @foreach ($appointments as $appointment)
+                            <li>{{$appointment->getPatient->getUser->name}}</li>
+                            @endforeach
                         </ol>
                     </div>
                     <div id="inventory">Inventory Status

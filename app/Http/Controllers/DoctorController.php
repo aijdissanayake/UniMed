@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use DB;
+
 use App\drug;
 use App\equipment;
 use App\inventoryItem;
@@ -9,6 +11,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Patient;
 use App\patientVisit;
+use App\appointment;
 use Illuminate\Support\Facades\Input;
 //use Logger;
 
@@ -25,7 +28,8 @@ class DoctorController extends Controller
 
     public function home()
     {
-        return view('doctor.index.index');
+        $appointments = appointment::all();
+        return view('doctor.index.index', compact('appointments'));
     }
 
     /*
@@ -35,6 +39,9 @@ class DoctorController extends Controller
 
     public function viewPatientTab()
     {
+//        $patientVisits = DB::table('patient_visits')
+//                ->take(10)
+//                ->get();
         return view('doctor.patients.patientsTab');
     }
 
