@@ -28,11 +28,15 @@ class inventoryItemController extends Controller
 
 
             $name = $input['a_drugs'];
-            $quantity = $input['a_quantity'];
+            $quantity = (int)$input['a_quantity'];
             $requiredItem = \App\inventoryItem::where('itemName', 'LIKE', '%' . $name . '%')->get()[0];
-            $currentStock = $requiredItem->currStock;
-            $minimum = $requiredItem->minStock;
-            DB::table('inventory_items')->where('itemName', 'LIKE', '%' . $name . '%')->update(['currStock'=>$currentStock+(int)$quantity]);
+            $currentStock = (int)$requiredItem->currStock;
+            $minimum = (int)$requiredItem->minStock;
+
+            if($currentStock<$minimum && $minimum<$currentStock + $quantity){
+                //remove the warning
+            }
+            DB::table('inventory_items')->where('itemName', 'LIKE', '%' . $name . '%')->update(['currStock'=>$currentStock+$quantity]);
 
 
 //            $newItem = new inventoryItem();
@@ -42,13 +46,16 @@ class inventoryItemController extends Controller
 
         }else{
 
-
             $name = $input['a_equips'];
-            $quantity = $input['a_quantity'];
+            $quantity = (int)$input['a_quantity'];
             $requiredItem = \App\inventoryItem::where('itemName', 'LIKE', '%' . $name . '%')->get()[0];
-            $currentStock = $requiredItem->currStock;
-            $minimum = $requiredItem->minStock;
-            DB::table('inventory_items')->where('itemName', 'LIKE', '%' . $name . '%')->update(['currStock'=>$currentStock+(int)$quantity]);
+            $currentStock = (int)$requiredItem->currStock;
+            $minimum = (int)$requiredItem->minStock;
+
+            if($currentStock<$minimum && $minimum<$currentStock + $quantity){
+                //remove the warning
+            }
+            DB::table('inventory_items')->where('itemName', 'LIKE', '%' . $name . '%')->update(['currStock'=>$currentStock+$quantity]);
 
         }
 
@@ -56,8 +63,8 @@ class inventoryItemController extends Controller
         $drugs = drug::all();
         $equip = equipment::all();
         $items = array($drugs, $equip); //this array is used to create drop down menus.
-        //return view('doctor.inventory.inventory', compact('items'));
-        echo $currentStock;
+        return view('doctor.inventory.inventory', compact('items'));
+        //echo $currentStock;
     }
 
     public function removeInventoryItem()
@@ -75,13 +82,13 @@ class inventoryItemController extends Controller
             $requiredItem = \App\inventoryItem::where('itemName', 'LIKE', '%' . $name . '%')->get()[0];
             $currentStock = $requiredItem->currStock;
             $minimum = $requiredItem->minStock;
-            DB::table('inventory_items')->where('itemName', 'LIKE', '%' . $name . '%')->update(['currStock'=>$currentStock-(int)$quantity]);
+
+            if($quantity<$currentStock){
+                DB::table('inventory_items')->where('itemName', 'LIKE', '%' . $name . '%')->update(['currStock'=>$currentStock-(int)$quantity]);
+                //add logic to dispaly stock level critical warning
+            }
 
 
-//            $newItem = new inventoryItem();
-//            $newItem->itemName = $name;
-//            $newItem->currStock = $currentStock+ (int)$quantity;
-//            $newItem->save();
 
         }else{
 
@@ -91,7 +98,11 @@ class inventoryItemController extends Controller
             $requiredItem = \App\inventoryItem::where('itemName', 'LIKE', '%' . $name . '%')->get()[0];
             $currentStock = $requiredItem->currStock;
             $minimum = $requiredItem->minStock;
-            DB::table('inventory_items')->where('itemName', 'LIKE', '%' . $name . '%')->update(['currStock'=>$currentStock-(int)$quantity]);
+
+            if($quantity<$currentStock){
+                DB::table('inventory_items')->where('itemName', 'LIKE', '%' . $name . '%')->update(['currStock'=>$currentStock-(int)$quantity]);
+                //add logic to dispaly stock level critical warning
+            }
 
         }
 
@@ -99,12 +110,12 @@ class inventoryItemController extends Controller
         $drugs = drug::all();
         $equip = equipment::all();
         $items = array($drugs, $equip); //this array is used to create drop down menus.
-        //return view('doctor.inventory.inventory', compact('items'));
-        echo $currentStock;
+        return view('doctor.inventory.inventory', compact('items'));
+        //echo $currentStock;
     }
 
-    public function(){
-        
+    public function searchItem(){
+        echo "search";
     }
 
 }

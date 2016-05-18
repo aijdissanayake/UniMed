@@ -34,7 +34,7 @@
       <!-- insert the page content here -->
       
       <div>
-      	<h2 style="color:#F14E23">Add item</h2>
+      	<h2 style="color:#F14E23">Add items</h2>
         
         <div class="form-group">
         <form action="{{route('addItem')}}" method="post">
@@ -67,7 +67,7 @@
       <p></p>
       <p></p>
       <div>
-      	<h2 style="color:#F14E23">Remove item</h2>
+      	<h2 style="color:#F14E23">Remove items</h2>
         <div class="form-group">
         <form action="{{route('removeItem')}}" method="post">
           {{ csrf_field() }}
