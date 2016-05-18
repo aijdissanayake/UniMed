@@ -42,18 +42,34 @@ class PatientController extends Controller
         $id = \Illuminate\Support\Facades\Auth::user()->id ;
         // check whether patient has an appointment
         $hasAppointment = \App\patient::where('user_id','LIKE', $id)->get()[0]->hasAppointment;
-         
         
+        $currentAppointments =    \App\appointment::where('aDate','LIKE', $appDate)->where('session','LIKE', $appSession)->get();
+        $noOfAppointments = count($currentAppointments); 
+        
+        
+        
+            
         if ($hasAppointment == 0) {
+            if ($noOfAppointments==10){
+            $directing = 2;
+            return view('patient.home.patientHome')->with('hasAppointment',$hasAppointment)->with('directing',$directing);
+  
+        }
+            else{
+             $directing = 3 ;
             DB::table('patients')
             ->where('user_id', $id)
             ->update(['hasAppointment' => TRUE]);
-        $currentAppointments =    \App\appointment::where('user_id','LIKE', $id)->get();
+            
+            return view('patient.home.patientHome')->with('hasAppointment',$hasAppointment)->with('directing',$directing);
+  
+            }
+        
         } 
         else{
-            $directing = 2;
+            $directing = 4;
            return view('patient.home.patientHome')->with('hasAppointment',$hasAppointment)->with('directing',$directing);
     }
     
-}
+    }
 }
