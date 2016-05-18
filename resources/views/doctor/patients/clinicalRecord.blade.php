@@ -47,7 +47,8 @@
 			</script>
             <p align = "right" style="padding-top: 15px">
                 <input class="submit" type="submit" name="submitButton" value="Submit Record" />
-                <input class="submit" type="button" name="submitButton" value="Back" />
+                <a href="{{route('patientsTab')}}">
+                    <input class="submit" type="button" name="submitButton" value="Back" /> </a>
             </p>
           </div>
         </form>
