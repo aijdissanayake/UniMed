@@ -107,7 +107,7 @@
                 <p></p>
                 <p></p>
 
-                <div style="float:left; width:100%; ">
+                <div style="float:left; width:30%; ">
                     <p>&nbsp</p>
                     <h2 style="color:#F14E23">Search inventory</h2>
                     <form action="{{route('searchItem')}}" method="post">
@@ -135,6 +135,17 @@
                         <br><br>
                         <input type="submit" name="search" value="Search" />
                     </form>
+                </div>
+
+                <div style="float:left; width:70%; ">
+                    <br><br><br><br>
+                    <table style="width:100%; border-spacing:0;">
+                        <tr><th "width = 20%">Name</th><th>Description</th><th "width = 15%" >Current Stock</th></tr>
+                        <tr><td></td><td></td><td></td></tr>
+                        <tr><td></td><td></td><td></td></tr>
+
+                    </table>
+
                 </div>
             </div>
             <div style="float:left; width:100%; padding-top: 50px ">
