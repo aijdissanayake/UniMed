@@ -1,34 +1,12 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+@extends('layouts.app')
 
-        <title>Unicare Medical Centre</title>
-
-
-        <link rel="stylesheet" href="/style/reset.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" 
-              integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-        <link rel="stylesheet prefetch" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900|RobotoDraft:400,100,300,500,700,900">
-        <link rel="stylesheet prefetch" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-
-        <link rel="stylesheet" href="/style/login_style.css">
-
-    </head>
-
-    <body>
-
-
-        <!-- Mixins-->
-        <!-- Pen Title-->
-        <div class="pen-title">
-            <h1>Unicare Medical Centre</h1>
-        </div>
-        <div class='rerun'><img src="/style/logo.png"></div>
-        <div class="container">
-            <div class="card"></div>
-            <div class="card">
-                <h1 class="title">Reset Password</h1>
+<!-- Main Content -->
+@section('content')
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">Reset Password</div>
                 <div class="panel-body">
                     @if (session('status'))
                         <div class="alert alert-success">
@@ -63,7 +41,7 @@
                     </form>
                 </div>
             </div>
-
         </div>
-    </body>
-</html>
+    </div>
+</div>
+@endsection

@@ -51,7 +51,6 @@
                 <div id="content">
                     <!-- insert the finance content here -->
 
-                    <h1>&nbsp;</h1>
                     <div id="appointments">Appointments
                         <ol class="list">
                             <li></li>
