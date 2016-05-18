@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\fullBloodReport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use App\Http\Requests;
@@ -17,13 +18,15 @@ class LabTechController extends Controller
         return view('labTech.patientLab');
     }
     
-    public function newReport() {
+    public function newReport(Request $request) {
         $inputs = Input::all();
         
+        $this->validate($request, [
+            'reportType' => 'between:0,5',
+        ]);
         $reportType = $inputs['reportType'];
-        $error = "";
         if ($reportType == 1){
-            return view('labTech.full_blood_report', compact('error'));   
+            return view('labTech.full_blood_report');   
         }
         
     }
@@ -38,10 +41,35 @@ class LabTechController extends Controller
          * check for a patient by this name.
          */
         
+        $fullBloodReport = new fullBloodReport();
+        $user = User::where('name','LIKE',$request['name'])->first();
         
-        $name = $request->name;
+        $fullBloodReport->patient_id = $user->getPatient->id;
+        $fullBloodReport->name = $request['name'];
+        $fullBloodReport->leucocytesCount = $request['leucocytesCount'];
+        $fullBloodReport->lcNeutrophils = $request['lcNeutrophils'];
+        $fullBloodReport->lcLymphocytes = $request['lcLymphocytes'];
+        $fullBloodReport->lcEosinophils = $request['lcEosinophils'];
+        $fullBloodReport->lcMonocytes = $request['lcMonocytes'];
+        $fullBloodReport->lcBasophils = $request['lcBasophils'];
+        $fullBloodReport->dcNeutrophils = $request['dcNeutrophils'];
+        $fullBloodReport->dcLymphocytes = $request['dcLymphocytes'];
+        $fullBloodReport->dcEosinophils = $request['dcEosinophils'];
+        $fullBloodReport->dcMonocytes = $request['dcMonocytes'];
+        $fullBloodReport->dcBasophils = $request['dcBasophils'];
+        $fullBloodReport->hb = $request['hb'];
+        $fullBloodReport->hct = $request['hct'];
+        $fullBloodReport->rbc = $request['rbc'];
+        $fullBloodReport->mch = $request['mch'];
+        $fullBloodReport->mcv = $request['mcv'];
+        $fullBloodReport->mchc = $request['mchc'];
+        $fullBloodReport->rdw = $request['rdw'];
+        $fullBloodReport->plateletCount = $request['plateletCount'];
         
-        return view('labTech.test', compact('user'));
+        $fullBloodReport->save();
+        
+        
+        return view('labTech.full_blood_report_view', compact('fullBloodReport'));
     }
     
     public function viewProfile() {
