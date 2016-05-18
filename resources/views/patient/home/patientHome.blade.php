@@ -47,6 +47,7 @@
                                 <input type="date" id="reserveDate" name="appointmentDate"/>
                                 <script>
         $(function () {
+            
             $("#datepicker").datepicker();
         });
                                 </script>
@@ -64,30 +65,35 @@
                         </div>
                     </form>
                     <br>
+                    @if($directing == 0)
+                    <h2><div style=" width: 600px ; text-align:center ; background-color: red; color: white; font-size:20px ;">
+                            Invalid Date
+                        </div></h2>
                     
-                    @if($directing == 1)
-                    @if($hasAppointment)
+                    @elseif($directing == 1)
+                        @if($hasAppointment)
 
-                    <h2><div  style=" width: 220px ; text-align:center ; background-color: greenyellow; color: white; font-size:20px ; ">You have an Appointment</div></h2>
-                    @endif
+                    <h2><div  style=" width: 250px ; text-align:center ; background-color: greenyellow; color: white; font-size:20px ; ">
+                            You have an Appointment<br> {{$currentAppDetails}}</div></h2>
+                        @endif
                     @elseif ($directing == 2)
-                    @if(!$hasAppointment)
+                        @if(!$hasAppointment)
                     <h2><div style=" width: 600px ; text-align:center ; background-color: red; color: white; font-size:20px ;">
                             Sorry, All the Online Appointments are reserved. Please Contact Doctor for Arrangements.
                         </div></h2>
-                    @endif
+                        @endif
                     @elseif ($directing == 3)
-                    @if(!$hasAppointment)
-                    <h2><div style=" width: 600px ; text-align:center ; background-color: greenyellow; color: white; font-size:20px ;">
-                            Appointment Created
+                        @if(!$hasAppointment)
+                    <h2><div style=" width: 280px ; text-align:center ; background-color: greenyellow; color: white; font-size:20px ;">
+                            Appointment Created<br> {{$currentAppDetails}}
                         </div></h2>
-                    @endif
+                        @endif
                     @elseif ($directing == 4)
-                    @if($hasAppointment)
+                        @if($hasAppointment)
                     <h2><div style=" width: 600px ; text-align:center ; background-color: red; color: white; font-size:20px ;">
-                            You already have an Appointment, cancel it to create a new appointment
+                            You already have an Appointment.<br>{{$currentAppDetails}}<br> Cancel it to create a new appointment<br> 
                         </div></h2>
-                    @endif
+                        @endif
                     @endif
                     <br><br>          
 
@@ -95,6 +101,7 @@
                     <h3><strong>Appointment Reservation Policy</strong></h3>
                     <div
                         <ul>
+                            <li>Appointments should be made at least day prior to the appointment date</li>
                             <li>All reserved appointments are given reservation order based priority.</li><br>
                             <li>Patients are advised to be present at the dispensary 10 minutes early.</li><br>
                             <li>Patients can roughly calculate his/her appointment time by assuming 10 mins for each patient.</li><br>
