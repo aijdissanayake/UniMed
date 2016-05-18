@@ -1,16 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<<<<<<< HEAD
-    <title>Unicare - Inventory</title>
-    <meta name="description" content="website description" />
-    <meta name="keywords" content="website keywords, website keywords" />
-    <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
-    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine&amp;v1" />
-    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" />
-    <link rel="stylesheet" type="text/css" href="/style/style.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.3/jquery.min.js"></script>
-=======
+
     @include('doctor.navBarDoctor')
 <title>Unicare - Inventory</title>
 <meta name="description" content="website description" />
@@ -20,7 +11,7 @@
 <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" />
 <link rel="stylesheet" type="text/css" href="/style/style.css" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.3/jquery.min.js"></script>
->>>>>>> 6bd964a2e20eb88b1577001f4530d72fd6430e4d
+
 </head>
 
 <body>
