@@ -72,9 +72,13 @@ class DoctorController extends Controller
          */
 
         $this->validate($request, [
+            'firstName' => 'alpha',
+            'lastName' => 'alpha',
+            'contactNo' => 'digits:10',
             'email' => 'unique:users,email',
+            'bloodGroup' => 'in:A+,A-,B+,B-,AB+,AB-,O-,O+'
         ]);
-
+        
 
         /*
          * create user first
