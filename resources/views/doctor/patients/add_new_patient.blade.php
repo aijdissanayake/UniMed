@@ -40,13 +40,13 @@
                             <p><span>First Name</span><input type="text" name="firstName" value="{{old('firstName')}}" required=""/>
                                 Note: Default password will be set to "unicare101"</p>
                             <p><span>Last Name</span><input type="text" name="lastName" value="{{old('lastName')}}"  required=""/></p>
-                            <p><span>Birth Year</span><input type="text" name="birthYear" value="{{old('birthYear')}}"  required=""/></p>
+                            <p><span>Birth Year</span><input type="tel" maxlength="4" name="birthYear" value="{{old('birthYear')}}"  required=""/></p>
                             <p><span>Gender</span>
                                 <input class="checkbox" type="radio" name="gender" value=1 checked>Male
                                 <input class="checkbox" type="radio" name="gender" value=0>Female<br>
                             </p>
-                            <p><span>Email</span><input type="text" name="email" value="{{old('email')}}" required=""/></p>
-                            <p><span>Contact No.</span><input type="text" name="contactNo" value="{{old('contactNo')}}" required="" /></p>
+                            <p><span>Email</span><input type="email" name="email" value="{{old('email')}}" required=""/></p>
+                            <p><span>Contact No.</span><input type="tel" name="contactNo" value="{{old('contactNo')}}" maxlength="10" required="" /></p>
                             <p><span>Locale</span><input type="text" name="locale" value="{{old('locale')}}"/></p>
                             <p><span>Blood Group</span><input type="text" name="bloodGroup" value="{{old('bloodGroup')}}"  required=""/></p>
                             <p><span>Remarks</span><textarea rows="4" cols="50" name="remarks" value="{{old('remarks')}}"></textarea></p>

@@ -39,10 +39,10 @@ class DoctorController extends Controller
 
     public function viewPatientTab()
     {
-//        $patientVisits = DB::table('patient_visits')
-//                ->take(10)
-//                ->get();
-        return view('doctor.patients.patientsTab');
+        $patientVisits = patientVisit::orderBy('created_at', 'desc')
+                ->take(10)
+                ->get();
+        return view('doctor.patients.patientsTab', compact('patientVisits'));
     }
 
     public function regPatient()
