@@ -69,16 +69,6 @@ word-wrap:break-word;overflow: hidden; text-overflow: ellipsis;">
               <td style="height: 10px">{{substr($patientVisit->remarks,0,30)}}</td>
           </tr>
           @endforeach
-<!--          <tr><td></td><td></td><td></td><td></td><td></td><td></td>
-          <tr><td>2</td><td></td><td></td><td></td><td></td><td></td>
-          <tr><td>3</td><td></td><td></td><td></td><td></td><td></td>
-          <tr><td>4</td><td></td><td></td><td></td><td></td><td></td>
-          <tr><td>5</td><td></td><td></td><td></td><td></td><td></td>
-          <tr><td>6</td><td></td><td></td><td></td><td></td><td></td>
-          <tr><td>7</td><td></td><td></td><td></td><td></td><td></td>
-          <tr><td>8</td><td></td><td></td><td></td><td></td><td></td>
-          <tr><td>9</td><td></td><td></td><td></td><td></td><td></td>
-          <tr><td>10</td><td></td><td></td><td></td><td></td><td></td>-->
         </table>
       <p><div class="form_settings">
             <a href="{{route('addPatient')}}">
