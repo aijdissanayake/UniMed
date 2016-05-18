@@ -6,6 +6,8 @@
             <name>testLara</name>
         </data>
         <spellchecker-wordlist xmlns="http://www.netbeans.org/ns/spellchecker-wordlist/1">
+            <word>endif</word>
+            <word>hasAppointment</word>
             <word>html</word>
             <word>rta</word>
         </spellchecker-wordlist>

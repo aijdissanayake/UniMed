@@ -13,12 +13,14 @@ use Illuminate\Support\Facades\DB;
 class PatientController extends Controller
 {
     public function home() {
+      
+        $directing = 1;
         $id = \Illuminate\Support\Facades\Auth::user()->id ;
         $patient= \App\patient::where('user_id','LIKE', $id)->get()[0];
         
         $hasAppointment = $patient->hasAppointment;
         //return view('patient.home.patientHome', compact('hasAppointment'));
-        return view('patient.home.patientHome')->with('hasAppointment', 'patient');
+        return view('patient.home.patientHome')->with('hasAppointment',$hasAppointment)->with('directing',$directing);
     }
     
     /*
@@ -38,19 +40,20 @@ class PatientController extends Controller
         $appSession = $inputs['session'];
         // get the id of the current user
         $id = \Illuminate\Support\Facades\Auth::user()->id ;
-        
-        print  $appDate ."  ". $appSession ." " . $id."<br>";
         // check whether patient has an appointment
         $hasAppointment = \App\patient::where('user_id','LIKE', $id)->get()[0]->hasAppointment;
-         print $hasAppointment . "<br>";
+         
         
         if ($hasAppointment == 0) {
             DB::table('patients')
             ->where('user_id', $id)
             ->update(['hasAppointment' => TRUE]);
+        $currentAppointments =    \App\appointment::where('user_id','LIKE', $id)->get();
         } 
-        echo 'new '.\App\patient::where('user_id','LIKE', $id)->get()[0]->hasAppointment;;
-        echo "<script> alert(Im an alert box)</script>";
+        else{
+            $directing = 2;
+           return view('patient.home.patientHome')->with('hasAppointment',$hasAppointment)->with('directing',$directing);
     }
     
+}
 }
