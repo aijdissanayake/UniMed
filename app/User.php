@@ -49,4 +49,7 @@ class User extends Authenticatable
         return $this->belongsTo('App\role','role','role_name');
     }
     
+    public function getLoginRecords() {
+        return $this->hasMany('App\loginRecord','user_id','id');
+    }
 }

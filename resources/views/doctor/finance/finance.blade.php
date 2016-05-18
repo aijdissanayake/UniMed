@@ -22,11 +22,9 @@
     <div id="header">
       <div id="logo">
         <h1>Unicare Medical</h1>
-        <div class="slogan"><img src="/style/logo.png" /></div>
       </div>
       <div id="menubar">
         <ul id="menu">
-          <!-- put class="current" in the li tag for the selected finance - to highlight which finance you're on -->
           <li><a href="{{route('homeTab')}}">Home</a></li>
           <li><a href="{{route('patientsTab')}}">Patients</a></li>
           <li class="current"><a href="{{route('financeTab')}}">Finance</a></li>
@@ -97,11 +95,20 @@
 				$( "#datepicker" ).datepicker();
 				});
 			</script>
+            <p align = "right" style="padding-top: 15px"><input class="submit" type="submit" name="newTransaction" value="Show Transaction Summary" /></p>
             </div>
          </form>
-        <div class="form_settings">
-        <p align = "right" style="padding-top: 15px"><input class="submit" type="submit" name="newTransaction" value="Show Transaction Summary" /></p>
-        </div>
+         <h2>Add a new Assistant</h2>
+         <form action="#" method="post">
+          <div class="form_settings">
+          	<p><span>First Name</span><input type="text" name="name" value="" /></p>
+            <p><span>Last Name</span><input type="text" name="name" value="" /></p>
+            <p><span>Birth Year</span><input type="text" name="name" value="" /></p>
+            <p><span>Telephone No.</span><input type="text" name="name" value="" /></p>
+            <p><span>Home Addrress</span><input type="text" name="name" value="" /></p>
+			<p align = "right" style="padding-top: 15px"><input class="submit" type="submit" name="submitButton" value="Add New Assistant" /></p>
+          </div>
+        </form>
       </div>
     </div>
     <div id="footer">
