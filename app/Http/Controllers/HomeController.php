@@ -27,6 +27,7 @@ class HomeController extends Controller {
             return view('login');
         } else {
         $user = Auth::user();
+        $role = $user->role;
         
         $loginRec = new loginRecord();
         
@@ -36,7 +37,8 @@ class HomeController extends Controller {
         if ($user->role == 'doctor') {
             return view('doctor.index.index');
         } elseif ($user->role == 'patient') {
-            return view('patient.home.patientHome');
+            return app('App\Http\Controllers\PatientController')->home();
+//            return view('patient.home.patientHome');
         } elseif ($user->role == 'assistant') {
             return view('assistant.index');
         } elseif ($user->role == 'labTech') {
