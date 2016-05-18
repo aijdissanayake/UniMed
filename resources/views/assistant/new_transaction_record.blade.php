@@ -1,6 +1,7 @@
 @extends('layouts.appLayout')
 
 @section('header')
+@include('assistant.navBarAssistant')
   <title>Unicare - add_new_patients</title>
 @stop
 

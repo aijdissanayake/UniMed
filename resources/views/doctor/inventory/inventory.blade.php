@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
+    @include('doctor.navBarDoctor')
 <title>Unicare - Inventory</title>
 <meta name="description" content="website description" />
 <meta name="keywords" content="website keywords, website keywords" />

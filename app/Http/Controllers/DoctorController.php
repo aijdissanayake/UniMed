@@ -36,7 +36,14 @@ class DoctorController extends Controller
      * patient tab tasks
      */
 
-
+    public function viewProfile() {
+        return view('doctor.index.profile_doctor');
+    }
+    
+    public function editProfile() {
+        return view('doctor.index.profileEditable_doctor');
+    }
+    
     public function viewPatientTab()
     {
         $patientVisits = patientVisit::orderBy('created_at', 'desc')

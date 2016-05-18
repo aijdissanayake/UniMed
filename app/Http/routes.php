@@ -34,6 +34,8 @@ Route::group(['middleware' => 'authorizer:doctor'], function() {
     Route::get('doc', ['as' => 'homeTab', 'uses' => 'DoctorController@home']);
     Route::get('doc/patients', ['as' => 'patientsTab', 'uses' => 'DoctorController@viewPatientTab']);
     Route::get('doc/finance', ['as' => 'financeTab', 'uses' => 'DoctorController@viewFinanceTab']);
+    Route::get('doc/profile', ['as'=>'dViewProfile', 'uses'=>'DoctorController@viewProfile']);
+    Route::get('doc/editProfile', ['as'=>'dEditProfile', 'uses'=>'DoctorController@editProfile']);
 
     Route::get('doc/inventory', ['as' => 'inventoryTab', 'uses' => 'DoctorController@viewInventoryTab']);
     Route::get('doc/lab', ['as' => 'labTab', 'uses' => 'DoctorController@viewLabTab']);
@@ -95,6 +97,8 @@ Route::group(['middleware' => 'authorizer:assistant'], function() {
     Route::get('ast/inventory', ['as' => 'astInventory', 'uses' => 'AssistantController@viewInvTab']);
     Route::get('ast/reports', ['as' => 'astReports', 'uses' => 'AssistantController@viewRep']);
     Route::get('ast/newtrec', ['as' => 'astAddTRec', 'uses' => 'AssistantController@addTransRec']);
+    Route::get('ast/profile', ['as'=>'astViewProfile', 'uses'=>'AssistantController@viewProfile']);
+    Route::get('ast/editProfile', ['as'=>'astEditProfile', 'uses'=>'AssistantController@editProfile']);
 });
 
 

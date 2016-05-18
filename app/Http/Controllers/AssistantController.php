@@ -17,7 +17,7 @@ class AssistantController extends Controller
     }
     
     public function viewInvTab() {
-        return view('assistant.index');
+        return view('assistant.inventory');
     }
     
     public function viewLabTab() {
