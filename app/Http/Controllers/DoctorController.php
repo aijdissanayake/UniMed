@@ -104,7 +104,7 @@ class DoctorController extends Controller
         $user->save();
         //logger messages
         $logMessage= "User Added : Name > ".$name." email: " .$request['email'] ;
-        $log->fatal($logMessage); 
+        $log->info($logMessage); 
 
 
         /*
@@ -123,7 +123,7 @@ class DoctorController extends Controller
         $patient->save();
         //logger messages
           $logMessage= "Patient Added : Name > ".$name." email: " .$request['email']." BirthYear > ".$request['birthYear']."telephoneNo >".$request['contactNo']."" ;
-          $log->fatal($logMessage);
+          $log->info($logMessage);
 
         return view('doctor.patients.viewPatient',  compact('patient'));
     }

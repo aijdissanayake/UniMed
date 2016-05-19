@@ -20,9 +20,10 @@ class PatientController extends Controller
         $pID=$patient->id;
         $hasAppointment = $patient->hasAppointment;
         $currentAppDetails = "";
+        if($hasAppointment){
         $currentPatientsAppointment = \App\appointment::orderBy('aDate', 'desc')
                                                 ->where('patient_id',$pID)
-                                                ->take(2)->get()[0];
+                                                ->take(2)->first();
         $currentSession = $currentPatientsAppointment->session;
         $currentDate=substr($currentPatientsAppointment->aDate,0,10);
 
@@ -40,7 +41,7 @@ class PatientController extends Controller
              $currentAppDetails = "Date : " . $currentDate ."\n Session : 4pm - 8pm \n Appointment No :"
                      . $currentPatientsAppointment->appointmentNo ;
                      
-             }
+        }}
         //return view('patient.home.patientHome', compact('hasAppointment'));
         return view('patient.home.patientHome')->with('hasAppointment',$hasAppointment)->with('directing',$directing)->with('currentAppDetails',$currentAppDetails);
     }
