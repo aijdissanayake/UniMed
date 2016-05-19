@@ -21,7 +21,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.3/jquery.min.js"></script>
 
-</head>
+    </head>
 
 <body>
 <div id="main">
@@ -30,72 +30,75 @@
             <h1>Unicare Medical</h1>
 
         </div>
-        <div id="menubar">
-            <ul id="menu">
-                <!-- put class="current" in the li tag for the selected finance - to highlight which finance you're on -->
-                <li class="current"><a href="{{route('patient')}}">Home</a></li>
-                <li><a href="{{route('patientLabTab')}}">Lab</a></li>
-            </ul>
-        </div>
-    </div>
-    <div id="site_content">
-        <div id="content">
-            <!-- insert the finance content here -->
-            <h2>Online Appointment Reservation</h2>
-            <form action="{{route('appointment')}}" method="post">
-                {{ csrf_field() }}
-                <div class="form_settings">
-                    <p><span>Reservation Date :</span>
-                        <input type="date" id="reserveDate" name="appointmentDate"/>
-                        <script>
-                            $(function () {
-                                $("#reserveDate").datepicker({ minDate:0});
-                            });
-                        </script>
-
-                        <label>&nbsp;&nbsp; Session :
-                            <select  name="session" id="sessionID" class="form-control input-sm">
-                                <option value=1> 8am - 11am </option>
-                                <option value=2> 12noon - 3pm </option>
-                                <option value=3>4pm - 8pm</option>
-                            </select>
-                        </label></p>
-                    <br>
-                    <input class="submit" type="submit" name="appointmentButton"  />
-
+                <div id="menubar">
+                    <ul id="menu">
+                        <!-- put class="current" in the li tag for the selected finance - to highlight which finance you're on -->
+                        <li class="current"><a href="{{route('patient')}}">Home</a></li>
+                        <li><a href="{{route('patientLabTab')}}">Lab</a></li>
+                    </ul>
                 </div>
-            </form>
-            <br>
+            </div>
+            <div id="site_content">
+                <div id="content">
+                    <!-- insert the finance content here -->
+                    <h2>Online Appointment Reservation</h2>
+                    <form action="{{route('appointment')}}" method="post">
+                        {{ csrf_field() }}
+                        <div class="form_settings">
+                            <p><span>Reservation Date :</span>
+                                <input type="date" id="reserveDate" name="appointmentDate"/>
+                                <script>
+        $(function () {
+            
+            $("#datepicker").datepicker();
+        });
+                                </script>
 
-            @if($directing == 1)
-                @if($hasAppointment)
+                                <label>&nbsp;&nbsp; Session :
+                                    <select  name="session" id="sessionID" class="form-control input-sm">
+                                        <option value=1> 8am - 11am </option>
+                                        <option value=2> 12noon - 3pm </option>
+                                        <option value=3>4pm - 8pm</option>
+                                    </select>
+                                </label></p>
+                            <br>
+                            <input class="submit" type="submit" name="appointmentButton"  />	
 
-                    <h2><div  style=" width: 220px ; text-align:center ; background-color: greenyellow; color: white; font-size:20px ; ">You have an Appointment</div></h2>
-                @endif
-            @elseif ($directing == 2)
-                @if(!$hasAppointment)
+                        </div>
+                    </form>
+                    <br>
+                    @if($directing == 0)
+                    <h2><div style=" width: 600px ; text-align:center ; background-color: red; color: white; font-size:20px ;">
+                            Invalid Date
+                        </div></h2>
+                    
+                    @elseif($directing == 1)
+                        @if($hasAppointment)
+
+                    <h2><div  style=" width: 250px ; text-align:center ; background-color: greenyellow; color: white; font-size:20px ; ">
+                            You have an Appointment<br> {{$currentAppDetails}}</div></h2>
+                        @endif
+                    @elseif ($directing == 2)
+                        @if(!$hasAppointment)
                     <h2><div style=" width: 600px ; text-align:center ; background-color: red; color: white; font-size:20px ;">
                             Sorry, All the Online Appointments are reserved. Please Contact Doctor for Arrangements.
                         </div></h2>
-                @endif
-            @elseif ($directing == 3)
-                @if(!$hasAppointment)
-                    <h2><div style=" width: 600px ; text-align:center ; background-color: greenyellow; color: white; font-size:20px ;">
-                            Appointment Created
+                        @endif
+                    @elseif ($directing == 3)
+                        @if(!$hasAppointment)
+                    <h2><div style=" width: 280px ; text-align:center ; background-color: greenyellow; color: white; font-size:20px ;">
+                            Appointment Created<br> {{$currentAppDetails}}
                         </div></h2>
-                @endif
-            @elseif ($directing == 4)
-                @if($hasAppointment)
-
-                    <h2><div style=" width: 600px ; text-align:center ; background-color: red; color: white; font-size:20px ;">
+                        @endif
+                    @elseif ($directing == 4)
+                        @if($hasAppointment)
+                         <h2><div style=" width: 600px ; text-align:center ; background-color: red; color: white; font-size:20px ;">
                             You already have an Appointment.<br>{{$currentAppDetails}}<br> Cancel it to create a new appointment<br> 
                         </div></h2>
-                   @endif
-            @endif
-                    <br><br>          
-
-
-                    <h3><strong>Appointment Reservation Policy</strong></h3>
+                            @endif
+                    @endif
+                    <br><br>
+                      <h3><strong>Appointment Reservation Policy</strong></h3>
                     <div
                         <ul>
                             <li>Appointments should be made at least day prior to the appointment date</li>
@@ -107,10 +110,7 @@
                         </ul>
                     </div>
                 </div>
-
-
-
-    <div class="form_settings">
+                 <div class="form_settings">
         <form action="{{route('cancelAppointment')}}" method="get">
             <input class="submit" type="submit" name="cancelButton" value="Cancel Appointment" />
         </form>
