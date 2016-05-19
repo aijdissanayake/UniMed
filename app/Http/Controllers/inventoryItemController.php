@@ -128,7 +128,7 @@ class inventoryItemController extends Controller
 
     public function searchInventoryItem(){
 
-        echo "search";
+
 
         $input = Input::all();
         $itemType = $input['s_type'];
@@ -139,11 +139,20 @@ class inventoryItemController extends Controller
             $name = $input['s_drugs'];
             $requiredItem = \App\inventoryItem::where('itemName', 'LIKE', '%' . $name . '%')->get()[0];
             $quantity = $requiredItem->currStock;
+            $description = \App\drug::where('drugName', 'LIKE', '%' . $name . '%')->get()[0]->description;
+
         }else{
             $name = $input['s_equips'];
             $requiredItem = \App\inventoryItem::where('itemName', 'LIKE', '%' . $name . '%')->get()[0];
             $quantity = $requiredItem->currStock;
+            $description = \App\drug::where('drugName', 'LIKE', '%' . $name . '%')->get()[0]->description;
         }
+
+        $drugs = drug::all();
+        $equip = equipment::all();
+        $items = array($drugs, $equip, $description,$quantity); //this array is used to create drop down menus and search results.
+        return view('doctor.inventory.inventory_search', compact('items'));
+
     }
 
 }

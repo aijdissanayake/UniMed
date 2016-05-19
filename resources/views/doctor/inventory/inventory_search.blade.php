@@ -139,25 +139,17 @@
 
                 <div style="float:left; width:70%; ">
                     <br><br><br><br>
+                    <table style="width:100%; border-spacing:0;">
+                        <tr><th>Name</th><th>Description</th><th>Current Stock</th></tr>
+                        <tr><td></td><td></td><td></td></tr>
+                        <tr><td></td><td></td><td></td></tr>
 
+                    </table>
 
                 </div>
             </div>
             <div style="float:left; width:100%; padding-top: 50px ">
                 <h2>Add new item type</h2>
-                <form action="#" method="post">
-                    <label>Select item type:&nbsp;&nbsp;
-                        <select name="type" id="s_type" class="form-control input-sm">
-                            <option value="Drugs" selected="selected">Drugs</option>
-                            <option value="Equipments">Equipments</option>
-                        </select>
-                    </label>
-
-                    <label>name: </label>&nbsp;<input type="text"  name="new_name" value="" />
-                    <label>description: </label>&nbsp;<input   type="text"  name="new_description" value="" style="resize:both"  />
-
-                </form>
-
             </div>
         </div>
 
