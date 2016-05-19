@@ -114,6 +114,17 @@
         <form action="{{route('cancelAppointment')}}" method="get">
             <input class="submit" type="submit" name="cancelButton" value="Cancel Appointment" />
         </form>
+                     @if($directing == 5)
+                        @if($hasAppointment)
+                     <h2><div style=" width: 600px ; text-align:center ; background-color: orange; color: white; font-size:20px ;">
+                            Appointment Canceled !
+                        </div></h2>
+                        @else
+                        <h2><div style=" width: 600px ; text-align:center ; background-color: red; color: white; font-size:20px ;">
+                            No Appointments to Cancel !
+                        </div></h2>
+                        @endif
+                     @endif
     </div>
     <h1>&nbsp;</h1>
 </div>

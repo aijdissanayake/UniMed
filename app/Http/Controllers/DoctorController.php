@@ -28,7 +28,10 @@ class DoctorController extends Controller
     
     public function home()
     {
-        $appointments = appointment::all();
+        $appointments = appointment::orderBy('created_at','desc')
+                ->where('expired',FALSE)
+                ->take(10)
+                ->get();
         $inventory = inventoryItem::all();
         $homeData = array($appointments, $inventory);
         return view('doctor.index.index', compact('homeData'));
@@ -109,12 +112,13 @@ class DoctorController extends Controller
         $user->name = $name;
         $user->password = bcrypt("unicare101");
         $user->email = $request['email'];
+        $user->gender = $request['gender'];
 
 
         $user->role = 'patient';
         $user->save();
         //logger messages
-        $logMessage= "User Added : Name > ".$name." email: " .$request['email'] ;
+        $logMessage= "User Added : Name : ".$name." email: " .$request['email'] ;
         $log->info($logMessage); 
 
 

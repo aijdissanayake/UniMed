@@ -43,7 +43,7 @@
                         
                         
                         @foreach ($appointments as $appointment)
-                        <tr><td>{{$appointment->getPatient->getUser->name}}</td><td>{{$appointment->aDate}}</td></tr>
+                        <tr><td>{{$appointment->getPatient->getUser->name}}</td><td>{{date('Y:m:d',strtotime($appointment->aDate))}}</td></tr>
                         @endforeach
                         </table>
                         @else <div>You currently have no appointments.</div>
