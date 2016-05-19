@@ -75,7 +75,7 @@
 
                         </table>
                         @else
-                        <div>    You have no patient visits to display currently.</div>
+                        <div>You have no patient visits to display currently.</div>
                         @endif
                         <p><div class="form_settings">
                             <a href="{{route('addPatient')}}">

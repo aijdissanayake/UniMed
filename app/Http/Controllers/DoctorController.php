@@ -53,11 +53,22 @@ class DoctorController extends Controller
                 ->get();
         return view('doctor.patients.patientsTab', compact('patientVisits'));
     }
-
+    
+    /*
+     * view patient's profile
+     */
+    
     public function viewPatientDetails($id)
     {
         $patient = patient::find($id);
         return view('doctor.patients.viewPatient', compact('patient'));
+    }
+    
+    
+    public function viewPatientVisitRecords($id)
+    {
+        $patient = patient::find($id);
+        return view('doctor.patients.viewClinicalReports', compact('patient'));
     }
 
     public function regPatient()

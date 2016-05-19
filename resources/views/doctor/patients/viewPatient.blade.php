@@ -41,7 +41,8 @@
               <p><span>Blood Group</span>{{$patient->bloodType}}</p>
           </div>
         </form>
-        <p align="right"><a class='form_settings' href="{{route('patientsTab')}}"><input class="submit" type="submit" name="backButton" value="Back" /></a></p>
+        <p align="leftt"><a class='form_settings' href="{{route('patientsTab')}}"><input class="submit" type="submit" name="backButton" value="Back" /></a></p>
+        <p align="right"><a class='form_settings' href="{{route('patientsTab')}}"><input class="submit" type="submit" name="backButton" value="View visit records" /></a></p>
       </div>
     </div>
     <div id="footer">
