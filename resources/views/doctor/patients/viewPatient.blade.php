@@ -27,8 +27,7 @@
         <form action="{{route('patientAdded')}}" method="post">
             {{ csrf_field() }}
           <div class="form_settings">
-              <p><span>First Name</span>{{$patient->firstName}}
-              Note: Default password will be set to "unicare101"</p>
+              <p><span>First Name</span>{{$patient->firstName}}"</p>
               <p><span>Last Name</span>{{$patient->lastName}}</p>
               <p><span>Birth Year</span>{{$patient->birthYear}}</p>
               <p><span>Gender</span>{{$patient->gender}}</p>
