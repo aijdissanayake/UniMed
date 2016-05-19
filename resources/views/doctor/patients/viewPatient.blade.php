@@ -17,20 +17,24 @@
     <div id="header">
       <div id="logo">
         <h1>Unicare Medical</h1>
-        <div class="slogan"><img src="/style/logo.png" /></div>
       </div>
       <div id="heading"><h2>Patient Details</h2></div>
     </div>
     <div id="site_content">
       <div id="content">
         <h2>Patient Details</h2>
-        <form action="{{route('patientAdded')}}" method="post">
+        <form action="" method="get">
             {{ csrf_field() }}
           <div class="form_settings">
-              <p><span>First Name</span>{{$patient->firstName}}"</p>
+              <p><span>First Name</span>{{$patient->firstName}}</p>
               <p><span>Last Name</span>{{$patient->lastName}}</p>
               <p><span>Birth Year</span>{{$patient->birthYear}}</p>
-              <p><span>Gender</span>{{$patient->gender}}</p>
+              <p><span>Gender</span>
+                  @if ($patient->gender==0)
+                        Female
+                  @else
+                        Male
+                  @endif</p>
               <p><span>Email</span>{{$patient->getUser->email}}</p>
               <p><span>Contact No.</span>{{$patient->telephoneNo}}</p>
               <p><span>Locale</span>{{$patient->locale}}</p>

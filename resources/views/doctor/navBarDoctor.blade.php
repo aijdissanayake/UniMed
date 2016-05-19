@@ -1,7 +1,7 @@
 <link rel="stylesheet" type="text/css" href="/style/navBar.css" />
 <nav>
 	<ul>
-            <li style="float:left"><a href="{{route('homeTab')}}">Home</a></li>
+            <li style="float:left"><a href="{{route('stats')}}">Statistics</a></li>
 		<li style="float:right"><a href="/logout">Log Out</a></li>
 		<li style="float:right">
 			<a href="">My Account</a>
