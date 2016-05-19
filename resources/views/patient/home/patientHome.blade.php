@@ -20,8 +20,6 @@
     <link rel="stylesheet" href="/resources/demos/style.css" />
 
 
-
-
 </head>
 
 <body>
@@ -87,14 +85,30 @@
                 @endif
             @elseif ($directing == 4)
                 @if($hasAppointment)
+
                     <h2><div style=" width: 600px ; text-align:center ; background-color: red; color: white; font-size:20px ;">
-                            You already have an Appointment, cancel it to create a new appointment
+                            You already have an Appointment.<br>{{$currentAppDetails}}<br> Cancel it to create a new appointment<br> 
                         </div></h2>
-                @endif
+                   @endif
             @endif
-            <br><br>
+                    <br><br>          
 
 
+                    <h3><strong>Appointment Reservation Policy</strong></h3>
+                    <div
+                        <ul>
+                            <li>Appointments should be made at least day prior to the appointment date</li>
+                            <li>All reserved appointments are given reservation order based priority.</li><br>
+                            <li>Patients are advised to be present at the dispensary 10 minutes early.</li><br>
+                            <li>Patients can roughly calculate his/her appointment time by assuming 10 mins for each patient.</li><br>
+                            <li>If the patient is not available when his/her appointment number is called, then the next number will be called.</li><br>
+                            <li>In case of late arrival of a patient with a higher priority number and another patient is examined during the arrival,<br>&nbsp;&nbsp;&nbsp; the arrived patient will be called immediately after the current examination.</li><br>
+                        </ul>
+                    </div>
+                </div>
+
+
+<<<<<<< HEAD
             <h3><strong>Appointment Reservation Policy</strong></h3>
             <div>
             <ul>
@@ -106,6 +120,8 @@
             </ul>
         </div>
     </div>
+=======
+>>>>>>> 72804e4d80dc2611c3b8d8009dd7b3f182417f11
 
     <div class="form_settings">
         <form action="{{route('cancelAppointment')}}" method="get">
