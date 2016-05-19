@@ -8,6 +8,12 @@ use App\fullBloodReport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use App\Http\Requests;
+use Logger;
+
+// Insert the path where you unpacked log4php
+    // Tell log4php to use our configuration file.
+Logger::configure('D:\Emrys\unimed\config.xml');
+
 
 class LabTechController extends Controller
 {
@@ -43,7 +49,11 @@ class LabTechController extends Controller
          */
         
         $fullBloodReport = new fullBloodReport();
+        
+        $log = Logger::getLogger('myLogger');
+        
         $user = User::where('name','LIKE',$request['name'])->first();
+        
         
         $fullBloodReport->patient_id = $user->getPatient->id;
         $fullBloodReport->name = $request['name'];
@@ -68,6 +78,12 @@ class LabTechController extends Controller
         $fullBloodReport->plateletCount = $request['plateletCount'];
         
         $fullBloodReport->save();
+        
+        //logger
+        $pID = $user->getPatient->id;
+        $name = $request['name'];
+        $logMessage= " Full Blood Report Added : Patient ID :".$pID." Patient Name :".$name ;
+        $log->info($logMessage); 
         
         return view('labTech.full_blood_report_view', compact('fullBloodReport'));
     }

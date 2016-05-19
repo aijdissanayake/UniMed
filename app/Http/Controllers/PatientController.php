@@ -23,6 +23,7 @@ class PatientController extends Controller
         if($hasAppointment){
         $currentPatientsAppointment = \App\appointment::orderBy('aDate', 'desc')
                                                 ->where('patient_id',$pID)
+                                                ->where('expired',FALSE)
                                                 ->take(2)->first();
         $currentSession = $currentPatientsAppointment->session;
         $currentDate=substr($currentPatientsAppointment->aDate,0,10);
@@ -89,7 +90,7 @@ class PatientController extends Controller
         $hasAppointment = $patient->hasAppointment;
         $pID = $patient->id ; 
         
-        $currentAppointments =    \App\appointment::where('aDate','LIKE', '%'.$appDate.'%')->where('session','LIKE', $appSession)->get();
+        $currentAppointments =    \App\appointment::where('aDate','LIKE', '%'.$appDate.'%')->where('session','LIKE', $appSession)->where('expired',FALSE)->get();
         $noOfAppointments = count($currentAppointments); 
         $newAppNo=$noOfAppointments+1;
         
@@ -122,6 +123,7 @@ class PatientController extends Controller
             
             $currentPatientsAppointment = \App\appointment::orderBy('aDate', 'desc')
                                                 ->where('patient_id',$pID)
+                                                ->where('expired',FALSE)
                                                 ->take(2)->get()[0];
              
              
@@ -151,6 +153,7 @@ class PatientController extends Controller
         else{
             $currentPatientsAppointment = \App\appointment::orderBy('aDate', 'desc')
                                                 ->where('patient_id',$pID)
+                                                ->where('expired',FALSE)
                                                 ->take(2)->get()[0];
              
              
@@ -176,5 +179,38 @@ class PatientController extends Controller
            return view('patient.home.patientHome')->with('hasAppointment',$hasAppointment)->with('directing',$directing)->with('currentAppDetails',$currentAppDetails);
     }
         }
+    }
+    public function cancelAppointment() {
+        
+        $directing = 5 ;
+        $currentAppDetails = '';
+        
+        $id = \Illuminate\Support\Facades\Auth::user()->id ;
+        // check whether patient has an appointment
+        $patient =  \App\patient::where('user_id','LIKE', $id)->get()[0];
+        $hasAppointment = $patient->hasAppointment;
+        $pID = $patient->id ;
+        
+        
+        if($hasAppointment){
+             //set patient table has appointment to 0
+            DB::table('patients')
+            ->where('user_id', $id)
+            ->update(['hasAppointment' => FALSE]);
+            
+        //get the appointment in appointment table
+        $currentPatientsAppointment = \App\appointment::orderBy('aDate', 'desc')
+                                                ->where('patient_id',$pID)
+                                                ->where('expired',FALSE)
+                                                ->take(2)->get()[0];
+        //change appointment to expired
+        $currentPatientsAppointment->expired=TRUE;
+        $currentPatientsAppointment->save();
+        
+        //return back to the page
+        
+        }
+        return view('patient.home.patientHome')->with('hasAppointment',$hasAppointment)->with('directing',$directing)->with('currentAppDetails',$currentAppDetails)
+        ;
     }
 }
