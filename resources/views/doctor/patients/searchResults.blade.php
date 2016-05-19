@@ -58,7 +58,7 @@
                     <a href="{{route('viewPatient', [$patient->id])}}">view</a>
                 </td>
                 <td width='150px' style='text-align: center'>
-                    <a href="{{route('createPatientVisitRecord', [$patient->user_id])}}">Add visit record</a>
+                    <a href="{{route('createPatientVisitRecord', [$patient->id])}}">Add visit record</a>
                 </td>
             </tr>
             
