@@ -38,7 +38,7 @@
           </h2>
 
 		  <p>Oops. Sorry but your search matched no one in our database.
-		  <a href="{{route('patientsTab')}}">Try again?</a>
+		  Try again?
 		  </p>
                   <div class="form_settings"
           @include('doctor.patients.searchForm')

@@ -17,7 +17,7 @@ use Logger;
 
 // Insert the path where you unpacked log4php
     // Tell log4php to use our configuration file.
-Logger::configure('D:\Emrys\unimed\config.xml');
+//Logger::configure('D:\Emrys\unimed\config.xml');
 
  
 
