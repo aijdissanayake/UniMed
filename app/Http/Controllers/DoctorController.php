@@ -192,7 +192,7 @@ class DoctorController extends Controller
 
     public function createPatientVisitRecord($id)
     {
-        $patient = User::find($id)->getPatient;
+        $patient = patient::find($id);
 
         return view('doctor.patients.clinicalRecord', compact('patient'));
     }
