@@ -36,22 +36,31 @@
                     <!-- insert the finance content here -->
 
                     <div id="appointments">Appointments
+                        <?php $appointments = $homeData[0]; ?>
+                        @if ($appointments)
                         <table style="width:50%; border-spacing:0;">
                         <tr><th width = 40%>Patient</th><th>Appointment Date</th></tr>
-                        <?php $appointments = $homeData[0]; ?>
+                        
+                        
                         @foreach ($appointments as $appointment)
                         <tr><td>{{$appointment->getPatient->getUser->name}}</td><td>{{$appointment->aDate}}</td></tr>
                         @endforeach
                         </table>
+                        @else <div>You currently have no appointments.</div>
+                        @endif
                     </div>
                     <div id="inventory">Inventory Status
+                        <?php $inventory = $homeData[1]; ?>
+                        @if ($inventory)
                         <table style="width:50%; border-spacing:0;">
                         <tr><th width = 40%>Inventory Item</th><th>Current Stock</th></tr>
-                        <?php $inventory = $homeData[1]; ?>
+                        
                         @foreach ($inventory as $inventoryItem)
                         <tr><td>{{$inventoryItem->itemName}}</td><td>{{$inventoryItem->currStock}}</td></tr>
                         @endforeach
                         </table>
+                        @else <div>You have no items in your inventory.</div>
+                        @endif
                     </div>
                     <p></p>
                     <p></p>
