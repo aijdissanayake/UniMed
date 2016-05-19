@@ -25,7 +25,7 @@ use Illuminate\Support\Facades\Input;
 
 class DoctorController extends Controller
 {
-
+    
     public function home()
     {
         $appointments = appointment::all();
@@ -126,9 +126,12 @@ class DoctorController extends Controller
         return view('doctor/patients/test');
     }
 
-    public function searchPatient()
+    public function searchPatient(Request $request)
     {
-
+        $this->validate($request, [
+            
+        ]);
+                
         $inputs = Input::all(); // inputs is an array!!
 
         $type = $inputs['col_name'];
