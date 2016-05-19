@@ -13,11 +13,11 @@ use App\Patient;
 use App\patientVisit;
 use App\appointment;
 use Illuminate\Support\Facades\Input;
-//use Logger;
+use Logger;
 
 // Insert the path where you unpacked log4php
     // Tell log4php to use our configuration file.
-//Logger::configure('H:\Emrys\merovingienne\testLara');
+Logger::configure('D:\Emrys\unimed\config.xml');
 
  
 
@@ -90,7 +90,7 @@ class DoctorController extends Controller
          * create user first
          */
         // Fetch a logger, it will inherit settings from the root logger
-//        $log = Logger::getLogger('myLogger');
+       $log = Logger::getLogger('myLogger');
         $user = new User();
 
         $name = $request['firstName'] . " " . $request['lastName'];
@@ -102,8 +102,9 @@ class DoctorController extends Controller
 
         $user->role = 'patient';
         $user->save();
-//        $logMessage= "User Added : Name > ".$name." email: " .$request['email'] ;
-//        $log->fatal($logMessage); 
+        //logger messages
+        $logMessage= "User Added : Name > ".$name." email: " .$request['email'] ;
+        $log->fatal($logMessage); 
 
 
         /*
@@ -120,10 +121,11 @@ class DoctorController extends Controller
         $patient->locale = $request['locale'];
         $patient->bloodType = $request['bloodGroup'];
         $patient->save();
-//        $logMessage= "Patient Added : Name > ".$name." email: " .$request['email']." BirthYear > ".$request['birthYear']."telephoneNo >".$request['contactNo']."" ;
-//        $log->fatal($logMessage);
+        //logger messages
+          $logMessage= "Patient Added : Name > ".$name." email: " .$request['email']." BirthYear > ".$request['birthYear']."telephoneNo >".$request['contactNo']."" ;
+          $log->fatal($logMessage);
 
-        return view('doctor/patients/test');
+        return view('doctor.patients.viewPatient',  compact('patient'));
     }
 
     public function searchPatient()
