@@ -17,14 +17,13 @@
     <div id="header">
       <div id="logo">
         <h1>Unicare Medical</h1>
-        <div class="slogan"><img src="/style/logo.png" /></div>
       </div>
       <div id="heading"><h2>Patient Details</h2></div>
     </div>
     <div id="site_content">
       <div id="content">
         <h2>Patient Details</h2>
-        <form action="{{route('patientAdded')}}" method="post">
+        <form action="" method="get">
             {{ csrf_field() }}
           <div class="form_settings">
               <p><span>First Name</span>{{$patient->firstName}}</p>
