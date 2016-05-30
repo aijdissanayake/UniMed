@@ -27,10 +27,9 @@
         <form action="#" method="post">
           <div class="form_settings">
           	<table style="width:70%; border-spacing:0;">
-          <tr><td>First Name</td><td></td></tr>
-          <tr><td>Last Name</td><td></td></tr>
-          <tr><td>Registered Number</td><td></td></tr>
-          <tr><td>Email</td><td></td></tr>
+          <tr><td>Name</td><td>{{$doctor->doctorName}}</td></tr>
+          <tr><td>Registered Number</td><td>{{$doctor->RegNo}}</td></tr>
+          <tr><td>Email</td><td>{{$doctor->getUser->email}}</td></tr>
         </table>
           </div>
         </form>

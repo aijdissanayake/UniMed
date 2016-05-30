@@ -9,6 +9,7 @@ use App\equipment;
 use App\inventoryItem;
 use Illuminate\Http\Request;
 use App\User;
+use Auth;
 use App\Patient;
 use App\patientVisit;
 use App\appointment;
@@ -17,7 +18,6 @@ use Logger;
 
 // Insert the path where you unpacked log4php
     // Tell log4php to use our configuration file.
-//Logger::configure('D:\Emrys\unimed\config.xml');
 
  
 
@@ -42,7 +42,8 @@ class DoctorController extends Controller
      */
 
     public function viewProfile() {
-        return view('doctor.index.profile_doctor');
+        $doctor = Auth::user()->getDoctor;
+        return view('doctor.index.profile_doctor', compact('doctor'));
     }
     
     public function editProfile() {

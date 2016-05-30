@@ -18,7 +18,6 @@
             <div id="header">
                 <div id="logo">
                     <h1>Unicare Medical</h1>
-                    <div class="slogan"><img src="/style/logo.png" /></div>
                 </div>
                 <div id="heading"><h2> New Patient Registration</h2></div>
 
@@ -43,7 +42,7 @@
                             <p><span>Last Name</span><input type="text" name="lastName" value="{{old('lastName')}}"  required=""/></p>
                             <p><span>Birth Year</span><input type="number" min="1900" max="2016"  maxlength="4" name="birthYear" value="{{old('birthYear')}}"  required=""/></p>
                             <p><span>Gender</span>
-                                <input class="checkbox" type="radio" name="gender" value="1" >Male
+                                <input class="checkbox" type="radio" name="gender" value="1" checked="true" >Male
                                 <input class="checkbox" type="radio" name="gender" value="0">Female<br>
                             </p>
                             <p><span>Email</span><input type="email" name="email" value="{{old('email')}}" required=""/></p>

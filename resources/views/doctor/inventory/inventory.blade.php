@@ -19,7 +19,6 @@
     <div id="header">
         <div id="logo">
             <h1>Unicare Medical</h1>
-            <div class="slogan"><img src="/style/logo.png" /></div>
         </div>
         <div id="menubar">
             <ul id="menu">
