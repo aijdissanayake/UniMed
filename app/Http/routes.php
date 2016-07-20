@@ -46,7 +46,7 @@ Route::group(['middleware' => 'authorizer:doctor'], function() {
     Route::post('doc/inventory/add',['as' => 'addItem',  'uses' => 'inventoryItemController@addInventoryItem']);
     Route::post('doc/inventory/remove',['as' => 'removeItem',  'uses' => 'inventoryItemController@removeInventoryItem']);
     Route::post('doc/inventory/search',['as' => 'searchItem',  'uses' => 'inventoryItemController@searchInventoryItem']);
-
+    
 
 //Route::get('doctor/patients/{id}', 'DoctorController@showPatient');
 

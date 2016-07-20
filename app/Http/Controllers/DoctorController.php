@@ -50,6 +50,10 @@ class DoctorController extends Controller
         return view('doctor.index.profileEditable_doctor');
     }
     
+    public function viewSettingsPage() {
+        return view('doctor.settings.settings')
+    }
+    
     public function viewPatientTab()
     {
         $patientVisits = patientVisit::orderBy('created_at', 'desc')
@@ -119,8 +123,7 @@ class DoctorController extends Controller
         $user->role = 'patient';
         $user->save();
         //logger messages
-        $logMessage= "User Added : Name : ".$name." email: " .$request['email'] ;
-        $log->info($logMessage); 
+        
 
 
         /*
