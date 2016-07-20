@@ -51,7 +51,7 @@ class DoctorController extends Controller
     }
     
     public function viewSettingsPage() {
-        return view('doctor.settings.settings')
+        return view('doctor.settings.settings');
     }
     
     public function viewPatientTab()
