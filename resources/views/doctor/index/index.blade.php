@@ -16,9 +16,6 @@
     <body>
         <div id="main">
             <div id="header">
-                <div id="logo">
-                    <h1>Unicare Medical</h1>
-                </div>
                 <div id="menubar">
                     <ul id="menu">
                         <!-- put class="current" in the li tag for the selected finance - to highlight which finance you're on -->
@@ -48,7 +45,7 @@
                         @else <div>You currently have no appointments.</div>
                         @endif
                     </div>
-                    <div id="inventory">Inventory Status
+<!--                    <div id="inventory">Inventory Status
                         <?php $inventory = $homeData[1]; ?>
                         @if ($inventory)
                         <table style="width:50%; border-spacing:0;">
@@ -60,7 +57,7 @@
                         </table>
                         @else <div>You have no items in your inventory.</div>
                         @endif
-                    </div>
+                    </div>-->
                     <p></p>
                     <p></p>
                     <!--<div id="clarification">Clarification Requests
