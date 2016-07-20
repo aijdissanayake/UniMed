@@ -15,18 +15,6 @@
     
     <body>
         <div id="main">
-            <div id="header">
-                <div id="menubar">
-                    <ul id="menu">
-                        <!-- put class="current" in the li tag for the selected finance - to highlight which finance you're on -->
-                        <li class="current"><a href="{{route('homeTab')}}">Home</a></li>
-                        <li><a href="{{route('patientsTab')}}">Patients</a></li>
-                        <li><a href="{{route('financeTab')}}">Finance</a></li>
-                        <li><a href="{{route('inventoryTab')}}">Inventory</a></li>
-                        <li><a href="{{route('labTab')}}">Lab</a></li>
-                    </ul>
-                </div>
-            </div>
             <div id="site_content">
                 <div id="content">
                     <!-- insert the finance content here -->

@@ -16,21 +16,7 @@
 
 <body>
 <div id="main">
-    <div id="header">
-        <div id="logo">
-            <h1>Unicare Medical</h1>
-        </div>
-        <div id="menubar">
-            <ul id="menu">
-                <!-- put class="current" in the li tag for the selected page - to highlight which page you're on -->
-                <li><a href="{{route('homeTab')}}">Home</a></li>
-                <li><a href="{{route('patientsTab')}}">Patients</a></li>
-                <li><a href="{{route('financeTab')}}">Finance</a></li>
-                <li class='current'><a href="{{route('inventoryTab')}}">Inventory</a></li>
-                <li><a href="{{route('labTab')}}">Lab</a></li>
-            </ul>
-        </div>
-    </div>
+
     <div id="site_content">
         <div id="content">
             <!-- insert the page content here -->

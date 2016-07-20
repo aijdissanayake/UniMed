@@ -15,13 +15,7 @@
 
     <body>
         <div id="main">
-            <div id="header">
-                <div id="logo">
-                    <h1>Unicare Medical</h1>
-                </div>
-                <div id="heading"><h2> New Patient Registration</h2></div>
-
-            </div>
+            <div id="heading"><h2> New Patient Registration</h2></div>
             <div id="site_content">
                 <div id="content">
                     <h2>Patient Registration Details</h2>
