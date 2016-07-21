@@ -9,12 +9,7 @@
 @section('body')
 <body>
   <div id="main">
-    <div id="header">
-      <div id="logo">
-        <h1>Unicare Medical</h1>
-      </div>
-      <div id="heading"><h2> New Transaction Entry</h2></div>
-    </div>
+    
     <div id="site_content">
       <div id="content">
         <h2>Transaction Details</h2>
