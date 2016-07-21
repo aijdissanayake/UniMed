@@ -8,17 +8,6 @@
 @section('body')
 <body>
     <div id="main">
-        <div id="header">
-            <div id="logo">
-                <h1>Unicare Medical</h1>
-            </div>
-            <div id="menubar">
-                <ul id="menu">
-                    <li class="current"><a href="{{route('lt')}}">Home</a></li>
-                    <li><a href="{{route('ltLab')}}">Lab</a></li>
-                </ul>
-            </div>
-        </div>
         <div id="site_content">
             <div id="content">
                 <h2>New Lab Report Submission</h2>

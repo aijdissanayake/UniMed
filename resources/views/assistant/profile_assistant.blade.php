@@ -14,13 +14,7 @@
 
 <body>
   <div id="main">
-    <div id="header">
-      <div id="logo">
-        <h1>Unicare Medical</h1>
-        <div class="slogan"></div>
-      </div>
-      <div id="heading"><h2>Assistant's Profile</h2></div>
-    </div>
+    
     <div id="site_content">
       <div id="content">
         <h2>Personal Information</h2>
