@@ -27,14 +27,19 @@ class DoctorController extends Controller
 {
     
     public function home()
-    {
-        $appointments = appointment::orderBy('created_at','desc')
-                ->where('expired',FALSE)
+    {   $today = \Carbon\Carbon::today();
+        $appointments = appointment::orderBy('created_at','asc')                
+                ->where('aDate', '>', $today)
+                ->where('expired',FALSE)                
                 ->take(10)
                 ->get();
+        $totalAppointments = count(appointment::orderBy('created_at','asc')
+                ->where('expired',FALSE)
+                ->get());
         $inventory = inventoryItem::all();
-        $homeData = array($appointments, $inventory);
+        $homeData = array($appointments, $inventory,$totalAppointments);
         return view('doctor.index.index', compact('homeData'));
+        
     }
 
     /*

@@ -44,7 +44,10 @@ class PatientController extends Controller
                      
         }}
         //return view('patient.home.patientHome', compact('hasAppointment'));
-        return view('patient.home.patientHome')->with('hasAppointment',$hasAppointment)->with('directing',$directing)->with('currentAppDetails',$currentAppDetails);
+        return view('patient.home.patientHome')
+                ->with('hasAppointment',$hasAppointment)
+                ->with('directing',$directing)
+                ->with('currentAppDetails',$currentAppDetails);
     }
     
     /*
@@ -78,7 +81,9 @@ class PatientController extends Controller
         
         if($appDate<$today){
            $directing = 0;
-            return view('patient.home.patientHome')->with('hasAppointment',0)->with('directing',$directing);
+            return view('patient.home.patientHome')
+                    ->with('hasAppointment',0)
+                    ->with('directing',$directing);
    
         }
         else{
@@ -90,7 +95,10 @@ class PatientController extends Controller
         $hasAppointment = $patient->hasAppointment;
         $pID = $patient->id ; 
         
-        $currentAppointments =    \App\appointment::where('aDate','LIKE', '%'.$appDate.'%')->where('session','LIKE', $appSession)->where('expired',FALSE)->get();
+        $currentAppointments =    \App\appointment::where('aDate','LIKE', '%'.$appDate.'%')
+                ->where('session','LIKE', $appSession)
+                ->where('expired',FALSE)
+                ->get();
         $noOfAppointments = count($currentAppointments); 
         $newAppNo=$noOfAppointments+1;
         
@@ -145,7 +153,10 @@ class PatientController extends Controller
                      . $currentPatientsAppointment->appointmentNo ;
                      
              }
-            return view('patient.home.patientHome')->with('hasAppointment',$hasAppointment)->with('directing',$directing)->with('currentAppDetails',$currentAppDetails);
+            return view('patient.home.patientHome')
+                    ->with('hasAppointment',$hasAppointment)
+                    ->with('directing',$directing)
+                    ->with('currentAppDetails',$currentAppDetails);
   
             }
         
@@ -176,7 +187,10 @@ class PatientController extends Controller
                      
              }
             $directing = 4;
-           return view('patient.home.patientHome')->with('hasAppointment',$hasAppointment)->with('directing',$directing)->with('currentAppDetails',$currentAppDetails);
+           return view('patient.home.patientHome')
+                   ->with('hasAppointment',$hasAppointment)
+                   ->with('directing',$directing)
+                   ->with('currentAppDetails',$currentAppDetails);
     }
         }
     }
@@ -210,7 +224,10 @@ class PatientController extends Controller
         //return back to the page
         
         }
-        return view('patient.home.patientHome')->with('hasAppointment',$hasAppointment)->with('directing',$directing)->with('currentAppDetails',$currentAppDetails)
+        return view('patient.home.patientHome')
+                ->with('hasAppointment',$hasAppointment)
+                ->with('directing',$directing)
+                ->with('currentAppDetails',$currentAppDetails)
         ;
     }
 }
