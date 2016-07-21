@@ -1,7 +1,7 @@
 <link rel="stylesheet" type="text/css" href="/style/navBar.css" />
 <nav>
     <ul>
-        <h1 style="float:left">Unicare Medical</h1>
+        <h1 style="float:left">&nbsp;&nbsp;Unicare Medical</h1>
         <li style="float:right">
             <a href="">My Account</a>
             <div>
