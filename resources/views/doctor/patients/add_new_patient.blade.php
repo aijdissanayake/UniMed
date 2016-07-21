@@ -31,18 +31,28 @@
                     <form action="{{route('patientAdded')}}" method="post">
                         {{ csrf_field() }}
                         <div class="form_settings">
-                            <p><span>First Name</span><input type="text" name="firstName" value="{{old('firstName')}}" required=""/>
+                            <p><span>First Name*</span><input type="text" name="firstName" value="{{old('firstName')}}" required=""/>
                                 Note: Default password will be set to "unicare101"</p>
-                            <p><span>Last Name</span><input type="text" name="lastName" value="{{old('lastName')}}"  required=""/></p>
-                            <p><span>Birth Year</span><input type="number" min="1900" max="2016"  maxlength="4" name="birthYear" value="{{old('birthYear')}}"  required=""/></p>
-                            <p><span>Gender</span>
+                            <p><span>Last Name*</span><input type="text" name="lastName" value="{{old('lastName')}}"  required=""/></p>
+                            <p><span>Birth Year*</span><input type="number" min="1900" max="2016"  maxlength="4" name="birthYear" value="{{old('birthYear')}}"  required=""/></p>
+                            <p><span>Gender*</span>
                                 <input class="checkbox" type="radio" name="gender" value="1" checked="true" >Male
                                 <input class="checkbox" type="radio" name="gender" value="0">Female<br>
                             </p>
-                            <p><span>Email</span><input type="email" name="email" value="{{old('email')}}" required=""/></p>
-                            <p><span>Contact No.</span><input type="tel" name="contactNo" value="{{old('contactNo')}}" maxlength="10" required="" /></p>
-                            <p><span>Locale</span><input type="text" name="locale" value="{{old('locale')}}"/></p>
-                            <p><span>Blood Group</span><input type="text" name="bloodGroup" value="{{old('bloodGroup')}}"  required=""/></p>
+                            <p><span>Email*</span><input type="email" name="email" value="{{old('email')}}" required=""/></p>
+                            <p><span>Contact No.*</span><input type="tel" name="contactNo" value="{{old('contactNo')}}" maxlength="10" required="" /></p>
+                            <p><span>Locale*</span><input type="text" name="locale" value="{{old('locale')}}"/></p>
+                            <p><span>Blood Group*</span><select name="bloodGroup" value="{{old('bloodGroup')}}"  required="">
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                                </select>
+                            </p>
                             <p><span>Remarks</span><textarea rows="4" cols="50" name="remarks" value="{{old('remarks')}}"></textarea></p>
 
                             <p align = "right" style="padding-top: 15px">
