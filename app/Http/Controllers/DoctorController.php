@@ -146,8 +146,7 @@ class DoctorController extends Controller
         $patient->bloodType = $request['bloodGroup'];
         $patient->save();
         //logger messages
-          $logMessage= "Patient Added : Name > ".$name." email: " .$request['email']." BirthYear > ".$request['birthYear']."telephoneNo >".$request['contactNo']."" ;
-          $log->info($logMessage);
+          
 
         return view('doctor.patients.viewPatient',  compact('patient'));
     }

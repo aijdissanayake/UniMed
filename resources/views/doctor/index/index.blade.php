@@ -44,7 +44,7 @@
                             <a href=""> See all Appointments</a>
                             @endif
                         
-                        @else <div>There are no online appointments right now.</div>
+                        @else <div>There are no pending appointments right now.</div>
                         @endif
                         
                         
