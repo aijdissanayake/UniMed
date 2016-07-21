@@ -19,19 +19,35 @@
                 <div id="content">
                     <!-- insert the finance content here -->
 
-                    <div id="appointments">Appointments
+                    <div id="appointments">
                         <?php $appointments = $homeData[0]; ?>
-                        @if ($appointments)
-                        <table style="width:50%; border-spacing:0;">
-                        <tr><th width = 40%>Patient</th><th>Appointment Date</th></tr>
+                        @if (count($appointments)!=0)
+                         Appointments
+                        <table style="width:70%; border-spacing:0; text-align:right ">
+                        <tr><th width = 40%>Patient</th>
+                            <th>Appointment Date</th>
+                            <th>Session</th>
+                            <th>Appointment No. </th>
+                        </tr>
                         
                         
                         @foreach ($appointments as $appointment)
-                        <tr><td>{{$appointment->getPatient->getUser->name}}</td><td>{{date('Y:m:d',strtotime($appointment->aDate))}}</td></tr>
+                        <tr><td >{{$appointment->getPatient->getUser->name}}</td>
+                            <td align="right">{{date('Y:m:d',strtotime($appointment->aDate))}}</td>
+                            <td align="right">{{$appointment->session}}</td>
+                            <td align="right">{{$appointment->appointmentNo}}</td>
+                        </tr>
                         @endforeach
+                        
                         </table>
-                        @else <div>You currently have no appointments.</div>
+                            @if ($homeData[2] > 10)
+                            <a href=""> See all Appointments</a>
+                            @endif
+                        
+                        @else <div>There are no online appointments right now.</div>
                         @endif
+                        
+                        
                     </div>
 <!--                    <div id="inventory">Inventory Status
                         <?php $inventory = $homeData[1]; ?>
