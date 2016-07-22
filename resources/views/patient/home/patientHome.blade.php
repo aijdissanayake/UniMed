@@ -62,11 +62,25 @@
                                     </select>
                                 </label></p>
                             <br>
+                            
+                            <h3><strong>Appointment Reservation Policy</strong></h3>
+                    <div
+                        <ul>
+                            <li>Appointments should be made at least day prior to the appointment date</li>
+                            <li>All reserved appointments are given reservation order based priority.</li><br>
+                            <li>Patients are advised to be present at the dispensary 10 minutes early.</li><br>
+                            <li>Patients can roughly calculate his/her appointment time by assuming 10 mins for each patient.</li><br>
+                            <li>If the patient is not available when his/her appointment number is called, then the next number will be called.</li><br>
+                            <li>In case of late arrival of a patient with a higher priority number and another patient is examined during the arrival,<br>&nbsp;&nbsp;&nbsp; the arrived patient will be called immediately after the current examination.</li><br>
+                        </ul>
+                    </div>
+                            <br>
                             <input class="submit" type="submit" name="appointmentButton"  />	
 
                         </div>
                     </form>
                     <br>
+                                                           
                     @if($directing == 0)
                     <h2><div style=" width: 600px ; text-align:center ; background-color: red; color: white; font-size:20px ;">
                             Invalid Date
@@ -98,17 +112,7 @@
                             @endif
                     @endif
                     <br><br>
-                      <h3><strong>Appointment Reservation Policy</strong></h3>
-                    <div
-                        <ul>
-                            <li>Appointments should be made at least day prior to the appointment date</li>
-                            <li>All reserved appointments are given reservation order based priority.</li><br>
-                            <li>Patients are advised to be present at the dispensary 10 minutes early.</li><br>
-                            <li>Patients can roughly calculate his/her appointment time by assuming 10 mins for each patient.</li><br>
-                            <li>If the patient is not available when his/her appointment number is called, then the next number will be called.</li><br>
-                            <li>In case of late arrival of a patient with a higher priority number and another patient is examined during the arrival,<br>&nbsp;&nbsp;&nbsp; the arrived patient will be called immediately after the current examination.</li><br>
-                        </ul>
-                    </div>
+                      
                 </div>
                  <div class="form_settings">
         <form action="{{route('cancelAppointment')}}" method="get">

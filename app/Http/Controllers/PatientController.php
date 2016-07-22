@@ -15,11 +15,13 @@ class PatientController extends Controller
     public function home() {
       
         $directing = 1;
+        $today = \Carbon\Carbon::today();
         $id = \Illuminate\Support\Facades\Auth::user()->id ;
         $patient= \App\patient::where('user_id','LIKE', $id)->get()[0];
         $pID=$patient->id;
         $hasAppointment = $patient->hasAppointment;
         $currentAppDetails = "";
+        
         if($hasAppointment){
         $currentPatientsAppointment = \App\appointment::orderBy('aDate', 'desc')
                                                 ->where('patient_id',$pID)
@@ -94,13 +96,14 @@ class PatientController extends Controller
         $patient =  \App\patient::where('user_id','LIKE', $id)->get()[0];
         $hasAppointment = $patient->hasAppointment;
         $pID = $patient->id ; 
-        
+        $currAppNoArray = [];
         $currentAppointments =    \App\appointment::where('aDate','LIKE', '%'.$appDate.'%')
                 ->where('session','LIKE', $appSession)
+                ->where('aDate', '>', $today)
                 ->where('expired',FALSE)
                 ->get();
         $noOfAppointments = count($currentAppointments); 
-        $newAppNo=$noOfAppointments+1;
+//        $newAppNo=$noOfAppointments+1;
         
         
             
@@ -115,9 +118,22 @@ class PatientController extends Controller
   
         }
             else{             
-        
+             $newAppNo ;
              $directing = 3 ;
-             //update the patients table
+             //set new app no
+             foreach ($currentAppointments as $currentAppointment){
+                 array_push($currAppNoArray, $currentAppointment->appointmentNo);
+             }
+             for($i=1; $i<10; $i++ ){
+                 if (in_array($i, $currAppNoArray)){
+                     continue;
+                 }
+                 else {
+                     $newAppNo = $i;
+                     break;
+                 }
+             }
+             //update the patients table                                     
             DB::table('patients')
             ->where('user_id', $id)
             ->update(['hasAppointment' => TRUE]);
