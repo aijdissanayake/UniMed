@@ -2,38 +2,16 @@
 <html>
 
 
-<head>
-    @include('patient.navBarPatient')
-    <title>Unicare - Home</title>
-    <meta name="description" content="website description" />
-    <meta name="keywords" content="website keywords, website keywords" />
-    <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
-    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine&amp;v1" />
-    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" />
-    <link rel="stylesheet" type="text/css" href="style/style.css" />
-    <link rel="stylesheet" type="text/css" href="/style/style.css" />
-
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="style/jquery-ui.css">
-    <script src="style/jquery-1.10.2.js"></script>
-    <script src="style/jquery-ui.js"></script>
-    <link rel="stylesheet" href="/resources/demos/style.css" />
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.3/jquery.min.js"></script>
-
+    <head>
+        @include('patient.nav_bar_pat')
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="\materialize\css\materialize.min.css">
+        <title>Unicare - Home</title>
+        <meta charset="utf-8">
     </head>
 
-<body>
-<div id="main">
-    <div id="header">
-                <div id="menubar">
-                    <ul id="menu">
-                        <!-- put class="current" in the li tag for the selected finance - to highlight which finance you're on -->
-                        <li class="current"><a href="{{route('patient')}}">Home</a></li>
-                        <li><a href="{{route('patientLabTab')}}">Lab</a></li>
-                    </ul>
-                </div>
-            </div>
+    <body>
+        <div id="main">
             <div id="site_content">
                 <div id="content">
                     <!-- insert the finance content here -->
@@ -44,10 +22,10 @@
                             <p><span>Reservation Date :</span>
                                 <input type="date" id="reserveDate" name="appointmentDate"/>
                                 <script>
-        $(function () {
-            
-            $("#datepicker").datepicker();
-        });
+$(function () {
+
+    $("#datepicker").datepicker();
+});
                                 </script>
 
                                 <label>&nbsp;&nbsp; Session :
@@ -67,34 +45,34 @@
                     <h2><div style=" width: 600px ; text-align:center ; background-color: red; color: white; font-size:20px ;">
                             Invalid Date
                         </div></h2>
-                    
+
                     @elseif($directing == 1)
-                        @if($hasAppointment)
+                    @if($hasAppointment)
 
                     <h2><div  style=" width: 250px ; text-align:center ; background-color: greenyellow; color: white; font-size:20px ; ">
                             You have an Appointment<br> {{$currentAppDetails}}</div></h2>
-                        @endif
+                    @endif
                     @elseif ($directing == 2)
-                        @if(!$hasAppointment)
+                    @if(!$hasAppointment)
                     <h2><div style=" width: 600px ; text-align:center ; background-color: red; color: white; font-size:20px ;">
                             Sorry, All the Online Appointments are reserved. Please Contact Doctor for Arrangements.
                         </div></h2>
-                        @endif
+                    @endif
                     @elseif ($directing == 3)
-                        @if(!$hasAppointment)
+                    @if(!$hasAppointment)
                     <h2><div style=" width: 280px ; text-align:center ; background-color: greenyellow; color: white; font-size:20px ;">
                             Appointment Created<br> {{$currentAppDetails}}
                         </div></h2>
-                        @endif
+                    @endif
                     @elseif ($directing == 4)
-                        @if($hasAppointment)
-                         <h2><div style=" width: 600px ; text-align:center ; background-color: red; color: white; font-size:20px ;">
+                    @if($hasAppointment)
+                    <h2><div style=" width: 600px ; text-align:center ; background-color: red; color: white; font-size:20px ;">
                             You already have an Appointment.<br>{{$currentAppDetails}}<br> Cancel it to create a new appointment<br> 
                         </div></h2>
-                            @endif
+                    @endif
                     @endif
                     <br><br>
-                      <h3><strong>Appointment Reservation Policy</strong></h3>
+                    <h3><strong>Appointment Reservation Policy</strong></h3>
                     <div
                         <ul>
                             <li>Appointments should be made at least day prior to the appointment date</li>
@@ -106,28 +84,28 @@
                         </ul>
                     </div>
                 </div>
-                 <div class="form_settings">
-        <form action="{{route('cancelAppointment')}}" method="get">
-            <input class="submit" type="submit" name="cancelButton" value="Cancel Appointment" />
-        </form>
-                     @if($directing == 5)
-                        @if($hasAppointment)
-                     <h2><div style=" width: 600px ; text-align:center ; background-color: orange; color: white; font-size:20px ;">
+                <div class="form_settings">
+                    <form action="{{route('cancelAppointment')}}" method="get">
+                        <input class="submit" type="submit" name="cancelButton" value="Cancel Appointment" />
+                    </form>
+                    @if($directing == 5)
+                    @if($hasAppointment)
+                    <h2><div style=" width: 600px ; text-align:center ; background-color: orange; color: white; font-size:20px ;">
                             Appointment Canceled !
                         </div></h2>
-                        @else
-                        <h2><div style=" width: 600px ; text-align:center ; background-color: red; color: white; font-size:20px ;">
+                    @else
+                    <h2><div style=" width: 600px ; text-align:center ; background-color: red; color: white; font-size:20px ;">
                             No Appointments to Cancel !
                         </div></h2>
-                        @endif
-                     @endif
+                    @endif
+                    @endif
+                </div>
+                <h1>&nbsp;</h1>
+            </div>
+        </div>
+        <div id="footer">
+            <p>&nbsp;</p>
+        </div>
     </div>
-    <h1>&nbsp;</h1>
-</div>
-</div>
-<div id="footer">
-    <p>&nbsp;</p>
-</div>
-</div>
 </body>
 </html>

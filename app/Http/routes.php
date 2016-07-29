@@ -127,3 +127,10 @@ Route::group(['middleware' => 'authorizer:admin'], function() {
 //    Route::post('admin/adddoc', ['as' => 'admin', 'uses' => 'AdminController@addDoc']);
 //    Route::get('admin/addpat', ['as' => 'ltLab', 'uses' => 'Admin@patientLab']);
 });
+
+
+/*
+ * Testing routes for the new interface
+ */
+
+Route::get('testLogin', 'testController@login');

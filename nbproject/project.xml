@@ -3,12 +3,7 @@
     <type>org.netbeans.modules.php.project</type>
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/php-project/1">
-            <name>testLara</name>
+            <name>testLara - Materialized</name>
         </data>
-        <spellchecker-wordlist xmlns="http://www.netbeans.org/ns/spellchecker-wordlist/1">
-            <word>endif</word>
-            <word>html</word>
-            <word>rta</word>
-        </spellchecker-wordlist>
     </configuration>
 </project>
