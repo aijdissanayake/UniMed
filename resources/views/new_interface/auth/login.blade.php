@@ -46,7 +46,7 @@
                                     </div>
 
                                 </div>
-                                <button class="btn waves-effect waves-light" type="submit">Login</button>
+                                <button class="btn waves-effect waves-light" type="submit">Login</a>
                             </div>
 
                             <div class="divider"></div>
