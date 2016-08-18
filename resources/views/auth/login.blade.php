@@ -8,16 +8,21 @@
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>           
         <script src="materialize\js\materialize.min.js"></script>             
     </head>
-    <body>
 
-        <div class="container">
-            <div class="section">
-                <h3 class="center-align blue-text">Unicare Medical Centre</h3>
-            </div>
-            <div class="divider"></div>
-            <div class="section">
-                <div class="row">
-                    <div class="col s10 m6 l4 offset-s1 offset-m3 offset-l4 center gray z-depth-2">
+    <body class="blue-grey" style="padding-top: 5rem">
+
+        <div class="row">
+            <!--            <div class="section">
+                            <h3 class="center-align white-text">Unicare Medical Centre</h3>
+                        </div>
+                        <div class="divider"></div>-->
+            <div class="row">
+                <div class="col s10 m6 l4 offset-s1 offset-m3 offset-l4 center white z-depth-4 card-panel">
+                    <div class="card-content">
+                        <div class="card-title">
+                            <h4 class="center-align blue-text">Unicare Medical Centre</h4>
+                        </div>
+
                         <form role="form" method="POST" action="{{url('/login')}}">
                             {!! csrf_field() !!}
                             <div class="row">
@@ -46,7 +51,10 @@
                                     </div>
 
                                 </div>
-                                <button class="btn waves-effect waves-light" type="submit">Login</button>
+                                <div>
+                                    <button class="btn waves-effect waves-light" type="submit">Login</button>
+                                </div>
+                                
                             </div>
 
                             <div class="divider"></div>
@@ -62,6 +70,7 @@
                     </div>
 
                 </div>
+
             </div>
         </div>
 

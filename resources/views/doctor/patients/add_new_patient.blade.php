@@ -2,7 +2,7 @@
 <html>
 
     <head>
-        @include('doctor.navBarDoctor')
+        @include('doctor.nav_bar_doc')
         <title>Unicare - Add new patient</title>
 
         <meta name="description" content="website description" />

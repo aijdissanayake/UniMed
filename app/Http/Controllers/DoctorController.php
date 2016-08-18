@@ -29,7 +29,7 @@ class DoctorController extends Controller
     public function home()
     {   $today = \Carbon\Carbon::today();
         $appointments = appointment::orderBy('created_at','asc')                
-                ->where('aDate', '>', $today)
+                ->where('aDate', '>', $today) // check for validity by date
                 ->where('expired',FALSE)                
                 ->take(10)
                 ->get();
@@ -56,7 +56,8 @@ class DoctorController extends Controller
     }
     
     public function viewSettingsPage() {
-        return view('doctor.settings.settings');
+        $doctor = Auth::user()->getDoctor;
+        return view('doctor.settings.settings', compact('doctor'));
     }
     
     public function viewPatientTab()

@@ -2,26 +2,18 @@
 <html>
 
 <head>
-    @include('doctor.navBarDoctor')
+    @include('doctor.nav_bar_doc')
   <title>Unicare - Finance</title>
   <meta name="description" content="website description" />
   <meta name="keywords" content="website keywords, website keywords" />
   <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
-  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine&amp;v1" />
-  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" />
-  <link rel="stylesheet" type="text/css" href="/style/style.css" />
-  
-  <meta charset="utf-8">
-  <link rel="stylesheet" href="style/jquery-ui.css">
-  <script src="style/jquery-1.10.2.js"></script>
-  <script src="style/jquery-ui.js"></script>
-  <link rel="stylesheet" href="/resources/demos/style.css" />
+
 </head>
 
 <body>
-  <div id="main">
+  <div class="container">
 
-    <div id="site_content">
+    <div class="row">
       <div id="financialContent">
         <!-- insert the finance content here -->
         <h2>New Transaction Entry</h2>

@@ -1,5 +1,6 @@
 <html>
     <head>
+        @include('doctor.nav_bar_doc')
         <title> Testing Chart</title>
         <script src="http://code.jquery.com/jquery-1.7.min.js" type="text/javascript"></script>
  <script src="http://code.highcharts.com/highcharts.js"></script>
