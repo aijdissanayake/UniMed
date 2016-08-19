@@ -8,14 +8,7 @@
 @section('body')
 <body>
   <div id="main">
-    <div id="header">
-      <div id="logo">
-        <h1>Unicare Medical</h1>
-      </div>
-      <div id="menubar">
-        
-      </div>
-    </div>
+    
     <div id="site_content">
       <div id="content">
         <!-- insert the finance content here -->

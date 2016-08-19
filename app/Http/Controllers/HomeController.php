@@ -26,6 +26,10 @@ class HomeController extends Controller {
         if (Auth::guest()){
             return view('login');
         } else {
+            
+        /*
+         *     Record login for analytical purposes
+         */
         $user = Auth::user();
         $role = $user->role;
         
@@ -33,6 +37,13 @@ class HomeController extends Controller {
         
         $loginRec->user_id = $user->id;
         $loginRec->save();
+        
+        /*
+         * end login record.
+         * Below, the app(...) construct is made
+         * because we have added dynamic data to the pages,
+         * which need to be constructed each time.
+         */
         
         if ($user->role == 'doctor') {
             return app('App\Http\Controllers\DoctorController')->home();

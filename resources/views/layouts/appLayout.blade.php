@@ -9,6 +9,7 @@
     </head>
     <body>
         @yield('body')
-    </body>
         @yield('footer')
+    </body>
+        
 </html>

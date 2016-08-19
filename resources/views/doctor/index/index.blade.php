@@ -2,79 +2,64 @@
 <html>
 
     <head>
-        @include('doctor.navBarDoctor')
+        @include('doctor.nav_bar_doc')
+        <!--end of Nav bars-->
         <title>Unicare - Home</title>
         <meta name="description" content="website description" />
         <meta name="keywords" content="website keywords, website keywords" />
-        <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
-        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine&amp;v1" />
-        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" />
-        <link rel="stylesheet" type="text/css" href="/style/style.css" />
+
     </head>
-    
-    
+
     <body>
-        <div id="main">
-            <div id="header">
-                <div id="menubar">
-                    <ul id="menu">
-                        <!-- put class="current" in the li tag for the selected finance - to highlight which finance you're on -->
-                        <li class="current"><a href="{{route('homeTab')}}">Home</a></li>
-                        <li><a href="{{route('patientsTab')}}">Patients</a></li>
-                        <li><a href="{{route('financeTab')}}">Finance</a></li>
-                        <li><a href="{{route('inventoryTab')}}">Inventory</a></li>
-                        <li><a href="{{route('labTab')}}">Lab</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div id="site_content">
-                <div id="content">
-                    <!-- insert the finance content here -->
 
-                    <div id="appointments">Appointments
-                        <?php $appointments = $homeData[0]; ?>
-                        @if ($appointments)
-                        <table style="width:50%; border-spacing:0;">
-                        <tr><th width = 40%>Patient</th><th>Appointment Date</th></tr>
-                        
-                        
-                        @foreach ($appointments as $appointment)
-                        <tr><td>{{$appointment->getPatient->getUser->name}}</td><td>{{date('Y:m:d',strtotime($appointment->aDate))}}</td></tr>
-                        @endforeach
-                        </table>
-                        @else <div>You currently have no appointments.</div>
-                        @endif
+            <div class="container">
+
+                <div class="row" style="padding-top: 3rem">
+                    <div class="col s12 m10 l10 offset-m1 offset-l1">
+
+                        <!--Appointment data-->
+
+                        <div class="card yellow darken-2 white-text" id="appointments">
+
+                            <div class="card-content">
+                                <span class="card-title"><h4>Upcoming Appointments</h4></span>
+                                <?php $appointments = $homeData[0]; ?>
+                                @if (count($appointments)!=0)
+                                Appointments
+                                <table style="width:70%; border-spacing:0; text-align:right ">
+                                    <tr><th width = 40%>Patient</th>
+                                        <th>Appointment Date</th>
+                                        <th>Session</th>
+                                        <th>Appointment No. </th>
+                                    </tr>
+
+
+                                    @foreach ($appointments as $appointment)
+                                    <tr><td >{{$appointment->getPatient->getUser->name}}</td>
+                                        <td align="right">{{date('Y:m:d',strtotime($appointment->aDate))}}</td>
+                                        <td align="right">{{$appointment->session}}</td>
+                                        <td align="right">{{$appointment->appointmentNo}}</td>
+                                    </tr>
+                                    @endforeach
+
+                                </table>
+                                @if ($homeData[2] > 10)
+                                <a href=""> See all Appointments</a>
+                                @endif
+
+                                @else
+                                <div>There are no pending appointments right now.</div>
+                                @endif
+                            </div>
+                        </div>
                     </div>
-<!--                    <div id="inventory">Inventory Status
-                        <?php $inventory = $homeData[1]; ?>
-                        @if ($inventory)
-                        <table style="width:50%; border-spacing:0;">
-                        <tr><th width = 40%>Inventory Item</th><th>Current Stock</th></tr>
-                        
-                        @foreach ($inventory as $inventoryItem)
-                        <tr><td>{{$inventoryItem->itemName}}</td><td>{{$inventoryItem->currStock}}</td></tr>
-                        @endforeach
-                        </table>
-                        @else <div>You have no items in your inventory.</div>
-                        @endif
-                    </div>-->
-                    <p></p>
-                    <p></p>
-                    <!--<div id="clarification">Clarification Requests
-                        <ol class="list">
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                        </ol> 
-                    </div> -->
-
-                    <p></p>
-
                 </div>
             </div>
-            <div id="footer">
-                <p>&nbsp;</p>
-            </div>
+
+            <p></p>
+
+        <div id="footer">
+            <p>&nbsp;</p>
         </div>
     </body>
 </html>

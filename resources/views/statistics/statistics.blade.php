@@ -2,7 +2,8 @@
 <html>
 
 <head>
-  <title>Unicare - add_new_patients</title>
+  <title>Unicare - Statistics</title>
+  @include('doctor.nav_bar_doc')
   <meta name="description" content="website description" />
   <meta name="keywords" content="website keywords, website keywords" />
   <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
@@ -22,10 +23,7 @@
 <body>
   <div id="main">
     <div id="header">
-      <div id="logo">
-        <h1>Unicare Medical</h1>
-        <div class="slogan"><img src="style/logo.png" /></div>
-      </div>
+      
       <div id="heading"><h2>Statistics Viewer</h2></div>
     </div>
     <div id="site_content">

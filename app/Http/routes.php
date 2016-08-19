@@ -46,7 +46,8 @@ Route::group(['middleware' => 'authorizer:doctor'], function() {
     Route::post('doc/inventory/add',['as' => 'addItem',  'uses' => 'inventoryItemController@addInventoryItem']);
     Route::post('doc/inventory/remove',['as' => 'removeItem',  'uses' => 'inventoryItemController@removeInventoryItem']);
     Route::post('doc/inventory/search',['as' => 'searchItem',  'uses' => 'inventoryItemController@searchInventoryItem']);
-
+    
+    Route::get('doc/settings',['as' => 'settings',  'uses' => 'DoctorController@viewSettingsPage']);
 
 //Route::get('doctor/patients/{id}', 'DoctorController@showPatient');
 
@@ -126,3 +127,10 @@ Route::group(['middleware' => 'authorizer:admin'], function() {
 //    Route::post('admin/adddoc', ['as' => 'admin', 'uses' => 'AdminController@addDoc']);
 //    Route::get('admin/addpat', ['as' => 'ltLab', 'uses' => 'Admin@patientLab']);
 });
+
+
+/*
+ * Testing routes for the new interface
+ */
+
+Route::get('testLogin', 'testController@login');

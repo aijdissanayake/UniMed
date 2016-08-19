@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    @include('patient.navBarPatient')
+    @include('patient.nav_bar_pat')
   <title>Unicare - Patient's Profile</title>
   <meta name="description" content="website description" />
   <meta name="keywords" content="website keywords, website keywords" />

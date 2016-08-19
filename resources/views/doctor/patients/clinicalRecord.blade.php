@@ -2,8 +2,8 @@
 <html>
 
 <head>
-    @include('doctor.navBarDoctor')
-  <title>Unicare - add_new_patients</title>
+    @include('doctor.nav_bar_doc')
+  <title>Unicare - Add New Visit Record</title>
   <meta name="description" content="website description" />
   <meta name="keywords" content="website keywords, website keywords" />
   <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
@@ -22,15 +22,9 @@
 
 <body>
   <div id="main">
-    <div id="header">
-      <div id="logo">
-        <h1>Unicare Medical</h1>
-      </div>
-      <div id="heading"><h2> New Clinical Record</h2></div>
-    </div>
     <div id="site_content">
       <div id="content">
-        <h2>Clinical Record</h2>
+        <h2>New Clinical Record</h2>
         <form action="{{route('storePatientVisitRecord',[$patient->id])}}" method="post">
             {{ csrf_field() }}
           <div class="form_settings">

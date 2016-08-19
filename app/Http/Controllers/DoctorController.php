@@ -27,14 +27,19 @@ class DoctorController extends Controller
 {
     
     public function home()
-    {
-        $appointments = appointment::orderBy('created_at','desc')
-                ->where('expired',FALSE)
+    {   $today = \Carbon\Carbon::today();
+        $appointments = appointment::orderBy('created_at','asc')                
+                ->where('aDate', '>', $today) // check for validity by date
+                ->where('expired',FALSE)                
                 ->take(10)
                 ->get();
+        $totalAppointments = count(appointment::orderBy('created_at','asc')
+                ->where('expired',FALSE)
+                ->get());
         $inventory = inventoryItem::all();
-        $homeData = array($appointments, $inventory);
+        $homeData = array($appointments, $inventory,$totalAppointments);
         return view('doctor.index.index', compact('homeData'));
+        
     }
 
     /*
@@ -48,6 +53,11 @@ class DoctorController extends Controller
     
     public function editProfile() {
         return view('doctor.index.profileEditable_doctor');
+    }
+    
+    public function viewSettingsPage() {
+        $doctor = Auth::user()->getDoctor;
+        return view('doctor.settings.settings', compact('doctor'));
     }
     
     public function viewPatientTab()
@@ -119,8 +129,7 @@ class DoctorController extends Controller
         $user->role = 'patient';
         $user->save();
         //logger messages
-        $logMessage= "User Added : Name : ".$name." email: " .$request['email'] ;
-        $log->info($logMessage); 
+        
 
 
         /*
@@ -138,8 +147,7 @@ class DoctorController extends Controller
         $patient->bloodType = $request['bloodGroup'];
         $patient->save();
         //logger messages
-          $logMessage= "Patient Added : Name > ".$name." email: " .$request['email']." BirthYear > ".$request['birthYear']."telephoneNo >".$request['contactNo']."" ;
-          $log->info($logMessage);
+          
 
         return view('doctor.patients.viewPatient',  compact('patient'));
     }

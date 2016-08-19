@@ -1,0 +1,4 @@
+Login change to usernames:
+https://laracasts.com/discuss/channels/general-discussion/log-in-with-username-or-email-in-laravel-5?page=1
+
+Read the solution from @vedmant
