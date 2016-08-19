@@ -32,15 +32,15 @@
                                         <p>Session :</p>
 
                                         <div class="input-field">
-                                            <p>Select
+                                            
                                                 <select  name="session" id="sessionID">
                                                     <option value="" disabled selected>Choose your preferred session</option>
                                                     <option value=1> 8am - 11am </option>
                                                     <option value=2> 12noon - 3pm </option>
                                                     <option value=3>4pm - 8pm</option>
-                                                </select></p>
+                                                </select>
+                                            
 
-                                            <p></p>
                                         </div>
                                     </div>
 
