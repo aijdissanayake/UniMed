@@ -47,7 +47,9 @@ class PatientController extends Controller
         return view('patient.home.patientHome')
                 ->with('hasAppointment',$hasAppointment)
                 ->with('directing',$directing)
-                ->with('currentAppDetails',$currentAppDetails);
+                ->with('currentAppDetails',$currentAppDetails)
+                ->with('had',FALSE)
+                ;
     }
     
     /*
@@ -83,7 +85,9 @@ class PatientController extends Controller
            $directing = 0;
             return view('patient.home.patientHome')
                     ->with('hasAppointment',0)
-                    ->with('directing',$directing);
+                    ->with('directing',$directing)
+                    ->with('had',FALSE)
+                    ;
    
         }
         else{
@@ -111,7 +115,9 @@ class PatientController extends Controller
             return view('patient.home.patientHome')
                     ->with('hasAppointment',$hasAppointment)
                     ->with('directing',$directing)
-                    ->with('currentAppDetails',$currentAppDetails);
+                    ->with('currentAppDetails',$currentAppDetails)
+                    >with('had',FALSE)
+                    ;
   
         }
             else{             
@@ -156,7 +162,9 @@ class PatientController extends Controller
             return view('patient.home.patientHome')
                     ->with('hasAppointment',$hasAppointment)
                     ->with('directing',$directing)
-                    ->with('currentAppDetails',$currentAppDetails);
+                    ->with('currentAppDetails',$currentAppDetails)
+                    ->with('had',FALSE)
+                    ;
   
             }
         
@@ -190,7 +198,9 @@ class PatientController extends Controller
            return view('patient.home.patientHome')
                    ->with('hasAppointment',$hasAppointment)
                    ->with('directing',$directing)
-                   ->with('currentAppDetails',$currentAppDetails);
+                   ->with('currentAppDetails',$currentAppDetails)
+                   ->with('had',FALSE)
+                   ;
     }
         }
     }
@@ -198,6 +208,7 @@ class PatientController extends Controller
         
         $directing = 5 ;
         $currentAppDetails = '';
+        $had = FALSE ;
         
         $id = \Illuminate\Support\Facades\Auth::user()->id ;
         // check whether patient has an appointment
@@ -211,6 +222,8 @@ class PatientController extends Controller
             DB::table('patients')
             ->where('user_id', $id)
             ->update(['hasAppointment' => FALSE]);
+
+            $had = TRUE;
             
         //get the appointment in appointment table
         $currentPatientsAppointment = \App\appointment::orderBy('aDate', 'desc')
@@ -228,6 +241,7 @@ class PatientController extends Controller
                 ->with('hasAppointment',$hasAppointment)
                 ->with('directing',$directing)
                 ->with('currentAppDetails',$currentAppDetails)
+                ->with('had',$had)
         ;
     }
 }

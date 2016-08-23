@@ -134,3 +134,6 @@ Route::group(['middleware' => 'authorizer:admin'], function() {
  */
 
 Route::get('testLogin', 'testController@login');
+Route::get('test', function(){
+    return view('mat_test');
+});
