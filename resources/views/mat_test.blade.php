@@ -9,12 +9,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- CSS Files -->
-  <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <link type="text/css" rel="stylesheet" href="materialize\css\materialize.min.css">
-  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>           
+
+ <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>           
   <script type="text/javascript" src="materialize\js\materialize.min.js"></script>
   <script type="text/javascript" src="js\init.js"></script>
+   <script type="text/javascript" src="js\patient.js"></script>
+  <link rel='stylesheet' type='text/css' href='http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css'/>
+  <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
 
+  <script type="text/javascript">
+       
+$('select').material_select();
+       
+     </script> 
+
+
+  <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link type="text/css" rel="stylesheet" href="materialize\css\materialize.min.css">
+ 
   <style type="text/css">
 
 
@@ -59,12 +71,14 @@
       <label>Materialize Select</label>
     </div>
 
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
       $(document).ready(function() {
         $(".button-collapse").sideNav();
       });
 
-    </script>
+      $('select').material_select();
+
+    </script> -->
 
 
     <h1>TESTING</h1>
@@ -106,14 +120,6 @@
   </div>
 
 
-<!-- <ul id="slide-out" class="side-nav full">
-  <li><a href="#!">First Sidebar Link</a></li>
-  <li><a href="#!">Second Sidebar Link</a></li>
-</ul>
-
-<a href="#" data-activates="slide-out" class="button-collapse">
-  <i class="large mdi-navigation-menu"></i>
-</a> -->
 
 <ul id="slide-out" class="side-nav">
   <li><div class="userView">
@@ -194,8 +200,8 @@
       </div>
 
       <div class="input-field col s12">
-        <select>
-          <option value="" disabled selected>Choose your option</option>
+        <select class="validate">
+          <option value="0" disabled selected>Choose your option</option>
           <option value="1">Option 1</option>
           <option value="2">Option 2</option>
           <option value="3">Option 3</option>
@@ -203,11 +209,45 @@
         <label>Materialize Select</label>
       </div>
 
+     <!-- <script type="text/javascript">
+       
+$('select').material_select();
+
+     </script> --> 
+
 
     </form>
   </div>
 
+  <div id="appPolicy">
+  <h5>Appointment Policy</h5>
+  <div>
+    Here Goes the Appointment Policies
+  </div>
+
+<button id="policyButton">Appointment Policy</button>
+
+
+
+<div id="policy">
+
+                        <ul>   
+                            <li>Appointments should be made at least day prior to the appointment date.</li>
+                            <li>All reserved appointments are given reservation order based priority.</li><br>
+                            <li>Patients are advised to be present at the dispensary 10 minutes early.</li><br>
+                            <li>Patients can roughly calculate his/her appointment time by assuming 10 mins for each patient.</li><br>
+                            <li>If the patient is not available when his/her appointment number is called, then the next number will be called.</li><br>
+                            <li>In case of late arrival of a patient with a higher priority number and another patient is examined during the arrival, the arrived patient will be called immediately after the current examination.</li><br>
+                        </ul>
+  
 </div>
+
+
+
+</div>
+
+</div>
+
 
 </body>
 
