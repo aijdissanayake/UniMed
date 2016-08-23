@@ -10,7 +10,7 @@
         <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
     </head>
 
-    <body>
+    <body class="blue-grey lighten-5">
         <div class="container">
             <div class="row" style="padding-top: 3rem">
                 <div class="col s12">
@@ -30,26 +30,53 @@
                             @endif
                             <form action="{{route('patientAdded')}}" method="post">
                                 {{ csrf_field() }}
-                                <div class="form_settings">
-                                    <div class="section">
-                                        <span>First Name*</span><input type="text" name="firstName" value="{{old('firstName')}}" required=""/>
-                                        Note: Default password will be set to "unicare101"
+                                <div class="row">
+                                    <div class="col s12 m6">
+                                        <div class="section">
+                                            <span>First Name*</span><input type="text" name="firstName" value="{{old('firstName')}}" required=""/>
+                                            <p>Note: Default password will be set to "unicare101"</p>
+                                        </div>
                                     </div>
-                                    <div class="section"><span>Last Name*</span><input type="text" name="lastName" value="{{old('lastName')}}"  required=""/></div>
-                                    <div class="section"><span>Birth Year*</span><input type="number" min="1900" max="2016"  maxlength="4" name="birthYear" value="{{old('birthYear')}}"  required=""/></div>
-                                    <div class="section"><span>Gender*</span>
-                                        <p>
-                                            <input type="radio" name="gender" value="1" checked="true" id="gender_male">
-                                            <label for="gender_male" >Male</label>
-                                        </p>
-                                        <p>
-                                            <input type="radio" name="gender" value="0" id="gender_female">
-                                            <label for="gender_female">Female</label>
-                                        </p>
+                                    <div class="col s12 m6">
+                                        <div class="section"><span>Last Name*</span><input type="text" name="lastName" value="{{old('lastName')}}"  required=""/></div>
                                     </div>
-                                    <div class="section"><span>Email*</span><input type="email" name="email" value="{{old('email')}}" required=""/></div>
-                                    <div class="section"><span>Contact No.*</span><input type="tel" name="contactNo" value="{{old('contactNo')}}" maxlength="10" required="" /></div>
-                                    <div class="section"><span>Locale*</span><input type="text" name="locale" value="{{old('locale')}}"/></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col s12 m6">
+                                        <div class="section"><span>Birth Year*</span><input type="number" min="1900" max="2016"  maxlength="4" name="birthYear" value="{{old('birthYear')}}"  required=""/></div>
+                                    </div>
+                                    <div class="col s1 m6">
+                                        <div class="section"><span>Gender*</span>
+                                            <p>
+                                                <input type="radio" name="gender" value="1" checked="true" id="gender_male">
+                                                <label for="gender_male" >Male</label>
+                                            </p>
+                                            <p>
+                                                <input type="radio" name="gender" value="0" id="gender_female">
+                                                <label for="gender_female">Female</label>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                <div class="col s12 m6">
+                                    <div class="section"><span>Email*</span>
+                                        <input type="email" name="email" value="{{old('email')}}" required=""/>
+                                    </div>
+                                </div>
+                                <div class="col s12 m6">
+                                    <div class="section"><span>Contact No.*</span>
+                                        <input type="tel" name="contactNo" value="{{old('contactNo')}}" maxlength="10" required="" />
+                                    </div>
+                                </div>
+                                </div>
+                                <div class="row">
+                                <div class="col s12 m6">
+                                    <div class="section"><span>Locale*</span>
+                                        <input type="text" name="locale" value="{{old('locale')}}"/>
+                                    </div>
+                                </div>
+                                <div class="col s12 m6">
                                     <div class="section"><span>Blood Group*</span><select name="bloodGroup" value="{{old('bloodGroup')}}"  required="">
                                             <option value="A+">A+</option>
                                             <option value="A-">A-</option>
@@ -60,20 +87,25 @@
                                             <option value="O+">O+</option>
                                             <option value="O-">O-</option>
                                         </select>
-                                    </div>
-                                    <div class="section"><span>Remarks</span><textarea rows="4" cols="50" name="remarks" value="{{old('remarks')}}"></textarea></div>
+                                    </div></div>
 
-                                    <div class="section">
-                                        <input class="btn" type="submit" name="submitButton" value="Register" />
-                                        <input class="btn" type="submit" name="updateButton" value="Update" /></div>
                                 </div>
-                            </form>
-                            <a class='form_settings' href="{{route('patientsTab')}}"><input class="submit" type="submit" name="backButton" value="Back" /></a></p>
+
+                                <div class="section"><span>Remarks</span><textarea rows="4" cols="50" name="remarks" value="{{old('remarks')}}"></textarea></div>
+
+                                <div class="section">
+                                    <input class="btn" type="submit" name="submitButton" value="Register" />
+                                    <input class="btn" type="hidden" name="updateButton" value="Update" />
+                                    <a class='form_settings' href="{{route('patientsTab')}}"><input class="btn" type="submit" name="backButton" value="Back" /></a></p>
+                                </div>
                         </div>
+                        </form>
+                        
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
-    </body>
+</body>
 </html>
