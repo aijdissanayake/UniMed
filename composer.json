@@ -10,7 +10,8 @@
 		"apache/log4php": "2.3.0",
 		"doctrine/dbal": "v2.5.4",
         "laravelcollective/html": "^5.2",
-		"barryvdh/laravel-dompdf": "0.6.*"
+		"barryvdh/laravel-dompdf": "0.6.*",
+		"ext-mbstring": "*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

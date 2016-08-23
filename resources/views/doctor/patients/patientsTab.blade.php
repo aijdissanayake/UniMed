@@ -84,15 +84,8 @@
                                                         </div>-->
 
                         </div>
-
-
                     </div>
                 </div>
-
-                <div id="footer">
-                    <p>&nbsp;</p>
-                </div>
-
             </div>
         </div>
     </body>
