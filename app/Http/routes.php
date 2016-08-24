@@ -67,6 +67,7 @@ Route::group(['middleware' => 'authorizer:doctor'], function() {
 
 // Doctor's views' methods
 
+Route::get('doc/patients/chkuid', 'AjaxController@checkUN');
 
 
 

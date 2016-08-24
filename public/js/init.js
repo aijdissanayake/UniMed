@@ -1,18 +1,10 @@
-(function($){
-  $(function(){
+(function ($) {
+    $(function () {
 
-    $('.button-collapse').sideNav();
-       
-	$('select').material_select();
+        $('.button-collapse').sideNav();
 
-	$('#appPolicy').accordion({collapsible:true,active:false});
+        $('select').material_select();
 
 
-  }); // end of document ready
+    }); // end of document ready
 })(jQuery); // end of jQuery name space
-
-
-$(document).ready(function(){
-	$('#appPolicy').accordion({collapsible:true,active:false});
-
-});

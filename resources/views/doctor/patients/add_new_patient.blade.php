@@ -8,6 +8,7 @@
         <meta name="description" content="website description" />
         <meta name="keywords" content="website keywords, website keywords" />
         <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
+        <script src="/js/user_check.js" type="text/javascript"></script>
     </head>
 
     <body class="blue-grey lighten-5">
@@ -43,7 +44,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col s12 m6">
-                                        <div class="section"><span>Birth Year*</span><input type="number" min="1900" max="2016"  maxlength="4" name="birthYear" value="{{old('birthYear')}}"  required=""/></div>
+                                        <div class="section"><span>Birth Year*</span><input type="number" min="1900" max="2016"  maxlength="4" name="birthYear" value="{{old('birthYear')}}"  required="" validate="true"/></div>
                                     </div>
                                     <div class="col s1 m6">
                                         <div class="section"><span>Gender*</span>
@@ -59,35 +60,36 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                <div class="col s12 m6">
-                                    <div class="section"><span>Email*</span>
-                                        <input type="email" name="email" value="{{old('email')}}" required=""/>
+                                    <div class="col s12 m6">
+                                        <div class="section"><span>Email*</span>
+                                            <input type="email" id="email" name="email" value="{{old('email')}}" required="" />
+                                            <p id="checkResp"></p>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col s12 m6">
-                                    <div class="section"><span>Contact No.*</span>
-                                        <input type="tel" name="contactNo" value="{{old('contactNo')}}" maxlength="10" required="" />
+                                    <div class="col s12 m6">
+                                        <div class="section"><span>Contact No.*</span>
+                                            <input type="tel" name="contactNo" value="{{old('contactNo')}}" maxlength="10" required="" />
+                                        </div>
                                     </div>
-                                </div>
                                 </div>
                                 <div class="row">
-                                <div class="col s12 m6">
-                                    <div class="section"><span>Locale*</span>
-                                        <input type="text" name="locale" value="{{old('locale')}}"/>
+                                    <div class="col s12 m6">
+                                        <div class="section"><span>Locale*</span>
+                                            <input type="text" name="locale" value="{{old('locale')}}"/>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col s12 m6">
-                                    <div class="section"><span>Blood Group*</span><select name="bloodGroup" value="{{old('bloodGroup')}}"  required="">
-                                            <option value="A+">A+</option>
-                                            <option value="A-">A-</option>
-                                            <option value="B+">B+</option>
-                                            <option value="B-">B-</option>
-                                            <option value="AB+">AB+</option>
-                                            <option value="AB-">AB-</option>
-                                            <option value="O+">O+</option>
-                                            <option value="O-">O-</option>
-                                        </select>
-                                    </div></div>
+                                    <div class="col s12 m6">
+                                        <div class="section"><span>Blood Group*</span><select name="bloodGroup" value="{{old('bloodGroup')}}"  required="">
+                                                <option value="A+">A+</option>
+                                                <option value="A-">A-</option>
+                                                <option value="B+">B+</option>
+                                                <option value="B-">B-</option>
+                                                <option value="AB+">AB+</option>
+                                                <option value="AB-">AB-</option>
+                                                <option value="O+">O+</option>
+                                                <option value="O-">O-</option>
+                                            </select>
+                                        </div></div>
 
                                 </div>
 
@@ -100,7 +102,7 @@
                                 </div>
                         </div>
                         </form>
-                        
+
                     </div>
                 </div>
             </div>
