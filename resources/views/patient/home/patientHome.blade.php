@@ -20,8 +20,10 @@
             <div class="row" style="margin-top: 100px;">
                 <div class="col s12 ">
                     <div class="card blue-grey lighten-1">
+
+                    <div class="card-title white-text" style="font-family:Calibri ,sans-serif"> <h3> Make Appointment </h3> </div>
                         <div class="card-content white-text">
-                            <span class="card-title " style="font-family:Calibri ,sans-serif"><h2>Make Appointment</h2></span>
+                            
                             <div class="divider blue darken-1"></div>
 
          <div class="section" >
@@ -111,11 +113,11 @@ onchange="this.setCustomValidity('')">
 
                                     </div>
 
-                                    <!-- <div id="invalidSession" class="red z-depth-3 hite-text">
+                                    <div id="invalidSession" class="red z-depth-1 white-text col s6">
 
                                         <span> Select a Session!</span>
                                         
-                                    </div> -->
+                                    </div>
                                 </div>
 
                                 <input class="waves-effect waves-light btn grey lighten-3 black-text" type="submit" name="appointmentButton" onclick="myFunction()" />	
