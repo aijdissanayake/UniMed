@@ -1,53 +1,57 @@
 <!DOCTYPE HTML>
 <html>
 
-<head>
-    @include('doctor.nav_bar_doc')
-  <title>Unicare - View Patient</title>
-  <meta name="description" content="website description" />
-  <meta name="keywords" content="website keywords, website keywords" />
-  <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
-  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine&amp;v1" />
-  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" />
-  <link rel="stylesheet" type="text/css" href="/style/add_new_patient_style.css" />
-</head>
+    <head>
+        @include('doctor.nav_bar_doc')
+        <title>Unicare - View Patient</title>
+        <meta name="description" content="website description" />
+        <meta name="keywords" content="website keywords, website keywords" />
+    </head>
 
-<body>
-  <div id="main">
-    <div id="header">
-      <div id="logo">
-        <h1>Unicare Medical</h1>
-      </div>
-      <div id="heading"><h2>Patient Details</h2></div>
-    </div>
-    <div id="site_content">
-      <div id="content">
-        <h2>Patient Details</h2>
-        <form action="" method="get">
-            {{ csrf_field() }}
-          <div class="form_settings">
-              <p><span>First Name</span>{{$patient->firstName}}</p>
-              <p><span>Last Name</span>{{$patient->lastName}}</p>
-              <p><span>Birth Year</span>{{$patient->birthYear}}</p>
-              <p><span>Gender</span>
-                  @if ($patient->gender==0)
-                        Female
-                  @else
-                        Male
-                  @endif</p>
-              <p><span>Email</span>{{$patient->getUser->email}}</p>
-              <p><span>Contact No.</span>{{$patient->telephoneNo}}</p>
-              <p><span>Locale</span>{{$patient->locale}}</p>
-              <p><span>Blood Group</span>{{$patient->bloodType}}</p>
-          </div>
-        </form>
-        <p align="leftt"><a class='form_settings' href="{{route('patientsTab')}}"><input class="submit" type="submit" name="backButton" value="Back" /></a></p>
-        <p align="right"><a class='form_settings' href="{{route('patientsTab')}}"><input class="submit" type="submit" name="backButton" value="View visit records" /></a></p>
-      </div>
-    </div>
-    <div id="footer">
-      <p>&nbsp;</p>
-    </div>
-  </div>
-</body>
+    <body>
+        <div class="container">
+            <div class="row top-row">
+                <div class="row">
+                    <div class="col s12 m6">
+                        <div class="card">
+                            <div class="card-title blue darken-2 white-text">Patient Details</div>
+                            <div class="card-content">
+                                    <table>
+                                        <tr><td><strong>First Name</strong></td><td>{{$patient->firstName}}</td></tr>
+                                        <tr><td><strong>Last Name</strong></td><td>{{$patient->lastName}}</tr>
+                                        <tr><td><strong>Birth Year</strong></td><td>{{$patient->birthYear}}</td></tr>
+                                        <tr><td><strong>Gender</strong></td><td>
+                                                @if ($patient->gender==0)
+                                                Female
+                                                @else
+                                                Male
+                                                @endif</td></tr>
+                                        <tr><td><strong>Email</strong></td><td>{{$patient->getUser->email}}</td></tr>
+                                        <tr><td><strong>Contact No.</strong></td><td>{{$patient->telephoneNo}}</td></tr>
+                                        <tr><td><strong>Locale</strong></td><td>{{$patient->locale}}</td></tr>
+                                        <tr><td><strong>Blood Group</strong></td><td>{{$patient->bloodType}}</td></tr>
+                                    </table>
+
+                                <div class="section">
+                                    <a class="btn waves-effect waves-ripple blue darken-1" href="{{route('patientsTab')}}">Edit</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col s12 m6">
+                        <div class="card">
+                            <div class="card-title orange white-text">Recent visits</div>
+                            <div class="card-content">
+                                <div class="section">
+                                    <p>There are no records yet.</p>
+                                </div>
+                                
+                                <a class="btn waves-effect waves-ripple orange accent-4" href="{{route('createPatientVisitRecord',[$patient->id])}}">Add new record</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </body>
 </html>
