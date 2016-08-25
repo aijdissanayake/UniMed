@@ -67,6 +67,7 @@ class DoctorController extends Controller
     
     public function viewPatientDetails($id)
     {
+        // uses the same view as returned when registering a new patient
         $patient = patient::find($id);
         return view('doctor.patients.viewPatient', compact('patient'));
     }
