@@ -5,7 +5,7 @@ $(document).ready(function(){
 	// 	$('#policy').slideToggle(400);});
 
 	slide=false;
-	$('#policy').slideUp(400);
+	$('#policy').slideUp(0);
 	
 	$('#policyButton').click(function(){
 		
@@ -22,6 +22,13 @@ $(document).ready(function(){
 	});
 
 
+	 var d = new Date();
+
+    $('.datepicker').pickadate({
+    	selectMonths: true, // Creates a dropdown to control month
+    	selectYears: 15, // Creates a dropdown of 15 years to control year
+    	min: new Date(d) // Enable dates after today
+   	});
 
 
 });
