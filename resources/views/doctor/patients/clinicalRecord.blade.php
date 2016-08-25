@@ -41,7 +41,7 @@
                                                 <label for="remars">Special Remarks</label>
                                             </div>
                                             <div class="input-field col s12 m6">
-                                                <input id="nextVisitDate" type="date" class="datepicker" required></textarea>
+                                                <input type="date" class="datepicker" id="nextVisitDate"  required>
                                                 <label for="nextVisitDate">Next Visit Date</label>
                                             </div>
                                             <div class="input-field col s12 m6"></div>

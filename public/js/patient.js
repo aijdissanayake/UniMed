@@ -10,25 +10,14 @@ $(document).ready(function(){
 	$('#policyButton').click(function(){
 		
 		if (!slide) {
-		$('#policy').slideUp(400);
+		$('#policy').slideDown(400);
 		slide=true;
 		}
 
 		else{
-		$('#policy').slideDown(400);
+		$('#policy').slideUp(400);
 		slide=false;
 		}
 
 	});
-
-
-	 var d = new Date();
-
-    $('.datepicker').pickadate({
-    	selectMonths: true, // Creates a dropdown to control month
-    	selectYears: 15, // Creates a dropdown of 15 years to control year
-    	min: new Date(d) // Enable dates after today
-   	});
-
-
 });
