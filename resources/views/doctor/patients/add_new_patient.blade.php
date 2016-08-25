@@ -16,8 +16,9 @@
             <div class="row" style="padding-top: 3rem">
                 <div class="col s12">
                     <div class="card">
+                        <div class="card-title blue white-text">New Patient</div>
                         <div class="card-content">
-                            <span class="card-title"><h4>New Patient</h4></span>
+                            
                             <!--Validation errors-->
 
                             @if (count($errors) > 0)

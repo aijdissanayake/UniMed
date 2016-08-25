@@ -14,15 +14,15 @@
 
             <div class="container">
 
-                <div class="row" style="padding-top: 3rem">
+                <div class="row top-row">
                     <div class="col s12 m10 l10 offset-m1 offset-l1">
 
                         <!--Appointment data-->
 
-                        <div class="card yellow darken-2 white-text" id="appointments">
-
-                            <div class="card-content">
-                                <span class="card-title"><h4>Upcoming Appointments</h4></span>
+                        <div class="card white-text" id="appointments">
+                            <div class="card-title yellow darken-2">Upcoming Appointments</div>
+                            <div class="card-content black-text grey lighten-5">
+                                
                                 <?php $appointments = $homeData[0]; ?>
                                 @if (count($appointments)!=0)
                                 Appointments
