@@ -3474,6 +3474,13 @@ input[type=range] + .thumb {
   margin-bottom: 20px;
 }
 
+.top-row {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+  padding-top: 3rem;
+}
+
 .row:after {
   content: "";
   display: table;

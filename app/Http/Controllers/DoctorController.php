@@ -14,13 +14,6 @@ use App\Patient;
 use App\patientVisit;
 use App\appointment;
 use Illuminate\Support\Facades\Input;
-use Logger;
-
-// Insert the path where you unpacked log4php
-    // Tell log4php to use our configuration file.
-
- 
-
 
 
 class DoctorController extends Controller
@@ -74,6 +67,7 @@ class DoctorController extends Controller
     
     public function viewPatientDetails($id)
     {
+        // uses the same view as returned when registering a new patient
         $patient = patient::find($id);
         return view('doctor.patients.viewPatient', compact('patient'));
     }
@@ -114,8 +108,6 @@ class DoctorController extends Controller
         /*
          * create user first
          */
-        // Fetch a logger, it will inherit settings from the root logger
-       $log = Logger::getLogger('myLogger');
         $user = new User();
 
         $name = $request['firstName'] . " " . $request['lastName'];
@@ -128,7 +120,6 @@ class DoctorController extends Controller
 
         $user->role = 'patient';
         $user->save();
-        //logger messages
         
 
 
@@ -146,7 +137,6 @@ class DoctorController extends Controller
         $patient->locale = $request['locale'];
         $patient->bloodType = $request['bloodGroup'];
         $patient->save();
-        //logger messages
           
 
         return view('doctor.patients.viewPatient',  compact('patient'));

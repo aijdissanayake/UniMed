@@ -14,7 +14,7 @@
     <body>
         <div class="container">
 
-            <div class="row">
+            <div class="row top-row">
 
                 <!--Search bar-->
 
@@ -84,15 +84,8 @@
                                                         </div>-->
 
                         </div>
-
-
                     </div>
                 </div>
-
-                <div id="footer">
-                    <p>&nbsp;</p>
-                </div>
-
             </div>
         </div>
     </body>

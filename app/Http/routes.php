@@ -67,6 +67,7 @@ Route::group(['middleware' => 'authorizer:doctor'], function() {
 
 // Doctor's views' methods
 
+Route::get('doc/patients/chkuid', 'AjaxController@checkUN');
 
 
 
@@ -134,3 +135,6 @@ Route::group(['middleware' => 'authorizer:admin'], function() {
  */
 
 Route::get('testLogin', 'testController@login');
+Route::get('test', function(){
+    return view('mat_test');
+});

@@ -12,7 +12,7 @@
     <body>
         <div class="container">
             
-            <div class="row" style="padding-top: 3rem">
+            <div class="row top-row">
                 <div class="col s12 m6">
                     <div class="card green white-text">
                         <div class="card-content">
