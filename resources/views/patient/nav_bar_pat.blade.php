@@ -21,7 +21,7 @@
     <div class="navbar-fixed">
         <nav>
             <div class="nav-wrapper blue">
-                <a href="#!" class="brand-logo">Logo</a>
+                <a href="#!" class="brand-logo">Unicare</a>
                 <a href="#" data-activates="mob-snav" class="button-collapse">
                     <i class="material-icons">menu</i>
                 </a>

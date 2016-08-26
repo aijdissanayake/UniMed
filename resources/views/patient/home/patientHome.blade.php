@@ -13,62 +13,35 @@
 
     </head>
 
-    <body class="grey">
+    <body class="grey lighten-4">
         <div class="container">
             <!-- insert the finance content here -->
 
-            <div class="row padding-top:20px ">
+            <div class="row" style="margin-top: 100px;">
                 <div class="col s12 ">
-                    <div class="card blue-grey lighten-1">
-                        <div class="card-content white-text">
-                            <span class="card-title "><h2>Make Appointment</h2></span>
+                    <div class="card">
+                        <div class="card-title orange-text"><span style="font-family:Calibri ,sans-serif">Make Appointment</span></div>
+                        <div class="card-content">
+                            
+                            <div class="section" >
 
+                                <div id="policyDiv" >
+                                    <button class="waves-effect waves-light btn grey lighten-3 blue-text" id="policyButton">Appointment Policy</button>
+                                    <div id="policy" class="grey white-text Z-depth-3" style="padding: 20px 20px 0px 20px; margin-top: 20px">
 
-                             <!-- <div class="card white col s10 offset-s1"> -->
-                    <!-- <div class="card-content grey-text" id="appPolicy">
+                                        <ul class="grey">
+                                            <li>1. Appointments should be made at least day prior to the appointment date.</li><br>
+                                            <li>2. All reserved appointments are given reservation order based priority.</li><br>
+                                            <li>3. Patients are advised to be present at the dispensary 10 minutes early.</li><br>
+                                            <li>4. Patients can roughly calculate his/her appointment time by assuming 10 mins for each patient.</li><br>
+                                            <li>5. If the patient is not available when his/her appointment number is called, then the next number will be called.</li><br>
+                                            <li>6. In case of late arrival of a patient with a higher priority number and another patient is examined during the arrival, the arrived patient will be called immediately after the current examination.</li><br>
+                                            <li></li>
+                                        </ul>
 
-
-                        <h5><span class="card-title"><strong>Appointment Reservation Policy</strong></span></h5>
-
-                        <div>
-                        <ul>
-                            <li>Appointments should be made at least day prior to the appointment date.</li>
-                            <li>All reserved appointments are given reservation order based priority.</li><br>
-                            <li>Patients are advised to be present at the dispensary 10 minutes early.</li><br>
-                            <li>Patients can roughly calculate his/her appointment time by assuming 10 mins for each patient.</li><br>
-                            <li>If the patient is not available when his/her appointment number is called, then the next number will be called.</li><br>
-                            <li>In case of late arrival of a patient with a higher priority number and another patient is examined during the arrival, the arrived patient will be called immediately after the current examination.</li><br>
-                        </ul>
-                        </div>
-                    
-
-
-
-
-        </div>
-
- -->
-         <div class="section">
-         <button class="waves-effect waves-light btn" id="policyButton">Appointment Policy</button>
-
-
-
-                    <div id="policy">
-
-                        <ul>   
-                            <li>Appointments should be made at least day prior to the appointment date.</li>
-                            <li>All reserved appointments are given reservation order based priority.</li><br>
-                            <li>Patients are advised to be present at the dispensary 10 minutes early.</li><br>
-                            <li>Patients can roughly calculate his/her appointment time by assuming 10 mins for each patient.</li><br>
-                            <li>If the patient is not available when his/her appointment number is called, then the next number will be called.</li><br>
-                            <li>In case of late arrival of a patient with a higher priority number and another patient is examined during the arrival, the arrived patient will be called immediately after the current examination.</li><br>
-                        </ul>
-  
-                    </div>
-                    </div>
-                <!-- </div> -->
-
-
+                                    </div>
+                                </div>
+                            </div>
 
 
                             @if($directing == 0 || $directing == 1 || $directing == 2 ||  $directing==4 || $directing == 5)
@@ -79,45 +52,52 @@
                                 {{ csrf_field() }}
 
                                 <div class="row">
-                                    <div class="input-field col s12">
+                                    <div class="input-field col s6" >
 
-                                        <input type="date" class="datepicker" name="appointmentDate">
+                                        <div class="blue-text text-lighten-1">
 
-                                        <label for="appointmentDate" class="white-text">Reservation Date :</label>
+                                            <input type="date" class="datepicker " id="appointmentDate" name="appointmentDate" placeholder="Pick a Date" required=""/>
 
-                                        <script type="text/javascript">
+                                            <label for="appointmentDate" class="white-text" >Reservation Date :</label>
+
+                                        <!-- <script type="text/javascript">
+
+                                            var d = new Date();
 
                                             $('.datepicker').pickadate({
                                                 selectMonths: true, // Creates a dropdown to control month
-                                                selectYears: 15 // Creates a dropdown of 15 years to control year
+                                                selectYears: 15, // Creates a dropdown of 15 years to control year
+                                                min: new Date(d) // Enable dates after today
                                             });
 
                                         </script>
-
-                                        <script type="text/javascript">
-
-
-                                            $('#appointmentDate').focusout(function () {
-                                                var appointmentDate = document.getElementById('appointmentDate').value;
-                                                var d = new Date();
-
-                                                console.log(d);
-                                                if (appointmentDate < d) {
-                                                    console.log("Invalid date");
-                                                }
-                                            });
-                                        </script>
-
+                                            -->
+                                                                                   <!-- <script type="text/javascript">
+                                           
+                                           
+                                                                                       $('.datepicker').focusout(function () {
+                                                                                           var appointmentDate = document.getElementById('appointmentDate').value;
+                                                                                           var d = new Date();
+                                           
+                                                                                           console.log(d);
+                                                                                           console.log(appointmentDate);
+                                                                                           if (appointmentDate < d) {
+                                                                                               console.log("Invalid date");
+                                                                                           }
+                                                                                       });
+                                                                                   </script> -->
+                                        </div>
                                     </div>
                                 </div>
 
 
                                 <div class="row">
 
-                                    <div class="input-field">
+                                    <div class="input-field col s6">
 
-                                        <select  name="session" id="sessionID">
-                                            <option value="" disabled selected>Choose your preferred session</option>
+                                        <select class="grey-text text-lighten-1" name="session" id="session" data-beloworigin="true" required="" oninvalid="this.setCustomValidity('Username cannot be empty.')" 
+                                                onchange="this.setCustomValidity('')">
+                                            <option value="" disabled selected ><span >Choose your preferred session</span></option>
                                             <option value=1> 8am - 11am </option>
                                             <option value=2> 12noon - 3pm </option>
                                             <option value=3>4pm - 8pm</option>
@@ -125,9 +105,25 @@
                                         <label for="sessionID" class="white-text"> Session :</label>
 
                                     </div>
+
+                                    <!-- <div id="invalidSession" class="red z-depth-3 hite-text">
+
+                                        <span> Select a Session!</span>
+                                        
+                                    </div> -->
                                 </div>
 
-                                <input class="waves-effect waves-light btn" type="submit" name="appointmentButton"  />	
+                                <input class="waves-effect waves-light btn grey lighten-3 blue-text" type="submit" name="appointmentButton" onclick="myFunction()" />	
+
+                                <script type="text/javascript">
+
+
+                                    function myFunction() {
+                                        if (!document.getElementById('session').value) {
+                                            alert("Select a session");
+                                        }
+                                    }
+                                </script>
 
                             </form>
 
@@ -156,17 +152,17 @@
 
                             @if($directing == 3)
                             <div class="section">
-                            <form action="{{route('cancelAppointment')}}" method="get">
-                                <input class="waves-effect waves-dark btn red" type="submit" name="cancelButton" value="CancelAppointment" />
-                            </form>
+                                <form action="{{route('cancelAppointment')}}" method="get">
+                                    <input class="waves-effect waves-dark btn red" type="submit" name="cancelButton" value="CancelAppointment" />
+                                </form>
                             </div>
                             @endif
 
 
-                             @if($directing == 0)
-<!--                            <h2><div style=" width: 600px ; text-align:center ; background-color: red; color: white; font-size:20px ;">
-                                    Invalid Date
-                                </div></h2> -->
+                            @if($directing == 0)
+                            <!--                            <h2><div style=" width: 600px ; text-align:center ; background-color: red; color: white; font-size:20px ;">
+                                                                Invalid Date
+                                                            </div></h2> -->
 
                             @elseif($directing == 1)
                             @if($hasAppointment)
@@ -186,12 +182,12 @@
                                     Appointment Created<br> {{$currentAppDetails}}
                                 </div></h2>
                             @endif
-                           <!--  @elseif ($directing == 4)
-                            @if($hasAppointment)
-                            <h2><div style=" width: 600px ; text-align:center ; background-color: red; color: white; font-size:20px ;">
-                                    You already have an Appointment.<br>{{$currentAppDetails}}<br> Cancel it to create a new appointment<br> 
-                                </div></h2>
-                            @endif -->
+                            <!--  @elseif ($directing == 4)
+                             @if($hasAppointment)
+                             <h2><div style=" width: 600px ; text-align:center ; background-color: red; color: white; font-size:20px ;">
+                                     You already have an Appointment.<br>{{$currentAppDetails}}<br> Cancel it to create a new appointment<br> 
+                                 </div></h2>
+                             @endif -->
                             @endif
 
 
@@ -200,13 +196,13 @@
                 </div>
 
 
-               
+
             </div>
 
 
-    <div id="footer">
-        <p>&nbsp;</p>
-    </div>
+            <div id="footer">
+                <p>&nbsp;</p>
+            </div>
 
-</body>
+    </body>
 </html>
