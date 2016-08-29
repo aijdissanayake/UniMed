@@ -73,10 +73,11 @@ class PatientController extends Controller
         
         //takes inputs from the form
         $inputs = Input::all();
-        $appDate = $inputs['appointmentDate'];
+        $appDate = $inputs['appointmentDate'];       
         $appSession = $inputs['session'];
         $today = \Carbon\Carbon::today();
         $today1= date_create($today);
+         echo $appDate . $today;
         $currentAppDetails = "";
       
         

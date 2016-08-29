@@ -1,23 +1,64 @@
 $(document).ready(function(){
-	// $('#policyDiv').accordion({collapsible:true,active:false});
-	
-	// $('#policyButton').click(function(){
-	// 	$('#policy').slideToggle(400);});
+
+
+	//toggle appointment policy small screen
 
 	slide=false;
-	$('#policy').slideUp(0);
+
+	$('#policyS').slideUp(0);
 	
 	$('#policyButton').click(function(){
 		
 		if (!slide) {
-		$('#policy').slideDown(400);
+		$('#policyS').slideUp(400);
 		slide=true;
 		}
 
 		else{
-		$('#policy').slideUp(400);
+		$('#policyS').slideDown(400);
 		slide=false;
 		}
 
 	});
+
+	//show hide invalid session message
+
+	$('#invalidSession').hide();
+
+	function ValidationEvent(){
+
+	$('#appSubmit').click(function(){
+
+		if (!document.getElementById('session').value) {
+              $('#invalidSession').show();
+              return false;
+           }
+
+        else{
+        	return true;
+        }
+
+	});
+
+	}
+
+
+
+	//close invalid session message
+	$('#close').click(function(){
+		$('#invalidSession').hide();
+	});
+
+	//toggle appointmtment policy Large screen
+
+	$('#title').click(function(){
+
+		$('#sentences').slideToggle();
+
+	});
+	
+	
+
 });
+
+
