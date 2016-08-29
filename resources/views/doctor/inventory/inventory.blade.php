@@ -62,17 +62,39 @@
                                                     
                                                         
                                                     <div class="row">
-                                                    <div class="input-field col l6">
-                                                        <input id="quantity" type="number" class="validate">
-                                                        <label for="quantity">Quantity</label>
+                                                        <div class="input-field col l6">
+                                                            <input id="quantity" type="number" class="validate">
+                                                            <label for="quantity">Quantity</label>
+                                                        </div>                                                       
                                                     </div>
+
+                                                    <div class="row">
+                                                        <div class="col s6 m6 l7">
+                                                            <p>
+                                                          <input name="group1" type="radio" id="test1" />
+                                                          <label for="test1">Add</label>
+                                                        </p>
+                                                        <p>
+                                                          <input name="group1" type="radio" id="test2" />
+                                                          <label for="test2">Remove</label>
+                                                        </p>
+                                                            
+                                                        </div>
+
+                                                        <div class="col ">
+                                                            <button class="btn waves-effect waves-light " type="submit" name="action">Update
+                                                            <i class="material-icons right">send</i>
+                                                            </button>
+                                                            
+                                                        </div>
                                                         
+                                                    
+                                                    
+                                                        
+
                                                     </div>
+
                                                     
-                                                    
-                                                    <button class="btn waves-effect waves-light" type="submit" name="action">Update
-                                                        <i class="material-icons right">send</i>
-                                                    </button>
 
                                                     
                                                 
