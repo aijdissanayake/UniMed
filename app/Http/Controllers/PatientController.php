@@ -25,7 +25,7 @@ class PatientController extends Controller
                                                 ->where('patient_id',$pID)
                                                 ->where('expired',FALSE)
                                                 ->take(2)->first();
-        $currentSession = $currentPatientsAppointment->session;
+        $currentSession = $currentPatientsAppointment->session_id;
         $currentDate=substr($currentPatientsAppointment->aDate,0,10);
 
              if($currentSession==1){
@@ -73,36 +73,18 @@ class PatientController extends Controller
         
         //takes inputs from the form
         $inputs = Input::all();
-        $appDate = $inputs['appointmentDate'];       
+        $appDate = $inputs['appointmentDate'];
+        $date = date_create($appDate);       
         $appSession = $inputs['session'];
-        $today = \Carbon\Carbon::today();
-        $today1= date_create($today);
-        $date = date_create($appDate);
-         echo $appDate . $today;
-        $currentAppDetails = "";
-      
+        $currentAppDetails = "";        
         
+        $id = \Illuminate\Support\Facades\Auth::user()->id ; // get the id of the current user
+        $patient =  \App\patient::where('user_id','LIKE', $id)->get()[0]; // get the patient object
+        $hasAppointment = $patient->hasAppointment; 
+        $pID = $patient->id; 
         
-        if($appDate<$today){
-           $directing = 0;
-            return view('patient.home.patientHome')
-                    ->with('hasAppointment',0)
-                    ->with('directing',$directing)
-                    ->with('had',FALSE)
-                    ;
-   
-        }
-        else{
-        
-        // get the id of the current user
-        $id = \Illuminate\Support\Facades\Auth::user()->id ;
-        // check whether patient has an appointment
-        $patient =  \App\patient::where('user_id','LIKE', $id)->get()[0];
-        $hasAppointment = $patient->hasAppointment;
-        $pID = $patient->id ; 
-        
-        $currentAppointments =    \App\appointment::where('aDate','LIKE', '%'.$appDate.'%')
-                ->where('session','LIKE', $appSession)
+        $currentAppointments = \App\appointment::where('aDate','LIKE', '%'.$appDate.'%') //get current appointments for the requested slot
+                ->where('session_id','LIKE', $appSession)
                 ->where('expired',FALSE)
                 ->get();
         $noOfAppointments = count($currentAppointments); 
@@ -111,29 +93,28 @@ class PatientController extends Controller
         
             
         if ($hasAppointment == 0) {
+
             if ($noOfAppointments==10){
-            // to recognize the condition caused to update the html view
-            $directing = 2;
+            $directing = 2; // to recognize the condition caused to update the html view
             return view('patient.home.patientHome')
                     ->with('hasAppointment',$hasAppointment)
                     ->with('directing',$directing)
                     ->with('currentAppDetails',$currentAppDetails)
-                    >with('had',FALSE)
-                    ;
+                    >with('had',FALSE);
   
-        }
+            }
+
             else{             
         
-             $directing = 3 ;
-             //update the patients table
-            DB::table('patients')
+             $directing = 3 ; 
+            DB::table('patients')  //update the patients table
             ->where('user_id', $id)
             ->update(['hasAppointment' => TRUE]);
             //insert to the appointment table
             $app = new \App\appointment();
             $app ->patient_id = $pID;
             $app->aDate =$date;
-            $app->session =$appSession;
+            $app->session_id = $appSession;
             $app->appointmentNo=$newAppNo;
             $app->save();
             
@@ -143,7 +124,7 @@ class PatientController extends Controller
                                                 ->take(2)->get()[0];
              
              
-             $currentSession = $currentPatientsAppointment->session;
+             $currentSession = $currentPatientsAppointment->session_id;
              $currentDate=substr($currentPatientsAppointment->aDate,0,10);
              
              if($currentSession==1){
@@ -178,7 +159,7 @@ class PatientController extends Controller
                                                 ->take(2)->get()[0];
              
              
-             $currentSession = $currentPatientsAppointment->session;
+             $currentSession = $currentPatientsAppointment->session_id;
              $currentDate=substr($currentPatientsAppointment->aDate,0,10);
              
              if($currentSession==1){
@@ -204,7 +185,7 @@ class PatientController extends Controller
                    ->with('had',FALSE)
                    ;
     }
-        }
+        
     }
     public function cancelAppointment() {
         
