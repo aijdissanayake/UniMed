@@ -129,7 +129,7 @@
                             </div>
                             <div class="purple lighten-5 grey-text z-depth-1 section col s12 m6" style="padding: 20px 20px 0px 20px; margin-top: 20px; height: 350px">
 
-                            @if($directing == 0 || $directing == 1 || $directing == 2 ||  $directing==4 || $directing == 5)
+                            @if( $directing == 1 || $directing == 2 ||  $directing==4 || $directing == 5)
 
                             @if(!$hasAppointment || $had)
 
@@ -196,12 +196,9 @@
                                 </div>
                             @endif
 
-                            @if($directing == 0)
-                            <!--                            <h2><div style=" width: 600px ; text-align:center ; background-color: red; color: white; font-size:20px ;">
-                                                                Invalid Date
-                                                            </div></h2> -->
+                            
 
-                            @elseif($directing == 1)
+                            @if($directing == 1)
                                 @if($hasAppointment)
                                     <h2><div  style=" width: 250px ; text-align:center ; background-color: greenyellow; color: white; font-size:20px ; ">You have an Appointment<br> {{$currentAppDetails}}</div>
                                     </h2>

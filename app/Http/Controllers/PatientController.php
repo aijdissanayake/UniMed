@@ -77,6 +77,7 @@ class PatientController extends Controller
         $appSession = $inputs['session'];
         $today = \Carbon\Carbon::today();
         $today1= date_create($today);
+        $date = date_create($appDate);
          echo $appDate . $today;
         $currentAppDetails = "";
       
@@ -131,7 +132,7 @@ class PatientController extends Controller
             //insert to the appointment table
             $app = new \App\appointment();
             $app ->patient_id = $pID;
-            $app->aDate =$appDate;
+            $app->aDate =$date;
             $app->session =$appSession;
             $app->appointmentNo=$newAppNo;
             $app->save();
