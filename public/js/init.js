@@ -5,10 +5,14 @@ $(document).ready(function(){
         $('select').material_select();
     
     var d = new Date();
+    console.log(d);
+    d.setDate(d.getDate() + 1);
+    console.log(d);
 
     $('.datepicker').pickadate({
     	selectMonths: true, // Creates a dropdown to control month
     	selectYears: 15, // Creates a dropdown of 15 years to control year
-    	min: new Date(d) // Enable dates after today
+    	min: d, // Enable dates after today
+    	close:'Select' // rename close button
    	});
 });

@@ -149,9 +149,9 @@
                                         <div class="input-field" style="padding:10px">
                                             <select class="black-text text-lighten-1" name="session" id="session" data-beloworigin="true" required="">
                                                 <option  value="" disabled selected >Choose your preferred session</option>
-                                                <option value=1> 8am - 11am </option>
-                                                <option value=2> 12noon - 3pm </option>
-                                                <option value=3>4pm - 8pm</option>
+                                            @foreach (\App\Session::where('available',TRUE)->get() as $session)                                                
+                                                <option value="{{$session->id}}">{{$session->time_Period}}</option>
+                                            @endforeach                                                
                                             </select>
                                             <label for="session" class="purple-text text-lighten-2"> Session :</label>
                                         </div>
@@ -160,7 +160,7 @@
                                             <a href="#"><span class=" grey-text z-depth-0" id="close" style="height:15px; width:25px; vertical-align:middle; border-color:grey; border-style:solid; border-width:1px">&nbsp;X&nbsp; </span></a>
                                         </div>
                                     </div>                         
-                                    <input class="waves-effect waves-light btn grey lighten-3 black-text" type="submit" name="appointmentButton" id="appSubmit">	
+                                    <input class="waves-effect waves-light btn grey lighten-3 black-text" style="float:right" type="submit" name="appointmentButton" id="appSubmit">	
                                 </form>
                
 
