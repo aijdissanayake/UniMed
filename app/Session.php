@@ -4,7 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Session extends Model
+class session extends Model
 {
-    //
+    public function appointments() {
+        return $this->hasMany('App\appointment');
+    }
 }
+

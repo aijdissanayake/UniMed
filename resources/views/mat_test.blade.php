@@ -246,6 +246,8 @@ $('select').material_select();
 
 </div>
 
+ {{$htmlCode}}
+
 </div>
 
 

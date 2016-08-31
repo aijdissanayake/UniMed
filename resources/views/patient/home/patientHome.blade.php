@@ -111,8 +111,8 @@
                                     </div>
                                     <div id="policyL" class="purple lighten-5 grey-text z-depth-1 hide-on-small-only" 
                                     style="padding: 20px 20px 0px 20px; margin-top: 20px;  height: 350px; border-radius:0%">
-                                        <span class="purple-text" id="title"><h5> Appointment Policy </h5> <br> </span>
-                                            <div class="divider purple"></div>
+                                        <span class="purple-text text-lighten-3" id="title"><h5> Appointment Policy </h5> <br> </span>
+                                            <div class="divider purple lighten-3"></div>
                                         <div style="overflow-y: scroll; height: 250px;">
                                             <ul id="sentences" class="purple lighten-5 " style="border-radius:0%">
                                                 <li>1. Appointments should be made at least day prior to the appointment date.</li><br>
@@ -127,11 +127,51 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="purple lighten-5 grey-text z-depth-1 section col s12 m6" style="padding: 20px 20px 0px 20px; margin-top: 20px; height: 350px">
+                            <div class="purple lighten-5 purple-text text-darken-4 z-depth-1 section col s12 m6" style="padding: 20px 20px 0px 20px; margin-top: 20px; height: 350px">
+
+                            @if($directing == 1)
+                                @if($hasAppointment)
+                                    <span class="purple-text text-darken-4" id="title"><h5>{{$title or ''}}</h5> <br> </span>
+                                    <div class="divider purple darken-4"></div><br>
+                                    <div style="height:62%; border-color:purple; border-style: solid; border-width:1px; border-radius:5px; padding:10px">
+                                    <br>Date &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;{{$appDate or ''}}
+                                    <br><br>Session :&nbsp;&nbsp;{{$session or ''}}
+                                    <br><br>App. No :&nbsp;&nbsp;{{$appNo or ''}}<br><br>
+                                    <form  action="{{route('cancelAppointment')}}"  " method="get">
+                                        <input class="waves-effect waves-light btn purple lighten-5 red-text text-accent-3"  style="float:right;  border-color:red; border-style: solid; border-width:1px;" type="submit" name="cancelButton" value="Cancel" />
+                                    </form>
+                                    </div>
+                                @endif
+                            @elseif ($directing == 2)
+                                @if(!$hasAppointment)
+                                    <span class="purple-text" id="title"><h5>{{$title or ''}}</h5> <br> </span>
+                                    <div class="divider purple"></div>
+                                    <div  class="pink darken-4" style=" width: 250px ; text-align:center ; color: white; font-size:20px ">
+                                     Sorry, All the Online Appointments are reserved. Please Contact Doctor for Arrangements.
+                                    </div>
+                                @endif
+                            @elseif ($directing == 3)
+                                @if(!$hasAppointment)
+                                    <span class="purple-text" id="title"><h5>{{$title or ''}}</h5> <br> </span>
+                                    <div class="divider purple"></div>
+                                    <div  class="pink darken-4" style=" width: 250px ; text-align:center ; color: white; font-size:20px ">
+                                    <br>{{$appDate or ''}}<br> {{$session or ''}} <br>{{$appNo or ''}}<br>
+                                    </div>
+                                @endif
+                            @elseif ($directing == 4)
+                                @if($hasAppointment)
+                                    <span class="purple-text" id="title"><h5>{{$title or ''}}</h5> <br> </span>
+                                    <div class="divider purple"></div>
+                                    <div  class="pink darken-4" style=" width: 250px ; text-align:center ; color: white; font-size:20px ">
+                                    <br>{{$appDate or ''}}<br> {{$session or ''}} <br>{{$appNo or ''}}<br> 
+                                    Cancel it to create a new appointment<br>
+                                    </div>
+                                @endif
+                            @endif
 
                             @if( $directing == 1 || $directing == 2 ||  $directing==4 || $directing == 5)
 
-                            @if(!$hasAppointment || $had)
+                                @if(!$hasAppointment || $had)
 
                                 <form action="{{route('appointment')}}" method="post" onsubmit="return ValidationEvent">
                                 {{ csrf_field() }}
@@ -149,8 +189,8 @@
                                         <div class="input-field" style="padding:10px">
                                             <select class="black-text text-lighten-1" name="session" id="session" data-beloworigin="true" required="">
                                                 <option  value="" disabled selected >Choose your preferred session</option>
-                                            @foreach (\App\Session::where('available',TRUE)->get() as $session)                                                
-                                                <option value="{{$session->id}}">{{$session->time_Period}}</option>
+                                            @foreach (\App\session::where('available',TRUE)->get() as $avbSession)                                                
+                                                <option value="{{$avbSession->id}}">{{$avbSession->time_Period}}</option>
                                             @endforeach                                                
                                             </select>
                                             <label for="session" class="purple-text text-lighten-2"> Session :</label>
@@ -164,64 +204,41 @@
                                 </form>
                
 
-                            @else
+                                @else
 
                                 <div>
-                                    <form action="{{route('cancelAppointment')}}" method="get">
-                                        <input class="waves-effect waves-dark btn red" type="submit" name="cancelButton" value="CancelAppointment" />
+                                    <!-- <form action="{{route('cancelAppointment')}}" method="get">
+                                        <input class="waves-effect waves-dark btn red accent-3" style="float:right" type="submit" name="cancelButton" value="CancelAppointment" />
                                     </form>
-
-                                @if($directing == 5)
-                                    @if($hasAppointment)
+ -->
+                                    @if($directing == 5)
+                                        @if($hasAppointment)
 
                                         <h2><div style=" width: 600px ; text-align:center ; background-color: orange; color: white; font-size:20px ;">Appointment Canceled !
                                             </div>
                                         </h2>
-                                    @else
+                                        @else
                                         <h2><div style=" width: 600px ; text-align:center ; background-color: red; color: white; font-size:20px ;">No Appointments to Cancel !
                                             </div>
                                         </h2>
+                                        @endif
                                     @endif
-                                @endif
                                 </div>
 
-                            @endif
+                                @endif
                             @endif
 
                             @if($directing == 3)
-                                <div class="card section">
+                                <div>
                                     <form action="{{route('cancelAppointment')}}" method="get">
-                                        <input class="waves-effect waves-dark btn red" type="submit" name="cancelButton" value="CancelAppointment" />
+                                        <input class="waves-effect waves-dark btn red " type="submit" name="cancelButton" value="CancelAppointment" />
                                     </form>
                                 </div>
                             @endif
 
                             
 
-                            @if($directing == 1)
-                                @if($hasAppointment)
-                                    <h2><div  style=" width: 250px ; text-align:center ; background-color: greenyellow; color: white; font-size:20px ; ">You have an Appointment<br> {{$currentAppDetails}}</div>
-                                    </h2>
-                                @endif
-                            @elseif ($directing == 2)
-                                @if(!$hasAppointment)
-                                    <h2><div style=" width: 600px ; text-align:center ; background-color: red; color: white; font-size:20px ;">
-                                        Sorry, All the Online Appointments are reserved. Please Contact Doctor for Arrangements.
-                                        </div>
-                                    </h2>
-                                @endif
-                            @elseif ($directing == 3)
-                                @if(!$hasAppointment)
-                                    <h2><div style=" width: 280px ; text-align:center ; background-color: greenyellow; color: white; font-size:20px ;">Appointment Created<br> {{$currentAppDetails}}</div>
-                                    </h2>
-                                @endif
-                            <!--  @elseif ($directing == 4)
-                             @if($hasAppointment)
-                             <h2><div style=" width: 600px ; text-align:center ; background-color: red; color: white; font-size:20px ;">
-                                     You already have an Appointment.<br>{{$currentAppDetails}}<br> Cancel it to create a new appointment<br> 
-                                 </div></h2>
-                                 @endif -->
-                            @endif
+                            
 
                             </div>
                         </div>

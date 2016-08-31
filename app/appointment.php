@@ -6,10 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class appointment extends Model
 {
-    public function getPatient() {
-        return $this->belongsTo('App\patient','patient_id', 'id');
+    public function patient() {
+        return $this->belongsTo('App\patient');
     }
-    public function getSession(){
-    	return $this->belongsTo('App\Session','session_id','id');
+    public function session(){
+    	return $this->belongsTo('App\Session');
     }
+
+
 }
