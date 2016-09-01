@@ -10,71 +10,7 @@
     <script type="text/javascript" src="/js\patient.js"></script>
     <link rel='stylesheet' type='text/css' href='http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css'/>
     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
-    <style type="text/css">
-
-        .picker__date-display, .picker__weekday-display
-        {
-            background-color: #de49d4;
-        }
-
-        .picker__date-display 
-        {
-            text-align: center;
-            background-color: #f398ed;
-            color: #fff;
-            padding-bottom: 15px;
-            font-weight: 300;
-        }
-
-        .picker__day.picker__day--today
-        {
-            color: #d423c8;
-        }
-
-        .picker__day--selected, .picker__day--selected:hover, .picker--focused .picker__day--selected
-        {
-           border-radius: 50%;        
-           -webkit-transform: scale(0.9);
-           transform: scale(0.9);
-           background-color: #d423c8;
-           color: #ffffff;
-       }
-       .picker__close, .picker__today {
-        font-size: 1.1rem;
-        padding: 0 1rem;
-        color: #d423c8;
-    }
-
-    .btn-flat
-    {
-       box-shadow: none;
-       background-color: transparent;
-       color: #d423c8;
-       cursor: pointer;
-   }
-
-   .dropdown-content li>a, .dropdown-content li>span {
-        color:#d423c8;
-   }
-
-
-   ::-webkit-input-placeholder 
-   {
-    color: black;
-}
-
-:-moz-placeholder { /* Firefox 18- */
-   color: black;  
-}
-
-::-moz-placeholder {  /* Firefox 19+ */
-    color: black;  
-}
-
-:-ms-input-placeholder {  
-    color: black;  
-}
-</style>
+    <link rel="stylesheet" type="text/css" href="/style/patientStyle.css">
 
 </head>
 
@@ -129,54 +65,40 @@
                             </div>
                             <div class="purple lighten-5 purple-text text-darken-4 z-depth-1 section col s12 m6" style="padding: 20px 20px 0px 20px; margin-top: 20px; height: 350px">
 
-                            @if($directing == 1)
-                                @if($hasAppointment)
-                                    <span class="purple-text text-darken-4" id="title"><h5>{{$title or ''}}</h5> <br> </span>
-                                    <div class="divider purple darken-4"></div><br>
-                                    <div style="height:62%; border-color:purple; border-style: solid; border-width:1px; border-radius:5px; padding:10px">
+                            @if(($directing == 1 && $hasAppointment) || $directing == 3 || $directing == 4)
+                                    <span class="purple-text text-darken-4" id="title" title="Cancel this Appointment to create a new One">
+                                    <h5>{{$title or ''}}</h5> <br>
+                                    </span>
+                                    <div class="divider purple darken-4"></div>
+                                    <div style="height:58%; border-color:purple; border-style: solid; border-width:1px; border-radius:5px; padding:10px ;margin-top:10%">
                                     <br>Date &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;{{$appDate or ''}}
                                     <br><br>Session :&nbsp;&nbsp;{{$session or ''}}
-                                    <br><br>App. No :&nbsp;&nbsp;{{$appNo or ''}}<br><br>
+                                    <br><br>App. No :&nbsp;&nbsp;{{$appNo or ''}}<br>
                                     <form  action="{{route('cancelAppointment')}}"  " method="get">
-                                        <input class="waves-effect waves-light btn purple lighten-5 red-text text-accent-3"  style="float:right;  border-color:red; border-style: solid; border-width:1px;" type="submit" name="cancelButton" value="Cancel" />
+                                        <input class="waves-effect waves-light btn purple lighten-5 red-text tooltipped" data-position="left" data-delay="50" data-tooltip="Cancel this Appointment to create a new One" style="float:right;  border-color:red; border-style: solid; border-width:1px;" type="submit" name="cancelButton" value="Cancel" />
                                     </form>
                                     </div>
+
+                                @if($directing == 3)
+                                    <script type="text/javascript"> 
+                                        Materialize.toast('appointmtment Made!', 4000 , 'rounded blue');
+                                    </script>
                                 @endif
-                            @elseif ($directing == 2)
-                                @if(!$hasAppointment)
+
+                            @elseif ($directing == 2 && !$hasAppointment)
                                     <span class="purple-text" id="title"><h5>{{$title or ''}}</h5> <br> </span>
                                     <div class="divider purple"></div>
-                                    <div  class="pink darken-4" style=" width: 250px ; text-align:center ; color: white; font-size:20px ">
+                                    <div  class="purple darken-4" style=" width: 250px ; text-align:center ; color: white; font-size:20px ">
                                      Sorry, All the Online Appointments are reserved. Please Contact Doctor for Arrangements.
                                     </div>
-                                @endif
-                            @elseif ($directing == 3)
-                                @if(!$hasAppointment)
-                                    <span class="purple-text" id="title"><h5>{{$title or ''}}</h5> <br> </span>
-                                    <div class="divider purple"></div>
-                                    <div  class="pink darken-4" style=" width: 250px ; text-align:center ; color: white; font-size:20px ">
-                                    <br>{{$appDate or ''}}<br> {{$session or ''}} <br>{{$appNo or ''}}<br>
-                                    </div>
-                                @endif
-                            @elseif ($directing == 4)
-                                @if($hasAppointment)
-                                    <span class="purple-text" id="title"><h5>{{$title or ''}}</h5> <br> </span>
-                                    <div class="divider purple"></div>
-                                    <div  class="pink darken-4" style=" width: 250px ; text-align:center ; color: white; font-size:20px ">
-                                    <br>{{$appDate or ''}}<br> {{$session or ''}} <br>{{$appNo or ''}}<br> 
-                                    Cancel it to create a new appointment<br>
-                                    </div>
-                                @endif
                             @endif
 
-                            @if( $directing == 1 || $directing == 2 ||  $directing==4 || $directing == 5)
+                            @if( ($directing == 1 && !$hasAppointment) || $directing == 2 || $directing == 5)
 
-                                @if(!$hasAppointment || $had)
-
-                                <form action="{{route('appointment')}}" method="post" onsubmit="return ValidationEvent">
+                                <form action="{{route('appointment')}}" method="post" id="appForm">
                                 {{ csrf_field() }}
 
-                                    <span class="purple-text" id="title"><h5> Make Appointment </h5> <br> </span>
+                                    <span class="purple-text" id="formtitle"><h5> Make Appointment </h5> <br> </span>
                                     <div class="row">
                                         <div class="input-field " style="padding:10px" >
                                             <div class="black-text ">
@@ -186,54 +108,25 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="input-field" style="padding:10px">
-                                            <select class="black-text text-lighten-1" name="session" id="session" data-beloworigin="true" required="">
-                                                <option  value="" disabled selected >Choose your preferred session</option>
+                                        <div class="input-field"  style="padding:10px">
+                                            <select class="black-text text-lighten-1" name="session" id="session" required="">
+                                                <option  value="0" disabled selected >Choose your preferred session</option>
                                             @foreach (\App\session::where('available',TRUE)->get() as $avbSession)                                                
                                                 <option value="{{$avbSession->id}}">{{$avbSession->time_Period}}</option>
                                             @endforeach                                                
                                             </select>
                                             <label for="session" class="purple-text text-lighten-2"> Session :</label>
-                                        </div>
-                                        <div id="invalidSession" title="Invalid Session" class=" z-depth-1 White purple-text col s3" style="margin:40px 0px 0px 30px; order-color:red; border-style:solid; border-width:1px; border-radius:1% ">
-                                    Select a Valid Session! &nbsp;&nbsp;&nbsp;
-                                            <a href="#"><span class=" grey-text z-depth-0" id="close" style="height:15px; width:25px; vertical-align:middle; border-color:grey; border-style:solid; border-width:1px">&nbsp;X&nbsp; </span></a>
-                                        </div>
+                                        </div>                                        
                                     </div>                         
                                     <input class="waves-effect waves-light btn grey lighten-3 black-text" style="float:right" type="submit" name="appointmentButton" id="appSubmit">	
                                 </form>
-               
 
-                                @else
-
-                                <div>
-                                    <!-- <form action="{{route('cancelAppointment')}}" method="get">
-                                        <input class="waves-effect waves-dark btn red accent-3" style="float:right" type="submit" name="cancelButton" value="CancelAppointment" />
-                                    </form>
- -->
-                                    @if($directing == 5)
-                                        @if($hasAppointment)
-
-                                        <h2><div style=" width: 600px ; text-align:center ; background-color: orange; color: white; font-size:20px ;">Appointment Canceled !
-                                            </div>
-                                        </h2>
-                                        @else
-                                        <h2><div style=" width: 600px ; text-align:center ; background-color: red; color: white; font-size:20px ;">No Appointments to Cancel !
-                                            </div>
-                                        </h2>
-                                        @endif
-                                    @endif
-                                </div>
-
+                                @if($directing == 5)
+                                    <script type="text/javascript"> 
+                                        Materialize.toast('appointmtment Cancelled!', 4000 , 'rounded red');
+                                    </script>
                                 @endif
-                            @endif
 
-                            @if($directing == 3)
-                                <div>
-                                    <form action="{{route('cancelAppointment')}}" method="get">
-                                        <input class="waves-effect waves-dark btn red " type="submit" name="cancelButton" value="CancelAppointment" />
-                                    </form>
-                                </div>
                             @endif
 
                             

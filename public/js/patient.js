@@ -25,25 +25,6 @@ $(document).ready(function(){
 
 	$('#invalidSession').hide();
 
-	function ValidationEvent(){
-
-	$('#appSubmit').click(function(){
-
-		if (!document.getElementById('session').value) {
-              $('#invalidSession').show();
-              return false;
-           }
-
-        else{
-        	return true;
-        }
-
-	});
-
-	}
-
-
-
 	//close invalid session message
 	$('#close').click(function(){
 		$('#invalidSession').hide();
@@ -56,8 +37,22 @@ $(document).ready(function(){
 		$('#sentences').slideToggle();
 
 	});
-	
-	
+
+
+	$('#appForm').submit(function(event){
+		if ((document.getElementById('appointmentDate').value) <= (new Date())) {
+				Materialize.toast('Invalid Date!', 4000 , 'rounded red');
+				event.preventDefault();
+		}
+		else if((document.getElementById('session').value)==0){
+				Materialize.toast('Invalid Session!', 4000 , 'rounded red');
+				event.preventDefault();
+		}
+		else{
+			return;
+		}
+
+	});
 
 });
 

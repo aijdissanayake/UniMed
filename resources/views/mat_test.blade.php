@@ -11,7 +11,8 @@
   <!-- CSS Files -->
 
  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>           
-  <script type="text/javascript" src="materialize\js\materialize.min.js"></script>
+  <!-- <script type="text/javascript" src="materialize\js\materialize.min.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
   <script type="text/javascript" src="js\init.js"></script>
    <script type="text/javascript" src="js\patient.js"></script>
   <link rel='stylesheet' type='text/css' href='http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css'/>
@@ -246,7 +247,10 @@ $('select').material_select();
 
 </div>
 
- {{$htmlCode}}
+ 
+ <a  class="btn tooltipped col s2" data-position="right" data-delay="50" data-tooltip="I am tooltip"> Right</a>
+ <br><br>
+ {{$htmlCode}}       
 
 </div>
 
