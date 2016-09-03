@@ -75,7 +75,7 @@
                                     <br><br>Session :&nbsp;&nbsp;{{$session or ''}}
                                     <br><br>App. No :&nbsp;&nbsp;{{$appNo or ''}}<br>
                                     <form  action="{{route('cancelAppointment')}}"  " method="get">
-                                        <input class="waves-effect waves-light btn purple lighten-5 red-text tooltipped" data-position="left" data-delay="50" data-tooltip="Cancel this Appointment to create a new One" style="float:right;  border-color:red; border-style: solid; border-width:1px;" type="submit" name="cancelButton" value="Cancel" />
+                                        <input id="cancelButton" class="waves-effect waves-light btn purple lighten-5 red-text tooltipped" data-position="left" data-delay="50" data-tooltip="Cancel this Appointment to create a new One" style="float:right;  border-color:red; border-style: solid; border-width:1px;" type="submit" name="cancelButton" value="Cancel" />
                                     </form>
                                     </div>
 

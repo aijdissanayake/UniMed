@@ -1,12 +1,10 @@
 $(document).ready(function(){
-    
+	$('.tooltipped').tooltip({delay: 50});
+	    
     $('.button-collapse').sideNav();
 
     $('select').material_select();
 
-    $('.tooltipped').tooltip();
-	
-    
     var d = new Date();
     d.setDate(d.getDate() + 1);
     $('.datepicker').pickadate({

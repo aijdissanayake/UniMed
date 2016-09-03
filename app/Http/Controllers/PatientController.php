@@ -6,9 +6,9 @@ use Illuminate\Support\Facades\Input;
 
 use Illuminate\Support\Facades\DB;
 
-use \DateTime; 
+use Carbon\Carbon;
 
-//use Illuminate\Support\Facades\Auth;
+use \DateTime; 
 
 class PatientController extends Controller
 {

@@ -54,6 +54,15 @@ $(document).ready(function(){
 
 	});
 
+	$('#cancelButton').click(function(event){
+		if(confirm('Are you Sure you want to cancel the appointmtment?')){
+			return;
+		}
+		else{
+			event.preventDefault();
+		}
+	});
+
 });
 
 
