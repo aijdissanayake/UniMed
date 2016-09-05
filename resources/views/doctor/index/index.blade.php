@@ -19,8 +19,8 @@
 
                         <!--Appointment data-->
 
-                        <div class="card white-text" id="appointments">
-                            <div class="card-title yellow darken-2">Upcoming Appointments</div>
+                        <div class="card" id="appointments">
+                            <div class="card-title yellow darken-2 white-text">Upcoming Appointments</div>
                             <div class="card-content black-text grey lighten-5">
                                 
                                 <?php $appointments = $homeData[0]; ?>

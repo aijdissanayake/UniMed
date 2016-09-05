@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\User;
+use App\Patient;
 
 class AjaxController extends Controller {
 
@@ -21,4 +22,31 @@ class AjaxController extends Controller {
         return response()->json(array('msg' => $msg), 200);
     }
 
+    public function searchPatients(Request $request) {
+        $value = $request->value;
+        $col = $request->col_name;
+        
+        if ($col == '1'){
+            $col_name = 'firstName';
+        } elseif ($col == '2'){
+            $col_name = 'lastName';
+        } elseif ($col == '3'){
+            $col_name = 'telephoneNo';
+        }
+        
+        $patients = Patient::where($col_name, 'LIKE', '%' . $value . '%')
+                ->take(20)
+                ->get();
+//        $data = (string)$value;
+        if ($patients->isEmpty()){
+            return response()->json(['patients'=>"Not found."]);
+        }else{
+            $data = array();
+            foreach ($patients as $patient){
+                $data[$patient->getUser->name]=$patient->id;
+            }
+            return response()->json(array('patients'=>$data),200);
+        }
+        
+    }
 }
