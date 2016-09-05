@@ -29,8 +29,8 @@ class User extends Authenticatable
      *  relationships
      */
     
-    public function getPatient() {
-        return $this->hasOne('App\patient','user_id','id');
+    public function patient() {
+        return $this->hasOne('App\patient');
     }
     
     public function getDoctor() {

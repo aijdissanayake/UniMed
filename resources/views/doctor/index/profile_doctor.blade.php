@@ -7,40 +7,29 @@
   <meta name="description" content="website description" />
   <meta name="keywords" content="website keywords, website keywords" />
   <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
-  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine&amp;v1" />
-  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" />
-  <link rel="stylesheet" type="text/css" href="/style/style2.css" />
+
 </head>
 
-<body>
-  <div id="main">
-    <div id="header">
-      <div id="logo">
-        <h1>Unicare Medical</h1>
-        <div class="slogan"></div>
-      </div>
-      <div id="heading"><h2>Doctor's Profile</h2></div>
-    </div>
-    <div id="site_content">
-      <div id="content">
-        <h2>Personal Information</h2>
-        <form action="#" method="post">
-          <div class="form_settings">
-          	<table style="width:70%; border-spacing:0;">
-          <tr><td>Name</td><td>{{$doctor->doctorName}}</td></tr>
-          <tr><td>Registered Number</td><td>{{$doctor->RegNo}}</td></tr>
-          <tr><td>Email</td><td>{{$doctor->getUser->email}}</td></tr>
-        </table>
-          </div>
-        </form>
-		<div class="form_settings">
-		<p align = "right" style="padding-top: 15px"><input class="submit" type="submit" name="backButton" value="Back" /></p>
-		</div>
-      </div>
-    </div>
-    <div id="footer">
-      <p>&nbsp;</p>
-    </div>
+<body class="grey lighten-4">
+  <div class="container">
+    <div class="row top-row">
+        <div class="row">
+            <div class="col s12 m10 offset-m1 l10 offset-l1">
+                <div class="card">
+                    <div class="card-title green accent-4 white-text"><i class="material-icons">person_pin</i> Doctor's Profile - Personal Information</div>
+                        <div class="card-content green-text text-darken-4">
+                          <table class="highlight bordered">
+                            <form action="#" method="post">
+                              <tr><td>Name</td><td>{{$doctor->doctorName}}</td></tr>
+                              <tr><td>Registered No.</td><td>{{$doctor->RegNo}}</td></tr>
+                              <tr><td>Email</td><td>{{$doctor->getUser->email}}</td></tr>
+                            </form>
+                          </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
   </div>
 </body>
 </html>

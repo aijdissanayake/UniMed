@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSessionsTable extends Migration
+class ChangeSessionToSessionId extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,8 @@ class CreateSessionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('sessions', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('time_Period');
-            $table->boolean('available');
-            $table->timestamps();
+        Schema::table('appointments', function (Blueprint $table) {
+            $table->renameColumn('session','session_id');
         });
     }
 
@@ -27,6 +24,8 @@ class CreateSessionsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('sessions');
+        Schema::table('appointments', function (Blueprint $table) {
+            //
+        });
     }
 }
