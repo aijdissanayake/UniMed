@@ -109,7 +109,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="input-field"  style="padding:10px">
-                                            <select class="black-text text-lighten-1" name="session" id="session" required="">
+                                            <select class="black-text text-lighten-1" name="session" id="session" >
                                                 <option  value="0" disabled selected >Choose your preferred session</option>
                                             @foreach (\App\session::where('available',TRUE)->get() as $avbSession)                                                
                                                 <option value="{{$avbSession->id}}">{{$avbSession->time_Period}}</option>
@@ -118,7 +118,7 @@
                                             <label for="session" class="purple-text text-lighten-2"> Session :</label>
                                         </div>                                        
                                     </div>                         
-                                    <input class="waves-effect waves-light btn grey lighten-3 black-text" style="float:right" type="submit" name="appointmentButton" id="appSubmit">	
+                                    <input class="waves-effect waves-light btn grey lighten-3 black-text" style="float:right" type="submit" name="appointmentButton" id="appSubmit" value="submit">	
                                 </form>
 
                                 @if($directing == 5)

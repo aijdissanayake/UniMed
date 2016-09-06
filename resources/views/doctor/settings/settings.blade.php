@@ -99,6 +99,19 @@
                     </div>
                 </div>
 
+                <div class="col s12 m4">
+                    <div class="card purple darken-2 white-text">
+                        <div class="card-content">
+                            <span class="card-title"><strong>Appointments</strong></span>
+                            <p>There are no of appintments for Today!</p><br>
+                            
+                            <a href="#!" class="waves-effect purple darken-4 btn">
+                                Change Settings
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
 
