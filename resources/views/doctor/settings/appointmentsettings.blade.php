@@ -11,45 +11,34 @@
 
     <body class="blue lighten-5">
         <div class="container">
-            <div class="row">
-                <div class="col s12"> 
-                    <div class="card white">
-                        <div class="row top-row">
-                            <div class="col s12 m6">
-                                <div class="card green white-text">
-                                    <div class="card-content">
-                                        <span class="card-title"><strong>My profile</strong></span>
-                                        <table>
-                                            <tr><td>Name</td><td>Anon</td></tr>
-                                            <tr><td>Registration Number</td><td>1111</td></tr>
-                                            <tr><td>Email</td><td>app@</td></tr>
-                                        </table>
-                                        <a href="#!" class="waves-effect green darken-3 btn">
-                                            Edit
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col s12 m6">
-                                <div class="card light-blue white-text">
-                                    <div class="card-content">
-                                        <span class="card-title"><strong>Statistics</strong></span>
-                                        <table>
-                                            <tr><td></td><td>lorem ipsum</td></tr>
-                                            <tr><td></td><td>lorem ipsum</td></tr>
-                                            <tr><td></td><td>lorem ipsum</td></tr>
-                                        </table>
-
-                                        <a href="#!" class="waves-effect light-blue darken-3 btn">
-                                            See more...
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
+             <div class="row" style="height:auto; display: flex">
+                <div class="col s12 m6" style="height:auto">
+                    <div class="card white black-text" style="height:100%; margin-bottom:1%" >
+                        <div class="card-title red white-text"><span style="padding:0%;">Add Session</span></div>
+                        <div class="card-content" style="padding:5% 5% 0 5%;">
+                            <div style=" height:150px; overflow:auto; padding-top:2%">
+                             Select time:
+                            </div>                            
                         </div>
                     </div>
                 </div>
+
+                <div class="col s12 m6" style="height:auto">
+                    <div class="card purple white-text" style="height:100%; margin-bottom:1%"  >
+                        <div class="card-content" style="padding:5% 5% 0 5%;">
+                            <span class="card-title" style="padding:0%;">Appointments</span>
+                            <div class="white divider"></div>
+                            <div style=" height:125px; overflow:auto; padding-top:2%">
+                            <p>There are no of appintments for Today!</p><br>
+                            <p>X sessions are available now !</p><br>                       
+                            </div>
+                            <a href="#!" class="waves-effect purple darken-3 btn" style="margin:5% 0 0 0 ">
+                                Change Settings
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
             </div>
             <div class="row" style="height:auto; display: flex">
                 <div class="col s12 m4" style="align-self:stretch">
@@ -90,51 +79,6 @@
                         </div>
                     </div>
                 </div>
-
-            </div>
-            <div class="row" style="height:auto; display: flex">
-                <div class="col s12 m6" style="height:auto">
-                    <div class="card grey white-text" style="height:100%; margin-bottom:1%" >
-                        <div class="card-content" style="padding:5% 5% 0 5%;">
-                            <span class="card-title" style="padding:0%;">Finances</span>
-                            <div class="white divider"></div>
-                            <div style=" height:150px; overflow:auto; padding-top:2%">
-                            <p>lorem ipsum</p>
-                            <p>lorem ipsum</p>
-                            <p>lorem ipsum</p>
-                            <p>lorem ipsum</p>
-                            <p>lorem ipsum</p>
-                            <p>lorem ipsum</p>
-                            <p>lorem ipsum</p>
-                            <p>lorem ipsum</p>
-                            <p>lorem ipsum</p>
-                            <p>lorem ipsum</p>
-                            <p>lorem ipsum</p>
-                            <p>lorem ipsum</p>
-                            
-                            
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col s12 m6" style="height:auto">
-                    <div class="card purple white-text" style="height:100%; margin-bottom:1%"  >
-                        <div class="card-content" style="padding:5% 5% 0 5%;">
-                            <span class="card-title" style="padding:0%;">Appointments</span>
-                            <div class="white divider"></div>
-                            <div style=" height:125px; overflow:auto; padding-top:2%">
-                            <p>There are no of appintments for Today!</p><br>
-                            <p>X sessions are available now !</p><br>                       
-                            </div>
-                            <a href="#!" class="waves-effect purple darken-3 btn" style="margin:5% 0 0 0 ">
-                                Change Settings
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </div>
 

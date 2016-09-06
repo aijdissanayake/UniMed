@@ -35,7 +35,7 @@
 
 
                                     @foreach ($appointments as $appointment)
-                                    <tr><td >{{$appointment->getPatient->getUser->name}}</td>
+                                    <tr><td >{{$appointment->patient->getUser->name}}</td>
                                         <td align="right">{{date('Y:m:d',strtotime($appointment->aDate))}}</td>
                                         <td align="right">{{$appointment->session}}</td>
                                         <td align="right">{{$appointment->appointmentNo}}</td>
