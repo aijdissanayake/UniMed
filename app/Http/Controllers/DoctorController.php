@@ -271,6 +271,9 @@ class DoctorController extends Controller
         return view('doctor.lab.lab');
     }
 
+    public function viewAppointmentSettingsPage(){
+        return view('doctor.settings.appointmentsettings');
+    }
     
 
 
