@@ -96,7 +96,6 @@ class PatientController extends Controller
         $patient =  \App\patient::where('user_id','LIKE', $id)->get()[0];
         $hasAppointment = $patient->hasAppointment;
         $pID = $patient->id ; 
-        $currAppNoArray = [];
         $currentAppointments =    \App\appointment::where('aDate','LIKE', '%'.$appDate.'%')
                 ->where('session','LIKE', $appSession)
                 ->where('aDate', '>', $today)
@@ -117,14 +116,17 @@ class PatientController extends Controller
                     ->with('currentAppDetails',$currentAppDetails);
   
         }
-            else{             
-             $newAppNo ;
-             $directing = 3 ;
+            else{
+            $directing = 3 ;             
+            $newAppNo ;
+
+            $currAppNoArray = [];
+             
              //set new app no
              foreach ($currentAppointments as $currentAppointment){
                  array_push($currAppNoArray, $currentAppointment->appointmentNo);
              }
-             for($i=1; $i<10; $i++ ){
+             for($i=1; $i<=10; $i++ ){
                  if (in_array($i, $currAppNoArray)){
                      continue;
                  }
