@@ -11,37 +11,42 @@
 
     <body class="blue lighten-5">
         <div class="container">
-            
-            <div class="row top-row">
-                <div class="col s12 m6">
-                    <div class="card green white-text">
-                        <div class="card-content">
-                            <span class="card-title"><strong>My profile</strong></span>
-                            <table>
-                                <tr><td>Name</td><td>Anon</td></tr>
-                                <tr><td>Registration Number</td><td>1111</td></tr>
-                                <tr><td>Email</td><td>app@</td></tr>
-                            </table>
-                            <a href="#!" class="waves-effect green darken-3 btn">
-                                Edit
-                            </a>
-                        </div>
-                    </div>
-                </div>
+            <div class="row">
+                <div class="col s12"> 
+                    <div class="card white">
+                        <div class="row top-row">
+                            <div class="col s12 m6">
+                                <div class="card green white-text">
+                                    <div class="card-content">
+                                        <span class="card-title"><strong>My profile</strong></span>
+                                        <table>
+                                            <tr><td>Name</td><td>Anon</td></tr>
+                                            <tr><td>Registration Number</td><td>1111</td></tr>
+                                            <tr><td>Email</td><td>app@</td></tr>
+                                        </table>
+                                        <a href="#!" class="waves-effect green darken-3 btn">
+                                            Edit
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
 
-                <div class="col s12 m6">
-                    <div class="card light-blue white-text">
-                        <div class="card-content">
-                            <span class="card-title"><strong>Statistics</strong></span>
-                            <table>
-                                <tr><td></td><td>lorem ipsum</td></tr>
-                                <tr><td></td><td>lorem ipsum</td></tr>
-                                <tr><td></td><td>lorem ipsum</td></tr>
-                            </table>
+                            <div class="col s12 m6">
+                                <div class="card light-blue white-text">
+                                    <div class="card-content">
+                                        <span class="card-title"><strong>Statistics</strong></span>
+                                        <table>
+                                            <tr><td></td><td>lorem ipsum</td></tr>
+                                            <tr><td></td><td>lorem ipsum</td></tr>
+                                            <tr><td></td><td>lorem ipsum</td></tr>
+                                        </table>
 
-                            <a href="#!" class="waves-effect light-blue darken-3 btn">
-                                See more...
-                            </a>
+                                        <a href="#!" class="waves-effect light-blue darken-3 btn">
+                                            See more...
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
