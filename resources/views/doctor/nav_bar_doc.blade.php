@@ -32,7 +32,10 @@ Position and line height also adjusted as necessary. -->
 <div class="navbar-fixed">
     <nav>
         <div class="nav-wrapper blue">
-            <a href="#!" class="brand-logo">Logo</a>
+            <div class="card-title">
+                <span><a href="" class="brand-logo"><i class="small material-icons" style="vertical-align:middle; padding-left:10px; float:left">local_hospital</i>Unicare</a>
+                </span>
+            </div>
             <a href="#" data-activates="mob-snav" class="button-collapse">
                 <i class="material-icons">menu</i>
             </a>
