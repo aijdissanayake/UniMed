@@ -10,7 +10,7 @@
 
     </head>
 
-    <body>
+    <body class="grey lighten-4">
         <div class="container">
             <div class="row top-row">
                 <div class="row">
@@ -22,29 +22,31 @@
                                     <form action="{{route('storePatientVisitRecord',[$patient->id])}}" method="post">
                                         {{ csrf_field() }}
                                         <div class="row">
-                                            <div class="col s12 m6"><p><span>PatientID</span>{{$patient->id}}</p></div>
-                                            <div class="col s12 m6"><p><span>Patient name</span>{{$patient->firstName}} {{$patient->lastName}}</p></div>
-                                            <div class="input-field col s12">
-                                                <textarea id="diagnosis" type="text" class="materialize-textarea validate" required></textarea>
-                                                <label for="diagnosis">Diagnosis</label>
+                                            <div class="section">
+                                                <div class="col s12 m6"><p><span>PatientID: </span>{{$patient->id}}</p></div>
+                                                <div class="col s12 m6"><p><span>Name: </span>{{$patient->firstName}} {{$patient->lastName}}</p></div>
+                                                <div class="input-field col s12">
+                                                    <input id="diagnosis" type="text" class="validate" required>
+                                                    <label for="diagnosis">Diagnosis</label>
+                                                </div>
+                                                <div class="input-field col s12">
+                                                    <input id="prognosis" type="text" class="validate" required>
+                                                    <label for="prognosis">Prognosis</label>
+                                                </div>
+                                                <div class="input-field col s12 m6">
+                                                    <input id="prescDrugs" type="text" class="validate" required>
+                                                    <label for="prescDrugs">Prescribed Drugs</label>
+                                                </div>
+                                                <div class="input-field col s12">
+                                                    <input id="remarks" type="text" class="validate" required>
+                                                    <label for="remarks">Special Remarks</label>
+                                                </div>
+                                                <div class="input-field col s12 m6">
+                                                    <input type="date" class="datepicker" id="nextVisitDate"  required>
+                                                    <label for="nextVisitDate">Next Visit Date</label>
+                                                </div>
+                                                <div class="input-field col s12 m6"></div>
                                             </div>
-                                            <div class="input-field col s12">
-                                                <textarea id="prognosis" type="text" class="materialize-textarea validate" required></textarea>
-                                                <label for="prognosis">Prognosis</label>
-                                            </div>
-                                            <div class="input-field col s12 m6">
-                                                <textarea id="prescDrugs" type="text" class="materialize-textarea validate" required></textarea>
-                                                <label for="prescDrugs">Presctibed Drugs</label>
-                                            </div>
-                                            <div class="input-field col s12">
-                                                <textarea id="remarks" type="text" class="materialize-textarea validate" required></textarea>
-                                                <label for="remars">Special Remarks</label>
-                                            </div>
-                                            <div class="input-field col s12 m6">
-                                                <input type="date" class="datepicker" id="nextVisitDate"  required>
-                                                <label for="nextVisitDate">Next Visit Date</label>
-                                            </div>
-                                            <div class="input-field col s12 m6"></div>
                                         </div>
 
                                         <input class="btn purple" type="submit" name="submitButton" value="Submit Record" />

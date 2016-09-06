@@ -3,7 +3,7 @@
 
     <head>
         @include('doctor.nav_bar_doc')
-        <title>Unicare - Home</title>
+        <title>Settings</title>
         <meta name="description" content="website description" />
         <meta name="keywords" content="website keywords, website keywords" />
     </head>
