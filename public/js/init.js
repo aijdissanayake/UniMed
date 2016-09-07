@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	$('.tooltipped').tooltip({delay: 50});
-	    
+
     $('.button-collapse').sideNav();
 
     $('select').material_select();
@@ -14,6 +14,6 @@ $(document).ready(function(){
     	close:'Select' // rename close button
    	});
 
-    $('.datepicker').datepicker("setDate", new Date());
+    // $('.datepicker').datepicker("setDate", new Date());
 
 });
