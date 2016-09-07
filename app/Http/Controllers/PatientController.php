@@ -74,13 +74,11 @@ class PatientController extends Controller
         $patient = \Illuminate\Support\Facades\Auth::user()->patient;  // get the patient object
         $hasAppointment = $patient->hasAppointment; 
         $pID = $patient->id; 
-        
-        $currentAppointments = \App\appointment::where('aDate','LIKE', '%'.$appDate.'%') //get current appointments for the requested slot
+        $currentAppointments = \App\appointment::where('aDate','LIKE', '%'.date_format($date,"Y-m-d").'%') //get current appointments for the requested slot
                 ->where('session_id','LIKE', $appSession)
                 ->where('expired',FALSE)
                 ->get();
         $noOfAppointments = count($currentAppointments);
-        
         
             
         if (!$hasAppointment) {
@@ -102,7 +100,22 @@ class PatientController extends Controller
             $patient->hasAppointment =TRUE;
             $patient->save();
 
-            $newAppNo=$noOfAppointments+1;
+            $newAppNo ;
+            $currAppNoArray = [];             
+             
+            foreach ($currentAppointments as $currentAppointment){
+                array_push($currAppNoArray, $currentAppointment->appointmentNo);
+            }
+            for($i=1; $i<=10; $i++ ){
+                if (in_array($i, $currAppNoArray)){
+                    continue;
+
+                }
+                else {
+                    $newAppNo = $i;
+                    break;
+                }
+            }
             //insert to appointment table
             $app = new \App\appointment();
             $app ->patient_id = $pID;

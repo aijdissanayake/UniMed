@@ -18,9 +18,9 @@
                         <div class="card-content">
                             <span class="card-title"><strong>My profile</strong></span>
                             <table>
-                                <tr><td>Name</td><td>{{$doctor->doctorName}}</td></tr>
-                                <tr><td>Registration Number</td><td>{{$doctor->RegNo}}</td></tr>
-                                <tr><td>Email</td><td>{{$doctor->getUser->email}}</td></tr>
+                                <tr><td>Name</td><td>Anon</td></tr>
+                                <tr><td>Registration Number</td><td>1111</td></tr>
+                                <tr><td>Email</td><td>app@</td></tr>
                             </table>
                             <a href="#!" class="waves-effect green darken-3 btn">
                                 Edit
@@ -123,7 +123,7 @@
                             <p>There are no of appintments for Today!</p><br>
                             <p>X sessions are available now !</p><br>                       
                             </div>
-                            <a href="{{route('docAppSettings')}}" class="waves-effect purple darken-3 btn" style="margin:5% 0 0 0 ">
+                            <a href="#!" class="waves-effect purple darken-3 btn" style="margin:5% 0 0 0 ">
                                 Change Settings
                             </a>
                         </div>

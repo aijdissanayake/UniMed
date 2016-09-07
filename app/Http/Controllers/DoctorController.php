@@ -21,13 +21,12 @@ class DoctorController extends Controller
     
     public function home()
     {   $today = \Carbon\Carbon::today();
-        $appointments = appointment::orderBy('created_at','asc')                
-                ->where('aDate', '>', $today) // check for validity by date
+        $appointments = appointment::orderBy('aDate','asc')                
+                ->where('aDate', '>=', $today) // check for validity by date
                 ->where('expired',FALSE)                
                 ->take(10)
                 ->get();
-        $totalAppointments = count(appointment::orderBy('created_at','asc')
-                ->where('expired',FALSE)
+        $totalAppointments = count(appointment::where('expired',FALSE)
                 ->get());
         $inventory = inventoryItem::all();
         $homeData = array($appointments, $inventory,$totalAppointments);
@@ -271,6 +270,9 @@ class DoctorController extends Controller
         return view('doctor.lab.lab');
     }
 
+    public function viewAppointmentSettingsPage(){
+        return view('doctor.settings.appointmentsettings');
+    }
     
 
 
