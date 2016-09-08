@@ -1,6 +1,5 @@
 $(document).ready(function(){
 
-
 	//toggle appointment policy small screen
 
 	slide=false;

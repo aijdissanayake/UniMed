@@ -9,7 +9,7 @@
     <script type="text/javascript" src="/js\init.js"></script>
     <script type="text/javascript" src="/js\patient.js"></script>
     <link rel='stylesheet' type='text/css' href='http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css'/>
-    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+    <!-- <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script> -->
     <link rel="stylesheet" type="text/css" href="/style/patientStyle.css">
 
 </head>
@@ -127,15 +127,10 @@
                                     </script>
                                 @endif
 
-                            @endif
-
-                            
-
-                            
+                            @endif                            
 
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
