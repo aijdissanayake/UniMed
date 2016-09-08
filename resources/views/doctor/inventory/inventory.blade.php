@@ -6,6 +6,7 @@
         <title>Unicare - Inventory</title>
         <meta name="description" content="website description" />
         <meta name="keywords" content="website keywords, website keywords" />
+        <script src="\js\inventory.js"></script>
     </head>
 
     <body>
@@ -40,12 +41,12 @@
 
                                         
                                             <form action="{{route('addItem')}}" method="post">
+                                            {{ csrf_field() }}
                                                     <div class="input-field col s12">
-                                                        <select>
+                                                        <select id="update_type">
                                                           <option value="" disabled selected>Choose your option</option>
-                                                          <option value="1">Option 1</option>
-                                                          <option value="2">Option 2</option>
-                                                          <option value="3">Option 3</option>
+                                                          <option value="1">Drugs</option>
+                                                          <option value="2">Equipments</option>
                                                         </select>
                                                         <label>Item type</label>
                                                     </div>                                               
@@ -84,23 +85,11 @@
                                                         <div class="col ">
                                                             <button class="btn waves-effect waves-light " type="submit" name="action">Update
                                                             <i class="material-icons right">send</i>
-                                                            </button>
-                                                            
+                                                            </button>    
                                                         </div>
-                                                        
-                                                    
-                                                    
-                                                        
-
                                                     </div>
-
-                                                    
-
-                                                    
-                                                
                                             </form>
-                                        
-                                        
+        
                                     </div>
                                 </div>
                             </div>
@@ -112,13 +101,12 @@
                                         <div class="card-content">
                                             <h5>Search inventory</h5>
                                             <form action="{{route('searchItem')}}" method="post">
-                                                
+                                                {{ csrf_field() }}
                                                     <div class="input-field col s12">
-                                                        <select>
+                                                        <select id="search_type">
                                                           <option value="" disabled selected>Choose your option</option>
-                                                          <option value="1">Option 1</option>
-                                                          <option value="2">Option 2</option>
-                                                          <option value="3">Option 3</option>
+                                                          <option value="1">Drugs</option>
+                                                          <option value="2">Equipments</option>
                                                         </select>
                                                         <label>Item type</label>
                                                     </div>
@@ -137,7 +125,7 @@
                                                     
                                                 
                                                 <br><br>
-                                                <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                                                <button class="btn waves-effect waves-light" type="submit" name="action">Search
                                                 <i class="material-icons right">send</i>
                                                 </button>
 
