@@ -37,16 +37,20 @@ class AjaxController extends Controller {
         $patients = Patient::where($col_name, 'LIKE', '%' . $value . '%')
                 ->take(20)
                 ->get();
-//        $data = (string)$value;
+        
         if ($patients->isEmpty()){
-            return response()->json(['patients'=>"Not found."]);
+            return response()->json([],200);
         }else{
-            $data = array();
+            $pData = array();
             foreach ($patients as $patient){
-                $data[$patient->getUser->name]=$patient->id;
+                
+                $pData[]=array("name"=>$patient->getUser->name,"telephone"=>$patient->telephoneNo,
+                    "id"=>$patient->id);
             }
-            return response()->json(array('patients'=>$data),200);
+            return response()->json($pData,200);
         }
+        
+//        return response()->json($patients,200);
         
     }
 }
