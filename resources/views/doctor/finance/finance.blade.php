@@ -2,97 +2,180 @@
 <html>
 
 <head>
-    @include('doctor.nav_bar_doc')
+  @include('doctor.nav_bar_doc')
   <title>Unicare - Finance</title>
   <meta name="description" content="website description" />
   <meta name="keywords" content="website keywords, website keywords" />
   <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
 
 </head>
-
-<body>
+<body class="grey lighten-4">
   <div class="container">
-
-    <div class="row">
-      <div id="financialContent">
-        <!-- insert the finance content here -->
-        <h2>New Transaction Entry</h2>
-        
-        <form action="#" method="post">
-          <div class="form_settings">
-          	<p><span>Transaction Type</span><select id="id" name="name"><option value="1">Income</option><option value="2">Expense</option></select></p>
-            <p><span>Value (LKR)</span><input type="text" name="name" value="" /></p>
-            <p><span>Description</span><textarea rows="4" cols="50" name="name"></textarea></p>
-			<p align = "right" style="padding-top: 15px"><input class="submit" type="submit" name="submitButton" value="Add Transaction Entry" /></p>
+    <div class="row top-row">
+      <div class="row">
+      <div class="col s12">
+        <div class="card">
+          <div class="card-title green white-text">
+            <i class="material-icons" style="vertical-align:middle">euro_symbol</i>
+            New Transaction Entry
           </div>
-        </form>
-        <h2>Finance Summary of Last 10 Trasactions</h2>
-        <table style="width:100%; border-spacing:0;">
-          <tr><th style="width:1%">No.</th><th style="width:12%">Date</th><th>Income Description</th><th style="width:20%">Value (LKR)</th></tr>
-          <tr><td>1)</td><td></td><td></td><td></td></tr>
-          <tr><td>2)</td><td></td><td></td><td></td></tr>
-          <tr><td>3)</td><td></td><td></td><td></td></tr>
-          <tr><td>4)</td><td></td><td></td><td></td></tr>
-          <tr><td>5)</td><td></td><td></td><td></td></tr>
-          <tr><td>6)</td><td></td><td></td><td></td></tr>
-          <tr><td>7)</td><td></td><td></td><td></td></tr>
-          <tr><td>8)</td><td></td><td></td><td></td></tr>
-          <tr><td>9)</td><td></td><td></td><td></td></tr>
-          <tr><td>10)</td><td></td><td></td><td></td></tr>
-        </table>
-        <table style="width:100%; border-spacing:0;">
-          <tr><th style="width:1%">No.</th><th style="width:12%">Date</th><th>Expense Description</th><th style="width:20%">Value (LKR)</th></tr>
-          <tr><td>1)</td><td></td><td></td><td></td></tr>
-          <tr><td>2)</td><td></td><td></td><td></td></tr>
-          <tr><td>3)</td><td></td><td></td><td></td></tr>
-          <tr><td>4)</td><td></td><td></td><td></td></tr>
-          <tr><td>5)</td><td></td><td></td><td></td></tr>
-          <tr><td>6)</td><td></td><td></td><td></td></tr>
-          <tr><td>7)</td><td></td><td></td><td></td></tr>
-          <tr><td>8)</td><td></td><td></td><td></td></tr>
-          <tr><td>9)</td><td></td><td></td><td></td></tr>
-          <tr><td>10)</td><td></td><td></td><td></td></tr>
-        </table>
-        <h2>Finance Summary of the Current Month</h2>
-        <table style="width:40%; border-spacing:0;">
-          <tr><th style="width:40%">Description</th><th >Value (LKR)</th></tr>
-          <tr><td>Income</td><td></td></tr>
-          <tr><td>Less: Expenses</td><td></td></tr>
-          <tr><td>Gross Profit</td><td></td></tr>
-        </table>
-        <form action="#" method="post">
-        <h2>Financial Summary of a given Time Period</h2>
-        <div class="form_settings">
-        <p><span>From</span><input type="date" id="datepicker"></p>
-			<script>
-				$(function() {
-				$( "#datepicker" ).datepicker();
-				});
-			</script>
-			<p><span>To</span><input type="date" id="datepicker"></p>
-			<script>
-				$(function() {
-				$( "#datepicker" ).datepicker();
-				});
-			</script>
-            <p align = "right" style="padding-top: 15px"><input class="submit" type="submit" name="newTransaction" value="Show Transaction Summary" /></p>
+          <div class="card-content">
+            <div class="row">
+              <div class="input-field col s4">
+                <select>
+                    <option value="" disabled selected>Transaction Type</option>
+                    <option value="1">Income</option>
+                    <option value="2">Expense</option>
+                  </select>
+              </div>
+              <div class="input-field col s8">
+                <label for="trxn_value">Transaction Value (LKR)</label>
+                <input id="trxn_vale" type="text" class="validate">             
+              </div>
             </div>
-         </form>
-         <h2>Add a new Assistant</h2>
-         <form action="#" method="post">
-          <div class="form_settings">
-          	<p><span>First Name</span><input type="text" name="name" value="" /></p>
-            <p><span>Last Name</span><input type="text" name="name" value="" /></p>
-            <p><span>Birth Year</span><input type="text" name="name" value="" /></p>
-            <p><span>Telephone No.</span><input type="text" name="name" value="" /></p>
-            <p><span>Home Addrress</span><input type="text" name="name" value="" /></p>
-			<p align = "right" style="padding-top: 15px"><input class="submit" type="submit" name="submitButton" value="Add New Assistant" /></p>
-          </div>
-        </form>
+            <div class="row">
+              <div class="input-field col s6">
+                <label for="trxnDscrptn">Transaction Description</label>
+                <textarea id="trxnDscrptn" class="materialize-textarea"></textarea>
+              </div>
+              <div class="input-field col s6" align="right">
+                <br><br><br>
+                <a class="waves-effect green btn"><i class="material-icons left">send</i>Add Transaction Entry</a>
+              </div>
+            </div>
+                    </div>
+        </div>
       </div>
     </div>
-    <div id="footer">
-      <p>&nbsp;</p>
+    <div class="row">
+      <div class="col s6">
+        <div class="card">
+          <div class="card-title green white-text">
+            <div class="row">
+              <div class="col s1"><i class="material-icons" style="vertical-align:middle">sort</i></div>
+              <div class="col s11">Financial Summary of the Current Month</div>
+            </div>
+          </div>
+          <div class="card-content">
+            <table class="highlight bordered">
+              <tr><th>Description</th><th>Value (LKR)</th></tr>
+              <tr><td>Income</td><td></td><td></td></tr>
+              <tr><td>Less: Expenses</td><td></td><td></td></tr>
+              <tr><td>Gross Profit</td><td></td><td></td></tr>
+            </table>
+                    </div>
+        </div>
+      </div>
+      <div class="col s6">
+        <div class="card">
+          <div class="card-title green white-text">
+            <div class="row">
+              <div class="col s1"><i class="material-icons" style="vertical-align:middle">sort</i></div>
+              <div class="col s11">Financial Summary of a Specific Period</div>
+            </div>
+          </div>
+          <div class="card-content">
+            <div class="row">
+              <div class="col s6">
+                <label for="trxn_value"><h6>From:</h6></label>
+                <input id="date_from" type="date" class="datepicker">             
+              </div>
+              <div class="col s6">
+                <label for="trxn_value"><h6>To:</h6></label>
+                <input id="date_to" type="date" class="datepicker">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col s12" align="right">
+                <a class="waves-effect green btn"><i class="material-icons left">history</i>Show Transactions</a>
+              </div>
+            </div>
+                    </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12">
+        <div class="card">
+          <div class="card-title green white-text">
+            <i class="material-icons" style="vertical-align:middle">list</i>
+            Financial Summary of Last 10 Transactions 
+          </div>
+          <div class="card-content">
+            <div class="row">
+              <div class="input-field col s4">
+                <select>
+                    <option value="" disabled selected>Transaction Type</option>
+                    <option value="1">Income</option>
+                    <option value="2">Expense</option>
+                    <option value="3">All</option>
+                  </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col s12">
+                <table class="highlight bordered">
+                <tr><th>No.</th><th>Date</th><th>Type</th><th>Description</th><th>Value (LKR)</th></tr>
+                <tr><td>1.</td><td></td><td></td><td></td><td></td></tr>
+                <tr><td>2.</td><td></td><td></td><td></td><td></td></tr>
+                <tr><td>3.</td><td></td><td></td><td></td><td></td></tr>
+                <tr><td>4.</td><td></td><td></td><td></td><td></td></tr>
+                <tr><td>5.</td><td></td><td></td><td></td><td></td></tr>
+                <tr><td>6.</td><td></td><td></td><td></td><td></td></tr>
+                <tr><td>7.</td><td></td><td></td><td></td><td></td></tr>
+                <tr><td>8.</td><td></td><td></td><td></td><td></td></tr>
+                <tr><td>9.</td><td></td><td></td><td></td><td></td></tr>
+                <tr><td>10.</td><td></td><td></td><td></td><td></td></tr>
+              </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12">
+        <div class="card">
+          <div class="card-title green white-text">
+            <i class="material-icons" style="vertical-align:middle">person_add</i>
+            Add a New Assistant
+          </div>
+          <div class="card-content">
+            <div class="row">
+              <div class="input-field col s6">
+                <label for="first_name">First Name</label>
+                <input id="first_name" type="text" class="validate">
+              </div>
+              <div class="input-field col s6">
+                <label for="last_name">Last Name</label>
+                <input id="last_name" type="text" class="validate">
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s6">
+                <label for="birth_year">Birth Year</label>
+                <input id="birth_year" type="text" class="validate">
+              </div>
+              <div class="input-field col s6">
+                <label for="tp_no">Telephone No.</label>
+                <input id="tp_no" type="text" class="validate">
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <label for="home_address">Home Address</label>
+                <textarea id="home_address" class="materialize-textarea"></textarea>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col s12" align="right">
+                <a class="waves-effect green btn"><i class="material-icons left">add</i>Add</a>
+              </div>
+            </div>  
+          </div>
+        </div>        
+      </div>
+    </div>
     </div>
   </div>
 </body>

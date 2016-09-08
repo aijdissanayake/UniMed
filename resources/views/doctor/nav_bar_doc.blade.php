@@ -2,9 +2,11 @@
 
 <!-- CSS Files -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link rel="stylesheet" href="\materialize\css\materialize.min.css">
-<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>           
-<script src="\materialize\js\materialize.min.js"></script>
+<link rel="stylesheet prefetch" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>           
+<script src="//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+<!--Custom CSS File-->
+<link rel="stylesheet" href="\materialize\css\custom.css">
 <!--Custom js file-->
 <script src="\js\init.js"></script>
 
@@ -30,7 +32,10 @@ Position and line height also adjusted as necessary. -->
 <div class="navbar-fixed">
     <nav>
         <div class="nav-wrapper blue">
-            <a href="#!" class="brand-logo">Logo</a>
+            <div class="card-title">
+                <span><a href="" class="brand-logo"><i class="small material-icons" style="vertical-align:middle; padding-left:10px; float:left">local_hospital</i>Unicare</a>
+                </span>
+            </div>
             <a href="#" data-activates="mob-snav" class="button-collapse">
                 <i class="material-icons">menu</i>
             </a>

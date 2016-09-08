@@ -19,8 +19,8 @@
 
                         <!--Appointment data-->
 
-                        <div class="card white-text" id="appointments">
-                            <div class="card-title yellow darken-2">Upcoming Appointments</div>
+                        <div class="card" id="appointments">
+                            <div class="card-title yellow darken-2 white-text">Upcoming Appointments</div>
                             <div class="card-content black-text grey lighten-5">
                                 
                                 <?php $appointments = $homeData[0]; ?>
@@ -35,9 +35,9 @@
 
 
                                     @foreach ($appointments as $appointment)
-                                    <tr><td >{{$appointment->getPatient->getUser->name}}</td>
-                                        <td align="right">{{date('Y:m:d',strtotime($appointment->aDate))}}</td>
-                                        <td align="right">{{$appointment->session}}</td>
+                                    <tr><td >{{$appointment->patient->user->name}}</td>
+                                        <td align="right">{{date('Y-m-d',strtotime($appointment->aDate))}}</td>
+                                        <td align="right">{{$appointment->session->time_Period}}</td>
                                         <td align="right">{{$appointment->appointmentNo}}</td>
                                     </tr>
                                     @endforeach

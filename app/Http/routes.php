@@ -48,10 +48,11 @@ Route::group(['middleware' => 'authorizer:doctor'], function() {
     Route::post('doc/inventory/search',['as' => 'searchItem',  'uses' => 'inventoryItemController@searchInventoryItem']);
     
     Route::get('doc/settings',['as' => 'settings',  'uses' => 'DoctorController@viewSettingsPage']);
+    Route::get('doc/settings/appointments', ['as'=>'docAppSettings', 'uses'=>'DoctorController@viewAppointmentSettingsPage']);
 
 //Route::get('doctor/patients/{id}', 'DoctorController@showPatient');
 
-    Route::post('doc/patients/search', ['as' => 'searchPatients', 'uses' => 'DoctorController@searchPatient']);
+//    Route::post('doc/patients/search', ['as' => 'searchPatients', 'uses' => 'DoctorController@searchPatient']);
     Route::get('doc/patients/view/{id}', ['as' => 'viewPatient', 'uses' => 'DoctorController@viewPatientDetails']);
     Route::get('doc/patients/createRecord/{id}', ['as' => 'createPatientVisitRecord', 'uses'=>'DoctorController@createPatientVisitRecord']);
     Route::post('doc/patients/storeRecord/{id}', ['as' => 'storePatientVisitRecord', 'uses'=>'DoctorController@storePatientVisitRecord']);
@@ -68,6 +69,7 @@ Route::group(['middleware' => 'authorizer:doctor'], function() {
 // Doctor's views' methods
 
 Route::get('doc/patients/chkuid', 'AjaxController@checkUN');
+Route::get('doc/patients/search', 'AjaxController@searchPatients');
 
 
 
@@ -136,5 +138,5 @@ Route::group(['middleware' => 'authorizer:admin'], function() {
 
 Route::get('testLogin', 'testController@login');
 Route::get('test', function(){
-    return view('mat_test');
+    return view('mat_test')->with('htmlCode','Nothing');
 });

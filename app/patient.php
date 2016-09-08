@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class patient extends Model
 {
-    public function getUser() {
+    public function user() {
         return $this->belongsTo('App\User','user_id','id');
     }
     
@@ -14,7 +14,7 @@ class patient extends Model
         return $this->hasMany('App\patientVisit','patientID','id');
     }
     
-    public function getAppointments() {
+    public function appointments() {
         return $this->hasMany('App\appointment');
     }
     

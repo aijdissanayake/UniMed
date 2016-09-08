@@ -8,7 +8,7 @@
         <meta name="keywords" content="website keywords, website keywords" />
     </head>
 
-    <body>
+    <body class="grey lighten-4">
         <div class="container">
             <div class="row top-row">
                 <div class="row">

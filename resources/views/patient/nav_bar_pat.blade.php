@@ -20,8 +20,10 @@
 
     <div class="navbar-fixed">
         <nav>
-            <div class="nav-wrapper blue">
-                <a href="#!" class="brand-logo">Unicare</a>
+            <div class="nav-wrapper blue darken-4">
+                <div class="card-title">
+                <span><a href="#!" class="brand-logo"><i class="small material-icons" style="vertical-align:middle; padding-left:10px; float:left">local_hospital</i>&nbsp;Unicare</a></span>
+                </div>
                 <a href="#" data-activates="mob-snav" class="button-collapse">
                     <i class="material-icons">menu</i>
                 </a>
