@@ -6,7 +6,7 @@
 
     @include('patient.nav_bar_pat')
     <title>Unicare - Home</title>
-    <script type="text/javascript" src="/js\init.js"></script>
+    <script type="text/javascript" src="/js\init.js" ></script>
     <script type="text/javascript" src="/js\patient.js"></script>
     <link rel='stylesheet' type='text/css' href='http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css'/>
     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
@@ -102,7 +102,7 @@
                                     <div class="row">
                                         <div class="input-field " style="padding:10px" >
                                             <div class="black-text ">
-                                                <input type="date" class="datepicker " id="appointmentDate" name="appointmentDate" placeholder="Pick a Date" required=""/>
+                                                <input type="date" id="appointmentDate" name="appointmentDate" placeholder="Pick a Date" required=""/>
                                                 <label for="appointmentDate" class="purple-text text-lighten-2" >Reservation Date :</label>
                                             </div>
                                         </div>
