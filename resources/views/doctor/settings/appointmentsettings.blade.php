@@ -6,6 +6,7 @@
         <title>Settings</title>
         <meta name="description" content="website description" />
         <meta name="keywords" content="website keywords, website keywords" />
+        <script type="text/javascript" src="/js\doc.js"></script>
     </head>
 
 
@@ -15,9 +16,25 @@
                 <div class="col s12 m6" style="height:auto">
                     <div class="card white black-text" style="height:100%; margin-bottom:1%" >
                         <div class="card-title red white-text"><span style="padding:0%;">Add Session</span></div>
-                        <div class="card-content" style="padding:5% 5% 0 5%;">
-                            <div style=" height:150px; overflow:auto; padding-top:2%">
-                             Select time:
+                        <div class="card-content">
+                            <div style=" height:150px;">
+                                <form action="{{route('')}}">
+                                    <div class="row">
+                                        <div class="col s5" style="display: flex">
+                                            <span class="black-text" for="startTime" style="float:left">Start Time : </span><br>
+                                            <input id="startTime" class="timepicker" type="time" name="startTime" value="07:00:00" required>
+                                        </div>
+                                        <div class="col s5 offset-s2" style="display: flex">
+                                            <span class="black-text" for="endTime">End Time : </span><br>
+                                            <input id="endTime" class="timepicker" type="time" name="endTime" value="08:00:00" required>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" name="availableNow" id="availableNow">
+                                        <label for="availableNow">Make the Session Available from Now</label>
+                                    </div>
+                                    <div class="input-field"><input type="checkbox" name="availability" value="Available Now"></div>
+                                </form>
                             </div>                            
                         </div>
                     </div>
@@ -29,8 +46,10 @@
                             <span class="card-title" style="padding:0%;">Appointments</span>
                             <div class="white divider"></div>
                             <div style=" height:125px; overflow:auto; padding-top:2%">
-                            <p>There are no of appintments for Today!</p><br>
-                            <p>X sessions are available now !</p><br>                       
+                            <form>
+  <input type="checkbox" name="vehicle1" value="Bike"> I have a bike<br>
+  <input type="checkbox" name="vehicle2" value="Car"> I have a car 
+</form>                     
                             </div>
                             <a href="#!" class="waves-effect purple darken-3 btn" style="margin:5% 0 0 0 ">
                                 Change Settings
