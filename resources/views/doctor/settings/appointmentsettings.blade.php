@@ -7,6 +7,7 @@
         <meta name="description" content="website description" />
         <meta name="keywords" content="website keywords, website keywords" />
         <script type="text/javascript" src="/js\doc.js"></script>
+        <style rel="stylesheet" type="text/css" href="/style/docStyle.css"></style>
     </head>
 
 
@@ -18,7 +19,7 @@
                         <div class="card-title red white-text"><span style="padding:0%;">Add Session</span></div>
                         <div class="card-content">
                             <div style=" height:150px;">
-                                <form action="{{route('')}}">
+                                <form action="{{route('addSession')}}" method="post">
                                     <div class="row">
                                         <div class="col s5" style="display: flex">
                                             <span class="black-text" for="startTime" style="float:left">Start Time : </span><br>
@@ -33,7 +34,10 @@
                                         <input type="checkbox" name="availableNow" id="availableNow">
                                         <label for="availableNow">Make the Session Available from Now</label>
                                     </div>
-                                    <div class="input-field"><input type="checkbox" name="availability" value="Available Now"></div>
+                                    <div class="input-field">
+                                    <input class="waves-effect waves-light btn red" type="submit" value="Add Session" style="float:right">
+                                    </div>
+                                    {{ csrf_field() }}
                                 </form>
                             </div>                            
                         </div>
