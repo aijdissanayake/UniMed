@@ -278,7 +278,6 @@ class DoctorController extends Controller
         $startTime = $request->input('startTime');
         $endTime = $request->input('endTime');
         $timePeriod = date('h:i a' , strtotime($startTime)) . " - " . date('h:i a', strtotime($endTime));
-        echo $timePeriod ;
         $session = new \App\session();
         $session->time_Period = $timePeriod;
         if($request->input('availableNow')){
