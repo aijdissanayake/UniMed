@@ -48,6 +48,7 @@ Route::group(['middleware' => 'authorizer:doctor'], function() {
     
     Route::get('doc/settings',['as' => 'settings',  'uses' => 'DoctorController@viewSettingsPage']);
     Route::get('doc/settings/appointments', ['as'=>'docAppSettings', 'uses'=>'DoctorController@viewAppointmentSettingsPage']);
+    Route::post('doc/settings/appointments/sessionAdded',['as'=>'addSession', 'uses'=>'DoctorController@addSession']);
 
 //Route::get('doctor/patients/{id}', 'DoctorController@showPatient');
 
