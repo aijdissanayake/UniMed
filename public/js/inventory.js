@@ -1,5 +1,22 @@
 $(document).ready(function(){
+
+	var updateSummary = function(){
+
+		$.ajax({
+			type: 'GET',
+                url: 'updateSummary',
+
+                success: function (data) {
+                	console.log(data);
+                }
+
+		});
+
+
+	};
+
 	$('select').material_select();
+	updateSummary();
 
 
 
@@ -139,6 +156,7 @@ $(document).ready(function(){
 	});
 
 
+	
 
 
 

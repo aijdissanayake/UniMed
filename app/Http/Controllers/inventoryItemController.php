@@ -43,9 +43,6 @@ class inventoryItemController extends Controller
                 }
                 DB::table('inventory_items')->where('itemName', 'LIKE', '%' . $name . '%')->update(['currStock'=>$currentStock+$quantity]);
 
-
-
-
             }else{
 
                 $requiredItem = \App\inventoryItem::where('itemName', 'LIKE', '%' . $name . '%')->get()[0];
@@ -62,7 +59,6 @@ class inventoryItemController extends Controller
             }
 
             $feedback = "Items added!";
-
 
         }else{
 
@@ -84,7 +80,6 @@ class inventoryItemController extends Controller
                 }else{
                     $feedback = "not enough stocks!";
                 }
-
 
 
             }else{
@@ -118,6 +113,9 @@ class inventoryItemController extends Controller
     }
 
 
+
+
+
     public function searchInventoryItem(){
 
 
@@ -149,6 +147,39 @@ class inventoryItemController extends Controller
                 'quantity' => $quantity,
                 'description' => $description
         ]);
+    }
+
+
+
+
+
+    public function updateDropdown(Request $request)  //used to dynamically update dropdown menus
+    {
+        
+        if($request->type_id=='1'){
+            $items = DB::table('drugs')->pluck('drugName');
+            return response()->json([
+                'items' => $items
+            ]);
+        }else{
+            $items = DB::table('equipment')->pluck('equipmentName');
+            return response()->json([
+                'items' => $items
+            ]);
+        } 
+    }
+
+    
+
+
+
+    public function updateSummary(Request $request) //used to update inventory summary
+    {
+        $refillNeeded = DB::table('inventory_items')->where('restockNeeded', '=', 1)->pluck('itemName');
+        return response()->json([
+                'items' => $refillNeeded
+            ]);
+
     }
 
 }

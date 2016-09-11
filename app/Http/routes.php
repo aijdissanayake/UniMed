@@ -71,7 +71,8 @@ Route::group(['middleware' => 'authorizer:doctor'], function() {
 Route::get('doc/patients/chkuid', 'AjaxController@checkUN');
 Route::get('doc/patients/search', 'AjaxController@searchPatients');
 
-Route::get('doc/updateDropdown', 'inventoryAjaxController@updateDropdown');
+Route::get('doc/updateDropdown', 'inventoryItemController@updateDropdown');
+Route::get('doc/updateSummary', 'inventoryItemController@updateSummary');
 
 
 
