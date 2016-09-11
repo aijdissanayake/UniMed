@@ -69,6 +69,7 @@ $(document).ready(function(){
 	});
 
 
+
 //search inventory form
 	$('#search_type').on('change', function(e){
 		var type_id = e.target.value;
@@ -121,6 +122,11 @@ $(document).ready(function(){
         data : postData,
         success:function(data, textStatus, jqXHR) 
         {
+        	$('#modal_header').html(data.name);
+        	$('#search_result_type').html(data.type);
+        	$('#search_result_quantity').html(data.quantity);
+        	$('#search_result_description').html(data.description);
+
             $('#modal1').openModal();
         },
         error: function(jqXHR, textStatus, errorThrown) 
@@ -132,7 +138,7 @@ $(document).ready(function(){
     e.preventDefault(); //STOP default action
 	});
 
-	
+
 
 
 

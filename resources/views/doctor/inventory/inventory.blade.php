@@ -37,6 +37,7 @@
                     
                         <div class="row" style="padding-top: 3rem">
 
+                            <!--update inventory section-->
                             <div class = "col s12 m6 ">
                                 <div class="card ">
                                     <div class="card-title  teal accent-4 white-text">
@@ -101,7 +102,7 @@
                             </div>
 
 
-
+                            <!--Search inventory section-->
                             <div class = "col s12 m6 l6">
                                     <div class="card ">
                                         <div class="card-title  teal accent-4 white-text">
@@ -112,7 +113,7 @@
                                             <form action="{{route('searchItem')}}" method="post" id="search_form">
                                                 {{ csrf_field() }}
                                                     <div class="input-field col s12">
-                                                        <select id="search_type" name="search_type">
+                                                        <select id="search_type" name="search_type" required>
                                                           <option value="" disabled selected>Choose your option</option>
                                                           <option value="1">Drugs</option>
                                                           <option value="2">Equipments</option>
@@ -123,7 +124,7 @@
                                                 <br><br>
                                                 
                                                     <div class="input-field col s12">
-                                                        <select id="search_items" name="search_items">
+                                                        <select id="search_items" name="search_items" required>
                                                           <option value="" disabled selected>Choose your option</option>
                                                           
                                                         </select>
@@ -144,45 +145,33 @@
 
 
 
-                          <!-- Modal Structure -->
+                          <!-- Modal Structure for search results-->
                           <div id="modal1" class="modal modal-fixed-footer">
                             <div class="modal-content">
-                              <h4>Modal Header</h4>
-                              <p>A bunch of text</p>
+                              <h4 id="modal_header"></h4>
+                              <table>
+                                <tr><td>Item type</td><td id = "search_result_type">...</td></tr>
+                                <tr><td>Number items in stock</td><td id = "search_result_quantity">...</td></tr>
+                                <tr><td>Description</td><td id = "search_result_description">...</td></tr>
+                                <tr><td>Restock</td><td>...</td id = "search_result_restock"></tr>
+                            </table>
                             </div>
                             <div class="modal-footer">
-                              <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
+                              <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Close</a>
                             </div>
                           </div>
 
 
-                    <div class="row" style="padding-top: 3rem">
+                        <!-- settings button-->
+                          <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+                            <a class="btn-floating btn-large btn tooltipped waves-effect waves-circle cyan darken-4" data-position="left" data-delay="50" data-tooltip="Inventory settings">
+                              <i class="large material-icons">settings</i>
+                            </a>
+                          </div>
 
-                            <div class = "col s12 m12 l12">
-                                <div class="card">
-                                    <div class="card-content">
-                                            <h5>Add new item type(seperate settings page?)</h5>
-                                            <form action="#" method="post">
-                                                <p>Select item type:&nbsp;&nbsp;
-                                                    <div class="input-field col s12">
-                                                        <select>
-                                                          <option value="" disabled selected>Choose your option</option>
-                                                          <option value="1">Option 1</option>
-                                                          <option value="2">Option 2</option>
-                                                          <option value="3">Option 3</option>
-                                                        </select>
-                                                        <label>Materialize Select</label>
-                                                    </div>
-                                                </p>
 
-                                                <p>name: </p><input type="text"  name="new_name" value="" />
-                                                <p>description: </p><input   type="text"  name="new_description" value="" style="resize:both"  />
 
-                                            </form> 
-                                    </div>
-                                </div>
-                             </div>
-                    </div>
+   
  
 
         </div>

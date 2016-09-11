@@ -26,27 +26,25 @@ class inventoryItemController extends Controller
         $name = $input['update_items'];
         $quantity = (int)$input['quantity'];
         $feedback = "error!";
+        $type="";
 
         if($add_remove=='add'){
 
             if ($itemType == "1") {
             
-            $requiredItem = \App\inventoryItem::where('itemName', 'LIKE', '%' . $name . '%')->get()[0];
-            $currentStock = (int)$requiredItem->currStock;
-            $minimum = (int)$requiredItem->minStock;
+                $requiredItem = \App\inventoryItem::where('itemName', 'LIKE', '%' . $name . '%')->get()[0];
+                $currentStock = (int)$requiredItem->currStock;
+                $minimum = (int)$requiredItem->minStock;
 
-            if($currentStock<$minimum && $minimum<$currentStock + $quantity){
-                //remove the warning
-                DB::table('inventory_items')->where('itemName', 'LIKE', '%' . $name . '%')->update(['restockNeeded'=>'0']);
+                if($currentStock<$minimum && $minimum<$currentStock + $quantity){
+                    //remove the warning
+                    DB::table('inventory_items')->where('itemName', 'LIKE', '%' . $name . '%')->update(['restockNeeded'=>'0']);
 
-            }
-            DB::table('inventory_items')->where('itemName', 'LIKE', '%' . $name . '%')->update(['currStock'=>$currentStock+$quantity]);
+                }
+                DB::table('inventory_items')->where('itemName', 'LIKE', '%' . $name . '%')->update(['currStock'=>$currentStock+$quantity]);
 
 
-//            $newItem = new inventoryItem();
-//            $newItem->itemName = $name;
-//            $newItem->currStock = $currentStock+ (int)$quantity;
-//            $newItem->save();
+
 
             }else{
 
@@ -134,18 +132,20 @@ class inventoryItemController extends Controller
             $requiredItem = \App\inventoryItem::where('itemName', 'LIKE', '%' . $name . '%')->get()[0];
             $quantity = $requiredItem->currStock;
             $description = \App\drug::where('drugName', 'LIKE', '%' . $name . '%')->get()[0]->description;
+            $type="Drug";
 
         }else{
             $name = $input['search_items'];
             $requiredItem = \App\inventoryItem::where('itemName', 'LIKE', '%' . $name . '%')->get()[0];
             $quantity = $requiredItem->currStock;
             $description = \App\equipment::where('equipmentName', 'LIKE', '%' . $name . '%')->get()[0]->description;
+            $type="Equipment";
         }
 
         
         return response()->json([
                 'name' => $name,
-                'itemType' => $itemType,
+                'type' => $type,
                 'quantity' => $quantity,
                 'description' => $description
         ]);
