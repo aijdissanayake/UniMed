@@ -16,7 +16,8 @@
 
             <div class="row" style="padding-top: 3rem">
                 <div class="col s12 m12 l12">
-                    <div class="card light-green white-text">
+                    <div class="card teal darken-3
+ white-text">
                         <div class="card-content">
                             <span class="card-title"><strong>Inventory - Summary</strong></span>
                             <table>
@@ -36,9 +37,12 @@
                     
                         <div class="row" style="padding-top: 3rem">
 
-                            <div class = "col s12 m6 l6">
+                            <div class = "col s12 m6 ">
                                 <div class="card ">
-                                    <span class="card-title "><strong>Update Inventory</strong></span>
+                                    <div class="card-title  teal accent-4 white-text">
+                                        <i class="material-icons left">mode_edit</i>
+                                        Update Inventory
+                                    </div>
                                     <div class="card-content">
                                             <form action="{{route('addItem')}}" method="post" id="update_form">
                                             {{ csrf_field() }}
@@ -100,12 +104,15 @@
 
                             <div class = "col s12 m6 l6">
                                     <div class="card ">
-                                        <span class="card-title"><strong>Search Inventory</strong></span>
+                                        <div class="card-title  teal accent-4 white-text">
+                                            <i class="material-icons left">search</i>
+                                            Search Inventory
+                                        </div>
                                         <div class="card-content">
-                                            <form action="{{route('searchItem')}}" method="post">
+                                            <form action="{{route('searchItem')}}" method="post" id="search_form">
                                                 {{ csrf_field() }}
                                                     <div class="input-field col s12">
-                                                        <select id="search_type">
+                                                        <select id="search_type" name="search_type">
                                                           <option value="" disabled selected>Choose your option</option>
                                                           <option value="1">Drugs</option>
                                                           <option value="2">Equipments</option>
@@ -116,11 +123,9 @@
                                                 <br><br>
                                                 
                                                     <div class="input-field col s12">
-                                                        <select>
+                                                        <select id="search_items" name="search_items">
                                                           <option value="" disabled selected>Choose your option</option>
-                                                          <option value="1">Option 1</option>
-                                                          <option value="2">Option 2</option>
-                                                          <option value="3">Option 3</option>
+                                                          
                                                         </select>
                                                         <label>Item name</label>
                                                     </div>
@@ -136,6 +141,19 @@
                                     </div>
                                 </div>
                         </div>
+
+
+
+                          <!-- Modal Structure -->
+                          <div id="modal1" class="modal modal-fixed-footer">
+                            <div class="modal-content">
+                              <h4>Modal Header</h4>
+                              <p>A bunch of text</p>
+                            </div>
+                            <div class="modal-footer">
+                              <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
+                            </div>
+                          </div>
 
 
                     <div class="row" style="padding-top: 3rem">

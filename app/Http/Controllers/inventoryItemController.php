@@ -25,7 +25,7 @@ class inventoryItemController extends Controller
         $add_remove = $input['add_remove'];
         $name = $input['update_items'];
         $quantity = (int)$input['quantity'];
-        $feedback = "inventory updated!";
+        $feedback = "error!";
 
         if($add_remove=='add'){
 
@@ -63,6 +63,8 @@ class inventoryItemController extends Controller
 
             }
 
+            $feedback = "Items added!";
+
 
         }else{
 
@@ -74,11 +76,15 @@ class inventoryItemController extends Controller
 
                 if($quantity<$currentStock){
                     DB::table('inventory_items')->where('itemName', 'LIKE', '%' . $name . '%')->update(['currStock'=>$currentStock-(int)$quantity]);
+                    $feedback = "Items removed!";
 
                     if($currentStock-$quantity<$minimum){         // logic to display stock level critical warning
                         DB::table('inventory_items')->where('itemName', 'LIKE', '%' . $name . '%')->update(['restockNeeded'=>'1']);
+                        $feedback = "Items removed. Restock required!";
 
                     }
+                }else{
+                    $feedback = "not enough stocks!";
                 }
 
 
@@ -91,18 +97,26 @@ class inventoryItemController extends Controller
 
                 if($quantity<$currentStock){
                     DB::table('inventory_items')->where('itemName', 'LIKE', '%' . $name . '%')->update(['currStock'=>$currentStock-(int)$quantity]);
+                     $feedback = "Items removed!";
+
 
                     // logic to dispaly stock level critical warning
                     if($currentStock-$quantity<$minimum){         // logic to dispaly stock level critical warning
                         DB::table('inventory_items')->where('itemName', 'LIKE', '%' . $name . '%')->update(['restockNeeded'=>'1']);
+                        $feedback = "Items removed. Restock required!";
 
                     }
+                }else{
+                    $feedback = "not enough stocks!";
+
                 }
             }
 
         }
 
-        return redirect()->route('inventoryTab');
+        return response()->json([
+                'feedback' => $feedback
+        ]);
     }
 
 
@@ -111,28 +125,30 @@ class inventoryItemController extends Controller
 
 
         $input = Input::all();
-        $itemType = $input['s_type'];
+        $itemType = $input['search_type'];
 
 
-        if ($itemType == "Drugs") {
+        if ($itemType == "1") {
 
-            $name = $input['s_drugs'];
+            $name = $input['search_items'];
             $requiredItem = \App\inventoryItem::where('itemName', 'LIKE', '%' . $name . '%')->get()[0];
             $quantity = $requiredItem->currStock;
             $description = \App\drug::where('drugName', 'LIKE', '%' . $name . '%')->get()[0]->description;
 
         }else{
-            $name = $input['s_equips'];
+            $name = $input['search_items'];
             $requiredItem = \App\inventoryItem::where('itemName', 'LIKE', '%' . $name . '%')->get()[0];
             $quantity = $requiredItem->currStock;
-            $description = \App\drug::where('drugName', 'LIKE', '%' . $name . '%')->get()[0]->description;
+            $description = \App\equipment::where('equipmentName', 'LIKE', '%' . $name . '%')->get()[0]->description;
         }
 
-        $drugs = drug::all();
-        $equip = equipment::all();
-        $items = array($drugs, $equip, $description,$quantity); //this array is used to create drop down menus and search results.
-        return view('doctor.inventory.inventory_search', compact('items'));
-
+        
+        return response()->json([
+                'name' => $name,
+                'itemType' => $itemType,
+                'quantity' => $quantity,
+                'description' => $description
+        ]);
     }
 
 }
