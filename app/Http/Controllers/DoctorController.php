@@ -288,4 +288,9 @@ class DoctorController extends Controller
     }
 
 
+    public function viewInventorySettings()
+    {
+        return view('doctor.inventory.inventorySettings');
+    }
+
 }

@@ -45,6 +45,7 @@ Route::group(['middleware' => 'authorizer:doctor'], function() {
     Route::post('doc/patients/test', ['as' => 'patientAdded', 'uses' => 'DoctorController@storePatient']);
     Route::post('doc/inventory/add',['as' => 'addItem',  'uses' => 'inventoryItemController@updateInventoryItem']);
     Route::post('doc/inventory/search',['as' => 'searchItem',  'uses' => 'inventoryItemController@searchInventoryItem']);
+    Route::get('doc/inventory/settings',['as'=> 'inventorySettings', 'uses' => 'doctorController@viewInventorySettings']);
     
     Route::get('doc/settings',['as' => 'settings',  'uses' => 'DoctorController@viewSettingsPage']);
     Route::get('doc/settings/appointments', ['as'=>'docAppSettings', 'uses'=>'DoctorController@viewAppointmentSettingsPage']);
@@ -73,6 +74,7 @@ Route::get('doc/patients/search', 'AjaxController@searchPatients');
 
 Route::get('doc/updateDropdown', 'inventoryItemController@updateDropdown');
 Route::get('doc/updateSummary', 'inventoryItemController@updateSummary');
+
 
 
 

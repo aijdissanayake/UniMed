@@ -164,15 +164,10 @@
 
                         <!-- settings button-->
                           <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-                            <a class="btn-floating btn-large btn tooltipped waves-effect waves-circle cyan darken-4" data-position="left" data-delay="50" data-tooltip="Inventory settings">
+                            <a class="btn-floating btn-large btn tooltipped waves-effect waves-circle cyan darken-4" data-position="left" data-delay="50" data-tooltip="Inventory settings" href="{{route('inventorySettings')}}">
                               <i class="large material-icons">settings</i>
                             </a>
                           </div>
-
-
-
-   
- 
 
         </div>
 
