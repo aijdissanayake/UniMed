@@ -76,7 +76,7 @@
                                     <br>Date &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;{{$appDate or ''}}
                                     <br><br>Session :&nbsp;&nbsp;{{$session or ''}}
                                     <br><br>App. No :&nbsp;&nbsp;{{$appNo or ''}}<br>
-                                    <form  action="{{route('cancelAppointment')}}"  " method="get">
+                                    <form  action="{{route('cancelAppointment')}}"  method="get">
                                         <a class="tooltipped" data-position="left" data-delay="50" data-tooltip="Cancel this Appointment to create a new One">
                                         <input id="cancelButton" class="waves-effect waves-light btn purple lighten-5 red-text" style="float:right;  border-color:red; border-style: solid; border-width:1px;" type="submit" name="cancelButton" value="Cancel" />
                                         </a>
