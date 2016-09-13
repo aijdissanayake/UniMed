@@ -274,6 +274,23 @@ class DoctorController extends Controller
         return view('doctor.settings.appointmentsettings');
     }
     
+    public function addSession(Request $request){
+        $startTime = $request->input('startTime');
+        $endTime = $request->input('endTime');
+        $timePeriod = date('h:i a' , strtotime($startTime)) . " - " . date('h:i a', strtotime($endTime));
+        $session = new \App\session();
+        $session->time_Period = $timePeriod;
+        if($request->input('availableNow')){
+            $session->available = 1;
+        }
+        $session->save();
+        return view('doctor.settings.appointmentsettings');
+    }
 
+
+    public function viewInventorySettings()
+    {
+        return view('doctor.inventory.inventorySettings');
+    }
 
 }

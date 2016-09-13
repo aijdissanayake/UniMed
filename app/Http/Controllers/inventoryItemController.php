@@ -17,141 +17,168 @@ class inventoryItemController extends Controller
     /**
      *
      */
-    public function addInventoryItem()
+    public function updateInventoryItem()
     {
 
         $input = Input::all();
-        $itemType = $input['a_type'];
+        $itemType = $input['update_type'];
+        $add_remove = $input['add_remove'];
+        $name = $input['update_items'];
+        $quantity = (int)$input['quantity'];
+        $feedback = "error!";
+        $type="";
 
+        if($add_remove=='add'){
 
-        if ($itemType == "Drugs") {
+            if ($itemType == "1") {
+            
+                $requiredItem = \App\inventoryItem::where('itemName', 'LIKE', '%' . $name . '%')->get()[0];
+                $currentStock = (int)$requiredItem->currStock;
+                $minimum = (int)$requiredItem->minStock;
 
+                if($currentStock<$minimum && $minimum<$currentStock + $quantity){
+                    //remove the warning
+                    DB::table('inventory_items')->where('itemName', 'LIKE', '%' . $name . '%')->update(['restockNeeded'=>'0']);
 
-            $name = $input['a_drugs'];
-            $quantity = (int)$input['a_quantity'];
-            $requiredItem = \App\inventoryItem::where('itemName', 'LIKE', '%' . $name . '%')->get()[0];
-            $currentStock = (int)$requiredItem->currStock;
-            $minimum = (int)$requiredItem->minStock;
+                }
+                DB::table('inventory_items')->where('itemName', 'LIKE', '%' . $name . '%')->update(['currStock'=>$currentStock+$quantity]);
 
-            if($currentStock<$minimum && $minimum<$currentStock + $quantity){
-                //remove the warning
-                DB::table('inventory_items')->where('itemName', 'LIKE', '%' . $name . '%')->update(['restockNeeded'=>'0']);
+            }else{
 
+                $requiredItem = \App\inventoryItem::where('itemName', 'LIKE', '%' . $name . '%')->get()[0];
+                $currentStock = (int)$requiredItem->currStock;
+                $minimum = (int)$requiredItem->minStock;
+
+                if($currentStock<$minimum && $minimum<$currentStock + $quantity){
+                    //remove the warning
+                    DB::table('inventory_items')->where('itemName', 'LIKE', '%' . $name . '%')->update(['restockNeeded'=>'0']);
+
+                }
+                DB::table('inventory_items')->where('itemName', 'LIKE', '%' . $name . '%')->update(['currStock'=>$currentStock+$quantity]);
 
             }
-            DB::table('inventory_items')->where('itemName', 'LIKE', '%' . $name . '%')->update(['currStock'=>$currentStock+$quantity]);
 
-
-//            $newItem = new inventoryItem();
-//            $newItem->itemName = $name;
-//            $newItem->currStock = $currentStock+ (int)$quantity;
-//            $newItem->save();
+            $feedback = "Items added!";
 
         }else{
 
-            $name = $input['a_equips'];
-            $quantity = (int)$input['a_quantity'];
-            $requiredItem = \App\inventoryItem::where('itemName', 'LIKE', '%' . $name . '%')->get()[0];
-            $currentStock = (int)$requiredItem->currStock;
-            $minimum = (int)$requiredItem->minStock;
+            if ($itemType == "1") {
 
-            if($currentStock<$minimum && $minimum<$currentStock + $quantity){
-                //remove the warning
-                DB::table('inventory_items')->where('itemName', 'LIKE', '%' . $name . '%')->update(['restockNeeded'=>'0']);
+                $requiredItem = \App\inventoryItem::where('itemName', 'LIKE', '%' . $name . '%')->get()[0];
+                $currentStock = $requiredItem->currStock;
+                $minimum = $requiredItem->minStock;
 
-            }
-            DB::table('inventory_items')->where('itemName', 'LIKE', '%' . $name . '%')->update(['currStock'=>$currentStock+$quantity]);
+                if($quantity<$currentStock){
+                    DB::table('inventory_items')->where('itemName', 'LIKE', '%' . $name . '%')->update(['currStock'=>$currentStock-(int)$quantity]);
+                    $feedback = "Items removed!";
 
-        }
+                    if($currentStock-$quantity<$minimum){         // logic to display stock level critical warning
+                        DB::table('inventory_items')->where('itemName', 'LIKE', '%' . $name . '%')->update(['restockNeeded'=>'1']);
+                        $feedback = "Items removed. Restock required!";
 
-
-        $drugs = drug::all();
-        $equip = equipment::all();
-        $items = array($drugs, $equip); //this array is used to create drop down menus.
-        return view('doctor.inventory.inventory', compact('items'));
-        //echo $currentStock;
-    }
-
-    public function removeInventoryItem()
-    {
-
-        $input = Input::all();
-        $itemType = $input['r_type'];
+                    }
+                }else{
+                    $feedback = "not enough stocks!";
+                }
 
 
-        if ($itemType == "Drugs") {
+            }else{
+
+                $requiredItem = \App\inventoryItem::where('itemName', 'LIKE', '%' . $name . '%')->get()[0];
+                $currentStock = $requiredItem->currStock;
+                $minimum = $requiredItem->minStock;
+
+                if($quantity<$currentStock){
+                    DB::table('inventory_items')->where('itemName', 'LIKE', '%' . $name . '%')->update(['currStock'=>$currentStock-(int)$quantity]);
+                     $feedback = "Items removed!";
 
 
-            $name = $input['r_drugs'];
-            $quantity = $input['r_quantity'];
-            $requiredItem = \App\inventoryItem::where('itemName', 'LIKE', '%' . $name . '%')->get()[0];
-            $currentStock = $requiredItem->currStock;
-            $minimum = $requiredItem->minStock;
+                    // logic to dispaly stock level critical warning
+                    if($currentStock-$quantity<$minimum){         // logic to dispaly stock level critical warning
+                        DB::table('inventory_items')->where('itemName', 'LIKE', '%' . $name . '%')->update(['restockNeeded'=>'1']);
+                        $feedback = "Items removed. Restock required!";
 
-            if($quantity<$currentStock){
-                DB::table('inventory_items')->where('itemName', 'LIKE', '%' . $name . '%')->update(['currStock'=>$currentStock-(int)$quantity]);
-
-                if($currentStock-$quantity<$minimum){         // logic to display stock level critical warning
-                    DB::table('inventory_items')->where('itemName', 'LIKE', '%' . $name . '%')->update(['restockNeeded'=>'1']);
+                    }
+                }else{
+                    $feedback = "not enough stocks!";
 
                 }
             }
 
-
-
-        }else{
-
-
-            $name = $input['r_equips'];
-            $quantity = $input['r_quantity'];
-            $requiredItem = \App\inventoryItem::where('itemName', 'LIKE', '%' . $name . '%')->get()[0];
-            $currentStock = $requiredItem->currStock;
-            $minimum = $requiredItem->minStock;
-
-            if($quantity<$currentStock){
-                DB::table('inventory_items')->where('itemName', 'LIKE', '%' . $name . '%')->update(['currStock'=>$currentStock-(int)$quantity]);
-
-                // logic to dispaly stock level critical warning
-                if($currentStock-$quantity<$minimum){         // logic to dispaly stock level critical warning
-                    DB::table('inventory_items')->where('itemName', 'LIKE', '%' . $name . '%')->update(['restockNeeded'=>'1']);
-
-                }
-            }
         }
 
-        $drugs = drug::all();
-        $equip = equipment::all();
-        $items = array($drugs, $equip); //this array is used to create drop down menus.
-        return view('doctor.inventory.inventory', compact('items'));
-        //echo $currentStock;
+        return response()->json([
+                'feedback' => $feedback
+        ]);
     }
+
+
+
+
 
     public function searchInventoryItem(){
 
 
 
         $input = Input::all();
-        $itemType = $input['s_type'];
+        $itemType = $input['search_type'];
 
 
-        if ($itemType == "Drugs") {
+        if ($itemType == "1") {
 
-            $name = $input['s_drugs'];
+            $name = $input['search_items'];
             $requiredItem = \App\inventoryItem::where('itemName', 'LIKE', '%' . $name . '%')->get()[0];
             $quantity = $requiredItem->currStock;
             $description = \App\drug::where('drugName', 'LIKE', '%' . $name . '%')->get()[0]->description;
+            $type="Drug";
 
         }else{
-            $name = $input['s_equips'];
+            $name = $input['search_items'];
             $requiredItem = \App\inventoryItem::where('itemName', 'LIKE', '%' . $name . '%')->get()[0];
             $quantity = $requiredItem->currStock;
-            $description = \App\drug::where('drugName', 'LIKE', '%' . $name . '%')->get()[0]->description;
+            $description = \App\equipment::where('equipmentName', 'LIKE', '%' . $name . '%')->get()[0]->description;
+            $type="Equipment";
         }
 
-        $drugs = drug::all();
-        $equip = equipment::all();
-        $items = array($drugs, $equip, $description,$quantity); //this array is used to create drop down menus and search results.
-        return view('doctor.inventory.inventory_search', compact('items'));
+        
+        return response()->json([
+                'name' => $name,
+                'type' => $type,
+                'quantity' => $quantity,
+                'description' => $description
+        ]);
+    }
+
+
+
+
+
+    public function updateDropdown(Request $request)  //used to dynamically update dropdown menus
+    {
+        
+        if($request->type_id=='1'){
+            $items = DB::table('drugs')->pluck('drugName');
+            return response()->json([
+                'items' => $items
+            ]);
+        }else{
+            $items = DB::table('equipment')->pluck('equipmentName');
+            return response()->json([
+                'items' => $items
+            ]);
+        } 
+    }
+
+    
+
+
+
+    public function updateSummary(Request $request) //used to update inventory summary
+    {
+        $refillNeeded = DB::table('inventory_items')->where('restockNeeded', '=', 1)->pluck('itemName');
+        return response()->json([
+                'items' => $refillNeeded
+            ]);
 
     }
 

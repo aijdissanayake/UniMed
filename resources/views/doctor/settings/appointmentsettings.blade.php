@@ -6,45 +6,79 @@
         <title>Settings</title>
         <meta name="description" content="website description" />
         <meta name="keywords" content="website keywords, website keywords" />
+        <script type="text/javascript" src="/js\doc.js"></script>
+        <style rel="stylesheet" type="text/css" href="/style/docStyle.css"></style>
     </head>
 
 
     <body class="blue lighten-5">
         <div class="container">
-            
-            <div class="row top-row">
-                <div class="col s12 m6">
-                    <div class="card green white-text">
+             <div class="row" style="height:auto; display: flex">
+                <div class="col s12 m6" style="height:auto">
+                    <div class="card white black-text" style="height:100%; margin-bottom:1%" >
+                        <div class="card-title red white-text"><span style="padding:0%;">Add Session</span></div>
                         <div class="card-content">
-                            <span class="card-title"><strong>My profile</strong></span>
-                            <table>
-                                <tr><td>Name</td><td>Anon</td></tr>
-                                <tr><td>Registration Number</td><td>1111</td></tr>
-                                <tr><td>Email</td><td>app@</td></tr>
-                            </table>
-                            <a href="#!" class="waves-effect green darken-3 btn">
-                                Edit
-                            </a>
+                            <div style=" height:150px;">
+                                <form action="{{route('addSession')}}" method="post">
+                                    <div class="row">
+                                        <div class="col s5" style="display: flex">
+                                            <span class="black-text" for="startTime" style="float:left">Start Time : </span><br>
+                                            <input id="startTime" class="timepicker" type="time" name="startTime" value="07:00:00" required>
+                                        </div>
+                                        <div class="col s5 offset-s1" style="display: flex">
+                                            <span class="black-text" for="endTime">End Time : </span><br>
+                                            <input id="endTime" class="timepicker" type="time" name="endTime" value="08:00:00" required>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" name="availableNow" id="availableNow">
+                                        <label for="availableNow">Make the Session Available from Now</label>
+                                    </div>
+                                    </div>                            
                         </div>
+                                    <div   class="card-action">
+                                    <input class="waves-effect waves-light btn red" type="submit" value="Add Session" style="float:right">
+                                    </div>
+                                    {{ csrf_field() }}
+                                </form>
+                            
                     </div>
                 </div>
 
-                <div class="col s12 m6">
-                    <div class="card light-blue white-text">
+                <div class="col s12 m6" style="height:auto">
+                    <div class="card white black-text" style="height:100%; margin-bottom:1%" >
+                        <div class="card-title  light-blue darken-4 white-text"><span style="padding:0%;">Mark Unavailable</span></div>
                         <div class="card-content">
-                            <span class="card-title"><strong>Statistics</strong></span>
-                            <table>
-                                <tr><td></td><td>lorem ipsum</td></tr>
-                                <tr><td></td><td>lorem ipsum</td></tr>
-                                <tr><td></td><td>lorem ipsum</td></tr>
-                            </table>
-
-                            <a href="#!" class="waves-effect light-blue darken-3 btn">
-                                See more...
-                            </a>
+                            <div style=" height:150px;">
+                            <form action="{{route('addSession')}}" method="post">                      
+                                        
+                                        <div class="row">
+                                        <div class="col s2 offset-s1" >
+                                            <span class="black-text" for="startDate" style="float:left">From: </span>
+                                        </div>
+                                        <div class="col s5" >
+                                            <input id="startDate" class="timepicker" type="date" name="startDate" value="" required>
+                                        </div>
+                                        </div>
+                                        <div class="row">
+                                        <div class="col s2 offset-s1" >
+                                            <span class="black-text" for="endDate" style="float:left">To: </span>
+                                        </div>
+                                        <div class="col s5" >
+                                            <input id="endDate" class="timepicker" type="date" name="endDate" value="" min="" required>
+                                        </div>
+                                        </div>
+                                        </div>
                         </div>
+                                    <div class="card-action">
+                                    <input class="waves-effect waves-light btn light-blue darken-4" type="submit" value="Mark Unavailable" style="float:right">
+                                    </div>
+                                    {{ csrf_field() }}
+                                </form>
+                            
                     </div>
                 </div>
+
             </div>
             <div class="row" style="height:auto; display: flex">
                 <div class="col s12 m4" style="align-self:stretch">
@@ -85,51 +119,6 @@
                         </div>
                     </div>
                 </div>
-
-            </div>
-            <div class="row" style="height:auto; display: flex">
-                <div class="col s12 m6" style="height:auto">
-                    <div class="card grey white-text" style="height:100%; margin-bottom:1%" >
-                        <div class="card-content" style="padding:5% 5% 0 5%;">
-                            <span class="card-title" style="padding:0%;">Finances</span>
-                            <div class="white divider"></div>
-                            <div style=" height:150px; overflow:auto; padding-top:2%">
-                            <p>lorem ipsum</p>
-                            <p>lorem ipsum</p>
-                            <p>lorem ipsum</p>
-                            <p>lorem ipsum</p>
-                            <p>lorem ipsum</p>
-                            <p>lorem ipsum</p>
-                            <p>lorem ipsum</p>
-                            <p>lorem ipsum</p>
-                            <p>lorem ipsum</p>
-                            <p>lorem ipsum</p>
-                            <p>lorem ipsum</p>
-                            <p>lorem ipsum</p>
-                            
-                            
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col s12 m6" style="height:auto">
-                    <div class="card purple white-text" style="height:100%; margin-bottom:1%"  >
-                        <div class="card-content" style="padding:5% 5% 0 5%;">
-                            <span class="card-title" style="padding:0%;">Appointments</span>
-                            <div class="white divider"></div>
-                            <div style=" height:125px; overflow:auto; padding-top:2%">
-                            <p>There are no of appintments for Today!</p><br>
-                            <p>X sessions are available now !</p><br>                       
-                            </div>
-                            <a href="#!" class="waves-effect purple darken-3 btn" style="margin:5% 0 0 0 ">
-                                Change Settings
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </div>
 
