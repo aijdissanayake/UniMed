@@ -52,7 +52,7 @@
                     <div class="card-title  light-blue darken-4 white-text"><span style="padding:0%;">Mark Unavailable</span></div>
                     <div class="card-content">
                         <div style=" height:150px;">
-                            <form action="{{route('addSession')}}" method="post">                      
+                            <form action="{{route('unavailablePeriod')}}" method="post">                      
                                 {{ csrf_field() }}
                                 <div class="row">
                                     <div class="col s2 offset-s1" >
