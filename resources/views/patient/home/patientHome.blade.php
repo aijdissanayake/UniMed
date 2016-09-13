@@ -6,6 +6,8 @@
 
     @include('patient.nav_bar_pat')
     <title>Unicare - Home</title>
+    <meta name="description" content="website description" />
+    <meta name="keywords" content="website keywords, website keywords" />
     <script type="text/javascript" src="/js\init.js" ></script>
     <script type="text/javascript" src="/js\patient.js"></script>
     <link rel='stylesheet' type='text/css' href='http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css'/>
@@ -75,7 +77,9 @@
                                     <br><br>Session :&nbsp;&nbsp;{{$session or ''}}
                                     <br><br>App. No :&nbsp;&nbsp;{{$appNo or ''}}<br>
                                     <form  action="{{route('cancelAppointment')}}"  " method="get">
-                                        <input id="cancelButton" class="waves-effect waves-light btn purple lighten-5 red-text tooltipped" data-position="left" data-delay="50" data-tooltip="Cancel this Appointment to create a new One" style="float:right;  border-color:red; border-style: solid; border-width:1px;" type="submit" name="cancelButton" value="Cancel" />
+                                        <a class="tooltipped" data-position="left" data-delay="50" data-tooltip="Cancel this Appointment to create a new One">
+                                        <input id="cancelButton" class="waves-effect waves-light btn purple lighten-5 red-text" style="float:right;  border-color:red; border-style: solid; border-width:1px;" type="submit" name="cancelButton" value="Cancel" />
+                                        </a>
                                     </form>
                                     </div>
 
@@ -140,6 +144,11 @@
                 </div>
             </div>
         </div>
+        <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+                            <a class="btn-floating btn-large btn tooltipped waves-effect waves-circle cyan darken-4" data-position="left" data-delay="50" data-tooltip="Inventory settings" href="{{route('inventorySettings')}}">
+                              <i class="large material-icons">settings</i>
+                            </a>
+                          </div>
     </div> 
 
     <div id="footer">
