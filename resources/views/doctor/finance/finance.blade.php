@@ -14,7 +14,7 @@
             <div class="row top-row">
 
                 <div class="row">
-                    <div class="col s12 m6">
+                    <div class="col s12">
                         <div class="card">
                             <div class="card-title green white-text">
                                 <i class="material-icons left">list</i>
@@ -43,6 +43,9 @@
                             </div>
                         </div>
                     </div>
+
+                </div>
+                <div class="row">
 
                     <div class="col s12 m6">
                         <div class="card">
@@ -79,9 +82,8 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col s12">
+
+                    <div class="col s12 m6">
                         <div class="card">
                             <div class="card-title green white-text">
                                 <i class="material-icons left">sort</i>
@@ -95,30 +97,30 @@
                                     <tr><td>Gross Profit</td><td></td><td></td></tr>
                                 </table>
                             </div>
-                            
+
                             <div class="card-title">
-                            <i class="material-icons left">speaker_notes</i>
-                            Custom Periods
-                        </div>
-                        <div class="card-content">
-                            <div class="row">
-                                <div class="col s6">
-                                    <label for="trxn_value"><h6>From:</h6></label>
-                                    <input id="date_from" type="date" class="datepicker">             
+                                <i class="material-icons left">speaker_notes</i>
+                                Custom Periods
+                            </div>
+                            <div class="card-content">
+                                <div class="row">
+                                    <div class="col s6">
+                                        <label for="trxn_value"><h6>From:</h6></label>
+                                        <input id="date_from" type="date" class="datepicker">             
+                                    </div>
+                                    <div class="col s6">
+                                        <label for="trxn_value"><h6>To:</h6></label>
+                                        <input id="date_to" type="date" class="datepicker">
+                                    </div>
                                 </div>
-                                <div class="col s6">
-                                    <label for="trxn_value"><h6>To:</h6></label>
-                                    <input id="date_to" type="date" class="datepicker">
+                                <div class="row">
+                                    <div class="col s12 center-align">
+                                        <a class="waves-effect green btn"><i class="material-icons left">history</i>Show Transactions</a>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col s12 center-align">
-                                    <a class="waves-effect green btn"><i class="material-icons left">history</i>Show Transactions</a>
-                                </div>
-                            </div>
                         </div>
-                        </div>
-                        
+
                     </div>
                     <div class="col s12 l6">
 
