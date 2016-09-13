@@ -7,7 +7,7 @@
         <meta name="description" content="website description" />
         <meta name="keywords" content="website keywords, website keywords" />
         <script type="text/javascript" src="/js\doc.js"></script>
-        <style rel="stylesheet" type="text/css" href="/style/docStyle.css"></style>
+        <link rel="stylesheet" type="text/css" href="\style/docStyle.css"></style>
     </head>
 
 
