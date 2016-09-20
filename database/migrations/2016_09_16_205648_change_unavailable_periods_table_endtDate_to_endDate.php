@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class ChangeSessionToSessionId extends Migration
+class ChangeUnavailablePeriodsTableEndtDateToEndDate extends Migration
 {
     /**
      * Run the migrations.
@@ -12,8 +12,8 @@ class ChangeSessionToSessionId extends Migration
      */
     public function up()
     {
-        Schema::table('appointments', function (Blueprint $table) {
-            $table->renameColumn('session','session_id');
+        Schema::table('unavailable_periods', function (Blueprint $table) {
+            $table->renameColumn('endtDate','endDate');
         });
     }
 
@@ -24,6 +24,6 @@ class ChangeSessionToSessionId extends Migration
      */
     public function down()
     {
-            //
+        //
     }
 }

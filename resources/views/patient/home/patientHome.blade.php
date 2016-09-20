@@ -72,17 +72,16 @@
                                         <br><br>Session :&nbsp;&nbsp;{{$session or ''}}
                                         <br><br>App. No :&nbsp;&nbsp;{{$appNo or ''}}<br>
                                         <form  action="{{route('cancelAppointment')}}"  method="get">
-                                            <a class="tooltipped" data-position="left" data-delay="50" data-tooltip="Cancel this Appointment to create a new One">
-                                                <input id="cancelButton" class="waves-effect waves-light btn purple lighten-5 red-text" style="float:right;  border-color:red; border-style: solid; border-width:1px;" type="submit" name="cancelButton" value="Cancel" />
-                                            </a>
+                                                <input id="cancelButton" class="waves-effect waves-light btn tooltipped purple lighten-5 red-text" 
+                                                data-position="bottomt" data-delay="50" data-tooltip="Cancel this Appointment to create a new One"style="float:right;  border-color:red; border-style: solid; border-width:1px;" type="submit" name="cancelButton" value="Cancel" />
                                         </form>
                                     </div>
 
-                                    @if($directing == 3)
-                                    <script type="text/javascript">
-Materialize.toast('appointmtment Made!', 4000, 'rounded blue');
-                                    </script>
-                                    @endif
+                                        @if($directing == 3)
+                                        <script type="text/javascript">
+                                            Materialize.toast('appointmtment Made!', 4000, 'rounded blue');
+                                        </script>
+                                        @endif
 
                                     @elseif ($directing == 2 && !$hasAppointment)
                                     <span class="purple-text" id="title"><h5>{{$title or ''}}</h5> <br> </span>
@@ -90,9 +89,8 @@ Materialize.toast('appointmtment Made!', 4000, 'rounded blue');
                                     <div  class="purple darken-4" style=" width: 250px ; text-align:center ; color: white; font-size:20px ">
                                         Sorry, All the Online Appointments are reserved. Please Contact Doctor for Arrangements.
                                     </div>
-                                    @endif
 
-                                    @if( ($directing == 1 && !$hasAppointment) || $directing == 2 || $directing == 5)
+                                    @elseif( ($directing == 1 && !$hasAppointment) || $directing == 2 || $directing == 5)
 
                                     <form action="{{route('appointment')}}" method="post" id="appForm">
                                         {{ csrf_field() }}
@@ -120,11 +118,11 @@ Materialize.toast('appointmtment Made!', 4000, 'rounded blue');
                                         <input class="waves-effect waves-light btn grey lighten-3 black-text" style="float:right" type="submit" name="appointmentButton" id="appSubmit" value="submit">	
                                     </form>
 
-                                    @if($directing == 5)
-                                    <script type="text/javascript">
-                                        Materialize.toast('appointmtment Cancelled!', 4000, 'rounded red');
-                                    </script>
-                                    @endif
+                                        @if($directing == 5)
+                                        <script type="text/javascript">
+                                            Materialize.toast('appointmtment Cancelled!', 4000, 'rounded red');
+                                        </script>
+                                        @endif
 
                                     @endif
 

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUnavailableTimePeriodsTable extends Migration
+class CreateUnavailablePeriodsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,10 +12,10 @@ class CreateUnavailableTimePeriodsTable extends Migration
      */
     public function up()
     {
-        Schema::create('unavailable_time_periods', function (Blueprint $table) {
+        Schema::create('unavailable_periods', function (Blueprint $table) {
             $table->increments('id');
-            $table->date('from');
-            $table->date('to');
+            $table->date('startDate');
+            $table->date('endtDate');
             $table->string('message');
             $table->boolean('expired');
             $table->timestamps();
@@ -29,6 +29,6 @@ class CreateUnavailableTimePeriodsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('unavailable_time_periods');
+        Schema::drop('unavailable_periods');
     }
 }
