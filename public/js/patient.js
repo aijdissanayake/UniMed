@@ -1,31 +1,59 @@
 $(document).ready(function(){
+	//date picker initialization for appointments
+		var d = new Date();
+	    d.setDate(d.getDate() + 1);
+	$('#appointmentDate').pickadate({
+	    	selectMonths: true, // Creates a dropdown to control month
+	    	selectYears: 15, // Creates a dropdown of 15 years to control year
+	    	min: d, // Enable dates after today
+	    	close:'Select' // rename close button
+	   	});
+
 	//fetch unavailable dates
 	$('#appointmentDate').click(function(){
-		confirm('Select a Date');
+		// $.get('dates', function(data, status){
+		// 	console.log(data);
+  		// alert("Data: " + data + "\nStatus: " + status); });
+  	$.ajax({
+			type: 'GET',
+                url: 'dates',
+
+                success: function (data) {
+                	//accsess data
+                	var unavailableDates = data['unavailableDates'];
+                	//get the picker object
+                	var $input = $('#appointmentDate').pickadate();
+				    var picker = $input.pickadate('picker');
+				    //set dates disable for each time period
+                	for(var i in unavailableDates)
+                	{
+                	fromy = parseInt(unavailableDates[i][0].substring(0,4),10);
+                	fromm = parseInt(unavailableDates[i][0].substring(5,7),10)-1;
+                	fromd = parseInt(unavailableDates[i][0].substring(8,10),10);
+                	from = [fromy,fromm,fromd];
+                	toy = parseInt(unavailableDates[i][1].substring(0,4),10);
+                	tom = parseInt(unavailableDates[i][1].substring(5,7),10)-1;
+                	tod = parseInt(unavailableDates[i][1].substring(8,10),10);
+                	to = [toy,tom,tod];
+                	console.log(from);
+                	console.log(to);
+
+                	picker.set('disable', [
+					  // Using a range object with a “from” and “to” property
+					{ from: from, to: to }
+					]);
+                	}
+                	
+
+			  		//date picker disable unavailable periods
+				    
+				    
+				}
+
+			});
+
+
 	});
-
-	//date picker initialization for appointments
-	var d = new Date();
-    d.setDate(d.getDate() + 1);
-
-    $('#appointmentDate').pickadate({
-    	selectMonths: true, // Creates a dropdown to control month
-    	selectYears: 15, // Creates a dropdown of 15 years to control year
-    	min: d, // Enable dates after today
-    	close:'Select' // rename close button
-   	});
-
-    //date picker disable unavailable periods
-    var $input = $('#appointmentDate').pickadate();
-    var picker = $input.pickadate('picker');
-    picker.set('disable', [
-
-  // Using integers as the days of the week (1 to 7)
-  1, 4, 7,
-
-  // Using a range object with a “from” and “to” property
-  { from: [2016,8,20], to: [2016,8,27] }
-	]);
 
 	//toggle appointment policy small screen
 	slide=false;

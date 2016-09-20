@@ -294,7 +294,7 @@ class DoctorController extends Controller
     {   
         $unavailablePeriod = new \App\unavailablePeriod();
         $unavailablePeriod->startDate = $request->input('startDate');
-        $unavailablePeriod->endDate = $request->input('startDate');
+        $unavailablePeriod->endDate = $request->input('endDate');
         $unavailablePeriod->message = $request->input('message');
         $unavailablePeriod->save();
 
