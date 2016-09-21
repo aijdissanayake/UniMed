@@ -87,6 +87,7 @@ Route::group(['middleware' => 'authorizer:patient'], function() {
     Route::get('pat/profile', ['as'=>'pViewProfile', 'uses'=>'PatientController@viewProfile']);
     Route::get('pat/editProfile', ['as'=>'pEditProfile', 'uses'=>'PatientController@editProfile']);
     Route::get('pat/cancelAppointment',['as'=>'cancelAppointment', 'uses'=>'PatientController@cancelAppointment']);
+    Route::get('dates', ['as' => 'unavailableDates', 'uses' => 'PatientController@getUnavailableDates']);
     
 });
 

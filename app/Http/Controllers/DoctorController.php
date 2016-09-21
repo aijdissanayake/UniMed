@@ -290,8 +290,14 @@ class DoctorController extends Controller
         return view('doctor.settings.appointmentsettings');
     }
 
-    public function unavailablePeriod()
-    {
+    public function unavailablePeriod(Request $request)
+    {   
+        $unavailablePeriod = new \App\unavailablePeriod();
+        $unavailablePeriod->startDate = $request->input('startDate');
+        $unavailablePeriod->endDate = $request->input('endDate');
+        $unavailablePeriod->message = $request->input('message');
+        $unavailablePeriod->save();
+
         return view('doctor.settings.appointmentsettings');
     }
 

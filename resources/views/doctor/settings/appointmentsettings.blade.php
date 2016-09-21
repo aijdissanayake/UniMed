@@ -18,7 +18,7 @@
                 <div class="card white black-text" style="height:100%; margin-bottom:1%" >
                     <div class="card-title red white-text"><span style="padding:0%;">Add Session</span></div>
                     <div class="card-content">
-                        <div style=" height:150px;">
+                        <div>
                             <form action="{{route('addSession')}}" method="post">
                                 {{ csrf_field() }}
                                 <div class="row">
@@ -51,7 +51,7 @@
                 <div class="card white black-text" style="height:100%; margin-bottom:1%" >
                     <div class="card-title  light-blue darken-4 white-text"><span style="padding:0%;">Mark Unavailable</span></div>
                     <div class="card-content">
-                        <div style=" height:150px;">
+                        <div>
                             <form action="{{route('unavailablePeriod')}}" method="post">                      
                                 {{ csrf_field() }}
                                 <div class="row">
@@ -68,6 +68,14 @@
                                     </div>
                                     <div class="col s5" >
                                         <input id="endDate" class="timepicker" type="date" name="endDate" value="" min="" required>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col s2 offset-s1" >
+                                        <span class="black-text" for="endDate" style="float:left">Message:</span>
+                                    </div>
+                                    <div class="col s7 offset-s1" rows="5" cols="100" >
+                                        <textarea id="message" name="message"></textarea> 
                                     </div>
                                 </div>
                                 <div class="card-action">

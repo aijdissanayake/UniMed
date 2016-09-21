@@ -182,6 +182,16 @@ class PatientController extends Controller
                 ;
 
         }
-       
+    public function getUnavailableDates(){
+
+        $unavailableDates = [];
+        $unavailablePeriods = \App\unavailablePeriod::where('expired',FALSE)->get();
+        foreach ($unavailablePeriods as $unavailablePeriod) {
+            array_push($unavailableDates, [$unavailablePeriod->startDate,$unavailablePeriod->endDate]);            
+        }
+        return response()->json([
+                'unavailableDates' => $unavailableDates
+            ]);
+    }   
 
 }
