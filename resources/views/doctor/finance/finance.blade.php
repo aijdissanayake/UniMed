@@ -171,6 +171,16 @@
                     </div>
                 </div>
             </div>
+            
+            <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+                <a class="btn-floating btn-large waves-effect waves-circle red" data-position="left" data-delay="15">
+                    <i class="large material-icons">mode_edit</i>
+                </a>
+                <ul>
+                    <li><a class="btn-floating yellow tooltipped" data-position="left" data-delay="25" data-tooltip="New Transaction"><i class="material-icons">payment</i></a></li>
+                    <li><a class="btn-floating green tooltipped"  data-position="left" data-delay="25" data-tooltip="New Assistant"><i class="material-icons">perm_identity</i></a></li>
+                </ul>
+            </div>
         </div>
     </body>
 </html>
