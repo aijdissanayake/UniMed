@@ -59,7 +59,7 @@
                                         <span class="black-text" for="startDate" style="float:left">From: </span>
                                     </div>
                                     <div class="col s5" >
-                                        <input id="startDate" class="timepicker" type="date" name="startDate" value="" required>
+                                        <input id="startDate" class="date" type="date" name="startDate" value="" required>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -67,7 +67,7 @@
                                         <span class="black-text" for="endDate" style="float:left">To: </span>
                                     </div>
                                     <div class="col s5" >
-                                        <input id="endDate" class="timepicker" type="date" name="endDate" value="" min="" required>
+                                        <input id="endDate" class="date" type="date" name="endDate" value="" min="" required>
                                     </div>
                                 </div>
                                 <div class="row">
