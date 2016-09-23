@@ -33,7 +33,7 @@ Route::get('/home', 'HomeController@index');
 Route::group(['middleware' => 'authorizer:doctor'], function() {
     Route::get('doc', ['as' => 'homeTab', 'uses' => 'DoctorController@home']);
     Route::get('doc/patients', ['as' => 'patientsTab', 'uses' => 'DoctorController@viewPatientTab']);
-    Route::get('doc/finance', ['as' => 'financeTab', 'uses' => 'DoctorController@viewFinanceTab']);
+    
     Route::get('doc/profile', ['as'=>'dViewProfile', 'uses'=>'DoctorController@viewProfile']);
     Route::get('doc/editProfile', ['as'=>'dEditProfile', 'uses'=>'DoctorController@editProfile']);
 
@@ -57,6 +57,11 @@ Route::group(['middleware' => 'authorizer:doctor'], function() {
     Route::post('doc/patients/storeRecord/{id}', ['as' => 'storePatientVisitRecord', 'uses'=>'DoctorController@storePatientVisitRecord']);
 
     Route::post('doc/patients/searchLabReports', ['as' => 'searchLabReports', 'uses' => 'DoctorController@searchLabReports']);
+    
+    Route::get('doc/finance', ['as' => 'financeTab', 'uses' => 'DoctorController@viewFinanceTab']);
+    Route::get('doc/finance/newTransaction', ['as'=> 'addTransaction', 'uses'=>function(){
+        return view('doctor.finance.new_transaction_record');
+    }]);
 
 // Doctors Charts
 

@@ -143,9 +143,6 @@ class DoctorController extends Controller
 
     public function searchPatient(Request $request)
     {
-        $this->validate($request, [
-            
-        ]);
                 
         $inputs = Input::all(); // inputs is an array!!
 
@@ -241,11 +238,6 @@ class DoctorController extends Controller
 
         return view('doctor.patients.view', compact('newVRec'));
     }
-//    public function showPatient($id) {
-//        $patient = Patient::find($id);
-//        
-//        return view('doctor.patients.view', compact('patient'));
-//    }
 
 
     /*
@@ -256,6 +248,14 @@ class DoctorController extends Controller
     {
         return view('doctor.finance.finance');
     }
+    
+    public function createTransaction(Request $request) {
+        return view();
+    }
+    
+    /*
+     * Inventory methods
+     */
 
     public function viewInventoryTab()
     {

@@ -50,42 +50,6 @@
                     <div class="col s12 m6">
                         <div class="card">
                             <div class="card-title green white-text">
-                                <i class="material-icons left">euro_symbol</i>
-                                New Transaction
-                            </div>
-                            <div class="card-content">
-                                <div class="row">
-                                    <div class="input-field col s8 l6">
-                                        <select>
-                                            <option value="" disabled selected>Transaction Type</option>
-                                            <option value="1">Income</option>
-                                            <option value="2">Expense</option>
-                                        </select>
-                                    </div>
-                                    <div class="input-field col s8 l6">
-                                        <input id="trxn_vale" type="number" class="validate">             
-                                        <label for="trxn_value">Transaction Value (LKR)</label>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="input-field col s12">
-                                        <textarea id="trxnDscrptn" class="materialize-textarea"></textarea>
-                                        <label for="trxnDscrptn">Transaction Description</label>
-                                    </div>
-
-                                </div>
-                                <div class="row">
-                                    <div class="col s12 center-align">
-                                        <button class="waves-effect green btn" type="submit"><i class="material-icons right">send</i>Add Entry</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col s12 m6">
-                        <div class="card">
-                            <div class="card-title green white-text">
                                 <i class="material-icons left">sort</i>
                                 Summary - This Month
                             </div>
@@ -177,7 +141,7 @@
                     <i class="large material-icons">mode_edit</i>
                 </a>
                 <ul>
-                    <li><a class="btn-floating yellow tooltipped" data-position="left" data-delay="25" data-tooltip="New Transaction"><i class="material-icons">payment</i></a></li>
+                    <li><a class="btn-floating yellow tooltipped" data-position="left" data-delay="25" data-tooltip="New Transaction" href="{{route('addTransaction')}}"><i class="material-icons">payment</i></a></li>
                     <li><a class="btn-floating green tooltipped"  data-position="left" data-delay="25" data-tooltip="New Assistant"><i class="material-icons">perm_identity</i></a></li>
                 </ul>
             </div>

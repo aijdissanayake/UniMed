@@ -57,22 +57,14 @@
                                 @endif
                             </div>
                             
-                            <div class="row card-content hide-on-med-and-down">
-                                <div class="col s8 m3 offset-s2">
-                                    <a href="{{route('addPatient')}}" class="waves-effect green darken-2 btn">
-                                        Add a New Patient
-                                    </a>
-                                </div>
-                                <div class="col s8 m3 offset-s2">
-                                    <a href="{{route('stats')}}" class="waves-effect green darken-2 btn">
-                                        Patient Statistics
-                                    </a>
-                                </div>
+                            <div class="row card-content hide-on-med-and-down center-align">
+                                    <a href="{{route('addPatient')}}" class="waves-effect green darken-2 btn">Add New Patient</a>
+                                    <a href="{{route('stats')}}" class="waves-effect green darken-2 btn">Patient Statistics</a>
                             </div>
                             <div class="card-content hide-on-large-only">
                                 <div class="row center-align">
                                     <a href="{{route('addPatient')}}" class="waves-effect green darken-2 btn">
-                                        Add a New Patient
+                                        Add New Patient
                                     </a>
                                 </div>
                                 <div class="row center-align">
