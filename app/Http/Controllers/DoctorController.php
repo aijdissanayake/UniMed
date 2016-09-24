@@ -209,29 +209,29 @@ class DoctorController extends Controller
         return view('doctor.patients.clinicalRecord', compact('patient'));
     }
 
-    public function storePatientVisitRecord($id)
+    public function storePatientVisitRecord($id, Request $request)
     {
         $input = Input::all();
         $newVRec = new patientVisit();
 
         $newVRec->patientID = $id;
 
-        $newVRec->diagnosis = $input['diagnosis'];
+        $newVRec->diagnosis = $request['diagnosis'];
 
-        if ($input['prognosis'] != "") {
-            $newVRec->prognosis = $input['prognosis'];
+        if ($request['prognosis'] != "") {
+            $newVRec->prognosis = $request['prognosis'];
         }
 
-        if ($input['prescDrugs'] != "") {
-            $newVRec->prescDrugs = $input['prescDrugs'];
+        if ($request['prescDrugs'] != "") {
+            $newVRec->prescDrugs = $request['prescDrugs'];
         }
 
-        if ($input['nextVisitDate'] != "") {
-            $newVRec->nextVisitDate = $input['nextVisitDate'];
+        if ($request['nextVisitDate'] != "") {
+            $newVRec->nextVisitDate = $request['nextVisitDate'];
         }
 
-        if ($input['remarks'] != "") {
-            $newVRec->remarks = $input['remarks'];
+        if ($request['remarks'] != "") {
+            $newVRec->remarks = $request['remarks'];
         }
 
         $newVRec->save();
@@ -250,6 +250,8 @@ class DoctorController extends Controller
     }
     
     public function createTransaction(Request $request) {
+        
+        
         return view();
     }
     

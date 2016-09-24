@@ -11,7 +11,7 @@
 
     </head>
 
-    <body>
+    <body class="grey lighten-4">
         <div class="container">
 
             <div class="row top-row">
@@ -27,7 +27,7 @@
                             <div class="card-title">Recent Patient Visits</div>
                             <div class="card-content">
 
-                                @if (!$patientVisits)
+                                @if ($patientVisits)
                                 <table style="width:100%; border-spacing:0; word-break: break-all;
                                        word-wrap:break-word;overflow: hidden; text-overflow: ellipsis;">
                                     <tr>
@@ -56,29 +56,20 @@
                                 <div>You have no patient visits to display currently.</div>
                                 @endif
                             </div>
-                            
-                            <div class="row card-content hide-on-med-and-down center-align">
-                                    <a href="{{route('addPatient')}}" class="waves-effect green darken-2 btn">Add New Patient</a>
-                                    <a href="{{route('stats')}}" class="waves-effect green darken-2 btn">Patient Statistics</a>
-                            </div>
-                            <div class="card-content hide-on-large-only">
-                                <div class="row center-align">
-                                    <a href="{{route('addPatient')}}" class="waves-effect green darken-2 btn">
-                                        Add New Patient
-                                    </a>
-                                </div>
-                                <div class="row center-align">
-                                    <a href="{{route('stats')}}" class="waves-effect green darken-2 btn">
-                                        Patient Statistics
-                                    </a>
-                                </div>
-                            </div>
 
                         </div>
                     </div>
                 </div>
 
-
+                <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+                    <a class="btn-floating btn-large waves-effect waves-circle red" data-position="left" data-delay="15">
+                        <i class="large material-icons">mode_edit</i>
+                    </a>
+                    <ul>
+                        <li><a class="btn-floating blue tooltipped" data-position="left" data-delay="25" data-tooltip="New Patient" href="{{route('addPatient')}}"><i class="material-icons">person_add</i></a></li>
+                        <li><a class="btn-floating green tooltipped"  data-position="left" data-delay="25" data-tooltip="View Statistics" href="{{route('stats')}}"><i class="material-icons">info_outline</i></a></li>
+                    </ul>
+                </div>
 
             </div>
         </div>

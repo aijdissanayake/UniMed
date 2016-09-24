@@ -62,6 +62,9 @@ Route::group(['middleware' => 'authorizer:doctor'], function() {
     Route::get('doc/finance/newTransaction', ['as'=> 'addTransaction', 'uses'=>function(){
         return view('doctor.finance.new_transaction_record');
     }]);
+    Route::get('doc/finance/newAssistant', ['as'=> 'addAssistant', 'uses'=>function(){
+        return view('doctor.finance.new_assistant');
+    }]);
 
 // Doctors Charts
 
@@ -73,6 +76,7 @@ Route::group(['middleware' => 'authorizer:doctor'], function() {
 // Doctor's views' methods
 
 Route::get('doc/patients/chkuid', 'AjaxController@checkUN');
+Route::get('doc/finance/chkuid', 'AjaxController@checkUN');
 Route::get('doc/patients/search', 'AjaxController@searchPatients');
 
 Route::get('doc/updateDropdown', 'inventoryItemController@updateDropdown');

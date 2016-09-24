@@ -26,23 +26,23 @@
                                                 <div class="col s12 m6"><p><span>PatientID: </span>{{$patient->id}}</p></div>
                                                 <div class="col s12 m6"><p><span>Name: </span>{{$patient->firstName}} {{$patient->lastName}}</p></div>
                                                 <div class="input-field col s12">
-                                                    <input id="diagnosis" type="text" class="validate" required>
+                                                    <input name="diagnosis" type="text" class="validate" required>
                                                     <label for="diagnosis">Diagnosis</label>
                                                 </div>
                                                 <div class="input-field col s12">
-                                                    <input id="prognosis" type="text" class="validate" required>
+                                                    <input name="prognosis" type="text" class="validate" required>
                                                     <label for="prognosis">Prognosis</label>
                                                 </div>
                                                 <div class="input-field col s12 m6">
-                                                    <input id="prescDrugs" type="text" class="validate" required>
+                                                    <input name="prescDrugs" type="text" class="validate" required>
                                                     <label for="prescDrugs">Prescribed Drugs</label>
                                                 </div>
                                                 <div class="input-field col s12">
-                                                    <input id="remarks" type="text" class="validate" required>
+                                                    <input name="remarks" type="text" class="validate" required>
                                                     <label for="remarks">Special Remarks</label>
                                                 </div>
                                                 <div class="input-field col s12 m6">
-                                                    <input type="date" class="datepicker" id="nextVisitDate"  required>
+                                                    <input type="date" class="datepicker" name="nextVisitDate"  required>
                                                     <label for="nextVisitDate">Next Visit Date</label>
                                                 </div>
                                                 <div class="input-field col s12 m6"></div>

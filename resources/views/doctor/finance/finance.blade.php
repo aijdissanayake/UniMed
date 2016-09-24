@@ -47,7 +47,7 @@
                 </div>
                 <div class="row">
 
-                    <div class="col s12 m6">
+                    <div class="col s12 m8 offselt-m2 offset-l2">
                         <div class="card">
                             <div class="card-title green white-text">
                                 <i class="material-icons left">sort</i>
@@ -86,55 +86,7 @@
                         </div>
 
                     </div>
-                    <div class="col s12 l6">
-
-                    </div>
                 </div>
-
-                <div class="row">
-                    <div class="col s12">
-                        <div class="card">
-                            <div class="card-title green white-text">
-                                <i class="material-icons left" style="vertical-align:middle">person_add</i>
-                                Add a New Assistant
-                            </div>
-                            <div class="card-content">
-                                <div class="row">
-                                    <div class="input-field col s6">
-                                        <label for="first_name">First Name</label>
-                                        <input id="first_name" type="text" class="validate">
-                                    </div>
-                                    <div class="input-field col s6">
-                                        <label for="last_name">Last Name</label>
-                                        <input id="last_name" type="text" class="validate">
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="input-field col s6">
-                                        <label for="birth_year">Birth Year</label>
-                                        <input id="birth_year" type="text" class="validate">
-                                    </div>
-                                    <div class="input-field col s6">
-                                        <label for="tp_no">Telephone No.</label>
-                                        <input id="tp_no" type="text" class="validate">
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="input-field col s12">
-                                        <label for="home_address">Home Address</label>
-                                        <textarea id="home_address" class="materialize-textarea"></textarea>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col s12" align="right">
-                                        <a class="waves-effect green btn"><i class="material-icons left">add</i>Add</a>
-                                    </div>
-                                </div>  
-                            </div>
-                        </div>        
-                    </div>
-                </div>
-            </div>
             
             <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
                 <a class="btn-floating btn-large waves-effect waves-circle red" data-position="left" data-delay="15">
@@ -142,7 +94,7 @@
                 </a>
                 <ul>
                     <li><a class="btn-floating yellow tooltipped" data-position="left" data-delay="25" data-tooltip="New Transaction" href="{{route('addTransaction')}}"><i class="material-icons">payment</i></a></li>
-                    <li><a class="btn-floating green tooltipped"  data-position="left" data-delay="25" data-tooltip="New Assistant"><i class="material-icons">perm_identity</i></a></li>
+                    <li><a class="btn-floating green tooltipped"  data-position="left" data-delay="25" data-tooltip="New Assistant" href="{{route('addAssistant')}}"><i class="material-icons">perm_identity</i></a></li>
                 </ul>
             </div>
         </div>

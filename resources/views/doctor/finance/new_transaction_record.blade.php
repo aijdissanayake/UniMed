@@ -35,7 +35,7 @@
                             </div>
                             <div class="row">
                                 <div class="input-field col s12">
-                                    <textarea id="trxnDscrptn" class="materialize-textarea"></textarea>
+                                    <textarea id="trxnDscrptn" class="materialize-textarea" style="padding-bottom: 0px"></textarea>
                                     <label for="trxnDscrptn">Transaction Description</label>
                                 </div>
 

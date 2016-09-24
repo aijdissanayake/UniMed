@@ -1,46 +1,65 @@
 <!DOCTYPE HTML>
 <html>
 
-<head>
-    @include('doctor.nav_bar_doc')
-  <title>Unicare - add_new_patients</title>
-  <meta name="description" content="website description" />
-  <meta name="keywords" content="website keywords, website keywords" />
-  <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
-  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine&amp;v1" />
-  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" />
-  <link rel="stylesheet" type="text/css" href="style/add_new_patient_style.css" />
-</head>
+    <head>
+        @include('doctor.nav_bar_doc')
+        <title>Unicare - Add new Assistant</title>
+        <meta name="description" content="website description" />
+        <meta name="keywords" content="website keywords, website keywords" />
+        <script src="/js/user_check.js" type="text/javascript"></script>
+    </head>
 
-<body>
-  <div id="main">
-    <div id="header">
-      <div id="logo">
-        <h1>Unicare Medical</h1>
-        <div class="slogan"><img src="style/logo.png" /></div>
-      </div>
-      <div id="heading"><h2> New Transaction Entry</h2></div>
+    <body>
+        <div class="container">
+            <div class="row top-row">
+                <div class="row">
+                    <div class="col s12">
+                        <div class="card">
+                            <div class="card-title green white-text">
+                                <i class="material-icons left" style="vertical-align:middle">person_add</i>
+                                Add a New Assistant
+                            </div>
+                            <div class="card-content">
+                                    <div class="input-field col s12 m6">
+                                        <label for="first_name">First Name<span class="red-text">*</span></label>
+                                        <input id="first_name" type="text" class="validate">
+                                    </div>
+                                    <div class="input-field col s12 m6">
+                                        <label for="last_name">Last Name<span class="red-text">*</span></label>
+                                        <input id="last_name" type="text" class="validate">
+                                    </div>
+                                    <div class="input-field col s12 m6">
+                                        <label for="birth_year">Birth Year<span class="red-text">*</span></label>
+                                        <input id="birth_year" type="text" class="validate">
+                                    </div>
+                                    <div class="input-field col s12 m6">
+                                        <label for="tp_no">Telephone No.<span class="red-text">*</span></label>
+                                        <input id="tp_no" type="tel" class="validate">
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <label for="email">Email<span class="red-text">*</span></label>
+                                        <input id="email" class="validate" type="email" required>
+                                        <p id="checkResp"></p>
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <label for="home_address">Home Address</label>
+                                        <textarea id="home_address" class="materialize-textarea" style="padding-bottom: 0px"></textarea>
+                                    </div>
+                                    <div class="input-field col s12 m6">
+                                        <label for="username">username<span class="red-text">*</span></label>
+                                        <input id="username" type="text" class="validate">
+                                    </div>
+                                <div class="row">
+                                    <div class="col s12" align="right">
+                                        <a class="waves-effect green btn"><i class="material-icons left">add</i>Add</a>
+                                    </div>
+                                </div>  
+                            </div>
+                        </div>        
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div id="site_content">
-      <div id="content">
-        <h2>Transaction Details</h2>
-        <form action="#" method="post">
-          <div class="form_settings">
-            <p><span>First Name</span><input type="text" name="name" value="" /></p>
-            <p><span>Last Name</span><input type="text" name="name" value="" /></p>
-            <p><span>Contact No.</span><input type="text" name="name" value="" /></p>
-            <p><span>Email</span><input type="text" name="name" value="" /></p>
-            <p><span>Locale</span><input type="text" name="name" value="" /></p>
-            <p><span>Blood Group</span><input type="text" name="name" value="" /></p>
-            <p><span>Remarks</span><textarea rows="4" cols="50" name="name"></textarea></p>
-            <p align = "right" style="padding-top: 15px"><input class="submit" type="submit" name="submitButton" value="Register" /><input class="submit" type="submit" name="updateButton" value="Update" /><a href="patients.html"><input class="submit" type="submit" name="backButton" value="Back" /></a></p>
-          </div>
-        </form>
-      </div>
-    </div>
-    <div id="footer">
-      <p>&nbsp;</p>
-    </div>
-  </div>
 </body>
 </html>
