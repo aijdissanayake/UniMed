@@ -33,7 +33,7 @@ Position and line height also adjusted as necessary. -->
     <nav>
         <div class="nav-wrapper blue">
             <div class="card-title">
-                <span><a href="" class="brand-logo"><i class="small material-icons" style="vertical-align:middle; padding-left:10px; float:left">local_hospital</i>Unicare</a>
+                <span><a href="{{route('homeTab')}}" class="brand-logo"><i class="small material-icons" style="vertical-align:middle; padding-left:10px; float:left">local_hospital</i>Unicare</a>
                 </span>
             </div>
             <a href="#" data-activates="mob-snav" class="button-collapse">
