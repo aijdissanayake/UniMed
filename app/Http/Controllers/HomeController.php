@@ -24,8 +24,13 @@ class HomeController extends Controller {
      */
     public function index() {
         if (Auth::guest()){
-            return view('login');
-        } else {
+            return view('auth.login');
+        }
+            
+        if (Auth::user()->active == 0){
+            Auth::logout();
+            return view('auth.account_inactive');
+        }
             
         /*
          *     Record login for analytical purposes
@@ -59,6 +64,5 @@ class HomeController extends Controller {
         }
 //        return view('home');
         }
-    }
 
 }

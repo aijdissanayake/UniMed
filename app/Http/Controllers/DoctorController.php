@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use App\User;
 use Auth;
 use App\Patient;
+use App\Assistant;
 use App\patientVisit;
 use App\appointment;
 use Illuminate\Support\Facades\Input;
@@ -49,6 +50,7 @@ class DoctorController extends Controller
     
     public function viewSettingsPage() {
         $doctor = Auth::user()->getDoctor;
+//        $assistants = Assistant::orderBy('created_at', 'desc')
         return view('doctor.settings.settings', compact('doctor'));
     }
     

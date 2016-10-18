@@ -9,7 +9,7 @@
     </head>
 
 
-    <body class="blue lighten-5">
+    <body class="grey lighten-4">
         <div class="container">
             
             <div class="row top-row">
