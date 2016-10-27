@@ -99,7 +99,7 @@
                                 <div class="section">
                                     <input class="btn" type="submit" name="submitButton" value="Register" />
                                     <input class="btn" type="hidden" name="updateButton" value="Update" />
-                                    <a class='form_settings' href="{{route('patientsTab')}}"><input class="btn" type="submit" name="backButton" value="Back" /></a></p>
+                                    <a class='form_settings' href="{{route('patientsTab')}}"><button class="btn" type="submit" name="backButton" value="Back">Back</button></a></p>
                                 </div>
                         </div>
                         </form>
