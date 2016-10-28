@@ -217,9 +217,12 @@ class PatientController extends Controller
         $unavailablePeriod->endDate = $request->input('endDate');
         $unavailablePeriod->message = $request->input('message');
         $unavailablePeriod->save();
+
         foreach (\App\session::where('available',TRUE)->get() as $avbSession) {
-            if ($request->input('$avbSession->id')) {
-            echo $avbSession->startDate;
+            if ($request->input($avbSession->id)) {
+            print $avbSession->time_Period;
+            DB::insert('INSERT INTO session_unavailableperiod (session_id, unavailablePeriod_id) values (?, ?)', [$avbSession->id,$unavailablePeriod->id]);
+
         }
     }
 
