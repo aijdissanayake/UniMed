@@ -217,6 +217,11 @@ class PatientController extends Controller
         $unavailablePeriod->endDate = $request->input('endDate');
         $unavailablePeriod->message = $request->input('message');
         $unavailablePeriod->save();
+        foreach (\App\session::where('available',TRUE)->get() as $avbSession) {
+            if ($request->input('$avbSession->id')) {
+            echo $avbSession->startDate;
+        }
+    }
 
         return view('doctor.settings.appointmentsettings');
     }
