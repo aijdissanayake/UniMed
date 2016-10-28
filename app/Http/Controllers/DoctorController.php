@@ -14,7 +14,9 @@ use App\Assistant;
 use App\patientVisit;
 use App\appointment;
 use App\income;
+use App\incomeType;
 use App\expense;
+use App\expenseType;
 use Validator;
 use Illuminate\Support\Facades\Input;
 
@@ -240,7 +242,7 @@ class DoctorController extends Controller {
         $rules = [
             'tType' => 'required|in:1,2',
             'trxn_value' => 'required|digits_between:1,8',
-            'trxnDescription' => 'alpha_dash|size:255',
+            'remarks' => 'alpha_dash|size:255',
         ];
         
         $messages = [
@@ -248,7 +250,7 @@ class DoctorController extends Controller {
             'tType.in' => "That didn't work, income or expense? Please select one.",
             'trxn_value.required' => "Can we please have a transaction value as well?",
             'trxn_value.digits_between' => "The value doesn't seem right. Please try again.",
-            'trxnDescription.size' => "That's a long description! Maybe shorten it?"
+            'remarks.size' => "That's a long description! Maybe shorten it?"
         ];
         
         $validator = Validator::make($request->all(), $rules, $messages);
@@ -259,22 +261,39 @@ class DoctorController extends Controller {
                         ->withInput();
         }
         
-        
+        $tSubType;
+        if ($request['tSubType']=="-1"){
+            $newSubType;
+            if ($request['tType']==1){
+                $newSubType = new incomeType();
+                $newSubType->incomeName = $request['subTypeName'];
+            }elseif ($request['tType'] ==2) {
+                $newSubType = new expenseType();
+                $newSubType->expenseName = $request['subTypeName'];
+            }
+            $newSubType->description = $request['subTypeDesc'];
+            $newSubType->save();
+            $tSubType = $newSubType->id;
+        }else{
+            $tSubType = $request['tSubType'];
+        }
         
         $transaction;
         if ($request['tType'] == 1) {
             $transaction = new income();
+            $transaction->receivedByID = Auth::user()->id;
+            $transaction->receiptDate = $request['trxnDate'];
+            $transaction->incomeType = $tSubType;
         } elseif ($request['tType'] == 2) {
             $transaction = new expense();
-            
-        }else{
-            return ;
-        }
+            $transaction->paidByID = Auth::user()->id;
+            $transaction->paymentDate = $request['trxnDate'];
+            $transaction->paymentType = $tSubType;
+        }        
         
-        if ($request['tSubType']=="-1"){
-            
-        }
-
+        $transaction->value = $request['trxn_value'];
+        $transaction->remarks = $request['trxnDescription'];
+        $transaction->save();
         return view('doctor.finance.new_transaction_record');
     }
 
