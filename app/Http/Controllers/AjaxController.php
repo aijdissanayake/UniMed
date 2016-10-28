@@ -52,19 +52,18 @@ class AjaxController extends Controller {
             return response()->json($pData,200);
         }
         
-//        return response()->json($patients,200);
         
     }
 
     
     public function getTTypes(Request $req) {
         $tTypes = array();
-        if ($req['tType']==1){
+        if ($req->tType=="1"){
             $tTypes = incomeType::all();
-        }elseif ($req['tType']==2) {
+        }elseif ($req->tType=="2") {
             $tTypes = expenseType::all();
         }
-        return $tTypes;
+        return response()->json($tTypes,200);
     }
     
             }
