@@ -10,12 +10,12 @@
 
     </head>
 
-    <body>
+    <body class="grey lighten-4">
 
             <div class="container">
 
                 <div class="row top-row">
-                    <div class="col s12 m10 l10 offset-m1 offset-l1">
+                    <div class="col s12">
 
                         <!--Appointment data-->
 

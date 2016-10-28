@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\User;
 use App\Patient;
+use App\incomeType;
+use App\expenseType;
 
 class AjaxController extends Controller {
 
@@ -53,4 +55,16 @@ class AjaxController extends Controller {
 //        return response()->json($patients,200);
         
     }
-}
+
+    
+    public function getTTypes(Request $req) {
+        $tTypes = array();
+        if ($req['tType']==1){
+            $tTypes = incomeType::all();
+        }elseif ($req['tType']==2) {
+            $tTypes = expenseType::all();
+        }
+        return $tTypes;
+    }
+    
+            }

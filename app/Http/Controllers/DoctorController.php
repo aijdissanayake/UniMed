@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use DB;
-
 use App\drug;
 use App\equipment;
 use App\inventoryItem;
@@ -11,27 +10,28 @@ use Illuminate\Http\Request;
 use App\User;
 use Auth;
 use App\Patient;
+use App\Assistant;
 use App\patientVisit;
 use App\appointment;
+use App\income;
+use App\expense;
+use Validator;
 use Illuminate\Support\Facades\Input;
 
+class DoctorController extends Controller {
 
-class DoctorController extends Controller
-{
-    
-    public function home()
-    {   $today = \Carbon\Carbon::today();
-        $appointments = appointment::orderBy('aDate','asc')                
+    public function home() {
+        $today = \Carbon\Carbon::today();
+        $appointments = appointment::orderBy('aDate', 'asc')
                 ->where('aDate', '>=', $today) // check for validity by date
-                ->where('expired',FALSE)                
+                ->where('expired', FALSE)
                 ->take(10)
                 ->get();
-        $totalAppointments = count(appointment::where('expired',FALSE)
-                ->get());
+        $totalAppointments = count(appointment::where('expired', FALSE)
+                        ->get());
         $inventory = inventoryItem::all();
-        $homeData = array($appointments, $inventory,$totalAppointments);
+        $homeData = array($appointments, $inventory, $totalAppointments);
         return view('doctor.index.index', compact('homeData'));
-        
     }
 
     /*
@@ -42,55 +42,49 @@ class DoctorController extends Controller
         $doctor = Auth::user()->getDoctor;
         return view('doctor.index.profile_doctor', compact('doctor'));
     }
-    
+
     public function editProfile() {
         return view('doctor.index.profileEditable_doctor');
     }
-    
+
     public function viewSettingsPage() {
         $doctor = Auth::user()->getDoctor;
+//        $assistants = Assistant::orderBy('created_at', 'desc')
         return view('doctor.settings.settings', compact('doctor'));
     }
-    
-    public function viewPatientTab()
-    {
+
+    public function viewPatientTab() {
         $patientVisits = patientVisit::orderBy('created_at', 'desc')
                 ->take(10)
                 ->get();
         return view('doctor.patients.patientsTab', compact('patientVisits'));
     }
-    
+
     /*
      * view patient's profile
      */
-    
-    public function viewPatientDetails($id)
-    {
+
+    public function viewPatientDetails($id) {
         // uses the same view as returned when registering a new patient
         $patient = patient::find($id);
         return view('doctor.patients.viewPatient', compact('patient'));
     }
-    
-    
-    public function viewPatientVisitRecords($id)
-    {
+
+    public function viewPatientVisitRecords($id) {
         $patient = patient::find($id);
         return view('doctor.patients.viewClinicalReports', compact('patient'));
     }
 
-    public function regPatient()
-    {
+    public function regPatient() {
         return view('doctor.patients.add_new_patient');
     }
 
-    public function editPatient($id)
-    {
+    public function editPatient($id) {
         $user = User::find($id);
         return view('doctor.patients.view', compact('user'));
     }
 
-    public function storePatient(Request $request)
-    {
+    public function storePatient(Request $request) {
         /*
          * validating data
          */
@@ -102,7 +96,7 @@ class DoctorController extends Controller
             'email' => 'unique:users,email',
             'bloodGroup' => 'in:A+,A-,B+,B-,AB+,AB-,O-,O+'
         ]);
-        
+
 
         /*
          * create user first
@@ -119,7 +113,7 @@ class DoctorController extends Controller
 
         $user->role = 'patient';
         $user->save();
-        
+
 
 
         /*
@@ -136,17 +130,13 @@ class DoctorController extends Controller
         $patient->locale = $request['locale'];
         $patient->bloodType = $request['bloodGroup'];
         $patient->save();
-          
 
-        return view('doctor.patients.viewPatient',  compact('patient'));
+
+        return view('doctor.patients.viewPatient', compact('patient'));
     }
 
-    public function searchPatient(Request $request)
-    {
-        $this->validate($request, [
-            
-        ]);
-                
+    public function searchPatient(Request $request) {
+
         $inputs = Input::all(); // inputs is an array!!
 
         $type = $inputs['col_name'];
@@ -173,8 +163,7 @@ class DoctorController extends Controller
         return view('doctor.patients.searchResults', compact('patients'));
     }
 
-    public function searchLabReports()
-    {
+    public function searchLabReports() {
 
         $inputs = Input::all(); // inputs is an array!!
 
@@ -204,94 +193,126 @@ class DoctorController extends Controller
         return view('doctor.lab.searchResults', compact('patients'));
     }
 
-
-    public function createPatientVisitRecord($id)
-    {
+    public function createPatientVisitRecord($id) {
         $patient = patient::find($id);
 
         return view('doctor.patients.clinicalRecord', compact('patient'));
     }
 
-    public function storePatientVisitRecord($id)
-    {
+    public function storePatientVisitRecord($id, Request $request) {
         $input = Input::all();
         $newVRec = new patientVisit();
 
         $newVRec->patientID = $id;
 
-        $newVRec->diagnosis = $input['diagnosis'];
+        $newVRec->diagnosis = $request['diagnosis'];
 
-        if ($input['prognosis'] != "") {
-            $newVRec->prognosis = $input['prognosis'];
+        if ($request['prognosis'] != "") {
+            $newVRec->prognosis = $request['prognosis'];
         }
 
-        if ($input['prescDrugs'] != "") {
-            $newVRec->prescDrugs = $input['prescDrugs'];
+        if ($request['prescDrugs'] != "") {
+            $newVRec->prescDrugs = $request['prescDrugs'];
         }
 
-        if ($input['nextVisitDate'] != "") {
-            $newVRec->nextVisitDate = $input['nextVisitDate'];
+        if ($request['nextVisitDate'] != "") {
+            $newVRec->nextVisitDate = $request['nextVisitDate'];
         }
 
-        if ($input['remarks'] != "") {
-            $newVRec->remarks = $input['remarks'];
+        if ($request['remarks'] != "") {
+            $newVRec->remarks = $request['remarks'];
         }
 
         $newVRec->save();
 
         return view('doctor.patients.view', compact('newVRec'));
     }
-//    public function showPatient($id) {
-//        $patient = Patient::find($id);
-//        
-//        return view('doctor.patients.view', compact('patient'));
-//    }
-
 
     /*
      * Finance Tab & tasks
      */
 
-    public function viewFinanceTab()
-    {
+    public function viewFinanceTab() {
         return view('doctor.finance.finance');
     }
 
-    public function viewInventoryTab()
-    {
+    public function createTransaction(Request $request) {
+        $rules = [
+            'tType' => 'required|in:1,2',
+            'trxn_value' => 'required|digits_between:1,8',
+            'trxnDescription' => 'alpha_dash|size:255',
+        ];
+        
+        $messages = [
+            'tType.required'=> "You didn't say the kind of transaction. Income or expense?",
+            'tType.in' => "That didn't work, income or expense? Please select one.",
+            'trxn_value.required' => "Can we please have a transaction value as well?",
+            'trxn_value.digits_between' => "The value doesn't seem right. Please try again.",
+            'trxnDescription.size' => "That's a long description! Maybe shorten it?"
+        ];
+        
+        $validator = Validator::make($request->all(), $rules, $messages);
+        
+        if ($validator->fails()) {
+            return redirect('doc/finance/newTransaction')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+        
+        
+        
+        $transaction;
+        if ($request['tType'] == 1) {
+            $transaction = new income();
+        } elseif ($request['tType'] == 2) {
+            $transaction = new expense();
+            
+        }else{
+            return ;
+        }
+        
+        if ($request['tSubType']=="-1"){
+            
+        }
+
+        return view('doctor.finance.new_transaction_record');
+    }
+
+    /*
+     * Inventory methods
+     */
+
+    public function viewInventoryTab() {
         $drugs = drug::all();
         $equip = equipment::all();
         $items = array($drugs, $equip); //this array is used to create drop down menus.
         return view('doctor.inventory.inventory', compact('items'));
     }
 
-    public function viewLabTab()
-    {
+    public function viewLabTab() {
         return view('doctor.lab.lab');
     }
 
-    public function viewAppointmentSettingsPage(){
+    public function viewAppointmentSettingsPage() {
         return view('doctor.settings.appointmentsettings');
     }
-    
-    public function addSession(Request $request)
-    {
+
+    public function addSession(Request $request) {
         $startTime = $request->input('startTime');
         $endTime = $request->input('endTime');
-        $timePeriod = date('h:i a' , strtotime($startTime)) . " - " . date('h:i a', strtotime($endTime));
+        $timePeriod = date('h:i a', strtotime($startTime)) . " - " . date('h:i a', strtotime($endTime));
         $session = new \App\session();
         $session->time_Period = $timePeriod;
         $session->start_time = $request->input('startTime');
         $session->end_time = $request->input('endTime');
-        if($request->input('availableNow')){
+        if ($request->input('availableNow')) {
             $session->available = 1;
         }
         $session->save();
         return view('doctor.settings.appointmentsettings');
     }
 
-    public function unavailablePeriod(Request $request)
-    {   
+    public function unavailablePeriod(Request $request) {
         $unavailablePeriod = new \App\unavailablePeriod();
         $unavailablePeriod->startDate = $request->input('startDate');
         $unavailablePeriod->endDate = $request->input('endDate');
@@ -301,12 +322,8 @@ class DoctorController extends Controller
         return view('doctor.settings.appointmentsettings');
     }
 
-
-    public function viewInventorySettings()
-    {
+    public function viewInventorySettings() {
         return view('doctor.inventory.inventorySettings');
     }
-
-
 
 }

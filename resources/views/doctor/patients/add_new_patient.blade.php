@@ -11,7 +11,7 @@
         <script src="/js/user_check.js" type="text/javascript"></script>
     </head>
 
-    <body class="blue-grey lighten-5">
+    <body class="grey lighten-4">
         <div class="container">
             <div class="row" style="padding-top: 3rem">
                 <div class="col s12">
@@ -35,20 +35,20 @@
                                 <div class="row">
                                     <div class="col s12 m6">
                                         <div class="section">
-                                            <span>First Name*</span><input type="text" name="firstName" value="{{old('firstName')}}" required=""/>
+                                            <span>First Name<span class="red-text">*</span></span><input type="text" name="firstName" value="{{old('firstName')}}" required=""/>
                                             <p>Note: Default password will be set to "unicare101"</p>
                                         </div>
                                     </div>
                                     <div class="col s12 m6">
-                                        <div class="section"><span>Last Name*</span><input type="text" name="lastName" value="{{old('lastName')}}"  required=""/></div>
+                                        <div class="section"><span>Last Name<span class="red-text">*</span></span><input type="text" name="lastName" value="{{old('lastName')}}"  required=""/></div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col s12 m6">
-                                        <div class="section"><span>Birth Year*</span><input type="number" min="1900" max="2016"  maxlength="4" name="birthYear" value="{{old('birthYear')}}"  required="" validate="true"/></div>
+                                        <div class="section"><span>Birth Year<span class="red-text">*</span></span><input type="number" min="1900" max="2016"  maxlength="4" name="birthYear" value="{{old('birthYear')}}"  required="" validate="true"/></div>
                                     </div>
                                     <div class="col s1 m6">
-                                        <div class="section"><span>Gender*</span>
+                                        <div class="section"><span>Gender<span class="red-text">*</span></span>
                                             <p>
                                                 <input type="radio" name="gender" value="1" checked="true" id="gender_male">
                                                 <label for="gender_male" >Male</label>
@@ -62,25 +62,25 @@
                                 </div>
                                 <div class="row">
                                     <div class="col s12 m6">
-                                        <div class="section"><span>Email*</span>
+                                        <div class="section"><span>Email<span class="red-text">*</span></span>
                                             <input type="email" id="email" name="email" value="{{old('email')}}" required="" />
                                             <p id="checkResp"></p>
                                         </div>
                                     </div>
                                     <div class="col s12 m6">
-                                        <div class="section"><span>Contact No.*</span>
+                                        <div class="section"><span>Contact No.<span class="red-text">*</span></span>
                                             <input type="tel" name="contactNo" value="{{old('contactNo')}}" maxlength="10" required="" />
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col s12 m6">
-                                        <div class="section"><span>Locale*</span>
+                                        <div class="section"><span>Locale<span class="red-text">*</span></span>
                                             <input type="text" name="locale" value="{{old('locale')}}"/>
                                         </div>
                                     </div>
                                     <div class="col s12 m6">
-                                        <div class="section"><span>Blood Group*</span><select name="bloodGroup" value="{{old('bloodGroup')}}"  required="">
+                                        <div class="section"><span>Blood Group<span class="red-text">*</span></span><select name="bloodGroup" value="{{old('bloodGroup')}}"  required="">
                                                 <option value="A+">A+</option>
                                                 <option value="A-">A-</option>
                                                 <option value="B+">B+</option>
@@ -99,7 +99,7 @@
                                 <div class="section">
                                     <input class="btn" type="submit" name="submitButton" value="Register" />
                                     <input class="btn" type="hidden" name="updateButton" value="Update" />
-                                    <a class='form_settings' href="{{route('patientsTab')}}"><input class="btn" type="submit" name="backButton" value="Back" /></a></p>
+                                    <a class='form_settings' href="{{route('patientsTab')}}"><button class="btn" type="submit" name="backButton" value="Back">Back</button></a></p>
                                 </div>
                         </div>
                         </form>

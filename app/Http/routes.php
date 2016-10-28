@@ -33,7 +33,7 @@ Route::get('/home', 'HomeController@index');
 Route::group(['middleware' => 'authorizer:doctor'], function() {
     Route::get('doc', ['as' => 'homeTab', 'uses' => 'DoctorController@home']);
     Route::get('doc/patients', ['as' => 'patientsTab', 'uses' => 'DoctorController@viewPatientTab']);
-    Route::get('doc/finance', ['as' => 'financeTab', 'uses' => 'DoctorController@viewFinanceTab']);
+    
     Route::get('doc/profile', ['as'=>'dViewProfile', 'uses'=>'DoctorController@viewProfile']);
     Route::get('doc/editProfile', ['as'=>'dEditProfile', 'uses'=>'DoctorController@editProfile']);
 
@@ -57,6 +57,15 @@ Route::group(['middleware' => 'authorizer:doctor'], function() {
     Route::post('doc/patients/storeRecord/{id}', ['as' => 'storePatientVisitRecord', 'uses'=>'DoctorController@storePatientVisitRecord']);
 
     Route::post('doc/patients/searchLabReports', ['as' => 'searchLabReports', 'uses' => 'DoctorController@searchLabReports']);
+    
+    Route::get('doc/finance', ['as' => 'financeTab', 'uses' => 'DoctorController@viewFinanceTab']);
+    Route::get('doc/finance/newTransaction', ['as'=> 'addTransaction', 'uses'=>function(){
+        return view('doctor.finance.new_transaction_record');
+    }]);
+    Route::get('doc/finance/newAssistant', ['as'=> 'addAssistant', 'uses'=>function(){
+        return view('doctor.finance.new_assistant');
+    }]);
+    Route::get('doc/finance/newTx', ['as'=>'createTx', 'uses'=>'DoctorController@CreateTransaction']);
 
 // Doctors Charts
 
@@ -68,7 +77,10 @@ Route::group(['middleware' => 'authorizer:doctor'], function() {
 // Doctor's views' methods
 
 Route::get('doc/patients/chkuid', 'AjaxController@checkUN');
+Route::get('doc/finance/chkuid', 'AjaxController@checkUN');
 Route::get('doc/patients/search', 'AjaxController@searchPatients');
+
+Route::get('doc/finance/newTransaction/tTypes', 'AjaxController@getTTypes');
 
 Route::get('doc/updateDropdown', 'inventoryItemController@updateDropdown');
 Route::get('doc/updateSummary', 'inventoryItemController@updateSummary');

@@ -9,7 +9,7 @@
         <script src="\js\inventory.js"></script>
     </head>
 
-    <body>
+    <body class="grey lighten-4">
         <div class="container">
 
 
