@@ -31,39 +31,49 @@
                                     </div>
                                     @endif
                                     <div class="input-field col s8 l6">
-                                        <select name="tType" id="tType">
-                                            <option value="" disabled selected>Transaction Type</option>
+                                        <label style="margin: -35px 0px 10px 0px">Transaction type</label>
+                                        <select name="tType" id="tType" class="browser-default" style="margin-bottom: 20px">
+                                            <option value="" disabled selected>Select</option>
                                             <option value="1">Income</option>
                                             <option value="2">Expense</option>
                                         </select>
+
                                     </div>
                                     <div class="input-field col s8 l6">
-                                        <select name="tSubType" id="tSubType">
-                                            <option value="" disabled selected>Subtype</option>
+                                        <label style="margin: -35px 0px 10px 0px">Transaction Subtype</label>
+                                        <select name="tSubType" id="tSubType" class="browser-default">
+                                            <option value="" disabled selected id="subtypeSelector">Select</option>
                                             <option value="-1">Create New...</option>
                                         </select>
                                     </div>
                                     <div id="defineSubType">
                                         <div class="input-field col s8 l6">
-                                            <input name="subTypeName" type="text" class="validate">
+                                            <input name="subTypeName" id="subTypeName" type="text" class="validate">
                                             <label for="subTypeName">Subtype Name</label>
                                         </div>
                                         <div class="input-field col s8 l6">
-                                            <input name="subTypeDesc" type="text" class="validate">
+                                            <input name="subTypeDesc" id="subTypeDesc" type="text" class="validate">
                                             <label for="subTypeDesc">Subtype Description</label>
                                         </div>
-                                        
+
                                     </div>
-                                    <!--Transaction value input-->
+                                </div>
+                                <!--Transaction value input-->
+                                <div class="row">
                                     <div class="input-field col s8 l6">
                                         <input name="trxn_value" type="number" class="validate" min="0" max="99999999" value="{{old('trxn_value')}}">             
                                         <label for="trxn_value">Transaction Value (LKR)</label>
                                     </div>
+                                    <div class="input-field col s8 l6">
+                                        <input type="date" class="datepicker" id="trxnDate" name="trxnDate" required="" value="">
+                                        <label for="trxnDate">Transaction Date :</label>
+                                        <p class="grey-text" style="font-size: 0.8rem">Change this value if recording past transactions.</p>
+                                    </div>
                                 </div>
                                 <div class="row">
                                     <div class="input-field col s12">
-                                        <textarea name="trxnDescription" class="materialize-textarea" style="padding-bottom: 0px" value="{{old('trxnDescription')}}"></textarea>
-                                        <label for="trxnDescription">Transaction Description</label>
+                                        <textarea name="remarks" class="materialize-textarea" style="padding-bottom: 0px" value="{{old('remarks')}}"></textarea>
+                                        <label for="remarks">Remarks</label>
                                     </div>
 
                                 </div>

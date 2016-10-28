@@ -71,6 +71,13 @@
                                     </div>
                                 </div>
                                 <div class="row">
+                                    
+                                    @foreach (\App\session::where('available',TRUE)->get() as $avbSession)
+                                        <input type="checkbox" name="{{$avbSession->id}}" id="{{$avbSession->id}}">
+                                        <label class="black-text" for="{{$avbSession->id}}"> {{$avbSession->time_Period}} </label>
+                                    @endforeach                                     
+                                </div>
+                                <div class="row">
                                     <div class="col s2 offset-s1" >
                                         <span class="black-text" for="endDate" style="float:left">Message:</span>
                                     </div>
@@ -92,21 +99,7 @@
             </div>
 
         </div>
-        <div class="row" style="height:auto; display: flex">
-            <div class="col s12 m4" style="align-self:stretch">
-                <div class="card red white-text" style="height:100%">
-                    <div class="card-content">
-                        <span class="card-title"><strong>Doctors</strong></span>
-                        <p>Kalana Ishanka</p>
-                        <p>lorem ipsum...</p>
-                        <p>lorem ipsum...</p>
-                        <p>lorem ipsum...</p>
-                        <a href="#!" class="waves-effect red lighten-2 btn">
-                            Manage
-                        </a>
-                    </div>
-                </div>
-            </div>
+        
 
             <div class="col s12 m4" style="align-self:stretch">
                 <div class="card blue-grey darken-2 white-text" style="height:100%">
