@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\DB;
 
 use Carbon\Carbon;
 
+use Illuminate\Http\Request;
+
 use \DateTime; 
 
 class PatientController extends Controller
@@ -192,6 +194,32 @@ class PatientController extends Controller
         return response()->json([
                 'unavailableDates' => $unavailableDates
             ]);
-    }   
+    }
+
+     public function addSession(Request $request) {
+        $startTime = $request->input('startTime');
+        $endTime = $request->input('endTime');
+        $timePeriod = date('h:i a', strtotime($startTime)) . " - " . date('h:i a', strtotime($endTime));
+        $session = new \App\session();
+        $session->time_Period = $timePeriod;
+        $session->start_time = $request->input('startTime');
+        $session->end_time = $request->input('endTime');
+        if ($request->input('availableNow')) {
+            $session->available = 1;
+        }
+        $session->save();
+        return view('doctor.settings.appointmentsettings');
+    }
+
+    public function unavailablePeriod(Request $request) {
+        $unavailablePeriod = new \App\unavailablePeriod();
+        $unavailablePeriod->startDate = $request->input('startDate');
+        $unavailablePeriod->endDate = $request->input('endDate');
+        $unavailablePeriod->message = $request->input('message');
+        $unavailablePeriod->save();
+
+        return view('doctor.settings.appointmentsettings');
+    }
+   
 
 }
