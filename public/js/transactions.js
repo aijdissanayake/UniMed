@@ -3,12 +3,16 @@ $(document).ready(function () {
     var $newSubType = $('#defineSubType');
     var $newSTName = $('#subTypeName');
     var $newSTDesc = $('#subTypeDesc');
+    var $date = $('#trxnDate');
 //    $('select').material_select();
     
     $newSubType.hide();
 
     $('.datepicker').pickadate('picker').set('select', new Date());
-
+    
+    $date.change(function(){
+        console.log($date.val())
+    });
     
     $('#tType').change(function () {
         $newSTName.prop('required',false);
@@ -16,6 +20,7 @@ $(document).ready(function () {
         $newSubType.hide();
         $subTypes.empty();
         $subTypes.append($("<option value='' disabled selected id='subtypeSelector'>Subtype</option>"));
+        $subTypes.append($("<option value='-1'>Create New...</option>"));
         
 
         var outData = {tType: $('#tType').val()};
@@ -32,18 +37,14 @@ $(document).ready(function () {
                 }
                 
                 $.each(data, function(i, item){
-//                    console.log(item[$name]);
                     var $option = new Option(item[$name],item['id']);
-//                    $('#subtypeSelector').append(option);
                     console.log($option);
                     $subTypes.append($("<option></option>").attr("value",item['id']).text(item[$name]));
-//                    $subTypes.append($option);
-
                 });
                 
             }
         });
-        $subTypes.append($("<option value='-1'>Create New...</option>"));
+        
     });
 
 

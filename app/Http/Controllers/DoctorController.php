@@ -198,7 +198,7 @@ class DoctorController extends Controller {
     public function createPatientVisitRecord($id) {
         $patient = patient::find($id);
 
-        return view('doctor.patients.clinicalRecord', compact('patient'));
+        return view('doctor.patients.visitRecord', compact('patient'));
     }
 
     public function storePatientVisitRecord($id, Request $request) {
@@ -282,12 +282,12 @@ class DoctorController extends Controller {
         if ($request['tType'] == 1) {
             $transaction = new income();
             $transaction->receivedByID = Auth::user()->id;
-            $transaction->receiptDate = $request['trxnDate'];
+            $transaction->receiptDate = date_create($request['trxnDate']);
             $transaction->incomeType = $tSubType;
         } elseif ($request['tType'] == 2) {
             $transaction = new expense();
             $transaction->paidByID = Auth::user()->id;
-            $transaction->paymentDate = $request['trxnDate'];
+            $transaction->paymentDate = date_create($request['trxnDate']);
             $transaction->paymentType = $tSubType;
         }        
         
@@ -300,6 +300,10 @@ class DoctorController extends Controller {
     /*
      * Inventory methods
      */
+    
+    public function createAssistant(Request $request) {
+        
+    }
 
     public function viewInventoryTab() {
         $drugs = drug::all();

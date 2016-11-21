@@ -20,9 +20,9 @@
                         <form action="{{route('createTx')}}">
                             {{csrf_field()}}
                             <div class="card-content">
-                                <div class="row">
+                                <div class="row" style="margin-bottom: 0px">
                                     @if (count($errors) > 0)
-                                    <div class="alert alert-danger">
+                                    <div class="amber darken-4 card-content white-text" style="margin-bottom: 20px">
                                         <ul>
                                             @foreach ($errors->all() as $error)
                                             <li>{{ $error }}</li>
@@ -46,6 +46,8 @@
                                             <option value="-1">Create New...</option>
                                         </select>
                                     </div>
+                                </div>
+                                <div class="row" style="margin-bottom: 0px">
                                     <div id="defineSubType">
                                         <div class="input-field col s8 l6">
                                             <input name="subTypeName" id="subTypeName" type="text" class="validate">
@@ -59,14 +61,14 @@
                                     </div>
                                 </div>
                                 <!--Transaction value input-->
-                                <div class="row">
+                                <div class="row" style="margin-bottom: 0px">
                                     <div class="input-field col s8 l6">
                                         <input name="trxn_value" type="number" class="validate" min="0" max="99999999" value="{{old('trxn_value')}}">             
                                         <label for="trxn_value">Transaction Value (LKR)</label>
                                     </div>
-                                    <div class="input-field col s8 l6">
-                                        <input type="date" class="datepicker" id="trxnDate" name="trxnDate" required="" value="">
-                                        <label for="trxnDate">Transaction Date :</label>
+                                    <div class="col s8 l6">
+                                        <label>Transaction Date :</label>
+                                        <input type="date" id="trxnDate" class="datepicker" name="trxnDate" required="true">
                                         <p class="grey-text" style="font-size: 0.8rem">Change this value if recording past transactions.</p>
                                     </div>
                                 </div>
