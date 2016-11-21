@@ -39,6 +39,9 @@ Route::group(['middleware' => 'authorizer:doctor'], function() {
 
     Route::get('doc/inventory', ['as' => 'inventoryTab', 'uses' => 'DoctorController@viewInventoryTab']);
     Route::get('doc/lab', ['as' => 'labTab', 'uses' => 'DoctorController@viewLabTab']);
+    Route::get('doc/lab/addNewLabTech', ['as' => 'addNewLabTech', 'uses' => function(){
+        return view('doctor.lab.add_new_lab_tech');
+    }]);
 
     Route::get('doc/patients/addpatient', ['as' => 'addPatient', 'uses' => 'DoctorController@regPatient']);
 
@@ -50,7 +53,7 @@ Route::group(['middleware' => 'authorizer:doctor'], function() {
     Route::get('doc/settings',['as' => 'settings',  'uses' => 'DoctorController@viewSettingsPage']);
     Route::get('doc/settings/appointments', ['as'=>'docAppSettings', 'uses'=>'DoctorController@viewAppointmentSettingsPage']);
     Route::post('doc/settings/appointments/sessionAdded',['as'=>'addSession', 'uses'=>'DoctorController@addSession']);
-    Route::post('doc/settings/appointments/unavailability',['as'=>'unavailablePeriod','uses'=>'DoctorController@unavailablePeriod']);
+    Route::post('doc/settings/appointments/unavailability',['as'=>'unavailablePeriod','uses'=>'PatientController@unavailablePeriod']);
 
     Route::get('doc/patients/view/{id}', ['as' => 'viewPatient', 'uses' => 'DoctorController@viewPatientDetails']);
     Route::get('doc/patients/createRecord/{id}', ['as' => 'createPatientVisitRecord', 'uses'=>'DoctorController@createPatientVisitRecord']);
