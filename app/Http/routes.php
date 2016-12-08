@@ -109,9 +109,11 @@ Route::group(['middleware' => 'authorizer:patient'], function() {
     Route::get('pat/lab', ['as' => 'patientLabTab', 'uses' => 'PatientController@viewLabTab']);
     Route::post('pat/appointments', ['as' => 'appointment', 'uses' => 'PatientController@createAppointment']);
     Route::get('pat/profile', ['as'=>'pViewProfile', 'uses'=>'PatientController@viewProfile']);
+
     Route::get('pat/editProfile', ['as'=>'pEditProfile', 'uses'=>'PatientController@editProfile']);
     Route::get('pat/cancelAppointment',['as'=>'cancelAppointment', 'uses'=>'PatientController@cancelAppointment']);
     Route::get('dates', ['as' => 'unavailableDates', 'uses' => 'PatientController@getUnavailableDates']);
+    Route::get('pat/visitRecords', ['as' => 'pVisitRecords', 'uses' => 'PatientController@viewVisitRecords']);
     
 });
 

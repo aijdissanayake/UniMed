@@ -34,6 +34,7 @@
                 <ul class="right hide-on-med-and-down">
                     <li><a href="{{route('patient')}}">Home</a></li>
                     <li><a href="#!">Appointments</a></li>
+                    <li><a href="{{route('pVisitRecords')}}">Visit History</a></li>
                     <li><a href="{{route('patientLabTab')}}">Lab</a></li>
                     <li><a class="dropdown-button" href="#9" data-activates="dropdown1" data-beloworigin="true" >My Account<i class="material-icons right">arrow_drop_down</i></a></li>
                 </ul>
@@ -45,6 +46,7 @@
                         <ul class="collapsible collapsible-accordion">
                             <li><a href="{{route('patient')}}">Home</a></li>
                             <li><a href="#!">Appointments</a></li>
+                            <li><a href="{{route('pVisitRecords')}}">Visit History</a></li>
                             <li><a href="{{route('patientLabTab')}}">Lab</a></li>
                             <li><a class="collapsible-header waves-effect waves-teal">My Account<i class="material-icons right">arrow_drop_down</i></a>
                                 <div class="collapsible-body">

@@ -12,12 +12,16 @@ use Illuminate\Http\Request;
 
 use \DateTime; 
 
+use App\patientVisit;
+
+use Auth;
+
 class PatientController extends Controller
 {
     public function home() {
       
         $directing = 1;
-        $patient = \Illuminate\Support\Facades\Auth::user()->patient; 
+        $patient = Auth::user()->getPatient; 
         $pID=$patient->id;
         $hasAppointment = $patient->hasAppointment;
 
@@ -64,6 +68,11 @@ class PatientController extends Controller
         return view('patient.home.profileEditable_patient');
     }
     
+    public function viewVisitRecords(){
+        $vRecs = Auth::user()->getPatient->getPatientVisits;
+        return view('patient.visits.visitRecords');
+    }
+
     public function createAppointment(){
         
         //takes inputs from the form
