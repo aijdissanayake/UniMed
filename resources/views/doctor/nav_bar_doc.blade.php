@@ -2,9 +2,9 @@
 
 <!-- CSS Files -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link rel="stylesheet prefetch" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
-<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>           
-<script src="//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+<link rel="stylesheet prefetch" href="/materialize2/materialize.min.css">
+<script type="text/javascript" src="/materialize2/jquery-2.2.4.min.js"></script>           
+<script src="/materialize2/materialize.min.js"></script>
 <!--Custom CSS File-->
 <link rel="stylesheet" href="\materialize\css\custom.css">
 <!--Custom js file-->

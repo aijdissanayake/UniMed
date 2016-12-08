@@ -37,7 +37,7 @@ class DoctorController extends Controller {
     }
 
     /*
-     * patient tab tasks
+     * patient tasks
      */
 
     public function viewProfile() {
@@ -62,6 +62,12 @@ class DoctorController extends Controller {
         return view('doctor.patients.patientsTab', compact('patientVisits'));
     }
 
+    public function viewAllPatients(){
+        $patients = patient::get();
+
+        return view('doctor.patients.viewAllPatients', compact('patients'));
+    }
+
     /*
      * view patient's profile
      */
@@ -69,12 +75,23 @@ class DoctorController extends Controller {
     public function viewPatientDetails($id) {
         // uses the same view as returned when registering a new patient
         $patient = patient::find($id);
-        return view('doctor.patients.viewPatient', compact('patient'));
+        if ($patient){
+        $visitRecs = patientVisit::where('patientID', 'LIKE', $id)->get();
+        return view('doctor.patients.viewPatient', compact('patient', 'visitRecs'));
+        }
+        else {
+            return view('doctor.patients.common_error');
+        }
     }
 
-    public function viewPatientVisitRecords($id) {
-        $patient = patient::find($id);
-        return view('doctor.patients.viewClinicalReports', compact('patient'));
+    public function viewAllPatientVisitRecords($id) {
+        $VRecs = patientVisit::where('patientID','LIKE',$id)->get();
+        return view('doctor.patients.viewClinicalReports', compact('VRecs'));
+    }
+    
+    public function viewPatientVisitRecord($recordID) {
+        $VRec = patientVisit::find($recordID);
+        return view('doctor.patients.viewVisitRecord', compact('VRec'));
     }
 
     public function regPatient() {
@@ -83,7 +100,7 @@ class DoctorController extends Controller {
 
     public function editPatient($id) {
         $user = User::find($id);
-        return view('doctor.patients.view', compact('user'));
+        return view('doctor.patients.viewPatient', compact('user'));
     }
 
     public function storePatient(Request $request) {
@@ -114,6 +131,7 @@ class DoctorController extends Controller {
 
 
         $user->role = 'patient';
+        $user->active = 1;
         $user->save();
 
 
@@ -134,7 +152,7 @@ class DoctorController extends Controller {
         $patient->save();
 
 
-        return view('doctor.patients.viewPatient', compact('patient'));
+        return redirect()->route('viewPatient',[$patient]);
     }
 
     public function searchPatient(Request $request) {
@@ -165,44 +183,16 @@ class DoctorController extends Controller {
         return view('doctor.patients.searchResults', compact('patients'));
     }
 
-    public function searchLabReports() {
-
-        $inputs = Input::all(); // inputs is an array!!
-
-        $type = $inputs['col_name'];
-        $value = $inputs['value'];
-
-
-        // configure query.
-        if ($type == 1) {
-            $col_name = 'firstName';
-        } elseif ($type == 2) {
-            $col_name = 'lastName';
-        } elseif ($type == 3) {
-            $col_name = 'telephoneNo';
-        }
-
-
-        $patients = Patient::where($col_name, 'LIKE', '%' . $value . '%')->get();
-
-        // patients is an array of patient objects!!
-
-        if ($patients->isEmpty()) {
-            return view('doctor.lab.searchResultsEmpty');
-        }
-
-
-        return view('doctor.lab.searchResults', compact('patients'));
-    }
+    
 
     public function createPatientVisitRecord($id) {
         $patient = patient::find($id);
 
-        return view('doctor.patients.clinicalRecord', compact('patient'));
+        return view('doctor.patients.visitRecord', compact('patient'));
     }
 
     public function storePatientVisitRecord($id, Request $request) {
-        $input = Input::all();
+        
         $newVRec = new patientVisit();
 
         $newVRec->patientID = $id;
@@ -218,7 +208,7 @@ class DoctorController extends Controller {
         }
 
         if ($request['nextVisitDate'] != "") {
-            $newVRec->nextVisitDate = $request['nextVisitDate'];
+            $newVRec->nextVisitDate = date_create($request['nextVisitDate']);
         }
 
         if ($request['remarks'] != "") {
@@ -227,7 +217,7 @@ class DoctorController extends Controller {
 
         $newVRec->save();
 
-        return view('doctor.patients.view', compact('newVRec'));
+        return $this->viewPatientVisitRecord($newVRec->id);
     }
 
     /*
@@ -282,12 +272,12 @@ class DoctorController extends Controller {
         if ($request['tType'] == 1) {
             $transaction = new income();
             $transaction->receivedByID = Auth::user()->id;
-            $transaction->receiptDate = $request['trxnDate'];
+            $transaction->receiptDate = date_create($request['trxnDate']);
             $transaction->incomeType = $tSubType;
         } elseif ($request['tType'] == 2) {
             $transaction = new expense();
             $transaction->paidByID = Auth::user()->id;
-            $transaction->paymentDate = $request['trxnDate'];
+            $transaction->paymentDate = date_create($request['trxnDate']);
             $transaction->paymentType = $tSubType;
         }        
         
@@ -300,6 +290,10 @@ class DoctorController extends Controller {
     /*
      * Inventory methods
      */
+    
+    public function createAssistant(Request $request) {
+        
+    }
 
     public function viewInventoryTab() {
         $drugs = drug::all();
@@ -308,9 +302,7 @@ class DoctorController extends Controller {
         return view('doctor.inventory.inventory', compact('items'));
     }
 
-    public function viewLabTab() {
-        return view('doctor.lab.lab');
-    }
+    
 
     public function viewAppointmentSettingsPage() {
         return view('doctor.settings.appointmentsettings');
@@ -343,6 +335,44 @@ class DoctorController extends Controller {
 
     public function viewInventorySettings() {
         return view('doctor.inventory.inventorySettings');
+    }
+
+    /*
+    * Lab tasks
+    */
+
+    public function viewLabTab() {
+        return view('doctor.lab.lab');
+    }
+
+    public function searchLabReports() {
+
+        $inputs = Input::all(); // inputs is an array!!
+
+        $type = $inputs['col_name'];
+        $value = $inputs['value'];
+
+
+        // configure query.
+        if ($type == 1) {
+            $col_name = 'firstName';
+        } elseif ($type == 2) {
+            $col_name = 'lastName';
+        } elseif ($type == 3) {
+            $col_name = 'telephoneNo';
+        }
+
+
+        $patients = Patient::where($col_name, 'LIKE', '%' . $value . '%')->get();
+
+        // patients is an array of patient objects!!
+
+        if ($patients->isEmpty()) {
+            return view('doctor.lab.searchResultsEmpty');
+        }
+
+
+        return view('doctor.lab.searchResults', compact('patients'));
     }
 
 }
