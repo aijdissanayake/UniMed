@@ -187,7 +187,7 @@ class PatientController extends Controller
     public function getUnavailableDates(){
 
         $unavailableDates = [];
-        $unavailablePeriods = \App\unavailablePeriod::where('expired',FALSE)->get();
+        $unavailablePeriods = \App\unavailablePeriod::where('expired',FALSE)->where('holiday',TRUE)->get();
         foreach ($unavailablePeriods as $unavailablePeriod) {
             array_push($unavailableDates, [$unavailablePeriod->startDate,$unavailablePeriod->endDate]);            
         }
@@ -219,12 +219,15 @@ class PatientController extends Controller
         $unavailablePeriod->save();
 
         foreach (\App\session::where('available',TRUE)->get() as $avbSession) {
-            if ($request->input($avbSession->id)) {
-            print $avbSession->time_Period;
-            DB::insert('INSERT INTO session_unavailableperiod (session_id, unavailablePeriod_id) values (?, ?)', [$avbSession->id,$unavailablePeriod->id]);
-
+            if ($request->input('dayType')=="holiday") {
+                DB::insert('INSERT INTO session_unavailableperiod (session_id, unavailable_period_id) values (?, ?)', [$avbSession->id,$unavailablePeriod->id]);
+            }
+            elseif ($request->input($avbSession->id)) {
+                DB::insert('INSERT INTO session_unavailableperiod (session_id, unavailable_period_id) values (?, ?)', [$avbSession->id,$unavailablePeriod->id]);
+            }
         }
-    }
+    foreach ($unavailablePeriod->sessions as $session) {
+         } 
 
         return view('doctor.settings.appointmentsettings');
     }

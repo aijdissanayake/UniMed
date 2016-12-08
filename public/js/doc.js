@@ -27,4 +27,16 @@ $(document).ready( function(){
 
 	});
 
+	$('#sessions').hide();
+	$('#radio2').change(function(){
+		if(this.checked){
+			$('#sessions').show();
+		}		
+	});
+	$('#radio1').change(function(){
+		if(this.checked){
+			$('#sessions').hide();
+		}		
+	});
+
 });

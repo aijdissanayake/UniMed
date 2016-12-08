@@ -71,6 +71,12 @@
                                     </div>
                                 </div>
                                 <div class="row">
+                                    <input type="radio" name="dayType" id="radio1" value="holiday" checked/>
+                                    <label for="radio1" class="black-text" > Mark as a vaccation </label> <br/>
+                                    <input type="radio" name="dayType" value="halfday" id="radio2" /> 
+                                    <label for="radio2" class="black-text" > Make sessions unavailable</label>
+                                </div>
+                                <div class="row" id="sessions" style="padding: 10%">
                                     
                                     @foreach (\App\session::where('available',TRUE)->get() as $avbSession)
                                         <input type="checkbox" name="{{$avbSession->id}}" id="{{$avbSession->id}}">
