@@ -55,7 +55,7 @@
                             <p>lorem ipsum...</p>
                             <p>lorem ipsum...</p>
                             <p>lorem ipsum...</p>
-                            <a href="#!" class="waves-effect red lighten-2 btn">
+                            <a href="{{route('manageDoctors')}}" class="waves-effect red lighten-2 btn">
                                 Manage
                             </a>
                         </div>
