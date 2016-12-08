@@ -6,9 +6,6 @@
         <!--end of Nav bars-->
         <title>Patients</title>
 
-        <meta name="description" content="website description" />
-        <meta name="keywords" content="website keywords, website keywords" />
-
     </head>
 
     <body class="grey lighten-4">
@@ -89,6 +86,7 @@
                                 @else
                                 <div>You have no patient visits to display currently.</div>
                                 @endif
+                                <a class="btn waves-effect green darken-2" href="{{route('viewAllPatients')}}">View All Patients</a>
                             </div>
 
                         </div>

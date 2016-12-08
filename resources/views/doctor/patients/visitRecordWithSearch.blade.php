@@ -4,9 +4,7 @@
     <head>
         @include('doctor.nav_bar_doc')
         <title>Unicare - Add New Visit Record</title>
-        <meta name="description" content="website description" />
-        <meta name="keywords" content="website keywords, website keywords" />
-
+        
     </head>
 
     <body class="grey lighten-4">
@@ -82,6 +80,10 @@
                                                                                         $('.results').css({'font-size': '16px', 'color': '#26a69a', 'display': 'block', 'line-height': '22px'});
                                                                                     }
                                                                                 });
+                                                                            } else if(value.length<=2){
+                                                                                $resultsList.empty();
+                                                                                $submitBtn.addClass('disabled');
+                                                                                
                                                                             }
                                                                         });
 
@@ -93,16 +95,19 @@
                                                                         $resultsList.on('click', 'li', function () {
                                                                             var $ca = String($(this).attr('value'));
                                                                             console.log($ca);
+                                                                            // Accessing the values of an inner span
                                                                             $('#value').val($(this).children('span').children("span[class='name']").text());
                                                                             $('#value').attr('value', $(this).attr('value'));
                                                                             
-                                                                            var $formAction = "http://localhost:8000/doc/patients/storeRecord/" + $ca + "";
+                                                                            var $formAction = "storeRecord/" + $ca + "";
                                                                             
                                                                             $('#crF').attr('action',$formAction);
                                                                             
                                                                             $submitBtn.removeClass('disabled');
                                                                             
                                                                             $resultsList.empty();
+                                                                            
+                                                                            $('#pID').text($ca);
                                                                         });
                                                                     });
 
@@ -115,8 +120,7 @@
 
                                             </div>
                                             <div class="section">
-                                                <div class="col s12 m6"><p><span>PatientID: <span id="pID"></span></span></p></div>
-                                                <div class="col s12 m6"><p><span>Name: <span id="pName"></span></span></p></div>
+                                                <div class="col s12 m6"><span>PatientID: <span id="pID"></span></span></div>
                                                 <div class="input-field col s12">
                                                     <input name="diagnosis" type="text" class="validate" required>
                                                     <label for="diagnosis">Diagnosis</label>

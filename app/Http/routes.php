@@ -15,11 +15,11 @@
 //    return view('welcome');
 //});
 
-Route::get('/', 'HomeController@index');
+  Route::get('/', 'HomeController@index');
 
-Route::auth();
+  Route::auth();
 
-Route::get('/home', 'HomeController@index');
+  Route::get('/home', 'HomeController@index');
 
 //Route::get('/checkAuth');
 
@@ -45,7 +45,7 @@ Route::group(['middleware' => 'authorizer:doctor'], function() {
 
     Route::get('doc/patients/addpatient', ['as' => 'addPatient', 'uses' => 'DoctorController@regPatient']);
 
-    Route::post('doc/patients/test', ['as' => 'patientAdded', 'uses' => 'DoctorController@storePatient']);
+    Route::post('doc/patients/storePatient', ['as' => 'patientAdded', 'uses' => 'DoctorController@storePatient']);
     Route::post('doc/inventory/add',['as' => 'addItem',  'uses' => 'inventoryItemController@updateInventoryItem']);
     Route::post('doc/inventory/search',['as' => 'searchItem',  'uses' => 'inventoryItemController@searchInventoryItem']);
     Route::get('doc/inventory/settings',['as'=> 'inventorySettings', 'uses' => 'doctorController@viewInventorySettings']);
@@ -60,6 +60,8 @@ Route::group(['middleware' => 'authorizer:doctor'], function() {
     Route::get('doc/patients/newVisitRecord', ['as' => 'newVisitRecord', 'uses'=>function(){
         return view('doctor.patients.visitRecordWithSearch');
     }]);
+    Route::get('doc/patients/view/vr/{id}', 'DoctorController@viewPatientVisitRecord');
+    Route::get('doc/patients/view/vrs/{id}', 'DoctorController@viewAllPatientVisitRecord');
     Route::post('doc/patients/storeRecord/{id}', ['as' => 'storePatientVisitRecord', 'uses'=>'DoctorController@storePatientVisitRecord']);
 
     Route::post('doc/patients/searchLabReports', ['as' => 'searchLabReports', 'uses' => 'DoctorController@searchLabReports']);
@@ -73,23 +75,27 @@ Route::group(['middleware' => 'authorizer:doctor'], function() {
     }]);
     Route::get('doc/finance/newTx', ['as'=>'createTx', 'uses'=>'DoctorController@CreateTransaction']);
 
+    Route::get('doc/patients/all',['as'=>'viewAllPatients','uses'=>'DoctorController@viewAllPatients']);
+
 // Doctors Charts
 
     Route::get('doc/patients/stats', ['as' => 'stats', 'uses' => 'ChartController@statForm']);
     Route::post('doc/patients/stat/patientvisits', ['as' => 'patientsVisitsStat', 'uses' => 'ChartController@display']);
     Route::get('doc/patients/test', ['as' => 'test', 'uses' => 'ChartController@test']);
+
+    // Doctor's views' methods
+
+    Route::get('doc/patients/chkuid', 'AjaxController@checkUN');
+    Route::get('doc/finance/chkuid', 'AjaxController@checkUN');
+    Route::get('doc/patients/search', 'AjaxController@searchPatients');
+
+    Route::get('doc/finance/newTransaction/tTypes', 'AjaxController@getTTypes');
+
+    Route::get('doc/updateDropdown', 'inventoryItemController@updateDropdown');
+    Route::get('doc/updateSummary', 'inventoryItemController@updateSummary');
 });
 
-// Doctor's views' methods
 
-Route::get('doc/patients/chkuid', 'AjaxController@checkUN');
-Route::get('doc/finance/chkuid', 'AjaxController@checkUN');
-Route::get('doc/patients/search', 'AjaxController@searchPatients');
-
-Route::get('doc/finance/newTransaction/tTypes', 'AjaxController@getTTypes');
-
-Route::get('doc/updateDropdown', 'inventoryItemController@updateDropdown');
-Route::get('doc/updateSummary', 'inventoryItemController@updateSummary');
 
 
 
