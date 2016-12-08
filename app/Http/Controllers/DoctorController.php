@@ -323,12 +323,39 @@ class DoctorController extends Controller {
         return view('doctor.settings.appointmentsettings');
     }
 
+    public function unavailablePeriodTest(Request $request) {
+        $unavailablePeriod = new \App\unavailablePeriod();
+        $unavailablePeriod->startDate = $request->input('startDate');
+        $unavailablePeriod->endDate = $request->input('endDate');
+        $unavailablePeriod->message = $request->input('message');
+        if($request->input('holiday')){
+             $unavailablePeriod->holiday = TRUE;
+        }
+        $unavailablePeriod->save();
+
+        return view('doctor.settings.appointmentsettings');
+    }
+
     public function unavailablePeriod(Request $request) {
         $unavailablePeriod = new \App\unavailablePeriod();
         $unavailablePeriod->startDate = $request->input('startDate');
         $unavailablePeriod->endDate = $request->input('endDate');
         $unavailablePeriod->message = $request->input('message');
+        if($request->input('holiday')){
+             $unavailablePeriod->holiday = TRUE;
+        }
         $unavailablePeriod->save();
+
+        foreach (\App\session::where('available',TRUE)->get() as $avbSession) {
+            if ($request->input('dayType')=="holiday") {
+                DB::insert('INSERT INTO session_unavailableperiod (session_id, unavailable_period_id) values (?, ?)', [$avbSession->id,$unavailablePeriod->id]);
+            }
+            elseif ($request->input($avbSession->id)) {
+                DB::insert('INSERT INTO session_unavailableperiod (session_id, unavailable_period_id) values (?, ?)', [$avbSession->id,$unavailablePeriod->id]);
+            }
+        }
+    foreach ($unavailablePeriod->sessions as $session) {
+         } 
 
         return view('doctor.settings.appointmentsettings');
     }
