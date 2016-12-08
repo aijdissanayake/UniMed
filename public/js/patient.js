@@ -9,11 +9,29 @@ $(document).ready(function(){
 	    	close:'Select' // rename close button
 	   	});
 
+	$('#sessionDiv').hide();
+	$('#appointmentDate').change(function(){
+		if(this.value){
+			$('#sessionDiv').show();
+			var date = this.value;
+	  	$.ajax({
+					type: 'GET',
+	                url: 'dates',
+	                data: { date: date },
+	                success: function (data) {
+	                	var sessions = data['sessions'];
+	                	console.log(sessions);
+	                }
+	                });
+		}
+		else{
+			$('#sessionDiv').hide();
+		}		
+	});
+	
+
 	//fetch unavailable dates
 	$('#appointmentDate').click(function(){
-		// $.get('dates', function(data, status){
-		// 	console.log(data);
-  		// alert("Data: " + data + "\nStatus: " + status); });
   	$.ajax({
 			type: 'GET',
                 url: 'dates',
@@ -25,6 +43,7 @@ $(document).ready(function(){
                 	var $input = $('#appointmentDate').pickadate();
 				    var picker = $input.pickadate('picker');
 				    //set dates disable for each time period
+				    console.log(unavailableDates[1][0]);
                 	for(var i in unavailableDates)
                 	{
                 	fromy = parseInt(unavailableDates[i][0].substring(0,4),10);
@@ -105,6 +124,8 @@ $(document).ready(function(){
 			event.preventDefault();
 		}
 	});
+
+
 
 });
 

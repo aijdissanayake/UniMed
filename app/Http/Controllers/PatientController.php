@@ -231,6 +231,14 @@ class PatientController extends Controller
 
         return view('doctor.settings.appointmentsettings');
     }
+
+    public function getSessions(Request $request){
+        $date = $request['date'];
+        return response()->json([
+                'sessions' => 'successful',
+                'date' => $date 
+            ]);
+    }
    
 
 }

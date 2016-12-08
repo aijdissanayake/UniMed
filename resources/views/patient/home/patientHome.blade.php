@@ -105,7 +105,7 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="input-field"  style="padding:10px">
+                                            <div id="sessionDiv" class="input-field"  style="padding:10px">
                                                 <select class="black-text text-lighten-1" name="session" id="session" >
                                                     <option  value="0" disabled selected >Choose your preferred session</option>
                                                     @foreach (\App\session::where('available',TRUE)->get() as $avbSession)                                                
@@ -136,11 +136,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-                <a class="btn-floating btn-large btn tooltipped waves-effect waves-circle cyan darken-4" data-position="left" data-delay="50" data-tooltip="Inventory settings" href="{{route('inventorySettings')}}">
-                    <i class="large material-icons">settings</i>
-                </a>
             </div>
         </div> 
 

@@ -341,7 +341,7 @@ class DoctorController extends Controller {
         $unavailablePeriod->startDate = $request->input('startDate');
         $unavailablePeriod->endDate = $request->input('endDate');
         $unavailablePeriod->message = $request->input('message');
-        if($request->input('holiday')){
+        if($request->input('dayType')=="holiday"){
              $unavailablePeriod->holiday = TRUE;
         }
         $unavailablePeriod->save();
