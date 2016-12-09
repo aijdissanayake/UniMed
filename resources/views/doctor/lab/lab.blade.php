@@ -26,7 +26,6 @@
                         </div>
                     </div>
                 </div>
-           
             </div>
 
              <div class="col s12">
