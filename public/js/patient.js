@@ -1,32 +1,79 @@
+function formatDate(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+
+    return [year, month, day].join('-');
+}
+
 $(document).ready(function(){
 	//date picker initialization for appointments
 		var d = new Date();
 	    d.setDate(d.getDate() + 1);
-	$('#appointmentDate').pickadate({
+	$('#appointmentDate').pickadate({			
+    		
 	    	selectMonths: true, // Creates a dropdown to control month
 	    	selectYears: 15, // Creates a dropdown of 15 years to control year
 	    	min: d, // Enable dates after today
-	    	close:'Select' // rename close button
+	    	close:'Select'
 	   	});
+
 
 	$('#sessionDiv').hide();
 	$('#appointmentDate').change(function(){
+
+		var formatedDate = new Date(this.value);
+		formatedDate = formatDate(formatedDate);
+		$('#altFormat').val(formatedDate);
+
 		if(this.value){
 			$('#sessionDiv').show();
-			var date = this.value;
+			var date = $('#altFormat').val();
+			console.log();
 	  	$.ajax({
 					type: 'GET',
-	                url: 'dates',
+	                url: 'sessions',
 	                data: { date: date },
 	                success: function (data) {
 	                	var sessions = data['sessions'];
-	                	console.log(sessions);
+	                	var sentdate = data['date'];
+	                	var check = data['check'];
+	                	console.log(check);
+	                	//console.log(sessions);
+	                	console.log(sentdate);
+
+	                	$('select').html('');
+                    $.each(sessions, function (i, session) {                            
+                        $('select').append($('<option/>', { 
+                            value: parseInt(session[0]),
+                            text : String(session[1])
+                        }));
+                        console.log(i);
+                        console.log(session[1]);
+                    });
+                    $('select').material_select();
+
+	     //            	$.each(sessions, function (i, session) {
+						//     $('select').append($("<option><option/>")
+						//     	.attr("value",parseInt(session[0]))
+						//     	.text(String(session[1])));
+						//     console.log(session[1]);
+						// });
+
+		
+
 	                }
 	                });
+
 		}
 		else{
 			$('#sessionDiv').hide();
-		}		
+		}
+
 	});
 	
 
@@ -43,7 +90,6 @@ $(document).ready(function(){
                 	var $input = $('#appointmentDate').pickadate();
 				    var picker = $input.pickadate('picker');
 				    //set dates disable for each time period
-				    console.log(unavailableDates[1][0]);
                 	for(var i in unavailableDates)
                 	{
                 	fromy = parseInt(unavailableDates[i][0].substring(0,4),10);

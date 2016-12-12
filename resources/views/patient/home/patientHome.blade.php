@@ -104,13 +104,12 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <input type="text" name="formattedDate" id="altFormat" style="display: none;" />
                                         <div class="row">
                                             <div id="sessionDiv" class="input-field"  style="padding:10px">
                                                 <select class="black-text text-lighten-1" name="session" id="session" >
-                                                    <option  value="0" disabled selected >Choose your preferred session</option>
-                                                    @foreach (\App\session::where('available',TRUE)->get() as $avbSession)                                                
-                                                    <option value="{{$avbSession->id}}">{{$avbSession->time_Period}}</option>
-                                                    @endforeach                                                
+                                                    <option  value="0" disabled selected>Choose your preferred session</option>
+                                                    <option value="0" > Option Test</option>
                                                 </select>
                                                 <label for="session" class="purple-text text-lighten-2"> Session :</label>
                                             </div>                                        
@@ -138,7 +137,10 @@
                 </div>
             </div>
         </div> 
-
+        <select>Select one
+        <option>next</option>
+        <option>next</option>
+        </select>
         <div id="footer">
             <p>&nbsp;</p>
         </div>
