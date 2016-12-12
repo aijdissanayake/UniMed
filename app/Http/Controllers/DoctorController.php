@@ -402,4 +402,8 @@ class DoctorController extends Controller {
         return view('doctor.lab.searchResults', compact('patients'));
     }
 
+    public function manageDoctors(){
+        return view('doctor.settings.manageDoctors');
+    }
+
 }

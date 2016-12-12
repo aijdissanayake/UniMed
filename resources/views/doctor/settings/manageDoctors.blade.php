@@ -15,18 +15,39 @@
         <div class="container">
             <div class="row top-row">
                 <div class="col s12">
-                    <div class="card red lighten-2 white-text">
+                    <div class="card">
+                        <div class="card-title  red lighten-2 white-text"><strong>Doctors - Summary</strong></div>
                         <div class="card-content">
-                            <span class="card-title"><strong>Doctors - Summary</strong></span>
+                            
                             <table>
                                 <tr><td>No. of Doctors</td><td>...</td></tr>
                                 <tr><td>No. of Assistant Doctors</td><td>...</td></tr>
-                                <tr><td>Last report issued</td><td>...</td></tr>
-                                <tr><td>Last report owner</td><td>...</td></tr>
+                                <tr><td>...............</td><td>...</td></tr>
+                                <tr><td>................</td><td>...</td></tr>
                             </table>
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div class="row">
+                <div class="col s12">
+                    <div class="card">
+                        <div class="card-title  red lighten-2 white-text"><strong>Doctors</strong></div>
+                        <div class="card-content">
+                            
+                            <table>
+                                <tr><td>No. of Doctors</td><td>...</td></tr>
+                                <tr><td>No. of Assistant Doctors</td><td>...</td></tr>
+                                <tr><td>...............</td><td>...</td></tr>
+                                <tr><td>................</td><td>...</td></tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                    
+                </div>
+                
             </div>
 
             
