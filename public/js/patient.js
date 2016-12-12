@@ -36,7 +36,7 @@ $(document).ready(function(){
 			console.log();
 	  	$.ajax({
 					type: 'GET',
-	                url: 'sessions',
+	                url: '/sessions',
 	                data: { date: date },
 	                success: function (data) {
 	                	var sessions = data['sessions'];
@@ -81,7 +81,7 @@ $(document).ready(function(){
 	$('#appointmentDate').click(function(){
   	$.ajax({
 			type: 'GET',
-                url: 'dates',
+                url: '/dates',
 
                 success: function (data) {
                 	//accsess data
