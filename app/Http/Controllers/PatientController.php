@@ -234,7 +234,6 @@ class PatientController extends Controller
     }
 
     public function getSessions(Request $request){
-        $d = $request['date'];
         $date = date_create($request['date']);
         $date = date_format($date,"Y-m-d");
         $unavailablePeriods = \App\unavailablePeriod::where('expired',FALSE)->where('holiday',FALSE)->get();
@@ -256,9 +255,7 @@ class PatientController extends Controller
         }
 
         return response()->json([
-                'sessions' => $availableSessions,
-                'date' => $date,
-                'check' => $d
+                'sessions' => $availableSessions
             ]);
     }
    

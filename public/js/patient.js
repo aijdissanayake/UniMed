@@ -31,7 +31,6 @@ $(document).ready(function(){
 		$('#altFormat').val(formatedDate);
 
 		if(this.value){
-			$('#sessionDiv').show();
 			var date = $('#altFormat').val();
 			console.log();
 	  	$.ajax({
@@ -40,34 +39,30 @@ $(document).ready(function(){
 	                data: { date: date },
 	                success: function (data) {
 	                	var sessions = data['sessions'];
-	                	var sentdate = data['date'];
-	                	var check = data['check'];
-	                	console.log(check);
-	                	//console.log(sessions);
-	                	console.log(sentdate);
-
-	                	$('select').html('');
-                    $.each(sessions, function (i, session) {                            
-                        $('select').append($('<option/>', { 
-                            value: parseInt(session[0]),
-                            text : String(session[1])
-                        }));
-                        console.log(i);
-                        console.log(session[1]);
-                    });
-                    $('select').material_select();
-
-	     //            	$.each(sessions, function (i, session) {
-						//     $('select').append($("<option><option/>")
-						//     	.attr("value",parseInt(session[0]))
-						//     	.text(String(session[1])));
-						//     console.log(session[1]);
-						// });
-
-		
-
+						$('#sessionDiv').show();
+	                	if (sessions.length) {
+		                	$('select').html('');
+		                    $.each(sessions, function (i, session) {                            
+		                        $('select').append($('<option/>', { 
+		                            value: parseInt(session[0]),
+		                            text : String(session[1])
+		                        }));
+		                        console.log(i);
+		                        console.log(session[1]);
+		                    });
+		                    $('select').material_select();
+			                }
+		                else{
+		                	$('select').html('');
+		                	$('select').append($('<option/>', { 
+		                            value: parseInt(0),
+		                            text : " All the Sessions are Unavailable"
+		                        }));
+		                	$('select').material_select();
+		                	Materialize.toast('Sorry, All the Sessions are Unavailable on this day!', 4000, 'rounded red');
+		                }
 	                }
-	                });
+	            });
 
 		}
 		else{
