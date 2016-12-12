@@ -44,7 +44,7 @@
                                             </div>
                                         </div>
                                         <div id="policyL" class="purple lighten-5 grey-text z-depth-1 hide-on-small-only" 
-                                             style="padding: 20px 20px 0px 20px; margin-top: 20px;  height: 350px; border-radius:0%">
+                                             style="padding: 20px 20px 0px 20px; margin-top: 20px;  height: 380px; border-radius:0%">
                                             <span class="purple-text" id="title"><h5> Appointment Policy </h5> <br> </span>
                                             <div class="divider purple lighten-3"></div>
                                             <div style="overflow-y: scroll; height: 250px;">
@@ -60,7 +60,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="purple lighten-5 purple-text text-darken-4 z-depth-1 section col s12 m6" style="padding: 20px 20px 0px 20px; margin-top: 20px; height: 350px">
+                                <div class="purple lighten-5 purple-text text-darken-4 z-depth-1 section col s12 m6" style="padding: 20px 20px 0px 20px; margin-top: 20px; height: 380px">
 
                                     @if(($directing == 1 && $hasAppointment) || $directing == 3 || $directing == 4)
                                     <span class="purple-text text-darken-4" id="title" title="Cancel this Appointment to create a new One">
@@ -113,8 +113,12 @@
                                                 </select>
                                                 <label for="session" class="purple-text text-lighten-2"> Session :</label>
                                             </div>                                        
-                                        </div>                         
-                                        <input class="waves-effect waves-light btn grey lighten-3 black-text" style="float:right" type="submit" name="appointmentButton" id="appSubmit" value="submit">	
+                                        </div>
+                                        <div class="row">
+                                            <div class="input-field">                        
+                                                <input class="waves-effect waves-light btn grey lighten-3 black-text" style="float:right" type="submit" name="appointmentButton" id="appSubmit" value="submit">
+                                            </div>
+                                        </div>
                                     </form>
 
                                         @if($directing == 5)
@@ -125,10 +129,6 @@
 
                                     @endif
 
-
-
-
-
                                 </div>
                             </div>
 
@@ -137,10 +137,6 @@
                 </div>
             </div>
         </div> 
-        <select>Select one
-        <option>next</option>
-        <option>next</option>
-        </select>
         <div id="footer">
             <p>&nbsp;</p>
         </div>

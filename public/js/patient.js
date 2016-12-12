@@ -59,7 +59,7 @@ $(document).ready(function(){
 		                            text : " All the Sessions are Unavailable"
 		                        }));
 		                	$('select').material_select();
-		                	Materialize.toast('Sorry, All the Sessions are Unavailable on this day!', 4000, 'rounded red');
+		                	Materialize.toast('Sorry,All the Sessions Unavailable on this day!', 4000, 'rounded red');
 		                }
 	                }
 	            });
