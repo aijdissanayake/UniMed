@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use DB;
 use App\drug;
+use App\doctor;
 use App\equipment;
 use App\inventoryItem;
 use Illuminate\Http\Request;
@@ -403,7 +404,9 @@ class DoctorController extends Controller {
     }
 
     public function manageDoctors(){
-        return view('doctor.settings.manageDoctors');
+
+        $doctors = doctor::all();
+        return view('doctor.settings.manageDoctors', ['doctors' => $doctors]);
     }
 
 }
