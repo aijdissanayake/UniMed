@@ -44,7 +44,7 @@
                                             </div>
                                         </div>
                                         <div id="policyL" class="purple lighten-5 grey-text z-depth-1 hide-on-small-only" 
-                                             style="padding: 20px 20px 0px 20px; margin-top: 20px;  height: 350px; border-radius:0%">
+                                             style="padding: 20px 20px 0px 20px; margin-top: 20px;  height: 380px; border-radius:0%">
                                             <span class="purple-text" id="title"><h5> Appointment Policy </h5> <br> </span>
                                             <div class="divider purple lighten-3"></div>
                                             <div style="overflow-y: scroll; height: 250px;">
@@ -60,7 +60,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="purple lighten-5 purple-text text-darken-4 z-depth-1 section col s12 m6" style="padding: 20px 20px 0px 20px; margin-top: 20px; height: 350px">
+                                <div class="purple lighten-5 purple-text text-darken-4 z-depth-1 section col s12 m6" style="padding: 20px 20px 0px 20px; margin-top: 20px; height: 380px">
 
                                     @if(($directing == 1 && $hasAppointment) || $directing == 3 || $directing == 4)
                                     <span class="purple-text text-darken-4" id="title" title="Cancel this Appointment to create a new One">
@@ -104,18 +104,21 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <input type="text" name="formattedDate" id="altFormat" style="display: none;" />
                                         <div class="row">
                                             <div id="sessionDiv" class="input-field"  style="padding:10px">
                                                 <select class="black-text text-lighten-1" name="session" id="session" >
-                                                    <option  value="0" disabled selected >Choose your preferred session</option>
-                                                    @foreach (\App\session::where('available',TRUE)->get() as $avbSession)                                                
-                                                    <option value="{{$avbSession->id}}">{{$avbSession->time_Period}}</option>
-                                                    @endforeach                                                
+                                                    <option  value="0" disabled selected>Choose your preferred session</option>
+                                                    <option value="0" > Option Test</option>
                                                 </select>
                                                 <label for="session" class="purple-text text-lighten-2"> Session :</label>
                                             </div>                                        
-                                        </div>                         
-                                        <input class="waves-effect waves-light btn grey lighten-3 black-text" style="float:right" type="submit" name="appointmentButton" id="appSubmit" value="submit">	
+                                        </div>
+                                        <div class="row">
+                                            <div class="input-field">                        
+                                                <input class="waves-effect waves-light btn grey lighten-3 black-text" style="float:right" type="submit" name="appointmentButton" id="appSubmit" value="submit">
+                                            </div>
+                                        </div>
                                     </form>
 
                                         @if($directing == 5)
@@ -126,10 +129,6 @@
 
                                     @endif
 
-
-
-
-
                                 </div>
                             </div>
 
@@ -138,7 +137,6 @@
                 </div>
             </div>
         </div> 
-
         <div id="footer">
             <p>&nbsp;</p>
         </div>

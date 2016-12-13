@@ -68,8 +68,8 @@ class PatientController extends Controller
         
         //takes inputs from the form
         $inputs = Input::all();
-        $appDate = $inputs['appointmentDate'];
-        $date = date_create($appDate);       
+        $appDate = $inputs['formattedDate'];
+        $date = date_create($appDate);      
         $appSession = $inputs['session'];    
         
         
@@ -128,6 +128,7 @@ class PatientController extends Controller
             
             $currentPatientsAppointment = $patient->appointments()->where('expired',FALSE)->first();
             $currentDate=substr($currentPatientsAppointment->aDate,0,10);
+            echo $currentPatientsAppointment->aDate;
             
             return view('patient.home.patientHome')
                     ->with('hasAppointment',$hasAppointment)
@@ -233,10 +234,28 @@ class PatientController extends Controller
     }
 
     public function getSessions(Request $request){
-        $date = $request['date'];
+        $date = date_create($request['date']);
+        $date = date_format($date,"Y-m-d");
+        $unavailablePeriods = \App\unavailablePeriod::where('expired',FALSE)->where('holiday',FALSE)->get();
+        $unavailableSessionIDs = [];
+        $availableSessions = [];
+        
+        foreach ($unavailablePeriods as $unavailablePeriod) {
+            if($unavailablePeriod->startDate <= $date && $unavailablePeriod->endDate >= $date){
+                foreach ($unavailablePeriod->sessions as $session) {
+                    array_push($unavailableSessionIDs, $session->id);
+                }
+            }
+        }
+
+        foreach (\App\session::where('available',TRUE)->get() as $avbSession){
+            if ((!in_array($avbSession->id, $unavailableSessionIDs))) {
+                array_push($availableSessions, [$avbSession->id, $avbSession->time_Period]);
+            }
+        }
+
         return response()->json([
-                'sessions' => 'successful',
-                'date' => $date 
+                'sessions' => $availableSessions
             ]);
     }
    
