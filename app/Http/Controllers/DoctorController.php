@@ -63,7 +63,7 @@ class DoctorController extends Controller {
     }
 
     public function viewAllPatients(){
-        $patients = patient::get();
+        $patients = patient::paginate(10);
 
         return view('doctor.patients.viewAllPatients', compact('patients'));
     }

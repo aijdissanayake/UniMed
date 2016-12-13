@@ -10,7 +10,8 @@
 		"doctrine/dbal": "v2.5.4",
         "laravelcollective/html": "^5.2",
 		"barryvdh/laravel-dompdf": "0.6.*",
-		"ext-mbstring": "*"
+		"ext-mbstring": "*",
+        "landish/pagination": "^1.3"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

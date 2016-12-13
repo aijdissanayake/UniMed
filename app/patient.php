@@ -21,4 +21,8 @@ class patient extends Model
     public function getFullBloodReports() {
         return $this->hasMany('App\fullBloodReport','patient_id','id');
     }
+
+    public function getWeightRecords() {
+        return $this->hasMany('App\weight','patient_id','id');
+    }
 }

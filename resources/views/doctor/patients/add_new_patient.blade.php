@@ -62,6 +62,16 @@
                                 </div>
                                 <div class="row">
                                     <div class="col s12 m6">
+                                        <div class="section"><span>Height (in cm)<span class="red-text">*</span></span><input type="number" min="20" max="220"  maxlength="6" name="height" value="{{old('height')}}"  required="" validate="true"/></div>
+                                    </div>
+                                    <div class="col s1 m6">
+                                        <div class="section"><span>Occupation<span class="red-text">*</span></span>
+                                            <input type="text" name="occupation" value="{{old('occupation')}}"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col s12 m6">
                                         <div class="section"><span>Email<span class="red-text">*</span></span>
                                             <input type="email" id="email" name="email" value="{{old('email')}}" required="" />
                                             <p id="checkResp"></p>

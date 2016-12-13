@@ -11,9 +11,8 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use \DateTime; 
-
+use Illuminate\Pagination\LengthAwarePaginator;
 use App\patientVisit;
-
 use Auth;
 
 class PatientController extends Controller
@@ -68,9 +67,23 @@ class PatientController extends Controller
         return view('patient.home.profileEditable_patient');
     }
     
-    public function viewVisitRecords(){
-        $vRecs = Auth::user()->getPatient->getPatientVisits;
-        return view('patient.visits.visitRecords');
+    public function viewAllVisitRecords(){
+        $vRecs = Auth::user()->getPatient->getPatientVisits->toArray();
+
+        $perPage = 10;
+        $currPage = Input::get('page')-1;
+        $pagedData = array_slice($vRecs, $currPage*$perPage, $perPage);
+
+        $vRecs = new LengthAwarePaginator($pagedData, count($vRecs),$perPage);
+
+        $vRecs->setPath('vr');
+
+        return view('patient.visits.visitRecords', compact('vRecs'));
+    }
+
+    public function viewSingleVisitRecord($recordID){
+        $VRec = patientVisit::find($recordID);
+        return view('doctor.patients.viewVisitRecord', compact('VRec'));
     }
 
     public function createAppointment(){
