@@ -404,9 +404,20 @@ class DoctorController extends Controller {
     }
 
     public function manageDoctors(){
-
         $doctors = doctor::all();
         return view('doctor.settings.manageDoctors', ['doctors' => $doctors]);
+    }
+
+    public function deactivateDoctor($id){
+
+        \App\User::where('id',$id)->update(['active'=>0]);
+        return redirect()->route('manageDoctors');
+    }
+
+    public function activateDoctor($id){
+
+        \App\User::where('id',$id)->update(['active'=>1]);
+        return redirect()->route('manageDoctors');
     }
 
 }

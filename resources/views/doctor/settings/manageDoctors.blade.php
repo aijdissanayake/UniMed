@@ -3,7 +3,7 @@
 
     <head>
         @include('doctor.nav_bar_doc')
-        <title>Unicare - Add new patient</title>
+        <title>Unicare - Manage doctors</title>
 
         <meta name="description" content="website description" />
         <meta name="keywords" content="website keywords, website keywords" />
@@ -48,11 +48,10 @@
                                     <tr><td> {{ $doctor->doctorName}}</td><td>{{ $doctor->RegNo}}</td><td>{{ $doctor->created_at}}</td>
                                         <td>
                                             @if( $doctor->getUser->active ==1)
-                                                <a class="waves-effect waves-light btn right">Deactivate</a>
+                                                <a class="waves-effect waves-teal btn-flat right" href="{{route('deactivateDoctor',['id'=>$doctor->user_id])}}">Deactivate</a>
                                             @else
-                                                <a class="waves-effect waves-light btn">Activate</a>
+                                                <a class="waves-effect waves-teal btn-flat right" href="{{route('activateDoctor',['id'=>$doctor->user_id])}}">Activate</a>
                                             @endif
-
                                         </td>
                                     </tr>
                                 @endforeach
