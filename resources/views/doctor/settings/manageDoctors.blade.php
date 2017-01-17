@@ -20,7 +20,7 @@
                         <div class="card-content">
                             
                             <table>
-                                <tr><td>No. of Doctors</td><td>...</td></tr>
+                                <tr><td>No. of Doctors</td><td>...</td><td>...</td><td>...</td></tr>
                                 <tr><td>No. of Assistant Doctors</td><td>...</td></tr>
                                 <tr><td>...............</td><td>...</td></tr>
                                 <tr><td>................</td><td>...</td></tr>
@@ -36,11 +36,28 @@
                         <div class="card-title  red lighten-2 white-text"><strong>Doctors</strong></div>
                         <div class="card-content">
                             
-                            <table>
-                                <tr><td> {{ $doctors[0] }}</td><td>...</td></tr>
-                                <tr><td>No. of Assistant Doctors</td><td>...</td></tr>
-                                <tr><td>...............</td><td>...</td></tr>
-                                <tr><td>................</td><td>...</td></tr>
+                            <table class="responsive-table">
+                                <thead>
+                                  <tr>
+                                      <th data-field="id">Name</th>
+                                      <th data-field="name">Reg. No.</th>
+                                      <th data-field="price">created</th>
+                                  </tr>
+                                </thead>
+                                 @foreach ($doctors as $doctor)
+                                    <tr><td> {{ $doctor->doctorName}}</td><td>{{ $doctor->RegNo}}</td><td>{{ $doctor->created_at}}</td>
+                                        <td>
+                                            @if( $doctor->getUser->active ==1)
+                                                <a class="waves-effect waves-light btn right">Deactivate</a>
+                                            @else
+                                                <a class="waves-effect waves-light btn">Activate</a>
+                                            @endif
+
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                
+                                
                             </table>
                         </div>
                     </div>
