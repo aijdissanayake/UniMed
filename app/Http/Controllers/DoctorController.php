@@ -279,7 +279,9 @@ class DoctorController extends Controller {
      */
 
     public function viewFinanceTab() {
-        return view('doctor.finance.finance');
+        $incomes = income::orderBy('receiptDate','desc')->take(10);
+        $expenses = expense::orderBy('paymentDate','desc')->take(10);
+        return view('doctor.finance.finance', compact('incomes'. 'expenses'));
     }
 
     public function createTransaction(Request $request) {

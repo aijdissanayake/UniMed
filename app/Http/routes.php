@@ -85,6 +85,7 @@ Route::group(['middleware' => 'authorizer:doctor'], function() {
     Route::get('doc/finance/newTransaction', ['as'=> 'addTransaction', 'uses'=>function(){
         return view('doctor.finance.new_transaction_record');
     }]);
+
     Route::get('doc/finance/newAssistant', ['as'=> 'addAssistant', 'uses'=>function(){
         return view('doctor.finance.new_assistant');
     }]);
@@ -104,6 +105,7 @@ Route::group(['middleware' => 'authorizer:doctor'], function() {
     Route::get('doc/finance/chkuid', 'AjaxController@checkUN');
     Route::get('doc/patients/search', 'AjaxController@searchPatients');
 
+    Route::get('doc/finance/getTrx', ['as' => 'getTrx', 'uses' => 'AjaxController@getTransactions']);
     Route::get('doc/finance/newTransaction/tTypes', 'AjaxController@getTTypes');
 
     Route::get('doc/updateDropdown', 'inventoryItemController@updateDropdown');

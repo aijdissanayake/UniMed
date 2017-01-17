@@ -4,7 +4,6 @@ $(document).ready(function () {
     var $newSTName = $('#subTypeName');
     var $newSTDesc = $('#subTypeDesc');
     var $date = $('#trxnDate');
-//    $('select').material_select();
     
     $newSubType.hide();
 

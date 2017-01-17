@@ -8,6 +8,10 @@ use App\User;
 use App\Patient;
 use App\incomeType;
 use App\expenseType;
+use App\income;
+use App\expense;
+use DB;
+
 
 class AjaxController extends Controller {
 
@@ -37,8 +41,8 @@ class AjaxController extends Controller {
         }
         
         $patients = Patient::where($col_name, 'LIKE', '%' . $value . '%')
-                ->take(20)
-                ->get();
+        ->take(20)
+        ->get();
         
         if ($patients->isEmpty()){
             return response()->json([],200);
@@ -66,5 +70,42 @@ class AjaxController extends Controller {
         }
         return response()->json($tTypes,200);
     }
+
+    public function getTransactions(Request $req){
+        $transactions = array();
+        if ($req->tType=="1"){
+            $transactions = DB::table('incomes')
+                            ->join('income_types', 'incomes.incomeType', '=', 'income_types.id')
+                            ->orderBy('receiptDate', 'desc')
+                            ->select('incomes.receiptDate as date', 'income_types.incomeName as name','income_types.description as description', 'incomes.value as value')
+                            ->take(10)
+                            ->get();
+        }elseif ($req->tType=="2") {
+            $transactions = DB::table('expenses')
+                            ->join('expense_types', 'expenses.paymentType','=','expense_types.id')
+                            ->orderBy('paymentDate', 'desc')
+                            ->select('expenses.paymentDate as date', 'expense_types.expenseName as name','expense_types.description as description', 'expenses.value as value')
+                            ->take(10)
+                            ->get();
+        }elseif ($req->tType=="3"){
+            $transactions1 = DB::table('incomes')
+                            ->join('income_types', 'incomes.incomeType', '=', 'income_types.id')
+                            ->orderBy('receiptDate', 'desc')
+                            ->select('incomes.receiptDate as date', 'income_types.incomeName as name','income_types.description as description', 'incomes.value as value')
+                            ->take(10)
+                            ->get();
+            $transactions2 = DB::table('expenses')
+                            ->join('expense_types', 'expenses.paymentType','=','expense_types.id')
+                            ->orderBy('paymentDate', 'desc')
+                            ->select('expenses.paymentDate as date', 'expense_types.expenseName as name','expense_types.description as description', 'expenses.value as value')
+                            ->take(10)
+                            ->get();
+
+            $transactions = array_merge($transactions1, $transactions2);
+        }
+        return response()->json($transactions,200);
+    }
+
+
     
-            }
+}
