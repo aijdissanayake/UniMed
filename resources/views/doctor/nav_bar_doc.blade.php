@@ -23,61 +23,60 @@
 </ul>
 
 <!-- width given to this specific dropdown menu, after considering the width of its content.
-Position and line height also adjusted as necessary. -->
+    Position and line height also adjusted as necessary. -->
 
-<ul id="dropdown2" class="dropdown-content" style="width:175px">
-    <li><a href="#!">Messages<span class="new badge" style="position:absolute; line-height:inherit">1</span></a></li>
-    <li><a href="#">Lab Reports<span class="new badge" style="position:absolute; line-height:inherit">1</span></a></li>
-</ul>
+    <ul id="dropdown2" class="dropdown-content" style="width:175px">
+        <li><a href="#!">Messages<span class="new badge" style="position:absolute; line-height:inherit">1</span></a></li>
+        <li><a href="#">Lab Reports<span class="new badge" style="position:absolute; line-height:inherit">1</span></a></li>
+    </ul>
 
-<div class="navbar-fixed">
-    <nav>
-        <div class="nav-wrapper blue">
-            <div class="card-title">
-                <span><a href="{{route('homeTab')}}" class="brand-logo"><i class="small material-icons" style="vertical-align:middle; padding-left:10px; float:left">local_hospital</i>Unicare</a>
-                </span>
+    <div class="navbar-fixed">
+        <nav>
+            <div class="nav-wrapper blue">
+                <div class="card-title">
+                    <span><a href="{{route('homeTab')}}" class="brand-logo"><i class="small material-icons" style="vertical-align:middle; padding-left:10px; float:left">local_hospital</i>Unicare</a>
+                    </span>
+                </div>
+                <!-- desktop nav bar -->
+
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="{{route('homeTab')}}" class="dropdown-button" data-activates="dropdown2" data-beloworigin="true" data-hover="true" data-constrainwidth="false">Home<i class="material-icons right">arrow_drop_down</i></a></li>
+                    <li><a href="{{route('patientsTab')}}">Patients</a></li>
+                    <li><a href="{{route('financeTab')}}">Finance</a></li>
+                    <li><a href="{{route('inventoryTab')}}">Inventory</a></li>
+                    <li><a href="{{route('labTab')}}">Lab</a></li>
+                    <li><a class="dropdown-button" href="#9" data-activates="dropdown1" data-beloworigin="true" data-hover="true">My Account<i class="material-icons right">arrow_drop_down</i></a></li>
+                </ul>
+
+                <a href="#" data-activates="mob-snav" class="button-collapse"><i class="material-icons">menu</i></a>
             </div>
-            <a href="#" data-activates="mob-snav" class="button-collapse">
-                <i class="material-icons">menu</i>
-            </a>
+        </nav>
+    </div>
 
-            <!-- desktop nav bar -->
+    <!-- Mobile nav bar -->
 
-            <ul class="right hide-on-med-and-down">
-                <li><a href="{{route('homeTab')}}" class="dropdown-button" data-activates="dropdown2" data-beloworigin="true" data-hover="true" data-constrainwidth="false">Home<i class="material-icons right">arrow_drop_down</i></a></li>
+    <ul class="side-nav hide-on-large-only" id="mob-snav">
+        <li class="no-padding">
+            <ul class="collapsible collapsible-accordion">
+                <li><a href="{{route('homeTab')}}">Home</a></li>                                      
+                <li><a href="#">Messages<span class="badge" style="position:absolute; line-height:inherit">1</span></a></li>
+                <li><a href="#!">Lab Reports<span class="new badge" style="position:absolute; line-height:inherit">1</span></a></li>
                 <li><a href="{{route('patientsTab')}}">Patients</a></li>
                 <li><a href="{{route('financeTab')}}">Finance</a></li>
                 <li><a href="{{route('inventoryTab')}}">Inventory</a></li>
                 <li><a href="{{route('labTab')}}">Lab</a></li>
-                <li><a class="dropdown-button" href="#9" data-activates="dropdown1" data-beloworigin="true" data-hover="true">My Account<i class="material-icons right">arrow_drop_down</i></a></li>
-            </ul>
-
-            <!-- Mobile nav bar -->
-
-            <ul class="side-nav hide-on-large-only" id="mob-snav">
-                <li class="no-padding">
-                    <ul class="collapsible collapsible-accordion">
-                        <li><a href="{{route('homeTab')}}">Home</a></li>                                      
-                        <li><a href="#">Messages<span class="badge" style="position:absolute; line-height:inherit">1</span></a></li>
-                        <li><a href="#!">Lab Reports<span class="new badge" style="position:absolute; line-height:inherit">1</span></a></li>
-                        <li><a href="{{route('patientsTab')}}">Patients</a></li>
-                        <li><a href="{{route('financeTab')}}">Finance</a></li>
-                        <li><a href="{{route('inventoryTab')}}">Inventory</a></li>
-                        <li><a href="{{route('labTab')}}">Lab</a></li>
-                        <li><a class="collapsible-header waves-effect waves-teal">My Account<i class="material-icons right">arrow_drop_down</i></a>
-                            <div class="collapsible-body">
-                                <ul>
-                                    <li><a href="{{route('dViewProfile')}}">Profile</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="{{route('settings')}}">Settings</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="/logout">Logout</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                    </ul>
+                <li><a class="collapsible-header waves-effect waves-teal">My Account<i class="material-icons right">arrow_drop_down</i></a>
+                    <div class="collapsible-body">
+                        <ul>
+                            <li><a href="{{route('dViewProfile')}}">Profile</a></li>
+                            <li class="divider"></li>
+                            <li><a href="{{route('settings')}}">Settings</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/logout">Logout</a></li>
+                        </ul>
+                    </div>
                 </li>
             </ul>
-        </div>
-    </nav>
-</div>
+        </li>
+    </ul>
+    

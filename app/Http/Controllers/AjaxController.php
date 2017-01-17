@@ -45,8 +45,9 @@ class AjaxController extends Controller {
         }else{
             $pData = array();
             foreach ($patients as $patient){
+                $name = $patient->firstName." ".$patient->lastName;
                 
-                $pData[]=array("name"=>$patient->getUser->name,"telephone"=>$patient->telephoneNo,
+                $pData[]=array("name"=>$name ,"telephone"=>$patient->telephoneNo,
                     "id"=>$patient->id);
             }
             return response()->json($pData,200);

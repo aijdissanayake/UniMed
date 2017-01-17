@@ -15,6 +15,8 @@
 //    return view('welcome');
 //});
 
+  use App\Patient;
+
   Route::get('/', 'HomeController@index');
 
   Route::auth();
@@ -56,16 +58,29 @@ Route::group(['middleware' => 'authorizer:doctor'], function() {
     Route::post('doc/settings/appointments/unavailability',['as'=>'unavailablePeriod','uses'=>'PatientController@unavailablePeriod']);
 
     Route::get('doc/patients/view/{id}', ['as' => 'viewPatient', 'uses' => 'DoctorController@viewPatientDetails']);
+
+    // edit patient details
+
+    Route::get('doc/patients/edit/{id}', ['as' => 'editPatient', 'uses' => function($id){
+        $patient = patient::find($id);
+        return view('doctor.patients.edit_patient', compact('patient'));
+    }]);
+    Route::post('doc/patients/update/{id}', ['as' => 'updatePatient', 'uses' => 'DoctorController@updatePatient']);
+
+    // patient visits
+
     Route::get('doc/patients/createRecord/{id}', ['as' => 'createPatientVisitRecord', 'uses'=>'DoctorController@createPatientVisitRecord']);
     Route::get('doc/patients/newVisitRecord', ['as' => 'newVisitRecord', 'uses'=>function(){
         return view('doctor.patients.visitRecordWithSearch');
     }]);
-    Route::get('doc/patients/view/vr/{id}', 'DoctorController@viewPatientVisitRecord');
-    Route::get('doc/patients/view/vrs/{id}', 'DoctorController@viewAllPatientVisitRecord');
+    Route::get('doc/patients/view/vr/{id}', ['as'=>'viewVisitRecord','uses'=>'DoctorController@viewPatientVisitRecord']);
+    Route::get('doc/patients/view/vrs/{id}', ['as'=>'viewAllVisits','uses'=>'DoctorController@viewAllPatientVisitRecords']);
     Route::post('doc/patients/storeRecord/{id}', ['as' => 'storePatientVisitRecord', 'uses'=>'DoctorController@storePatientVisitRecord']);
 
     Route::post('doc/patients/searchLabReports', ['as' => 'searchLabReports', 'uses' => 'DoctorController@searchLabReports']);
     
+    // financial routes
+
     Route::get('doc/finance', ['as' => 'financeTab', 'uses' => 'DoctorController@viewFinanceTab']);
     Route::get('doc/finance/newTransaction', ['as'=> 'addTransaction', 'uses'=>function(){
         return view('doctor.finance.new_transaction_record');

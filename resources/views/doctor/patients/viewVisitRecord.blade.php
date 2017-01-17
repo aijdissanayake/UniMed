@@ -14,13 +14,45 @@
       Patient Name:  {{$VRec->getPatient->getUser->name}}</span></h2>
     </div>
       <div class="card-content">
-            <p><span>Visit date</span>{{$VRec->created_at}}</p>
-            <p><span>Diagnosis</span>{{$VRec->diagnosis}}</p>
-            <p><span>Prognosis</span>{{$VRec->prognosis}}</p>
-            <p><span>Prescribed Drugs</span>{{$VRec->prescDrugs}}</p>
-            <p><span>Remarks</span>{{$VRec->remarks}}</p>
-            <p><span>Next visit date</span>{{$VRec->nextVisitDate}}</p>
-          <p align = "right" style="padding-top: 15px"><a href="{{route('patientsTab')}}"><input class="submit" type="submit" name="backButton" value="Back" /></a></p>
+      <table>
+            <tr>
+            <td>Visit date</td>
+            <td>{{$VRec->created_at}}</td>
+            </tr>
+            <tr>
+            <td>Complaints & Problems</td>
+            <td>{{$VRec->complaints}}</td>
+            </tr>
+            <tr>
+            <td>Investigations</td>
+            <td>{{$VRec->investigations}}</td>
+            </tr>
+            <tr>
+            <td>Diagnosis</td>
+            <td>{{$VRec->diagnosis}}</td>
+            </tr>
+            <tr>
+            <td>Prognosis</td>
+            <td>{{$VRec->prognosis}}</td>
+            </tr>
+            <tr>
+            <td>Prescribed Drugs</td>
+            <td>{{$VRec->prescDrugs}}</td>
+            </tr>
+            <tr>
+            <td>Weight</td>
+            <td>{{$VRec->weight}} kg</td>
+            </tr>
+            <tr>
+            <td>Remarks</td>
+            <td>{{$VRec->remarks}}</td>
+            </tr>
+            <tr>
+            <td>Next visit date</td>
+            <td>{{$VRec->nextVisitDate}}</td>
+            </tr>
+          
+          </table>
       </div>
     </div>
   </div>

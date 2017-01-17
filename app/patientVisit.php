@@ -10,7 +10,4 @@ class patientVisit extends Model
         return $this->belongsTo('App\patient','patientID','id');
     }
 
-    public function getWeightRecord() {
-        return $this->hasOne('App\weight','visitRec_id','id');
-    }
 }

@@ -29,12 +29,12 @@ class DoctorController extends Controller {
                 ->where('expired', FALSE)
                 ->take(10)
                 ->get();
-        $totalAppointments = count(appointment::where('expired', FALSE)
-                        ->get());
-        $inventory = inventoryItem::all();
-        $homeData = array($appointments, $inventory, $totalAppointments);
-        return view('doctor.index.index', compact('homeData'));
-    }
+                $totalAppointments = count(appointment::where('expired', FALSE)
+                    ->get());
+                $inventory = inventoryItem::all();
+                $homeData = array($appointments, $inventory, $totalAppointments);
+                return view('doctor.index.index', compact('homeData'));
+            }
 
     /*
      * patient tasks
@@ -57,8 +57,8 @@ class DoctorController extends Controller {
 
     public function viewPatientTab() {
         $patientVisits = patientVisit::orderBy('created_at', 'desc')
-                ->take(10)
-                ->get();
+        ->take(10)
+        ->get();
         return view('doctor.patients.patientsTab', compact('patientVisits'));
     }
 
@@ -76,31 +76,62 @@ class DoctorController extends Controller {
         // uses the same view as returned when registering a new patient
         $patient = patient::find($id);
         if ($patient){
-        $visitRecs = patientVisit::where('patientID', 'LIKE', $id)->get();
-        return view('doctor.patients.viewPatient', compact('patient', 'visitRecs'));
+            $visitRecs = patientVisit::where('patientID', 'LIKE', $id)->orderBy('created_at', 'desc')->take(5)->get();
+            return view('doctor.patients.viewPatient', compact('patient', 'visitRecs'));
         }
         else {
             return view('doctor.patients.common_error');
         }
     }
 
+    // All visit records of a given patient
     public function viewAllPatientVisitRecords($id) {
-        $VRecs = patientVisit::where('patientID','LIKE',$id)->get();
-        return view('doctor.patients.viewClinicalReports', compact('VRecs'));
+        $Name = patient::find($id)->getUser->name;
+        $Count = patientVisit::count();
+        $VRecs = patientVisit::where('patientID','LIKE',$id)->paginate(10);
+        return view('doctor.patients.viewClinicalReports', compact('VRecs', 'Name', 'Count'));
     }
     
     public function viewPatientVisitRecord($recordID) {
         $VRec = patientVisit::find($recordID);
-        return view('doctor.patients.viewVisitRecord', compact('VRec'));
+        if ($VRec){
+            return view('doctor.patients.viewVisitRecord', compact('VRec'));
+        }
+        else{
+            return view('doctor.patients.common_error');
+        }
     }
 
     public function regPatient() {
         return view('doctor.patients.add_new_patient');
     }
 
-    public function editPatient($id) {
-        $user = User::find($id);
-        return view('doctor.patients.viewPatient', compact('user'));
+    public function updatePatient(Request $request, $id) {
+        $patient = patient::find($id);
+        $user = User::find($patient->user_id);
+
+        $patient->firstName = $request['firstName'];
+        $patient->lastName = $request['lastName'];
+        $patient->gender = $request['gender'];
+//        $patient->gender = 'male';
+        $patient->birthYear = $request['birthYear'];
+        $patient->telephoneNo = $request['contactNo'];
+        $patient->locale = $request['locale'];
+        $patient->bloodType = $request['bloodGroup'];
+        
+        if ($patient->height!=$request['height']){
+            $patient->height = $request['height'];
+            $patient->bmi = ($patient->weight)/pow(($patient->height/100),2);
+        }
+
+        $patient->occupation = $request['occupation'];
+        $patient->save();
+
+        $user->name = $request['firstName']." ".$request['lastName'];
+        $user->save();
+
+        return redirect()->route('viewPatient',[$patient]);
+
     }
 
     public function storePatient(Request $request) {
@@ -114,7 +145,7 @@ class DoctorController extends Controller {
             'contactNo' => 'digits:10',
             'email' => 'unique:users,email',
             'bloodGroup' => 'in:A+,A-,B+,B-,AB+,AB-,O-,O+'
-        ]);
+            ]);
 
 
         /*
@@ -149,6 +180,9 @@ class DoctorController extends Controller {
         $patient->telephoneNo = $request['contactNo'];
         $patient->locale = $request['locale'];
         $patient->bloodType = $request['bloodGroup'];
+        $patient->height = $request['height'];
+        $patient->occupation = $request['occupation'];
+        $patient->bmi = 0;
         $patient->save();
 
 
@@ -192,7 +226,7 @@ class DoctorController extends Controller {
     }
 
     public function storePatientVisitRecord($id, Request $request) {
-        
+
         $newVRec = new patientVisit();
 
         $newVRec->patientID = $id;
@@ -215,9 +249,29 @@ class DoctorController extends Controller {
             $newVRec->remarks = $request['remarks'];
         }
 
+        if ($request['complaints'] != "") {
+            $newVRec->complaints = $request['complaints'];
+        }
+
+        if ($request['cFindings'] != "") {
+            $newVRec->cFindings = $request['cFindings'];
+        }
+
+        if ($request['investigations'] != "") {
+            $newVRec->investigations = $request['investigations'];
+        }
+
+        if ($request['weight'] != "") {
+            $newVRec->weight = $request['weight'];
+            $pat = patient::find($id);
+            $pat->weight = $request['weight'];
+            $pat->bmi = $request['weight']/pow(($pat->height/100),2);
+            $pat->save();
+        }
+
         $newVRec->save();
 
-        return $this->viewPatientVisitRecord($newVRec->id);
+        return redirect()->route('viewVisitRecord',[$newVRec->id]);
     }
 
     /*
@@ -230,25 +284,25 @@ class DoctorController extends Controller {
 
     public function createTransaction(Request $request) {
         $rules = [
-            'tType' => 'required|in:1,2',
-            'trxn_value' => 'required|digits_between:1,8',
-            'remarks' => 'alpha_dash|size:255',
+        'tType' => 'required|in:1,2',
+        'trxn_value' => 'required|digits_between:1,8',
+        'remarks' => 'alpha_dash|size:255',
         ];
         
         $messages = [
-            'tType.required'=> "You didn't say the kind of transaction. Income or expense?",
-            'tType.in' => "That didn't work, income or expense? Please select one.",
-            'trxn_value.required' => "Can we please have a transaction value as well?",
-            'trxn_value.digits_between' => "The value doesn't seem right. Please try again.",
-            'remarks.size' => "That's a long description! Maybe shorten it?"
+        'tType.required'=> "You didn't say the kind of transaction. Income or expense?",
+        'tType.in' => "That didn't work, income or expense? Please select one.",
+        'trxn_value.required' => "Can we please have a transaction value as well?",
+        'trxn_value.digits_between' => "The value doesn't seem right. Please try again.",
+        'remarks.size' => "That's a long description! Maybe shorten it?"
         ];
         
         $validator = Validator::make($request->all(), $rules, $messages);
         
         if ($validator->fails()) {
             return redirect('doc/finance/newTransaction')
-                        ->withErrors($validator)
-                        ->withInput();
+            ->withErrors($validator)
+            ->withInput();
         }
         
         $tSubType;
@@ -292,7 +346,7 @@ class DoctorController extends Controller {
      */
     
     public function createAssistant(Request $request) {
-        
+
     }
 
     public function viewInventoryTab() {
