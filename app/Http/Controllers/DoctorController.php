@@ -405,7 +405,11 @@ class DoctorController extends Controller {
 
     public function manageDoctors(){
         $doctors = doctor::all();
-        return view('doctor.settings.manageDoctors', ['doctors' => $doctors]);
+        $doc_count = user::where('role',"doctor")->count();
+        $assistant_doc_count = user::where('role',"assistantDoctor")->count();
+        $active_doc_count = user::where('role',"doctor" )->where('active',1)->count();
+        $active_a_doc_count = user::where('role',"assistantDoctor" )->where('active',1)->count();
+        return view('doctor.settings.manageDoctors', ['doctors' => $doctors] , ['count'=>array($doc_count,$assistant_doc_count,$active_doc_count,$active_a_doc_count)]);
     }
 
     public function deactivateDoctor($id){

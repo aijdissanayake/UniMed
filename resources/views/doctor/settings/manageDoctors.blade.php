@@ -20,10 +20,10 @@
                         <div class="card-content">
                             
                             <table>
-                                <tr><td>No. of Doctors</td><td>...</td><td>...</td><td>...</td></tr>
-                                <tr><td>No. of Assistant Doctors</td><td>...</td></tr>
-                                <tr><td>...............</td><td>...</td></tr>
-                                <tr><td>................</td><td>...</td></tr>
+                                <tr><td>No. of Doctors</td><td>{{$count[0]}}</td></tr>
+                                <tr><td>No. of Assistant Doctors</td><td>{{$count[1]}}</td></tr>
+                                <tr><td>No. of Active Doctors</td><td>{{$count[2]}}</td></tr>
+                                <tr><td>No. of Active Assistant Doctors</td><td>{{$count[3]}}</td></tr>
                             </table>
                         </div>
                     </div>
@@ -41,11 +41,15 @@
                                   <tr>
                                       <th data-field="id">Name</th>
                                       <th data-field="name">Reg. No.</th>
-                                      <th data-field="price">created</th>
+                                      <th >Role</th>
+                                      <th data-field="date">created</th>
                                   </tr>
                                 </thead>
                                  @foreach ($doctors as $doctor)
-                                    <tr><td> {{ $doctor->doctorName}}</td><td>{{ $doctor->RegNo}}</td><td>{{ $doctor->created_at}}</td>
+                                    <tr><td> {{ $doctor->doctorName}}</td>
+                                        <td>{{ $doctor->RegNo}}</td>
+                                        <td>{{$doctor->getUser->role}}</td>
+                                        <td>{{ $doctor->created_at}}</td>
                                         <td>
                                             @if( $doctor->getUser->active ==1)
                                                 <a class="waves-effect waves-teal btn-flat right" href="{{route('deactivateDoctor',['id'=>$doctor->user_id])}}">Deactivate</a>

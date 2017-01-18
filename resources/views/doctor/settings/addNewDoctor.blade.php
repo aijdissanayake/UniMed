@@ -49,11 +49,11 @@
                                     <div class="col col s12 m3 l3">
                                         <div class="section"><span>Role<span class="red-text">*</span></span>
                                             <p>
-                                                <input type="radio" name="role" value="1" checked="true" id="role_doc">
+                                                <input type="radio" name="role" value="doctor" checked="true" id="role_doc">
                                                 <label for="role_doc" >Doctor</label>
                                             </p>
                                             <p>
-                                                <input type="radio" name="role" value="0" id="role_assistant">
+                                                <input type="radio" name="role" value="assistantDoctor" id="role_assistant">
                                                 <label for="role_assistant">Assistant doctor</label>
                                             </p>
                                         </div>
