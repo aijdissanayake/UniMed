@@ -17,6 +17,8 @@ use App\income;
 use App\incomeType;
 use App\expense;
 use App\expenseType;
+use App\session;
+use App\unavailablePeriod;
 use Validator;
 use Illuminate\Support\Facades\Input;
 
@@ -316,11 +318,10 @@ class DoctorController extends Controller {
         $session->time_Period = $timePeriod;
         $session->start_time = $request->input('startTime');
         $session->end_time = $request->input('endTime');
-        if ($request->input('availableNow')) {
-            $session->available = 1;
-        }
+        $session->available = 1;
         $session->save();
-        return view('doctor.settings.appointmentsettings');
+
+        return redirect()->route('docAppSettings');
     }
 
     public function unavailablePeriodTest(Request $request) {
@@ -404,6 +405,26 @@ class DoctorController extends Controller {
 
     public function manageDoctors(){
         return view('doctor.settings.manageDoctors');
+    }
+
+    public function deleteSession($id){
+
+        $session = Session::find($id);
+        $session->available = FALSE;
+        $session->save();
+
+        return redirect()->route('docAppSettings');
+
+    }
+
+    public function deleteUnavPeriod($id){
+
+        $unavPeriod = unavailablePeriod::find($id);
+        $unavPeriod->expired = TRUE;
+        $unavPeriod->save();
+
+        return redirect()->route('docAppSettings');
+
     }
 
 }

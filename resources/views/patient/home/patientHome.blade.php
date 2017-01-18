@@ -104,6 +104,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <!-- hidden field value is assigned at js file-->
                                         <input type="text" name="formattedDate" id="altFormat" style="display: none;" />
                                         <div class="row">
                                             <div id="sessionDiv" class="input-field"  style="padding:10px">

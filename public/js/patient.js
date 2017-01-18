@@ -26,6 +26,7 @@ $(document).ready(function(){
 	$('#sessionDiv').hide();
 	$('#appointmentDate').change(function(){
 
+		//assigning the formatted date to the hidden field
 		var formatedDate = new Date(this.value);
 		formatedDate = formatDate(formatedDate);
 		$('#altFormat').val(formatedDate);
@@ -40,6 +41,7 @@ $(document).ready(function(){
 	                success: function (data) {
 	                	var sessions = data['sessions'];
 						$('#sessionDiv').show();
+
 	                	if (sessions.length) {
 		                	$('select').html('');
 		                    $.each(sessions, function (i, session) {                            
@@ -52,6 +54,7 @@ $(document).ready(function(){
 		                    });
 		                    $('select').material_select();
 			                }
+
 		                else{
 		                	$('select').html('');
 		                	$('select').append($('<option/>', { 

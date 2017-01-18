@@ -78,6 +78,8 @@ Route::group(['middleware' => 'authorizer:doctor'], function() {
     Route::get('doc/finance/newTx', ['as'=>'createTx', 'uses'=>'DoctorController@CreateTransaction']);
 
     Route::get('doc/patients/all',['as'=>'viewAllPatients','uses'=>'DoctorController@viewAllPatients']);
+    Route::get('doc/sessions/delete/{id}',['as'=>'deleteSession','uses'=>'DoctorController@deleteSession']);
+    Route::get('doc/unavPeriods/delete/{id}',['as'=>'deleteUnavPeriod','uses'=>'DoctorController@deleteUnavPeriod']);
 
 // Doctors Charts
 
