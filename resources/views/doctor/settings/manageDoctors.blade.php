@@ -37,7 +37,7 @@
                         <div class="card-content">
                             
                             <table>
-                                <tr><td>No. of Doctors</td><td>...</td></tr>
+                                <tr><td> {{ $doctors[0] }}</td><td>...</td></tr>
                                 <tr><td>No. of Assistant Doctors</td><td>...</td></tr>
                                 <tr><td>...............</td><td>...</td></tr>
                                 <tr><td>................</td><td>...</td></tr>
