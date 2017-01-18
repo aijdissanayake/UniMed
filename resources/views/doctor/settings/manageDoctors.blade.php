@@ -71,12 +71,19 @@
                 </a>
                 <ul>
                   <li><a class="btn-floating red"><i class="material-icons">recent_actors</i></a></li>
-                  <li><a class="btn-floating yellow darken-1"><i class="material-icons">perm_identity</i></a></li>
+                  <li><a class="btn-floating yellow darken-1 tooltipped" href="{{route('addNewDoctor')}}" data-position="left" data-delay="30" data-tooltip="Add new doctor"><i class="material-icons">perm_identity</i></a></li>
                   
                 </ul>
               </div>
                 
             </div>
+
+            <script type="text/javascript">
+                $(document).ready(function(){
+                    $('.tooltipped').tooltip({delay: 50});
+                });
+
+            </script>
 
             
         </div>

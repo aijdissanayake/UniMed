@@ -8,7 +8,6 @@
         <meta name="description" content="website description" />
         <meta name="keywords" content="website keywords, website keywords" />
         <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
-        <script src="/js/user_check.js" type="text/javascript"></script>
     </head>
 
     <body class="grey lighten-4">
@@ -16,22 +15,10 @@
             <div class="row" style="padding-top: 3rem">
                 <div class="col s12">
                     <div class="card">
-                        <div class="card-title blue white-text">New Patient</div>
+                        <div class="card-title blue white-text">New Doctor</div>
                         <div class="card-content">
-                            
-                            <!--Validation errors-->
-
-                            @if (count($errors) > 0)
-                            <div class="alert alert-danger" style="background-color: red">
-                                <ul> 
-                                    @foreach ($errors->all() as $error)
-                                    <li style="color: white">ERROR:  {{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                            @endif
-                            <form action="{{route('patientAdded')}}" method="post">
-                                {{ csrf_field() }}
+                            <form action="{{route('saveNewDoctor')}}" method="post">
+                                {{ csrf_field()}}
                                 <div class="row">
                                     <div class="col s12 m6">
                                         <div class="section">
@@ -45,9 +32,9 @@
                                 </div>
                                 <div class="row">
                                     <div class="col s12 m6">
-                                        <div class="section"><span>Birth Year<span class="red-text">*</span></span><input type="number" min="1900" max="2016"  maxlength="4" name="birthYear" value="{{old('birthYear')}}"  required="" validate="true"/></div>
+                                        <div class="section"><span>Registration number<span class="red-text">*</span></span><input type="text" name="regNo" value="{{old('birthYear')}}"  required="" validate="true"/></div>
                                     </div>
-                                    <div class="col s1 m6">
+                                    <div class="col s12 m3 l3  ">
                                         <div class="section"><span>Gender<span class="red-text">*</span></span>
                                             <p>
                                                 <input type="radio" name="gender" value="1" checked="true" id="gender_male">
@@ -59,47 +46,38 @@
                                             </p>
                                         </div>
                                     </div>
+                                    <div class="col col s12 m3 l3">
+                                        <div class="section"><span>Role<span class="red-text">*</span></span>
+                                            <p>
+                                                <input type="radio" name="role" value="1" checked="true" id="role_doc">
+                                                <label for="role_doc" >Doctor</label>
+                                            </p>
+                                            <p>
+                                                <input type="radio" name="role" value="0" id="role_assistant">
+                                                <label for="role_assistant">Assistant doctor</label>
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="row">
                                     <div class="col s12 m6">
                                         <div class="section"><span>Email<span class="red-text">*</span></span>
-                                            <input type="email" id="email" name="email" value="{{old('email')}}" required="" />
+                                            <input type="email" id="email" name="email" value="{{old('email')}}" required="" validate="True" />
                                             <p id="checkResp"></p>
                                         </div>
                                     </div>
                                     <div class="col s12 m6">
-                                        <div class="section"><span>Contact No.<span class="red-text">*</span></span>
-                                            <input type="tel" name="contactNo" value="{{old('contactNo')}}" maxlength="10" required="" />
+                                        <div class="section"><span>Contact No(//add this to database)<span class="red-text">*</span></span>
+                                            <input type="tel" name="contactNo" value="{{old('contactNo')}}" maxlength="10" />
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col s12 m6">
-                                        <div class="section"><span>Locale<span class="red-text">*</span></span>
-                                            <input type="text" name="locale" value="{{old('locale')}}"/>
-                                        </div>
-                                    </div>
-                                    <div class="col s12 m6">
-                                        <div class="section"><span>Blood Group<span class="red-text">*</span></span><select name="bloodGroup" value="{{old('bloodGroup')}}"  required="">
-                                                <option value="A+">A+</option>
-                                                <option value="A-">A-</option>
-                                                <option value="B+">B+</option>
-                                                <option value="B-">B-</option>
-                                                <option value="AB+">AB+</option>
-                                                <option value="AB-">AB-</option>
-                                                <option value="O+">O+</option>
-                                                <option value="O-">O-</option>
-                                            </select>
-                                        </div></div>
-
-                                </div>
-
-                                <div class="section"><span>Remarks</span><textarea rows="4" cols="50" name="remarks" value="{{old('remarks')}}"></textarea></div>
+                                
 
                                 <div class="section">
                                     <input class="btn" type="submit" name="submitButton" value="Register" />
                                     <input class="btn" type="hidden" name="updateButton" value="Update" />
-                                    <a class='form_settings' href="{{route('patientsTab')}}"><button class="btn" type="submit" name="backButton" value="Back">Back</button></a></p>
+                                    <a class='form_settings' href="{{route('manageDoctors')}}"><button class="btn" type="submit" name="backButton" value="Back">Back</button></a></p>
                                 </div>
                         </div>
                         </form>

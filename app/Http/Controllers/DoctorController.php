@@ -420,4 +420,28 @@ class DoctorController extends Controller {
         return redirect()->route('manageDoctors');
     }
 
+    public function saveNewDoctor(Request $request){
+        $user = new User();
+
+        $name = $request['firstName'] . " " . $request['lastName'];
+
+        $user->name = $name;
+        $user->password = bcrypt("unicare101");
+        $user->email = $request['email'];
+        $user->gender = $request['gender'];
+
+        $user->role = $request['role'];
+        $user->active = 1;
+        $user->save();
+
+
+        $doc = new doctor();
+        $doc->doctorName = $name;
+        $doc->RegNO = $request['regNo'];
+        $doc->user_id = $user->id;
+        $doc->save();
+
+        return redirect()->route('manageDoctors');
+    }
+
 }

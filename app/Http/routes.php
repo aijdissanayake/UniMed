@@ -57,7 +57,10 @@ Route::group(['middleware' => 'authorizer:doctor'], function() {
     Route::get('doc/settings/manageDoctors',['as' => 'manageDoctors',  'uses'=>'DoctorController@manageDoctors']);
     Route::get('doc/settings/manageDoctors/deactivate/{id}',['as' => 'deactivateDoctor',  'uses'=>'DoctorController@deactivateDoctor']);
     Route::get('doc/settings/manageDoctors/activate/{id}',['as' => 'activateDoctor',  'uses'=>'DoctorController@activateDoctor']);
-
+    Route::get('doc/settings/manageDoctors/addNewDoctor',['as' => 'addNewDoctor',  'uses'=>function(){
+        return view('doctor.settings.addNewDoctor');
+    }]);
+    Route::post('doc/settings/manageDoctors/saveNewDoctor',['as' => 'saveNewDoctor',  'uses'=>'DoctorController@saveNewDoctor']);
 
 
     Route::get('doc/patients/view/{id}', ['as' => 'viewPatient', 'uses' => 'DoctorController@viewPatientDetails']);
