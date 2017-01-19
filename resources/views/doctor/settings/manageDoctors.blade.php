@@ -55,11 +55,11 @@
                                                 @if($data[4]==$doctor->user_id)
                                                     <a class="waves-effect waves-teal btn-flat disabled right" >Deactivate</a>
                                                 @else
-                                                    <a class="waves-effect waves-teal btn-flat right" href="{{route('deactivateDoctor',['id'=>$doctor->user_id])}}">Deactivate</a>
+                                                    <a class="waves-effect waves-teal btn-flat right" href="{{route('userAccountStatus',['id'=>$doctor->user_id])}}">Deactivate</a>
                                                 @endif
                                                 
                                             @else
-                                                <a class="waves-effect waves-teal btn-flat right" href="{{route('activateDoctor',['id'=>$doctor->user_id])}}">Activate</a>
+                                                <a class="waves-effect waves-teal btn-flat right" href="{{route('userAccountStatus',['id'=>$doctor->user_id])}}">Activate</a>
                                             @endif
                                         </td>
                                     </tr>

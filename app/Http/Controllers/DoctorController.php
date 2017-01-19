@@ -479,7 +479,14 @@ public function viewInventorySettings() {
 
     public function changeUserAccountStatus($id){
 
-        User::where('id',$id)->update(['active'=>0]);
+
+        $user= User::find($id);
+        if ($user->active==0){
+            $user->active=1;
+        }elseif($user->active==1){
+            $user->active=0;
+        }
+        $user->save();
         return back();
     }
 
