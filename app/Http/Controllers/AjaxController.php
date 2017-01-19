@@ -74,32 +74,12 @@ class AjaxController extends Controller {
     public function getTransactions(Request $req){
         $transactions = array();
         if ($req->tType=="1"){
-            $transactions = DB::table('incomes')
-                            ->join('income_types', 'incomes.incomeType', '=', 'income_types.id')
-                            ->orderBy('receiptDate', 'desc')
-                            ->select('incomes.receiptDate as date', 'income_types.incomeName as name','income_types.description as description', 'incomes.value as value')
-                            ->take(10)
-                            ->get();
+            $transactions = DB::select("select DATE_FORMAT(receiptDate, '%Y-%m-%d') as date, income_types.incomeName as name,income_types.description as description, incomes.value as value from incomes inner join income_types on incomes.incomeType = income_types.id order by date desc limit 10");
         }elseif ($req->tType=="2") {
-            $transactions = DB::table('expenses')
-                            ->join('expense_types', 'expenses.paymentType','=','expense_types.id')
-                            ->orderBy('paymentDate', 'desc')
-                            ->select('expenses.paymentDate as date', 'expense_types.expenseName as name','expense_types.description as description', 'expenses.value as value')
-                            ->take(10)
-                            ->get();
+            $transactions = DB::select("select DATE_FORMAT(paymentDate, '%Y-%m-%d') as date, expense_types.expenseName as name,expense_types.description as description, expenses.value as value from expenses inner join expense_types on expenses.paymentType = expense_types.id order by date desc limit 10");
         }elseif ($req->tType=="3"){
-            $transactions1 = DB::table('incomes')
-                            ->join('income_types', 'incomes.incomeType', '=', 'income_types.id')
-                            ->orderBy('receiptDate', 'desc')
-                            ->select('incomes.receiptDate as date', 'income_types.incomeName as name','income_types.description as description', 'incomes.value as value')
-                            ->take(10)
-                            ->get();
-            $transactions2 = DB::table('expenses')
-                            ->join('expense_types', 'expenses.paymentType','=','expense_types.id')
-                            ->orderBy('paymentDate', 'desc')
-                            ->select('expenses.paymentDate as date', 'expense_types.expenseName as name','expense_types.description as description', 'expenses.value as value')
-                            ->take(10)
-                            ->get();
+            $transactions1 = DB::select("select DATE_FORMAT(receiptDate, '%Y-%m-%d') as date, income_types.incomeName as name,income_types.description as description, incomes.value as value from incomes inner join income_types on incomes.incomeType = income_types.id order by date desc limit 10");
+            $transactions2 = DB::select("select DATE_FORMAT(paymentDate, '%Y-%m-%d') as date, expense_types.expenseName as name,expense_types.description as description, expenses.value as value from expenses inner join expense_types on expenses.paymentType = expense_types.id order by date desc limit 10");
 
             $transactions = array_merge($transactions1, $transactions2);
         }

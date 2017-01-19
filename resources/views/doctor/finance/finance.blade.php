@@ -66,9 +66,18 @@
                         <div class="card-content">
                             <table class="highlight bordered">
                                 <tr><th>Description</th><th>Value (LKR)</th></tr>
-                                <tr><td>Income</td><td></td><td></td></tr>
-                                <tr><td>Less: Expenses</td><td></td><td></td></tr>
-                                <tr><td>Gross Profit</td><td></td><td></td></tr>
+                                <tr>
+                                <td>Income</td>
+                                <td>{{$incomes}}</td>
+                                </tr>
+                                <tr>
+                                <td>Less: Expenses</td>
+                                <td>{{$expenses}}</td>
+                                </tr>
+                                <tr>
+                                <td>Gross Profit</td>
+                                <td>{{$incomes - $expenses}}</td>
+                                </tr>
                             </table>
                         </div>
 

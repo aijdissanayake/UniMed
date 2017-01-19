@@ -12,8 +12,8 @@
 
 <body class="grey lighten-4">
     <div class="container">
-        <div class="row" style="padding-top: 3rem">
-            <div class="col s12">
+        <div class="row top-row">
+            <div class="col s12 m8">
                 <div class="card">
                     <div class="card-title blue white-text">Edit {{$patient->firstName}} {{$patient->lastName}}</div>
                     <div class="card-content">
@@ -101,21 +101,63 @@
                                         <option value="O+" @if ($patient->bloodType=='O+') selected @endif>O+</option>
                                         <option value="O-" @if ($patient->bloodType=='O-') selected @endif>O-</option>
                                     </select>
-                                </div></div>
-
+                                </div>
                             </div>
 
-                            <div class="section">
-                                <input class="btn" type="submit" name="updateButton" value="Update" />
-                                <a class='btn' href="{{route('viewPatient',[$patient->id])}}">Back</a></p>
+                        </div>
+
+                        <div class="section">
+                            <button class="btn" type="submit" name="updateButton">Update<i class="material-icons right">send</i></button>
+                            <a class='btn' href="{{route('viewPatient',[$patient->id])}}">Back</a></p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+        <div class="col s12 m4">
+            <div class="card">
+                <div class="card-title red white-text">Account Management</div>
+                <div class="card-content">
+                    <form action="" method="post">
+                        {{csrf_field()}}
+                        <p class="grey-text">Change password</p>
+                        <div class="section">
+                            <div class="row">
+                                <div class="col s12">
+                                    <span>New Password<span class="red-text">*</span></span>
+                                    <input type="password" name="firstName" value="" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s12">
+                                    <span>Confirm password<span class="red-text">*</span></span>
+                                    <input type="password" name="lastName" value="" />
+                                </div>
+                            </div>
+                            <button class="btn waves-effect waves-light" type="submit" name="action">Change password</button>
+                        </div>
+                        <div class="divider"></div><br>
+                        <div class="section">
+                            <p class="grey-text">Account status</p>
+                            <div class="section" >
+                                @if ($patient->getUser->active == 1)
+                                <p>The account is currently <mark style="background-color: green; color: white; border-radius: 16px; padding: 0 5px">active</mark> and the patient can login remotely.</p><br>
+                                <a class="btn waves-effect waves-round red" href="">Deactivate</a>
+                                @else
+                                <p>The account is currently <mark style="background-color: red; color: white; border-radius: 16px; padding: 0 5px">inactive</mark> and the patient cannot login remotely.</p>
+                                <a class="btn waves-effect waves-round green" href="">Activate</a>
+                                @endif
                             </div>
                         </div>
                     </form>
-
                 </div>
             </div>
         </div>
     </div>
+</div>
+
 </div>
 
 </body>

@@ -279,9 +279,17 @@ class DoctorController extends Controller {
      */
 
     public function viewFinanceTab() {
-        $incomes = income::orderBy('receiptDate','desc')->take(10);
-        $expenses = expense::orderBy('paymentDate','desc')->take(10);
-        return view('doctor.finance.finance', compact('incomes'. 'expenses'));
+        $incomes = DB::table('incomes')
+                    ->whereRaw('year(receiptDate) = ?', [date('Y')])
+                    ->whereRaw('month(receiptDate) = ?',[date('m')])
+                    ->sum('value');
+                    // ->get();
+        $expenses = DB::table('expenses')
+                    ->whereRaw('year(paymentDate) = ?', [date('Y')])
+                    ->whereRaw('month(paymentDate) = ?',[date('m')])
+                    ->sum('value');
+                    // ->get();
+        return view('doctor.finance.finance', compact('incomes', 'expenses'));
     }
 
     public function createTransaction(Request $request) {
