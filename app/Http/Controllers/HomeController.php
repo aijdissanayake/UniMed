@@ -29,8 +29,8 @@ class HomeController extends Controller {
             
         if (Auth::user()->active == 0){
             Auth::logout();
-            return view('auth.login');
-            // return view('auth.account_inactive');
+            // return view('auth.login');
+            return view('auth.account_inactive');
         }
             
         /*
