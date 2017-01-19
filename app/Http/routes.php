@@ -15,6 +15,8 @@
 //    return view('welcome');
 //});
 
+  use App\Patient;
+
   Route::get('/', 'HomeController@index');
 
   Route::auth();
@@ -64,20 +66,34 @@ Route::group(['middleware' => 'authorizer:doctor'], function() {
 
 
     Route::get('doc/patients/view/{id}', ['as' => 'viewPatient', 'uses' => 'DoctorController@viewPatientDetails']);
+
+    // edit patient details
+
+    Route::get('doc/patients/edit/{id}', ['as' => 'editPatient', 'uses' => function($id){
+        $patient = patient::find($id);
+        return view('doctor.patients.edit_patient', compact('patient'));
+    }]);
+    Route::post('doc/patients/update/{id}', ['as' => 'updatePatient', 'uses' => 'DoctorController@updatePatient']);
+
+    // patient visits
+
     Route::get('doc/patients/createRecord/{id}', ['as' => 'createPatientVisitRecord', 'uses'=>'DoctorController@createPatientVisitRecord']);
     Route::get('doc/patients/newVisitRecord', ['as' => 'newVisitRecord', 'uses'=>function(){
         return view('doctor.patients.visitRecordWithSearch');
     }]);
-    Route::get('doc/patients/view/vr/{id}', 'DoctorController@viewPatientVisitRecord');
-    Route::get('doc/patients/view/vrs/{id}', 'DoctorController@viewAllPatientVisitRecord');
+    Route::get('doc/patients/view/vr/{id}', ['as'=>'viewVisitRecord','uses'=>'DoctorController@viewPatientVisitRecord']);
+    Route::get('doc/patients/view/vrs/{id}', ['as'=>'viewAllVisits','uses'=>'DoctorController@viewAllPatientVisitRecords']);
     Route::post('doc/patients/storeRecord/{id}', ['as' => 'storePatientVisitRecord', 'uses'=>'DoctorController@storePatientVisitRecord']);
 
     Route::post('doc/patients/searchLabReports', ['as' => 'searchLabReports', 'uses' => 'DoctorController@searchLabReports']);
     
+    // financial routes
+
     Route::get('doc/finance', ['as' => 'financeTab', 'uses' => 'DoctorController@viewFinanceTab']);
     Route::get('doc/finance/newTransaction', ['as'=> 'addTransaction', 'uses'=>function(){
         return view('doctor.finance.new_transaction_record');
     }]);
+
     Route::get('doc/finance/newAssistant', ['as'=> 'addAssistant', 'uses'=>function(){
         return view('doctor.finance.new_assistant');
     }]);
@@ -97,6 +113,7 @@ Route::group(['middleware' => 'authorizer:doctor'], function() {
     Route::get('doc/finance/chkuid', 'AjaxController@checkUN');
     Route::get('doc/patients/search', 'AjaxController@searchPatients');
 
+    Route::get('doc/finance/getTrx', ['as' => 'getTrx', 'uses' => 'AjaxController@getTransactions']);
     Route::get('doc/finance/newTransaction/tTypes', 'AjaxController@getTTypes');
 
     Route::get('doc/updateDropdown', 'inventoryItemController@updateDropdown');
@@ -117,10 +134,16 @@ Route::group(['middleware' => 'authorizer:patient'], function() {
     Route::get('pat/lab', ['as' => 'patientLabTab', 'uses' => 'PatientController@viewLabTab']);
     Route::post('pat/appointments', ['as' => 'appointment', 'uses' => 'PatientController@createAppointment']);
     Route::get('pat/profile', ['as'=>'pViewProfile', 'uses'=>'PatientController@viewProfile']);
+
     Route::get('pat/editProfile', ['as'=>'pEditProfile', 'uses'=>'PatientController@editProfile']);
     Route::get('pat/cancelAppointment',['as'=>'cancelAppointment', 'uses'=>'PatientController@cancelAppointment']);
     Route::get('dates', ['as' => 'unavailableDates', 'uses' => 'PatientController@getUnavailableDates']);
+
     Route::get('sessions',['as'=>'availableSessions','uses'=>'PatientController@getSessions']);
+
+    Route::get('pat/view/vr/', ['as' => 'pVisitRecords', 'uses' => 'PatientController@viewAllVisitRecords']);
+    Route::get('pat/view/vr/{id}', ['as' => 'pSingleVisitRecord', 'uses' => 'PatientController@viewSingleVisitRecord']);
+    
 });
 
 

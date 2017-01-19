@@ -4,14 +4,27 @@ $(document).ready(function () {
     var $newSTName = $('#subTypeName');
     var $newSTDesc = $('#subTypeDesc');
     var $date = $('#trxnDate');
-//    $('select').material_select();
     
     $newSubType.hide();
 
     $('.datepicker').pickadate('picker').set('select', new Date());
     
+    function formatDate(date) {
+        var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+        if (month.length < 2) month = '0' + month;
+        if (day.length < 2) day = '0' + day;
+
+        return [year, month, day].join('-');
+    }
+
     $date.change(function(){
-        console.log($date.val())
+        var $formattedDate = formatDate(new Date($date.val()));
+        console.log($formattedDate);
+        $date.val($formattedDate);
     });
     
     $('#tType').change(function () {
@@ -60,6 +73,7 @@ $(document).ready(function () {
             $newSubType.hide();
         }
     });
-});
 
+
+});
 

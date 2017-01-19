@@ -29,7 +29,7 @@ class User extends Authenticatable
      *  relationships
      */
     
-    public function patient() {
+    public function getPatient() {
         return $this->hasOne('App\patient');
     }
     

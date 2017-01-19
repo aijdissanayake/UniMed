@@ -21,4 +21,5 @@ class patient extends Model
     public function getFullBloodReports() {
         return $this->hasMany('App\fullBloodReport','patient_id','id');
     }
+
 }
