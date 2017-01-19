@@ -120,23 +120,71 @@
             <div class="card">
                 <div class="card-title red white-text">Account Management</div>
                 <div class="card-content">
-                    <form action="" method="post">
+                    <form action="{{route('changeUserPassword',[$patient->getUser->id])}}" method="post">
                         {{csrf_field()}}
                         <p class="grey-text">Change password</p>
                         <div class="section">
+                        @if (session()->has('msg'))
+                        <br>
+                        <p class="red-text">{{session('msg')}}</p>
+                        <br>
+                        @endif
                             <div class="row">
                                 <div class="col s12">
                                     <span>New Password<span class="red-text">*</span></span>
-                                    <input type="password" name="firstName" value="" />
+                                    <input type="password" name="newPassword" id="newPassword"/>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col s12">
                                     <span>Confirm password<span class="red-text">*</span></span>
-                                    <input type="password" name="lastName" value="" />
+                                    <input type="password" name="newPWC" id="newPWC"/>
                                 </div>
                             </div>
-                            <button class="btn waves-effect waves-light" type="submit" name="action">Change password</button>
+                            <button class="btn waves-effect waves-light" type="submit" name="changePWBtn" id="changePWBtn">Change password</button>
+                            <script type="text/javascript">
+                                var newPassword = $('#newPassword');
+                                var newPWC = $('#newPWC');
+                                var changePWBtn = $('#changePWBtn');
+
+                                changePWBtn.addClass('disabled');
+
+                                newPassword.keyup(function(){
+
+                                    console.log("new password= " + newPassword.val()+ " PWC= " +  newPWC.val());
+                                    if (newPassword.val().length >4){
+                                        if (newPWC.val()===newPassword.val()){
+                                            changePWBtn.removeClass('disabled');
+                                        }else{
+                                            if (!(changePWBtn.hasClass('disabled'))){
+                                                changePWBtn.addClass('disabled');
+                                            }
+                                        }
+                                    }else{
+                                            if (!(changePWBtn.hasClass('disabled'))){
+                                                changePWBtn.addClass('disabled');
+                                            }
+                                        }
+                                });
+
+                                newPWC.keyup(function(){
+
+                                    console.log("new password= " + newPassword.val()+ " PWC= " +  newPWC.val());
+                                    if (newPWC.val().length >4){
+                                        if (newPWC.val()===newPassword.val()){
+                                            changePWBtn.removeClass('disabled');
+                                        }else{
+                                            if (!(changePWBtn.hasClass('disabled'))){
+                                                changePWBtn.addClass('disabled');
+                                            }
+                                        }
+                                    }else{
+                                            if (!(changePWBtn.hasClass('disabled'))){
+                                                changePWBtn.addClass('disabled');
+                                            }
+                                        }
+                                });
+                            </script>
                         </div>
                         <div class="divider"></div><br>
                         <div class="section">
@@ -147,7 +195,7 @@
                                 <a class="btn waves-effect waves-round red" href="">Deactivate</a>
                                 @else
                                 <p>The account is currently <mark style="background-color: red; color: white; border-radius: 16px; padding: 0 5px">inactive</mark> and the patient cannot login remotely.</p>
-                                <a class="btn waves-effect waves-round green" href="">Activate</a>
+                                <a class="btn waves-effect waves-round green" href="{{route('userAccountStatus',[$patient->getUser->id])}}">Activate</a>
                                 @endif
                             </div>
                         </div>

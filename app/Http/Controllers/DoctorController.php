@@ -281,14 +281,14 @@ class DoctorController extends Controller {
 
     public function viewFinanceTab() {
         $incomes = DB::table('incomes')
-                    ->whereRaw('year(receiptDate) = ?', [date('Y')])
-                    ->whereRaw('month(receiptDate) = ?',[date('m')])
-                    ->sum('value');
+        ->whereRaw('year(receiptDate) = ?', [date('Y')])
+        ->whereRaw('month(receiptDate) = ?',[date('m')])
+        ->sum('value');
                     // ->get();
         $expenses = DB::table('expenses')
-                    ->whereRaw('year(paymentDate) = ?', [date('Y')])
-                    ->whereRaw('month(paymentDate) = ?',[date('m')])
-                    ->sum('value');
+        ->whereRaw('year(paymentDate) = ?', [date('Y')])
+        ->whereRaw('month(paymentDate) = ?',[date('m')])
+        ->sum('value');
                     // ->get();
         return view('doctor.finance.finance', compact('incomes', 'expenses'));
     }
@@ -394,40 +394,40 @@ class DoctorController extends Controller {
         $unavailablePeriod->endDate = $request->input('endDate');
         $unavailablePeriod->message = $request->input('message');
         if($request->input('holiday')){
-             $unavailablePeriod->holiday = TRUE;
-        }
-        $unavailablePeriod->save();
+         $unavailablePeriod->holiday = TRUE;
+     }
+     $unavailablePeriod->save();
 
-        return view('doctor.settings.appointmentsettings');
+     return view('doctor.settings.appointmentsettings');
+ }
+
+ public function unavailablePeriod(Request $request) {
+    $unavailablePeriod = new \App\unavailablePeriod();
+    $unavailablePeriod->startDate = $request->input('startDate');
+    $unavailablePeriod->endDate = $request->input('endDate');
+    $unavailablePeriod->message = $request->input('message');
+    if($request->input('dayType')=="holiday"){
+     $unavailablePeriod->holiday = TRUE;
+ }
+ $unavailablePeriod->save();
+
+ foreach (\App\session::where('available',TRUE)->get() as $avbSession) {
+    if ($request->input('dayType')=="holiday") {
+        DB::insert('INSERT INTO session_unavailableperiod (session_id, unavailable_period_id) values (?, ?)', [$avbSession->id,$unavailablePeriod->id]);
     }
-
-    public function unavailablePeriod(Request $request) {
-        $unavailablePeriod = new \App\unavailablePeriod();
-        $unavailablePeriod->startDate = $request->input('startDate');
-        $unavailablePeriod->endDate = $request->input('endDate');
-        $unavailablePeriod->message = $request->input('message');
-        if($request->input('dayType')=="holiday"){
-             $unavailablePeriod->holiday = TRUE;
-        }
-        $unavailablePeriod->save();
-
-        foreach (\App\session::where('available',TRUE)->get() as $avbSession) {
-            if ($request->input('dayType')=="holiday") {
-                DB::insert('INSERT INTO session_unavailableperiod (session_id, unavailable_period_id) values (?, ?)', [$avbSession->id,$unavailablePeriod->id]);
-            }
-            elseif ($request->input($avbSession->id)) {
-                DB::insert('INSERT INTO session_unavailableperiod (session_id, unavailable_period_id) values (?, ?)', [$avbSession->id,$unavailablePeriod->id]);
-            }
-        }
-    foreach ($unavailablePeriod->sessions as $session) {
-         } 
-
-        return view('doctor.settings.appointmentsettings');
+    elseif ($request->input($avbSession->id)) {
+        DB::insert('INSERT INTO session_unavailableperiod (session_id, unavailable_period_id) values (?, ?)', [$avbSession->id,$unavailablePeriod->id]);
     }
+}
+foreach ($unavailablePeriod->sessions as $session) {
+} 
 
-    public function viewInventorySettings() {
-        return view('doctor.inventory.inventorySettings');
-    }
+return view('doctor.settings.appointmentsettings');
+}
+
+public function viewInventorySettings() {
+    return view('doctor.inventory.inventorySettings');
+}
 
     /*
     * Lab tasks
@@ -492,8 +492,26 @@ class DoctorController extends Controller {
 
     public function changePassword($id, Request $request){
 
-        User::where('id',$id)->update(['password'=>bcrypt(request('password'))]);
-        return back();
+        $user = User::find($id);
+        $msg = "orig";
+        if ($user){
+            $newPassword = $request['newPassword'];
+            if (strlen($newPassword)>4){
+                if (!preg_match('/[^A-Za-z0-9.@#\\-$&]/', $newPassword)){
+                    $user->password = bcrypt($newPassword);
+                    $user->save();
+                    $msg = "Password changed successfully.";
+
+                }else{
+                    $msg = "Failed to change password. Please make sure you entered a valid password with at least 5 characters.";
+                }
+
+            }else{
+                $msg = "Failed to change password. Please make sure you entered a valid password with at least 5 characters.";
+            }
+
+        }
+        return redirect()->back()->with('msg', $msg);
     }
 
     public function saveNewDoctor(Request $request){

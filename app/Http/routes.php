@@ -58,7 +58,7 @@ Route::group(['middleware' => 'authorizer:doctor'], function() {
     // Doctor management
     Route::get('doc/settings/manageDoctors',['as' => 'manageDoctors',  'uses'=>'DoctorController@manageDoctors']);
     Route::get('doc/settings/manageUser/accountStatus/{id}',['as' => 'userAccountStatus',  'uses'=>'DoctorController@changeUserAccountStatus']);
-    Route::get('doc/settings/manageUser/changePassword/{id}',['as' => 'changeUserPassword',  'uses'=>'DoctorController@changePassword']);
+    Route::post('doc/settings/manageUser/changePassword/{id}',['as' => 'changeUserPassword',  'uses'=>'DoctorController@changePassword']);
     Route::get('doc/settings/manageDoctors/addNewDoctor',['as' => 'addNewDoctor',  'uses'=>function(){
         return view('doctor.settings.addNewDoctor');
     }]);
