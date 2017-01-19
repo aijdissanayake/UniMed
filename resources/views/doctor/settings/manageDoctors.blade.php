@@ -20,10 +20,10 @@
                         <div class="card-content">
                             
                             <table>
-                                <tr><td>No. of Doctors</td><td>{{$count[0]}}</td></tr>
-                                <tr><td>No. of Assistant Doctors</td><td>{{$count[1]}}</td></tr>
-                                <tr><td>No. of Active Doctors</td><td>{{$count[2]}}</td></tr>
-                                <tr><td>No. of Active Assistant Doctors</td><td>{{$count[3]}}</td></tr>
+                                <tr><td>No. of Doctors</td><td>{{$data[0]}}</td></tr>
+                                <tr><td>No. of Assistant Doctors</td><td>{{$data[1]}}</td></tr>
+                                <tr><td>No. of Active Doctors</td><td>{{$data[2]}}</td></tr>
+                                <tr><td>No. of Active Assistant Doctors</td><td>{{$data[3]}}</td></tr>
                             </table>
                         </div>
                     </div>
@@ -52,7 +52,12 @@
                                         <td>{{ $doctor->created_at}}</td>
                                         <td>
                                             @if( $doctor->getUser->active ==1)
-                                                <a class="waves-effect waves-teal btn-flat right" href="{{route('deactivateDoctor',['id'=>$doctor->user_id])}}">Deactivate</a>
+                                                @if($data[4]==$doctor->user_id)
+                                                    <a class="waves-effect waves-teal btn-flat disabled right" >Deactivate</a>
+                                                @else
+                                                    <a class="waves-effect waves-teal btn-flat right" href="{{route('deactivateDoctor',['id'=>$doctor->user_id])}}">Deactivate</a>
+                                                @endif
+                                                
                                             @else
                                                 <a class="waves-effect waves-teal btn-flat right" href="{{route('activateDoctor',['id'=>$doctor->user_id])}}">Activate</a>
                                             @endif
