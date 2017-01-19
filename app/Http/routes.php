@@ -45,20 +45,20 @@ Route::group(['middleware' => 'authorizer:doctor'], function() {
         return view('doctor.lab.add_new_lab_tech');
     }]);
 
-    Route::get('doc/patients/addpatient', ['as' => 'addPatient', 'uses' => 'DoctorController@regPatient']);
-
-    Route::post('doc/patients/storePatient', ['as' => 'patientAdded', 'uses' => 'DoctorController@storePatient']);
+    
     Route::post('doc/inventory/add',['as' => 'addItem',  'uses' => 'inventoryItemController@updateInventoryItem']);
     Route::post('doc/inventory/search',['as' => 'searchItem',  'uses' => 'inventoryItemController@searchInventoryItem']);
-    Route::get('doc/inventory/settings',['as'=> 'inventorySettings', 'uses' => 'doctorController@viewInventorySettings']);
+    Route::get('doc/inventory/settings',['as'=> 'inventorySettings', 'uses' => 'DoctorController@viewInventorySettings']);
     
     Route::get('doc/settings',['as' => 'settings',  'uses' => 'DoctorController@viewSettingsPage']);
     Route::get('doc/settings/appointments', ['as'=>'docAppSettings', 'uses'=>'DoctorController@viewAppointmentSettingsPage']);
     Route::post('doc/settings/appointments/sessionAdded',['as'=>'addSession', 'uses'=>'DoctorController@addSession']);
     Route::post('doc/settings/appointments/unavailability',['as'=>'unavailablePeriod','uses'=>'DoctorController@unavailablePeriod']);
+
+    // Doctor management
     Route::get('doc/settings/manageDoctors',['as' => 'manageDoctors',  'uses'=>'DoctorController@manageDoctors']);
-    Route::get('doc/settings/manageDoctors/deactivate/{id}',['as' => 'deactivateDoctor',  'uses'=>'DoctorController@deactivateDoctor']);
-    Route::get('doc/settings/manageDoctors/activate/{id}',['as' => 'activateDoctor',  'uses'=>'DoctorController@activateDoctor']);
+    Route::get('doc/settings/manageUser/accountStatus/{id}',['as' => 'userAccountStatus',  'uses'=>'DoctorController@changeUserAccountStatus']);
+    Route::get('doc/settings/manageUser/changePassword/{id}',['as' => 'changeUserPassword',  'uses'=>'DoctorController@changePassword']);
     Route::get('doc/settings/manageDoctors/addNewDoctor',['as' => 'addNewDoctor',  'uses'=>function(){
         return view('doctor.settings.addNewDoctor');
     }]);
@@ -66,6 +66,8 @@ Route::group(['middleware' => 'authorizer:doctor'], function() {
 
 
     Route::get('doc/patients/view/{id}', ['as' => 'viewPatient', 'uses' => 'DoctorController@viewPatientDetails']);
+    Route::get('doc/patients/addpatient', ['as' => 'addPatient', 'uses' => 'DoctorController@regPatient']);
+    Route::post('doc/patients/storePatient', ['as' => 'patientAdded', 'uses' => 'DoctorController@storePatient']);
 
     // edit patient details
 

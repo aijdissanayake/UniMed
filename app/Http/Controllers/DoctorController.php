@@ -477,16 +477,16 @@ class DoctorController extends Controller {
         return view('doctor.settings.manageDoctors', ['doctors' => $doctors] , ['data'=>array($doc_count,$assistant_doc_count,$active_doc_count,$active_a_doc_count,$current_doctor)]);
     }
 
-    public function deactivateDoctor($id){
+    public function changeUserAccountStatus($id){
 
-        \App\User::where('id',$id)->update(['active'=>0]);
-        return redirect()->route('manageDoctors');
+        User::where('id',$id)->update(['active'=>0]);
+        return back();
     }
 
-    public function activateDoctor($id){
+    public function changePassword($id, Request $request){
 
-        \App\User::where('id',$id)->update(['active'=>1]);
-        return redirect()->route('manageDoctors');
+        User::where('id',$id)->update(['password'=>bcrypt(request('password'))]);
+        return back();
     }
 
     public function saveNewDoctor(Request $request){
