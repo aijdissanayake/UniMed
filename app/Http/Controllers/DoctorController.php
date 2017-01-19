@@ -52,8 +52,9 @@ class DoctorController extends Controller {
 
     public function viewSettingsPage() {
         $doctor = Auth::user()->getDoctor;
+        $doctors = doctor::take(5)->get();
 //        $assistants = Assistant::orderBy('created_at', 'desc')
-        return view('doctor.settings.settings', compact('doctor'));
+        return view('doctor.settings.settings', compact('doctor','doctors'));
     }
 
     public function viewPatientTab() {
@@ -65,7 +66,6 @@ class DoctorController extends Controller {
 
     public function viewAllPatients(){
         $patients = patient::paginate(10);
-
         return view('doctor.patients.viewAllPatients', compact('patients'));
     }
 

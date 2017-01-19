@@ -51,10 +51,9 @@
                     <div class="card red white-text" style="height:100%">
                         <div class="card-content">
                             <span class="card-title"><strong>Doctors</strong></span>
-                            <p>Kalana Ishanka</p>
-                            <p>lorem ipsum...</p>
-                            <p>lorem ipsum...</p>
-                            <p>lorem ipsum...</p>
+                            @foreach ($doctors as $doctor)
+                                <p>{{$doctor->doctorName}}</p>
+                            @endforeach
                             <a href="{{route('manageDoctors')}}" class="waves-effect red lighten-2 btn">
                                 Manage
                             </a>
