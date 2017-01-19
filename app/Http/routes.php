@@ -36,7 +36,7 @@ Route::group(['middleware' => 'authorizer:doctor'], function() {
     Route::get('doc', ['as' => 'homeTab', 'uses' => 'DoctorController@home']);
     Route::get('doc/patients', ['as' => 'patientsTab', 'uses' => 'DoctorController@viewPatientTab']);
     
-    Route::get('doc/profile', ['as'=>'dViewProfile', 'uses'=>'DoctorController@viewProfile']);
+    Route::get('doc/profile/{id}', ['as'=>'dViewDocProfile', 'uses'=>'DoctorController@viewDocProfile']);
     Route::get('doc/editProfile', ['as'=>'dEditProfile', 'uses'=>'DoctorController@editProfile']);
 
     Route::get('doc/inventory', ['as' => 'inventoryTab', 'uses' => 'DoctorController@viewInventoryTab']);

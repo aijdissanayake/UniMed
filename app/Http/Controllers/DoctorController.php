@@ -41,8 +41,8 @@ class DoctorController extends Controller {
      * patient tasks
      */
 
-    public function viewProfile() {
-        $doctor = Auth::user()->getDoctor;
+    public function viewDocProfile($id) {
+        $doctor = doctor::where('id',$id)->first();
         return view('doctor.index.profile_doctor', compact('doctor'));
     }
 

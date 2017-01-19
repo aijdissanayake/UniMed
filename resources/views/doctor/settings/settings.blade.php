@@ -22,7 +22,7 @@
                                 <tr><td>Registration Number</td><td>{{$doctor->RegNo}}</td></tr>
                                 <tr><td>Email</td><td>{{$doctor->getUser->email}}</td></tr>
                             </table>
-                            <a href="{{route('dViewProfile')}}" class="waves-effect green darken-3 btn">
+                            <a href="{{route('dViewDocProfile',['id'=>$doctor->id])}}" class="waves-effect green darken-3 btn">
                                 View Full Profile
                             </a>
                         </div>

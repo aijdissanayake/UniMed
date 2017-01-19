@@ -15,7 +15,7 @@
 
 
 <ul id="dropdown1" class="dropdown-content">
-    <li><a href="{{route('dViewProfile')}}">Profile</a></li>
+    <li><a href="#">Profile</a></li>
     <li class="divider"></li>
     <li><a href="{{route('settings')}}">Settings</a></li>
     <li class="divider"></li>
@@ -68,7 +68,7 @@
                 <li><a class="collapsible-header waves-effect waves-teal">My Account<i class="material-icons right">arrow_drop_down</i></a>
                     <div class="collapsible-body">
                         <ul>
-                            <li><a href="{{route('dViewProfile')}}">Profile</a></li>
+                            <li><a href="#">Profile</a></li>
                             <li class="divider"></li>
                             <li><a href="{{route('settings')}}">Settings</a></li>
                             <li class="divider"></li>
