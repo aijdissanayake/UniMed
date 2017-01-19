@@ -121,6 +121,7 @@ class PatientController extends Controller
             //insert to appointment table
             $app = new \App\appointment();
             $app ->patient_id = $pID;
+            $date = date_format($date,"Y-m-d");
             $app->aDate =$date;
             $app->session_id = $appSession;
             $app->appointmentNo=$newAppNo;

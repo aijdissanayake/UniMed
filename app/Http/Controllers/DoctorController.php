@@ -347,6 +347,16 @@ class DoctorController extends Controller {
              $unavailablePeriod->holiday = TRUE;
         }
         $unavailablePeriod->save();
+        // cancel all the appointments within the period
+        $affectedAppointments = appointment::where('aDate','>=', $unavailablePeriod->startDate)->where('aDate','<=', $unavailablePeriod->endDate)->where('expired',FALSE)->get();
+        foreach ($affectedAppointments as $affectedAppointment) {
+            echo $affectedAppointment ->session_id;
+            $affectedAppointment->expired = TRUE;
+            $affectedAppointment->save();
+            $patient = $affectedAppointment->patient;
+            $patient->hasAppointment = FALSE;
+            $patient->save();
+        }
 
         foreach (\App\session::where('available',TRUE)->get() as $avbSession) {
             if ($request->input('dayType')=="holiday") {
