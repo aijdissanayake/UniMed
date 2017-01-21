@@ -538,4 +538,9 @@ public function viewInventorySettings() {
         return redirect()->route('manageDoctors');
     }
 
+    public function editDoctor($id){
+        $doctor = doctor::find($id);
+        return view('doctor.settings.editDoctor',compact('doctor'));
+    }
+
 }
