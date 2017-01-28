@@ -39,4 +39,18 @@ $(document).ready( function(){
 		}		
 	});
 
+	$('#unavForm').submit(function(event){
+		//validate date first
+		if ((document.getElementsByName('dayType').value) = "halfday") {
+			var count = 0;
+			$('#sessions input:checked').each(function() {
+			 	count = count+1;
+        	});
+	        if (!count) {
+					Materialize.toast('Mark Unavailable sessions!', 4000 , 'rounded red');
+					event.preventDefault();
+			}
+		}
+	});
+
 });

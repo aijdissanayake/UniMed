@@ -356,6 +356,14 @@ class DoctorController extends Controller {
             $patient = $affectedAppointment->patient;
             $patient->hasAppointment = FALSE;
             $patient->save();
+
+            $cancelledRecord = new \App\unavailablePeriodsCancelledAppointment();
+            $cancelledRecord->appointment_id = $affectedAppointment->id;
+            $cancelledRecord->patient_id = $affectedAppointment->patient_id;
+            $cancelledRecord->unavailable_period_id = $unavailablePeriod->id;
+            $cancelledRecord->message = $unavailablePeriod->message;
+            $cancelledRecord->save();
+
         }
 
         foreach (\App\session::where('available',TRUE)->get() as $avbSession) {

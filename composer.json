@@ -10,7 +10,9 @@
 		"doctrine/dbal": "v2.5.4",
         "laravelcollective/html": "^5.2",
 		"barryvdh/laravel-dompdf": "0.6.*",
-		"ext-mbstring": "*"
+		"ext-mbstring": "*",
+        "laravel-notification-channels/backport": "^1.0",
+        "pusher/pusher-php-server": "~2.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

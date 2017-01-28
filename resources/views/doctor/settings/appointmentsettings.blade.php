@@ -69,7 +69,7 @@
                     <div class="card-title">Mark Unavailable</div>
                     <div class="card-content">
                         <div>
-                            <form action="{{route('unavailablePeriod')}}" method="post">                      
+                            <form action="{{route('unavailablePeriod')}}" method="post" id="unavForm">                      
                                 {{ csrf_field() }}
                                 <div class="row">
                                     <div class="col s2 offset-s1" >

@@ -129,7 +129,6 @@ class PatientController extends Controller
             
             $currentPatientsAppointment = $patient->appointments()->where('expired',FALSE)->first();
             $currentDate=substr($currentPatientsAppointment->aDate,0,10);
-            echo $currentPatientsAppointment->aDate;
             
             return view('patient.home.patientHome')
                     ->with('hasAppointment',$hasAppointment)
