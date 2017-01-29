@@ -21,7 +21,9 @@ use App\expenseType;
 use App\session;
 use App\unavailablePeriod;
 use Validator;
+use Event;
 use Illuminate\Support\Facades\Input;
+use App\Events\UnavailablePeriodMarked;
 
 class DoctorController extends Controller {
 
@@ -363,6 +365,8 @@ class DoctorController extends Controller {
             $cancelledRecord->unavailable_period_id = $unavailablePeriod->id;
             $cancelledRecord->message = $unavailablePeriod->message;
             $cancelledRecord->save();
+
+            Event::fire(new UnavailablePeriodMarked($cancelledRecord));
 
         }
 

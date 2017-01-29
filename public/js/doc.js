@@ -40,8 +40,8 @@ $(document).ready( function(){
 	});
 
 	$('#unavForm').submit(function(event){
-		//validate date first
-		if ((document.getElementsByName('dayType').value) = "halfday") {
+		//validate sessions
+		if ((document.getElementsByName('dayType').value) == "halfday") {
 			var count = 0;
 			$('#sessions input:checked').each(function() {
 			 	count = count+1;

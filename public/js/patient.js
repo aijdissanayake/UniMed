@@ -10,6 +10,13 @@ function formatDate(date) {
     return [year, month, day].join('-');
 }
 
+var pusher = new Pusher('f0467eee59f1bf73a95b');
+var channel = pusher.subscribe('appointmentCancelled');
+
+channel.bind('App\Events\UnavailablePeriodMarked', function(data) {
+   console.log(data);
+});
+
 $(document).ready(function(){
 	//date picker initialization for appointments
 		var d = new Date();

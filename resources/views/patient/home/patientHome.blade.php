@@ -8,6 +8,7 @@
         <title>Unicare - Home</title>
         <meta name="description" content="website description" />
         <meta name="keywords" content="website keywords, website keywords" />
+        <script src="//js.pusher.com/2.2/pusher.min.js"></script>
         <script type="text/javascript" src="/js/patient.js"></script>
         <link rel="stylesheet" type="text/css" href="/style/patientStyle.css">
 
