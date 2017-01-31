@@ -34,4 +34,67 @@ $(document).ready(function () {
 		$old_tbody = document.getElementById('trxnsBody');
 
 	});
+
+	function formatDate(date) {
+		var d = new Date(date),
+		month = '' + (d.getMonth() + 1),
+		day = '' + d.getDate(),
+		year = d.getFullYear();
+
+		if (month.length < 2) month = '0' + month;
+		if (day.length < 2) day = '0' + day;
+
+		return [year, month, day].join('-');
+	}
+
+	var $startDate = $('#startDate');
+	var $endDate = $('#endDate');
+	var $trxnBtn = $('#trxnBtn');
+
+	$trxnBtn.addClass('disabled');
+
+	$endDate.attr('disabled', 'true');
+
+	// $('#startDate').pickadate({clear: ''});
+	// $endDate.pickadate('picker').set('clear', false);
+
+
+
+	var $from, $to;
+
+	$startDate.change(function(){
+		$from = formatDate(new Date($startDate.val()));
+		
+		$endDate.removeAttr('disabled');
+		$endDate.pickadate('picker').set('min', $startDate.val());
+		
+		if ($to ==null){
+				$startDate.val($from);
+		}else if ($from<=$to){
+			if ($trxnBtn.hasClass('disabled')){
+				$trxnBtn.removeClass('disabled');
+			}
+			$startDate.val($from);
+		}else{
+			// handle if user re-selects a date after end Date after selecting an end Date
+			if (!($trxnBtn.hasClass('disabled'))){
+				$trxnBtn.addClass('disabled');
+			}
+		}
+
+	});
+
+	$endDate.change(function(){
+		$to = formatDate(new Date($endDate.val()));
+
+		$endDate.val($to);
+
+		if ($from<=$to){
+			// valid input
+			$endDate.val($to);
+			$trxnBtn.removeClass('disabled');
+
+		}
+
+	});
 });
