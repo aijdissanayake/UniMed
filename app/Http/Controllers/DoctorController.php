@@ -41,8 +41,8 @@ class DoctorController extends Controller {
      * patient tasks
      */
 
-    public function viewProfile() {
-        $doctor = Auth::user()->getDoctor;
+    public function viewDocProfile($id) {
+        $doctor = doctor::where('id',$id)->first();
         return view('doctor.index.profile_doctor', compact('doctor'));
     }
 
@@ -52,8 +52,9 @@ class DoctorController extends Controller {
 
     public function viewSettingsPage() {
         $doctor = Auth::user()->getDoctor;
+        $doctors = doctor::take(5)->get();
 //        $assistants = Assistant::orderBy('created_at', 'desc')
-        return view('doctor.settings.settings', compact('doctor'));
+        return view('doctor.settings.settings', compact('doctor','doctors'));
     }
 
     public function viewPatientTab() {
@@ -65,7 +66,6 @@ class DoctorController extends Controller {
 
     public function viewAllPatients(){
         $patients = patient::paginate(10);
-
         return view('doctor.patients.viewAllPatients', compact('patients'));
     }
 
@@ -571,6 +571,11 @@ public function viewInventorySettings() {
         $doc->save();
 
         return redirect()->route('manageDoctors');
+    }
+
+    public function editDoctor($id){
+        $doctor = doctor::find($id);
+        return view('doctor.settings.editDoctor',compact('doctor'));
     }
 
 }

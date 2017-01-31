@@ -14,9 +14,9 @@
     <body>
         <div class="container">
             <div class="row top-row">
-                <div class="col s12">
+                <div class="col s12 ">
                     <div class="card">
-                        <div class="card-title  red lighten-2 white-text"><strong>Doctors - Summary</strong></div>
+                        <div class="card-title  red darken-2 white-text"><strong>Doctors - Summary</strong></div>
                         <div class="card-content">
                             
                             <table>
@@ -33,7 +33,7 @@
             <div class="row">
                 <div class="col s12">
                     <div class="card">
-                        <div class="card-title  red lighten-2 white-text"><strong>Doctors</strong></div>
+                        <div class="card-title  red darken-2 white-text"><strong>Doctors</strong></div>
                         <div class="card-content">
                             
                             <table class="responsive-table">
@@ -46,7 +46,7 @@
                                   </tr>
                                 </thead>
                                  @foreach ($doctors as $doctor)
-                                    <tr><td> {{ $doctor->doctorName}}</td>
+                                    <tr><td> <a href="{{route('dViewDocProfile',['id'=>$doctor->id])}}">{{ $doctor->doctorName}}</a></td>
                                         <td>{{ $doctor->RegNo}}</td>
                                         <td>{{$doctor->getUser->role}}</td>
                                         <td>{{ $doctor->created_at}}</td>

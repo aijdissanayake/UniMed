@@ -22,7 +22,7 @@
                                 <tr><td>Registration Number</td><td>{{$doctor->RegNo}}</td></tr>
                                 <tr><td>Email</td><td>{{$doctor->getUser->email}}</td></tr>
                             </table>
-                            <a href="{{route('dViewProfile')}}" class="waves-effect green darken-3 btn">
+                            <a href="{{route('dViewDocProfile',['id'=>$doctor->id])}}" class="waves-effect green darken-3 btn">
                                 View Full Profile
                             </a>
                         </div>
@@ -51,10 +51,9 @@
                     <div class="card red white-text" style="height:100%">
                         <div class="card-content">
                             <span class="card-title"><strong>Doctors</strong></span>
-                            <p>Kalana Ishanka</p>
-                            <p>lorem ipsum...</p>
-                            <p>lorem ipsum...</p>
-                            <p>lorem ipsum...</p>
+                            @foreach ($doctors as $doctor)
+                                <p>{{$doctor->doctorName}}</p>
+                            @endforeach
                             <a href="{{route('manageDoctors')}}" class="waves-effect red lighten-2 btn">
                                 Manage
                             </a>

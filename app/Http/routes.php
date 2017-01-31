@@ -36,7 +36,7 @@ Route::group(['middleware' => 'authorizer:doctor'], function() {
     Route::get('doc', ['as' => 'homeTab', 'uses' => 'DoctorController@home']);
     Route::get('doc/patients', ['as' => 'patientsTab', 'uses' => 'DoctorController@viewPatientTab']);
     
-    Route::get('doc/profile', ['as'=>'dViewProfile', 'uses'=>'DoctorController@viewProfile']);
+    Route::get('doc/profile/{id}', ['as'=>'dViewDocProfile', 'uses'=>'DoctorController@viewDocProfile']);
     Route::get('doc/editProfile', ['as'=>'dEditProfile', 'uses'=>'DoctorController@editProfile']);
 
     Route::get('doc/inventory', ['as' => 'inventoryTab', 'uses' => 'DoctorController@viewInventoryTab']);
@@ -63,6 +63,11 @@ Route::group(['middleware' => 'authorizer:doctor'], function() {
         return view('doctor.settings.addNewDoctor');
     }]);
     Route::post('doc/settings/manageDoctors/saveNewDoctor',['as' => 'saveNewDoctor',  'uses'=>'DoctorController@saveNewDoctor']);
+    Route::get('doc/settings/navBarViewProfile',['as'=>'navBarViewProfile','uses'=>function(){
+        $doctor = Auth::user()->getDoctor;
+        return view('doctor.index.profile_doctor', compact('doctor'));
+    }]);
+    Route::get('doc/settngs/editDoctor/{id}',['as'=>'editDoctor','uses'=>'DoctorController@editDoctor']);
 
 
     Route::get('doc/patients/view/{id}', ['as' => 'viewPatient', 'uses' => 'DoctorController@viewPatientDetails']);
