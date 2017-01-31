@@ -35,17 +35,17 @@
                             </div>
                             <div class="row">
                                 <div class="col s12">
-                                <table class="highlight bordered striped" id="Trxns">
-                                    <thead>
-                                        <tr>
-                                            <th>Date</th>
-                                            <th>Type</th>
-                                            <th>Description</th>
-                                            <th>Value (LKR)</th>
-                                        </tr>
+                                    <table class="highlight bordered striped" id="Trxns">
+                                        <thead>
+                                            <tr>
+                                                <th>Date</th>
+                                                <th>Type</th>
+                                                <th>Description</th>
+                                                <th>Value (LKR)</th>
+                                            </tr>
                                         </thead>
                                         <tbody id="trxnsBody">
-                                            
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -57,7 +57,7 @@
             </div>
             <div class="row">
 
-                <div class="col s12 m8 offselt-m2 offset-l2">
+                <div class="col s12 m8 offset-m2 offset-l2">
                     <div class="card">
                         <div class="card-title green white-text">
                             <i class="material-icons left">sort</i>
@@ -67,16 +67,16 @@
                             <table class="highlight bordered">
                                 <tr><th>Description</th><th>Value (LKR)</th></tr>
                                 <tr>
-                                <td>Income</td>
-                                <td>{{$incomes}}</td>
+                                    <td>Income</td>
+                                    <td>{{$incomes}}</td>
                                 </tr>
                                 <tr>
-                                <td>Less: Expenses</td>
-                                <td>{{$expenses}}</td>
+                                    <td>Less: Expenses</td>
+                                    <td>{{$expenses}}</td>
                                 </tr>
                                 <tr>
-                                <td>Gross Profit</td>
-                                <td>{{$incomes - $expenses}}</td>
+                                    <td>Gross Profit</td>
+                                    <td>{{$incomes - $expenses}}</td>
                                 </tr>
                             </table>
                         </div>
@@ -86,26 +86,31 @@
                             Custom Periods
                         </div>
                         <div class="card-content">
-                            <div class="row">
-                                <div class="col s6">
-                                    <label for="trxn_value"><h6>From:</h6></label>
-                                    <input id="date_from" type="date" class="datepicker">             
+                            <form action="{{route('viewTransactions')}}" method="get">
+                            {{ csrf_field()}}
+                                <div class="row">
+                                    <div class="col s6">
+                                        <label for="startDate"><h6>From:</h6></label>
+                                        <input id="startDate" name="startDate" type="date" class="datepicker" placeholder="Pick start date">             
+                                    </div>
+                                    <div class="col s6">
+                                        <label for="endDate"><h6>To:</h6></label>
+                                        <input id="endDate" name="endDate" type="date" class="datepicker">
+                                    </div>
                                 </div>
-                                <div class="col s6">
-                                    <label for="trxn_value"><h6>To:</h6></label>
-                                    <input id="date_to" type="date" class="datepicker">
+                                <div class="row">
+                                    <div class="col s12 center-align">
+                                        <button class="waves-effect green btn" id="trxnBtn" href="" type="submit"><i class="material-icons left">history</i>Show Transactions</button>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col s12 center-align">
-                                    <a class="waves-effect green btn"><i class="material-icons left">history</i>Show Transactions</a>
-                                </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
 
                 </div>
             </div>
+
+            <!-- Floating Action button -->
             
             <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
                 <a class="btn-floating btn-large waves-effect waves-circle red" data-position="left" data-delay="15">

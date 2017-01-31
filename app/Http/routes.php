@@ -66,6 +66,7 @@ Route::group(['middleware' => 'authorizer:doctor'], function() {
 
 
     Route::get('doc/patients/view/{id}', ['as' => 'viewPatient', 'uses' => 'DoctorController@viewPatientDetails']);
+    Route::get('doc/patients/all',['as'=>'viewAllPatients','uses'=>'DoctorController@viewAllPatients']);
     Route::get('doc/patients/addpatient', ['as' => 'addPatient', 'uses' => 'DoctorController@regPatient']);
     Route::post('doc/patients/storePatient', ['as' => 'patientAdded', 'uses' => 'DoctorController@storePatient']);
 
@@ -92,6 +93,7 @@ Route::group(['middleware' => 'authorizer:doctor'], function() {
     // financial routes
 
     Route::get('doc/finance', ['as' => 'financeTab', 'uses' => 'DoctorController@viewFinanceTab']);
+    Route::get('doc/transactions', ['as' => 'viewTransactions', 'uses' => 'DoctorController@viewTransactions']);
     Route::get('doc/finance/newTransaction', ['as'=> 'addTransaction', 'uses'=>function(){
         return view('doctor.finance.new_transaction_record');
     }]);
@@ -101,7 +103,7 @@ Route::group(['middleware' => 'authorizer:doctor'], function() {
     }]);
     Route::get('doc/finance/newTx', ['as'=>'createTx', 'uses'=>'DoctorController@CreateTransaction']);
 
-    Route::get('doc/patients/all',['as'=>'viewAllPatients','uses'=>'DoctorController@viewAllPatients']);
+    
 
 // Doctors Charts
 

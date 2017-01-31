@@ -352,6 +352,41 @@ class DoctorController extends Controller {
         return view('doctor.finance.new_transaction_record');
     }
 
+    public function viewTransactions(Request $request){
+        $startDate = date_create($request['startDate']);
+        $endDate = date_create($request['endDate']);
+
+        $transactions1 = DB::select("select DATE_FORMAT(receiptDate, '%Y-%m-%d') as date, income_types.incomeName as name,income_types.description as description, incomes.value as value, 'income' as type from incomes inner join income_types on incomes.incomeType = income_types.id having date between ? and ?", [$startDate, $endDate]);
+        $transactions2 = DB::select("select DATE_FORMAT(paymentDate, '%Y-%m-%d') as date, expense_types.expenseName as name,expense_types.description as description, expenses.value as value, 'expense' as type from expenses inner join expense_types on expenses.paymentType = expense_types.id having date between ? and ?", [$startDate, $endDate]);
+
+        $transactions = array_merge($transactions1, $transactions2);
+
+        $t3 = $transactions;
+
+        $date = array();
+        $name = array();
+        $description = array();
+        $value = array();
+        $type = array();
+
+        // dd($date);
+
+        foreach ($transactions as $key => $row){
+            // row is a standard class object, not an array.
+            $date[$key] = $row->date;
+            $name[$key] = $row->name;
+            $description[$key] = $row->description;
+            $value[$key] = $row->value;
+            $type[$key] = $row->type;
+
+        }
+
+        array_multisort($date, SORT_DESC, $name, $description, $value, $type, $transactions);
+
+        return view('doctor.finance.all_transactions', compact('transactions'));
+
+    }
+
     /*
      * Inventory methods
      */

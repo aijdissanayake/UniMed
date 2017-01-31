@@ -107,7 +107,7 @@
                         </div>
 
                         <div class="section">
-                            <button class="btn" type="submit" name="updateButton">Update<i class="material-icons right">send</i></button>
+                            <button class="btn" type="submit" name="updateButton">Update</button>
                             <a class='btn' href="{{route('viewPatient',[$patient->id])}}">Back</a></p>
                         </div>
                     </div>
@@ -191,10 +191,10 @@
                             <p class="grey-text">Account status</p>
                             <div class="section" >
                                 @if ($patient->getUser->active == 1)
-                                <p>The account is currently <mark style="background-color: green; color: white; border-radius: 16px; padding: 0 5px">active</mark> and the patient can login remotely.</p><br>
-                                <a class="btn waves-effect waves-round red" href="">Deactivate</a>
+                                <p>This account is currently <mark style="background-color: green; color: white; border-radius: 16px; padding: 0 5px">active</mark> and the patient can login remotely.</p><br>
+                                <a class="btn waves-effect waves-round red" href="{{route('userAccountStatus',[$patient->getUser->id])}}">Deactivate</a>
                                 @else
-                                <p>The account is currently <mark style="background-color: red; color: white; border-radius: 16px; padding: 0 5px">inactive</mark> and the patient cannot login remotely.</p>
+                                <p>This account is currently <mark style="background-color: red; color: white; border-radius: 16px; padding: 0 5px">inactive</mark> and the patient cannot login remotely.</p><br>
                                 <a class="btn waves-effect waves-round green" href="{{route('userAccountStatus',[$patient->getUser->id])}}">Activate</a>
                                 @endif
                             </div>

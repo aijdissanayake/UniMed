@@ -81,7 +81,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col s12 center-align">
-                                        <a href=""><button class="waves-effect green btn" ><i class="material-icons right">send</i>Add Entry</button></a>
+                                        <button class="waves-effect green btn" ><i class="material-icons right">send</i>Add Entry</button>
                                     </div>
                                 </div>
                             </div>

@@ -27,7 +27,7 @@
                                     @endif</td></tr>
                                     <tr><td><strong>Blood Group</strong></td><td>{{$patient->bloodType}}</td></tr>
                                     <tr><td><strong>Height</strong></td><td>{{$patient->height}} cm</td></tr>
-                                    <tr><td><strong>Weight</strong></td><td>{{$patient->weight}} kg</td></tr>
+                                    <tr><td><strong>Weight</strong></td><td>@if ($patient->weight ==0) Not set. Add visit record. @else ($patient->weight ==0) kg @endif</td></tr>
                                     <tr><td><strong>BMI</strong></td><td>@if ($patient->bmi==0) Not set. Add visit record. @else {{$patient->bmi}} @endif</td></tr>
                                     <tr><td><strong>Email</strong></td><td>{{$patient->getUser->email}}</td></tr>
                                     <tr><td><strong>Contact No.</strong></td><td>{{$patient->telephoneNo}}</td></tr>
