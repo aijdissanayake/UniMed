@@ -366,7 +366,14 @@ class DoctorController extends Controller {
             $cancelledRecord->message = $unavailablePeriod->message;
             $cancelledRecord->save();
 
-            Event::fire(new UnavailablePeriodMarked($cancelledRecord));
+            try{
+                Event::fire(new UnavailablePeriodMarked($cancelledRecord));
+                echo "Success";
+            }
+            
+            catch(Exception $e) {
+                echo 'Message: ' .$e->getMessage();
+            }
 
         }
 
@@ -381,7 +388,7 @@ class DoctorController extends Controller {
     foreach ($unavailablePeriod->sessions as $session) {
          } 
 
-        return view('doctor.settings.appointmentsettings');
+        return redirect()->route('docAppSettings');
     }
 
     public function viewInventorySettings() {

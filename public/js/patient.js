@@ -10,13 +10,6 @@ function formatDate(date) {
     return [year, month, day].join('-');
 }
 
-var pusher = new Pusher('f0467eee59f1bf73a95b');
-var channel = pusher.subscribe('appointmentCancelled');
-
-channel.bind('App\Events\UnavailablePeriodMarked', function(data) {
-   console.log(data);
-});
-
 $(document).ready(function(){
 	//date picker initialization for appointments
 		var d = new Date();
@@ -175,6 +168,33 @@ $(document).ready(function(){
 			event.preventDefault();
 		}
 	});
+
+	
+		
+		var pusher = new Pusher('f0467eee59f1bf73a95b');
+		var channel = pusher.subscribe('appointmentCancelled');
+
+	
+		channel.bind('App\\Events\\UnavailablePeriodMarked', function(data) {
+
+		try{
+		   console.log(data['details']['patient_id']);
+		   var docMsg = data['details']['message'];
+		   if(confirm("Doctor has just Marked an Unavailable Period! \nThis page will be Refreshed to check whether any of your appointments have been cancelled.\n" + "Doctor's Message: \"" + docMsg +"\"" ))
+		   {
+		   	window.location.reload();
+		   }
+		}
+
+		catch(err){
+			console.log('Exception');
+	  		console.log(err);
+	  		console.log('failed');
+		}
+
+		});
+
+	
 
 
 

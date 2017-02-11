@@ -130,14 +130,15 @@ class PatientController extends Controller
             $currentPatientsAppointment = $patient->appointments()->where('expired',FALSE)->first();
             $currentDate=substr($currentPatientsAppointment->aDate,0,10);
             
-            return view('patient.home.patientHome')
-                    ->with('hasAppointment',$hasAppointment)
-                    ->with('directing',$directing)
-                    ->with('session', $currentPatientsAppointment->session->time_Period)
-                    ->with('appNo',$currentPatientsAppointment->appointmentNo)
-                    ->with('appDate',$currentDate)
-                    ->with('title','Appointment Made!')
-                    ;
+            // return view('patient.home.patientHome')
+            //         ->with('hasAppointment',$hasAppointment)
+            //         ->with('directing',$directing)
+            //         ->with('session', $currentPatientsAppointment->session->time_Period)
+            //         ->with('appNo',$currentPatientsAppointment->appointmentNo)
+            //         ->with('appDate',$currentDate)
+            //         ->with('title','Appointment Made!')
+            //         ;
+            return redirect()->route('patient');
   
             }
         

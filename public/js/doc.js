@@ -40,12 +40,15 @@ $(document).ready( function(){
 	});
 
 	$('#unavForm').submit(function(event){
-		//validate sessions
-		if ((document.getElementsByName('dayType').value) == "halfday") {
+			console.log("inside");
+			console.log(document.querySelector('input[name = "dayType"]:checked').value);
+		if (document.querySelector('input[name = "dayType"]:checked').value == "halfday") {
 			var count = 0;
 			$('#sessions input:checked').each(function() {
 			 	count = count+1;
+			 	console.log(count);
         	});
+        	console.log(count);
 	        if (!count) {
 					Materialize.toast('Mark Unavailable sessions!', 4000 , 'rounded red');
 					event.preventDefault();

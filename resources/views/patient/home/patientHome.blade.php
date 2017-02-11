@@ -78,9 +78,9 @@
                                         </form>
                                     </div>
 
-                                        @if($directing == 3)
+                                        @if($directing == 3 || $directing == 1)
                                         <script type="text/javascript">
-                                            Materialize.toast('appointmtment Made!', 4000, 'rounded blue');
+                                            Materialize.toast('You have an Appointment!', 4000, 'rounded blue');
                                         </script>
                                         @endif
 
