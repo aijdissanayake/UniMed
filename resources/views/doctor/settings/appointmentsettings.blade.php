@@ -38,7 +38,7 @@
                                 </div> -->
                                 
                                 <div class="section">
-                                    <input class="waves-effect waves-light btn red" type="submit" value="Add Session" style="float:right">
+                                    <input class="btn red" type="submit" value="Add Session" style="float:right">
                                 </div>
                             </form>                               
                         </div>                            
@@ -110,8 +110,7 @@
                                     </div>
                                 </div>
 
-                                    <input class="waves-effect waves-light btn light-blue darken-4" type="submit" value="Mark Unavailable" style="float:right">
-
+                                    <input class="btn light-blue darken-4" type="submit" name="submitButton" value="Mark Unavailable" style="float: right;">
                             </form>
                         </div><br><br>
 
