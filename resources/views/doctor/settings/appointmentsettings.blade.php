@@ -11,7 +11,7 @@
 </head>
 
 
-<body class="white">
+<body class="grey lighten-4">
     <div class="container">
         <div class="row" style="height:auto; display: flex">
             <div class="col s12 m6" style="height:auto">
