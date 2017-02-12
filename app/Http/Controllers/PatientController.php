@@ -95,7 +95,7 @@ class PatientController extends Controller
         $appSession = $inputs['session'];    
         
         
-        $patient = \Illuminate\Support\Facades\Auth::user()->patient;  // get the patient object
+        $patient = \Illuminate\Support\Facades\Auth::user()->getPatient;  // get the patient object
         $hasAppointment = $patient->hasAppointment; 
         $pID = $patient->id; 
         $currentAppointments = \App\appointment::where('aDate','LIKE', '%'.date_format($date,"Y-m-d").'%') //get current appointments for the requested slot
@@ -184,7 +184,7 @@ class PatientController extends Controller
 
     public function cancelAppointment() {
         
-        $patient = \Illuminate\Support\Facades\Auth::user()->patient; 
+        $patient = \Illuminate\Support\Facades\Auth::user()->getPatient; 
         $pID = $patient->id ;
         $hasAppointment = $patient->hasAppointment;
         if($hasAppointment){

@@ -446,7 +446,7 @@ class DoctorController extends Controller {
             echo $affectedAppointment->session_id;
             $affectedAppointment->expired = TRUE;
             $affectedAppointment->save();
-            $patient = $affectedAppointment->patient;
+            $patient = $affectedAppointment->getPatient;
             $patient->hasAppointment = FALSE;
             $patient->save();
 
