@@ -13,13 +13,22 @@ class authorizer
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next, $role)
+    public function handle($request, Closure $next, $role1, $role2=null)
     {
+        $roles = [$role1, $role2];
+        // dd($roles);
         if (Auth::guest()){
             return redirect('login');
-        } elseif ($request->user()->role!==$role && $request->user()->role!=='admin') {
-            return redirect('home');
-        }
-        return $next($request);
+        } else{
+            foreach ($roles as $role){
+                if ($request->user()->role==$role || $request->user()->role=='admin') {
+                    // dd($role);
+                    return $next($request);
+                }
+            }
+            
+        } 
+        return redirect('home');
+        // return $next($request);
     }
 }

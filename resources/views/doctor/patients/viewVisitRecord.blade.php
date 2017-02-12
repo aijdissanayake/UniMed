@@ -8,22 +8,64 @@
 
 <body class="grey lighten-4">
   <div class="container">
-  <div class="row top-row">
-    <div class="card">
-    <div class="card-title">
-      Patient Name:  {{$VRec->getPatient->getUser->name}}</span></h2>
-    </div>
-      <div class="card-content">
-            <p><span>Visit date</span>{{$VRec->created_at}}</p>
-            <p><span>Diagnosis</span>{{$VRec->diagnosis}}</p>
-            <p><span>Prognosis</span>{{$VRec->prognosis}}</p>
-            <p><span>Prescribed Drugs</span>{{$VRec->prescDrugs}}</p>
-            <p><span>Remarks</span>{{$VRec->remarks}}</p>
-            <p><span>Next visit date</span>{{$VRec->nextVisitDate}}</p>
-          <p align = "right" style="padding-top: 15px"><a href="{{route('patientsTab')}}"><input class="submit" type="submit" name="backButton" value="Back" /></a></p>
+    <div class="row top-row">
+      <div class="card">
+        <div class="card-title">
+          <a href="{{route('viewPatient', [$VRec->getPatient->id])}}">Patient Name:  {{$VRec->getPatient->getUser->name}}</a>
+        </div>
+        <div class="card-content">
+          <table>
+            <tr>
+              <td>Visit date</td>
+              <td>{{$VRec->created_at}}</td>
+            </tr>
+            <tr>
+              <td>Complaints & Problems</td>
+              <td>{{$VRec->complaints}}</td>
+            </tr>
+            <tr>
+              <td>Investigations</td>
+              <td>{{$VRec->investigations}}</td>
+            </tr>
+            <tr>
+              <td>Diagnosis</td>
+              <td>{{$VRec->diagnosis}}</td>
+            </tr>
+            <tr>
+              <td>Prognosis</td>
+              <td>{{$VRec->prognosis}}</td>
+            </tr>
+            <tr>
+              <td>Prescribed Drugs</td>
+              <td>{{$VRec->prescDrugs}}</td>
+            </tr>
+            <tr>
+              <td>Weight</td>
+              <td>{{$VRec->weight}} kg</td>
+            </tr>
+            <tr>
+              <td>Remarks</td>
+              <td>{{$VRec->remarks}}</td>
+            </tr>
+            <tr>
+              <td>Next visit date</td>
+              <td>{{$VRec->nextVisitDate}}</td>
+            </tr>
+
+          </table>
+        </div>
       </div>
+      @if (Auth::user()->role=='doctor')
+      <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+          <a class="btn-floating btn-large waves-effect waves-circle red" data-position="left" data-delay="15">
+            <i class="large material-icons">mode_edit</i>
+          </a>
+          <ul>
+            <li><a class="btn-floating blue tooltipped" data-position="left" data-delay="25" data-tooltip="New Patient" href="{{route('addPatient')}}"><i class="material-icons">person_add</i></a></li>
+            <li><a class="btn-floating yellow tooltipped" data-position="left" data-delay="25" data-tooltip="New Visit Record" href="{{route('newVisitRecord')}}"><i class="material-icons">note_add</i></a></li>
+          </ul>
+        </div>@endif
     </div>
-  </div>
   </div>
 </body>
 </html>
