@@ -1,0 +1,7 @@
+//add these fields to .env file
+
+PUSHER_APP_ID=295493
+
+PUSHER_KEY=f0467eee59f1bf73a95b
+
+PUSHER_SECRET=5192dbc35b2e09c1c628

@@ -125,7 +125,7 @@
 
                                         @if($directing == 5)
                                         <script type="text/javascript">
-                                            Materialize.toast('appointmtment Cancelled!', 4000, 'rounded red');
+                                            Materialize.toast('Appointmtment Cancelled!', 4000, 'rounded red');
                                         </script>
                                         @endif
 
