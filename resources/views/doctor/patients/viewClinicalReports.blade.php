@@ -47,7 +47,7 @@
           </ul>
           {!! (new Landish\Pagination\Materialize($VRecs))->render() !!}
         </div>
-
+        @if (Auth::user()->role=='doctor')
         <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
           <a class="btn-floating btn-large waves-effect waves-circle red" data-position="left" data-delay="15">
             <i class="large material-icons">mode_edit</i>
@@ -56,7 +56,7 @@
             <li><a class="btn-floating blue tooltipped" data-position="left" data-delay="25" data-tooltip="New Patient" href="{{route('addPatient')}}"><i class="material-icons">person_add</i></a></li>
             <li><a class="btn-floating yellow tooltipped" data-position="left" data-delay="25" data-tooltip="New Visit Record" href="{{route('newVisitRecord')}}"><i class="material-icons">note_add</i></a></li>
           </ul>
-        </div>
+        </div> @endif 
       </div>
     </div>
   </div>

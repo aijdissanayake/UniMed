@@ -1,11 +1,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- CSS Files -->
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet prefetch" href="/materialize2/materialize.min.css">
 <script type="text/javascript" src="/materialize2/jquery-2.2.4.min.js"></script>       
 <script src="/materialize2/materialize.min.js""></script>
-<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">    
+    
 <!--Custom CSS File-->
 <link rel="stylesheet" href="\materialize\css\custom.css">
 <!--Custom js file-->

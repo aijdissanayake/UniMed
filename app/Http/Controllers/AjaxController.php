@@ -40,7 +40,7 @@ class AjaxController extends Controller {
             $col_name = 'telephoneNo';
         }
         
-        $patients = Patient::where($col_name, 'LIKE', '%' . $value . '%')
+        $patients = Patient::where($col_name, 'LIKE', $value . '%')
         ->take(20)
         ->get();
         

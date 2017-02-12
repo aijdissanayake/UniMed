@@ -52,6 +52,7 @@ $(document).ready(function () {
 	var $trxnBtn = $('#trxnBtn');
 
 	$trxnBtn.addClass('disabled');
+	$trxnBtn.prop('disabled', true);
 
 	$endDate.attr('disabled', 'true');
 
@@ -68,17 +69,21 @@ $(document).ready(function () {
 		$endDate.removeAttr('disabled');
 		$endDate.pickadate('picker').set('min', $startDate.val());
 		
-		if ($to ==null){
+		if ($from !== "NaN-NaN-NaN"){
+			if ($to ==null){
 				$startDate.val($from);
-		}else if ($from<=$to){
-			if ($trxnBtn.hasClass('disabled')){
-				$trxnBtn.removeClass('disabled');
-			}
-			$startDate.val($from);
-		}else{
-			// handle if user re-selects a date after end Date after selecting an end Date
-			if (!($trxnBtn.hasClass('disabled'))){
-				$trxnBtn.addClass('disabled');
+			}else if ($from<=$to){
+				if ($trxnBtn.hasClass('disabled')){
+					$trxnBtn.removeClass('disabled');
+					$trxnBtn.prop('disabled', false);
+				}
+				$startDate.val($from);
+			}else{
+				if (!($trxnBtn.hasClass('disabled'))){
+					// handle if user re-selects a date after end Date after selecting an end Date
+					$trxnBtn.addClass('disabled');
+					$trxnBtn.prop('disabled', true);
+				}
 			}
 		}
 
@@ -87,14 +92,23 @@ $(document).ready(function () {
 	$endDate.change(function(){
 		$to = formatDate(new Date($endDate.val()));
 
-		$endDate.val($to);
-
-		if ($from<=$to){
-			// valid input
+		if ($to!=="NaN-NaN-NaN"){
 			$endDate.val($to);
-			$trxnBtn.removeClass('disabled');
+			if ($from<=$to){
+				// valid input
+				$endDate.val($to);
+				$trxnBtn.removeClass('disabled');
+				$trxnBtn.prop('disabled', false);
 
+			} 
+		}else{
+			console.log($to);
+			if (!($trxnBtn.hasClass('disabled'))){
+				$trxnBtn.addClass('disabled');
+				$trxnBtn.prop('disabled', true);
+			}
 		}
+
 
 	});
 });

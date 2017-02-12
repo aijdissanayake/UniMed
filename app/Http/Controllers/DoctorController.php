@@ -88,8 +88,8 @@ class DoctorController extends Controller {
     // All visit records of a given patient
     public function viewAllPatientVisitRecords($id) {
         $Name = patient::find($id)->getUser->name;
-        $Count = patientVisit::count();
-        $VRecs = patientVisit::where('patientID','LIKE',$id)->paginate(10);
+        $Count = patientVisit::where('patientID','=',$id)->count();
+        $VRecs = patientVisit::where('patientID','=',$id)->paginate(10);
         return view('doctor.patients.viewClinicalReports', compact('VRecs', 'Name', 'Count'));
     }
     

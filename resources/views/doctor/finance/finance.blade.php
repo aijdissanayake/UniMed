@@ -100,7 +100,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col s12 center-align">
-                                        <button class="waves-effect green btn" id="trxnBtn" href="" type="submit"><i class="material-icons left">history</i>Show Transactions</button>
+                                        <button class="waves-effect green btn disabled" id="trxnBtn" type="submit"><i class="material-icons left">history</i>Show Transactions</button>
                                     </div>
                                 </div>
                             </form>

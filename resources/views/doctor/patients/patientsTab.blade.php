@@ -92,7 +92,7 @@
                         </div>
                     </div>
                 </div>
-
+                @if (Auth::user()->role=='doctor')
                 <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
                     <a class="btn-floating btn-large waves-effect waves-circle red" data-position="left" data-delay="15">
                         <i class="large material-icons">mode_edit</i>
@@ -103,7 +103,7 @@
                         <li><a class="btn-floating green tooltipped"  data-position="left" data-delay="25" data-tooltip="View Statistics" href="{{route('stats')}}"><i class="material-icons">info_outline</i></a></li>
                     </ul>
                 </div>
-
+                @endif
             </div>
         </div>
     </body>

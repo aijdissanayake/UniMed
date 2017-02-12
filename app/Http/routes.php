@@ -1,4 +1,4 @@
-<?php
+    <?php
 
 /*
   |--------------------------------------------------------------------------
@@ -34,13 +34,12 @@
 
 Route::group(['middleware' => 'authorizer:doctor'], function() {
     Route::get('doc', ['as' => 'homeTab', 'uses' => 'DoctorController@home']);
-    Route::get('doc/patients', ['as' => 'patientsTab', 'uses' => 'DoctorController@viewPatientTab']);
+    
     
     Route::get('doc/profile/{id}', ['as'=>'dViewDocProfile', 'uses'=>'DoctorController@viewDocProfile']);
     Route::get('doc/editProfile', ['as'=>'dEditProfile', 'uses'=>'DoctorController@editProfile']);
 
-    Route::get('doc/inventory', ['as' => 'inventoryTab', 'uses' => 'DoctorController@viewInventoryTab']);
-    Route::get('doc/lab', ['as' => 'labTab', 'uses' => 'DoctorController@viewLabTab']);
+    
     Route::get('doc/lab/addNewLabTech', ['as' => 'addNewLabTech', 'uses' => function(){
         return view('doctor.lab.add_new_lab_tech');
     }]);
@@ -70,8 +69,7 @@ Route::group(['middleware' => 'authorizer:doctor'], function() {
     Route::get('doc/settngs/editDoctor/{id}',['as'=>'editDoctor','uses'=>'DoctorController@editDoctor']);
 
 
-    Route::get('doc/patients/view/{id}', ['as' => 'viewPatient', 'uses' => 'DoctorController@viewPatientDetails']);
-    Route::get('doc/patients/all',['as'=>'viewAllPatients','uses'=>'DoctorController@viewAllPatients']);
+    
     Route::get('doc/patients/addpatient', ['as' => 'addPatient', 'uses' => 'DoctorController@regPatient']);
     Route::post('doc/patients/storePatient', ['as' => 'patientAdded', 'uses' => 'DoctorController@storePatient']);
 
@@ -89,19 +87,14 @@ Route::group(['middleware' => 'authorizer:doctor'], function() {
     Route::get('doc/patients/newVisitRecord', ['as' => 'newVisitRecord', 'uses'=>function(){
         return view('doctor.patients.visitRecordWithSearch');
     }]);
-    Route::get('doc/patients/view/vr/{id}', ['as'=>'viewVisitRecord','uses'=>'DoctorController@viewPatientVisitRecord']);
-    Route::get('doc/patients/view/vrs/{id}', ['as'=>'viewAllVisits','uses'=>'DoctorController@viewAllPatientVisitRecords']);
+    
     Route::post('doc/patients/storeRecord/{id}', ['as' => 'storePatientVisitRecord', 'uses'=>'DoctorController@storePatientVisitRecord']);
 
     Route::post('doc/patients/searchLabReports', ['as' => 'searchLabReports', 'uses' => 'DoctorController@searchLabReports']);
     
     // financial routes
 
-    Route::get('doc/finance', ['as' => 'financeTab', 'uses' => 'DoctorController@viewFinanceTab']);
-    Route::get('doc/transactions', ['as' => 'viewTransactions', 'uses' => 'DoctorController@viewTransactions']);
-    Route::get('doc/finance/newTransaction', ['as'=> 'addTransaction', 'uses'=>function(){
-        return view('doctor.finance.new_transaction_record');
-    }]);
+    
 
     Route::get('doc/finance/newAssistant', ['as'=> 'addAssistant', 'uses'=>function(){
         return view('doctor.finance.new_assistant');
@@ -120,13 +113,18 @@ Route::group(['middleware' => 'authorizer:doctor'], function() {
 
     Route::get('doc/patients/chkuid', 'AjaxController@checkUN');
     Route::get('doc/finance/chkuid', 'AjaxController@checkUN');
-    Route::get('doc/patients/search', 'AjaxController@searchPatients');
+    
 
-    Route::get('doc/finance/getTrx', ['as' => 'getTrx', 'uses' => 'AjaxController@getTransactions']);
-    Route::get('doc/finance/newTransaction/tTypes', 'AjaxController@getTTypes');
+    
+    
 
     Route::get('doc/updateDropdown', 'inventoryItemController@updateDropdown');
     Route::get('doc/updateSummary', 'inventoryItemController@updateSummary');
+
+
+    // assistant within doctor 
+
+
 });
 
 
@@ -162,17 +160,39 @@ Route::group(['middleware' => 'authorizer:patient'], function() {
  * Assistant's control routes
  */
 
+Route::group(['middleware' => ['authorizer:assistant,doctor']], function() {
+        // finance transactions
+    Route::get('doc/finance', ['as' => 'financeTab', 'uses' => 'DoctorController@viewFinanceTab']);
+    Route::get('doc/transactions', ['as' => 'viewTransactions', 'uses' => 'DoctorController@viewTransactions']);
+    Route::get('doc/finance/newTransaction', ['as'=> 'addTransaction', 'uses'=>function(){
+        return view('doctor.finance.new_transaction_record');
+    }]);
 
-Route::group(['middleware' => 'authorizer:assistant'], function() {
-    Route::get('ast', ['as' => 'ast', 'uses' => 'AssistantController@home']);
-    Route::get('ast/finance', ['as' => 'astFinance', 'uses' => 'AssistantController@viewFinTab']);
-    Route::get('ast/lab', ['as' => 'astLab', 'uses' => 'AssistantController@viewLabTab']);
-    Route::get('ast/inventory', ['as' => 'astInventory', 'uses' => 'AssistantController@viewInvTab']);
-    Route::get('ast/reports', ['as' => 'astReports', 'uses' => 'AssistantController@viewRep']);
-    Route::get('ast/newtrec', ['as' => 'astAddTRec', 'uses' => 'AssistantController@addTransRec']);
-    Route::get('ast/profile', ['as'=>'astViewProfile', 'uses'=>'AssistantController@viewProfile']);
-    Route::get('ast/editProfile', ['as'=>'astEditProfile', 'uses'=>'AssistantController@editProfile']);
+    Route::get('doc/patients/search', 'AjaxController@searchPatients');
+    Route::get('doc/finance/newTransaction/tTypes', 'AjaxController@getTTypes');
+    Route::get('doc/finance/getTrx', ['as' => 'getTrx', 'uses' => 'AjaxController@getTransactions']);
+
+    Route::get('doc/patients', ['as' => 'patientsTab', 'uses' => 'DoctorController@viewPatientTab']);
+    Route::get('doc/inventory', ['as' => 'inventoryTab', 'uses' => 'DoctorController@viewInventoryTab']);
+    Route::get('doc/lab', ['as' => 'labTab', 'uses' => 'DoctorController@viewLabTab']);
+    Route::get('doc/patients/view/{id}', ['as' => 'viewPatient', 'uses' => 'DoctorController@viewPatientDetails']);
+    Route::get('doc/patients/all',['as'=>'viewAllPatients','uses'=>'DoctorController@viewAllPatients']);
+    Route::get('doc/patients/view/vr/{id}', ['as'=>'viewVisitRecord','uses'=>'DoctorController@viewPatientVisitRecord']);
+    Route::get('doc/patients/view/vrs/{id}', ['as'=>'viewAllVisits','uses'=>'DoctorController@viewAllPatientVisitRecords']);
+
+
+//
+
+    // Route::get('ast', ['as' => 'ast', 'uses' => 'AssistantController@home']);
+    // Route::get('ast/finance', ['as' => 'astFinance', 'uses' => 'AssistantController@viewFinTab']);
+    // Route::get('ast/lab', ['as' => 'astLab', 'uses' => 'AssistantController@viewLabTab']);
+    // Route::get('ast/inventory', ['as' => 'astInventory', 'uses' => 'AssistantController@viewInvTab']);
+    // Route::get('ast/reports', ['as' => 'astReports', 'uses' => 'AssistantController@viewRep']);
+    // Route::get('ast/newtrec', ['as' => 'astAddTRec', 'uses' => 'AssistantController@addTransRec']);
+    // Route::get('ast/profile', ['as'=>'astViewProfile', 'uses'=>'AssistantController@viewProfile']);
+    // Route::get('ast/editProfile', ['as'=>'astEditProfile', 'uses'=>'AssistantController@editProfile']);
 });
+
 
 
 /*
