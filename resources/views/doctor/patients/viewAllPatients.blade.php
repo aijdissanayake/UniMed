@@ -19,7 +19,7 @@
 				<div class="card-title">All patients</div>
 				<div class="card-content">
 					@if ($patients)
-					<p>There are {{count($patients)}} registered patients.</p>
+					<p>There are {{$count}} registered patients.</p>
 					<table style="border-spacing:0; word-break: break-all;
 					word-wrap:break-word;overflow: hidden; text-overflow: ellipsis;">
 					<tr>

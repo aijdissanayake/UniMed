@@ -69,8 +69,9 @@ class DoctorController extends Controller {
     }
 
     public function viewAllPatients() {
+        $count = patient::count();
         $patients = patient::paginate(10);
-        return view('doctor.patients.viewAllPatients', compact('patients'));
+        return view('doctor.patients.viewAllPatients', compact('patients', 'count'));
     }
 
     /*
