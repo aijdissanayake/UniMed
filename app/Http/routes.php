@@ -165,6 +165,7 @@ Route::group(['middleware' => 'authorizer:patient'], function() {
 Route::group(['middleware' => ['authorizer:assistant,doctor']], function() {
         // finance transactions
     Route::get('finance', ['as' => 'financeTab', 'uses' => 'DoctorController@viewFinanceTab']);
+    Route::get('finance/all', ['as' => 'allFinance', 'uses' => 'DoctorController@viewAllFinance']);
     Route::get('finance/transactions', ['as' => 'viewTransactions', 'uses' => 'DoctorController@viewTransactions']);
     Route::get('finance/newTx', ['as'=>'createTx', 'uses'=>'DoctorController@CreateTransaction']);
     Route::get('finance/newTransaction', ['as'=> 'addTransaction', 'uses'=>function(){

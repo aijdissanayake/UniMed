@@ -443,13 +443,13 @@ class DoctorController extends Controller {
         // cancel all the appointments within the period
         $affectedAppointments = appointment::where('aDate', '>=', $unavailablePeriod->startDate)->where('aDate', '<=', $unavailablePeriod->endDate)->where('expired', FALSE)->get();
         foreach ($affectedAppointments as $affectedAppointment) {
-            echo $affectedAppointment->session_id;
             $affectedAppointment->expired = TRUE;
             $affectedAppointment->save();
-            $patient = $affectedAppointment->getPatient;
+            $patient = $affectedAppointment->patient;
             $patient->hasAppointment = FALSE;
             $patient->save();
 
+            
             $cancelledRecord = new \App\unavailablePeriodsCancelledAppointment();
             $cancelledRecord->appointment_id = $affectedAppointment->id;
             $cancelledRecord->patient_id = $affectedAppointment->patient_id;
@@ -610,6 +610,10 @@ class DoctorController extends Controller {
     public function editDoctor($id) {
         $doctor = doctor::find($id);
         return view('doctor.settings.editDoctor', compact('doctor'));
+    }
+
+    public function viewAllFinance(){
+        return view('doctor.finance.viewAll');
     }
 
 }
