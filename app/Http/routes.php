@@ -66,7 +66,8 @@ Route::group(['middleware' => 'authorizer:doctor'], function() {
         $doctor = Auth::user()->getDoctor;
         return view('doctor.index.profile_doctor', compact('doctor'));
     }]);
-    Route::get('doc/settngs/editDoctor/{id}',['as'=>'editDoctor','uses'=>'DoctorController@editDoctor']);
+    Route::get('doc/settngs/editDoctor/{id}',['as'=>'editDoctor','uses'=>'DoctorController@viewEditDoctor']);
+    Route::post('doc/settngs/updateDoctor/{id}',['as'=>'updateDoctor','uses'=>'DoctorController@updateDoctor']);
 
 
     

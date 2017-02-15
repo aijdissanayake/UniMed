@@ -599,17 +599,41 @@ class DoctorController extends Controller {
 
 
         $doc = new doctor();
-        $doc->doctorName = $name;
+        $doc->firstName = $request['firstName'];
+        $doc->lastName = $request['lastName'];
         $doc->RegNO = $request['regNo'];
+        $doc->telNumber = $request['contactNo'];
         $doc->user_id = $user->id;
         $doc->save();
 
         return redirect()->route('manageDoctors');
     }
 
-    public function editDoctor($id) {
+    public function viewEditDoctor($id) {
         $doctor = doctor::find($id);
         return view('doctor.settings.editDoctor', compact('doctor'));
+    }
+
+    public function updateDoctor($id, Request $request){
+        $name = $request['firstName'] . " " . $request['lastName'];
+        $doc = doctor::find($id);
+        $user = user::find($doc->user_id);
+
+        $user->name = $name;
+        $user->email = $request['email'];
+        $user->gender = $request['gender'];
+        $user->role = $request['role'];
+        $user->save();
+
+
+        $doc->firstName = $request['firstName'];
+        $doc->lastName = $request['lastName'];
+        $doc->RegNO = $request['regNo'];
+        $doc->telNumber = $request['contactNo'];
+        $doc->save();
+
+        return redirect()->route('manageDoctors');
+
     }
 
 }

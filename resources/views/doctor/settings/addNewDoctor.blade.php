@@ -67,7 +67,7 @@
                                         </div>
                                     </div>
                                     <div class="col s12 m6">
-                                        <div class="section"><span>Contact No(//add this to database)<span class="red-text">*</span></span>
+                                        <div class="section"><span>Contact No<span class="red-text">*</span></span>
                                             <input type="tel" name="contactNo" value="{{old('contactNo')}}" maxlength="10" />
                                         </div>
                                     </div>

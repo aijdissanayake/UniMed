@@ -46,7 +46,7 @@
                                   </tr>
                                 </thead>
                                  @foreach ($doctors as $doctor)
-                                    <tr><td> <a href="{{route('dViewDocProfile',['id'=>$doctor->id])}}">{{ $doctor->doctorName}}</a></td>
+                                    <tr><td> <a href="{{route('dViewDocProfile',['id'=>$doctor->id])}}"> {{$doctor->firstName . " " . $doctor->lastName }} </a></td>
                                         <td>{{ $doctor->RegNo}}</td>
                                         <td>{{$doctor->getUser->role}}</td>
                                         <td>{{ $doctor->created_at}}</td>

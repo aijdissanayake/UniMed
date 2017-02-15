@@ -20,9 +20,10 @@
                         <div class="card-content green-text text-darken-4">
                           <table class="highlight bordered">
                             <form action="#" method="post">
-                              <tr><td>Name</td><td>{{$doctor->doctorName}}</td></tr>
+                              <tr><td>Name</td><td>{{$doctor->firstName . " " . $doctor->lastName}}</td></tr>
                               <tr><td>Registered No.</td><td>{{$doctor->RegNo}}</td></tr>
                               <tr><td>Email</td><td>{{$doctor->getUser->email}}</td></tr>
+                              <tr><td>Contact No.</td><td>{{$doctor->telNumber}}</td></tr>
                             </form>
                           </table>  
                           <div class="section"> <a class="waves-effect waves-light green accent-4 btn" href="{{route('editDoctor',['id'=>$doctor->id])}}">Edit</a> </div>                      
