@@ -180,7 +180,7 @@
                             <div class="section" >
                                 @if ($doctor->getUser->active == 1)
                                 <p>The account is currently <mark style="background-color: green; color: white; border-radius: 16px; padding: 0 5px">active</mark> and the doctor can login remotely.</p><br>
-                                <a class="btn waves-effect waves-round red" href="">Deactivate</a>
+                                <a class="btn waves-effect waves-round red" href="{{route('userAccountStatus',[$doctor->getUser->id])}}">Deactivate</a>
                                 @else
                                 <p>The account is currently <mark style="background-color: red; color: white; border-radius: 16px; padding: 0 5px">inactive</mark> and the doctor cannot login remotely.</p>
                                 <a class="btn waves-effect waves-round green" href="{{route('userAccountStatus',[$doctor->getUser->id])}}">Activate</a>
