@@ -67,7 +67,7 @@
                         <div class="card-content">
                             <span class="card-title"><strong>Assistants</strong></span>
                             <p>lorem ipsum...</p>
-                            <a href="#!" class="waves-effect blue-grey lighten-2 btn">
+                            <a href="{{route('viewManageAssistants')}}" class="waves-effect blue-grey lighten-2 btn">
                                 Manage
                             </a>
                         </div>

@@ -633,7 +633,55 @@ class DoctorController extends Controller {
         $doc->save();
 
         return redirect()->route('manageDoctors');
+    }
 
+    public function saveNewAssistant(Request $request) {
+        $user = new User();
+
+        $name = $request['firstName'] . " " . $request['lastName'];
+
+        $user->name = $name;
+        $user->password = bcrypt("unicare101");
+        $user->email = $request['email'];
+        $user->gender = $request['gender'];
+
+        $user->role = 'assistant';
+        $user->active = 1;
+        $user->save();
+
+
+        $assistant = new assistant();
+        $assistant->firstName = $request['firstName'];
+        $assistant->lastName = $request['lastName'];
+        $assistant->NIC = $request['NIC'];
+        $assistant->telephoneNo = $request['contactNo'];
+        $assistant->homeAddress = $request['address'];
+        $assistant->user_id = $user->id;
+        $assistant->save();
+
+        return redirect()->route('viewManageAssistants');
+    }
+
+        public function updateAssistant($id, Request $request){
+        $name = $request['firstName'] . " " . $request['lastName'];
+        $assistant = assistant::find($id);
+        $user = user::find($assistant->user_id);
+
+        $user->name = $name;
+        $user->email = $request['email'];
+        $user->gender = $request['gender'];
+        $user->save();
+
+
+        $assistant->firstName = $request['firstName'];
+        $assistant->lastName = $request['lastName'];
+        $assistant->NIC = $request['NIC'];
+        $assistant->telephoneNo = $request['contactNo'];
+        $assistant->homeAddress = $request['address'];
+
+        $assistant->save();
+
+        return redirect()->route('viewManageAssistants');
     }
 
 }

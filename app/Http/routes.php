@@ -16,6 +16,7 @@
 //});
 
   use App\Patient;
+  use App\assistant;
 
   Route::get('/', 'HomeController@index');
 
@@ -68,6 +69,27 @@ Route::group(['middleware' => 'authorizer:doctor'], function() {
     }]);
     Route::get('doc/settngs/editDoctor/{id}',['as'=>'editDoctor','uses'=>'DoctorController@viewEditDoctor']);
     Route::post('doc/settngs/updateDoctor/{id}',['as'=>'updateDoctor','uses'=>'DoctorController@updateDoctor']);
+
+
+    // Assistant management
+    Route::get('doc/settings/manageAssistants', ['as'=>'viewManageAssistants', 'uses' => function(){
+        $assistants = assistant::all();
+        return view('doctor.settings.manageAssistants',  [ 'assistants' => $assistants]);
+    }]);
+    Route::get('doc/settings/manageAssistants/viewAssistantProfile/{id}',['as'=>'viewAssistantProfile','uses'=>function($id){
+        $assistant = assistant::where('id', $id)->first();
+        return view('assistant.assistantProfile', compact('assistant'));
+    }]);
+    Route::get('doc/settings/manageAssistants/addNewAssistant',['as'=>'addNewAssistant','uses'=>function(){
+        return view('doctor.settings.addNewAssistant');
+    }]);
+    Route::post('doc/settings/manageDoctors/saveNewAsistant',['as' => 'saveNewAssistant',  'uses'=>'DoctorController@saveNewAssistant']);
+    Route::get('doc/settngs/editAssistant/{id}',['as'=>'viewEditAssistant','uses'=>function($id){
+        $assistant = assistant::find($id);
+        return view('doctor.settings.editAssistant', compact('assistant'));
+    }]);
+    Route::post('doc/settngs/updateAssistant/{id}',['as'=>'updateAssistant','uses'=>'DoctorController@updateAssistant']);
+
 
 
     
