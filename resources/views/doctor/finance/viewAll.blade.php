@@ -3,6 +3,9 @@
 <head>
 	@include('doctor.nav_bar_doc')
 	<title>View Transactions</title>
+    <meta name="description" content="website description" />
+    <meta name="keywords" content="website keywords, website keywords" />
+    <script type="text/javascript" src="/js\financeAll.js"></script>
 
 </head>
 <body class="grey lighten-4">
@@ -17,7 +20,7 @@
 						</div>
 						<div class="card-content">
 							<div class="row">
-								<div class="input-field col s8 l3">
+								<div class="input-field col s6 m4">
 									<select id="tType">
 										<option value="" disabled selected>Transaction Type</option>
 										<option value="1">Income</option>
@@ -25,7 +28,19 @@
 										<option value="3" selected="">All</option>
 									</select>
 								</div>
-							</div>
+                                <div class="col offset-m2 s12 m1" >
+                                    <span class="black-text" for="startDate" style="float:left">From: </span>
+                                </div>
+                                <div class="col s12 m2" >
+                                    <input id="startDate" class="date" type="date" name="startDate" placeholder="select date" value="" required>
+                                </div>
+                                <div class="col s12 m1" >
+                                    <span class="black-text" for="endDate" style="float:left">To: </span>
+                                </div>
+                                <div class="col s12 m2" >
+                                    <input id="endDate" class="date" type="date" name="endDate" value="" min="" required>
+                                </div>
+                            </div>
 							<div class="row">
 								<div class="col s12">
 									<table class="highlight bordered striped" id="Trxns">
