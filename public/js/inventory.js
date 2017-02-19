@@ -157,7 +157,30 @@ $(document).ready(function(){
 
 
 	
+function formatDate(date) {
+        var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
 
+        if (month.length < 2) month = '0' + month;
+        if (day.length < 2) day = '0' + day;
+
+        return [year, month, day].join('-');
+    }
+
+var date_bought = $('#date_bought');
+
+date_bought.val(formatDate(new Date()));
+
+date_bought.change(function(){
+    console.log(date_bought.val());
+    if (date_bought.val()!= ""){
+        date_bought.val(formatDate(date_bought.val()));
+    }else{
+        date_bought.val("Please select a date");
+    }
+});
 
 
 

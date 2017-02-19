@@ -30,29 +30,25 @@ class AjaxController extends Controller {
 
     public function searchPatients(Request $request) {
         $value = $request->value;
-        $col = $request->col_name;
         
-        if ($col == '1'){
-            $col_name = 'firstName';
-        } elseif ($col == '2'){
-            $col_name = 'lastName';
-        } elseif ($col == '3'){
-            $col_name = 'telephoneNo';
-        }
+        $patients = User::where('role', 'patient')
+        ->where('name', 'LIKE', '%'.$value.'%')
+        ->orWHere('telephoneNo', 'LIKE', $value.'%')
+        ->take(20)->get();
         
-        $patients = Patient::where($col_name, 'LIKE', $value . '%')
-        ->take(20)
-        ->get();
+        
+
         
         if ($patients->isEmpty()){
             return response()->json([],200);
         }else{
             $pData = array();
             foreach ($patients as $patient){
-                $name = $patient->firstName." ".$patient->lastName;
+
+                $name = $patient->name;
                 
                 $pData[]=array("name"=>$name ,"telephone"=>$patient->telephoneNo,
-                    "id"=>$patient->id);
+                    "id"=>$patient->getPatient->id);
             }
             return response()->json($pData,200);
         }
