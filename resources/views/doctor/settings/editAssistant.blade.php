@@ -3,7 +3,7 @@
 
     <head>
         @include('doctor.nav_bar_doc')
-        <title>Unicare - Edit doctor</title>
+        <title>Unicare - Edit Assistant</title>
 
         <meta name="description" content="website description" />
         <meta name="keywords" content="website keywords, website keywords" />
@@ -15,27 +15,27 @@
             <div class="row" style="padding-top: 3rem">
                 <div class="col s12 m12 l8">
                     <div class="card">
-                        <div class="card-title blue white-text">Edit Doctor</div>
+                        <div class="card-title blue white-text">Edit Assistant</div>
                         <div class="card-content">
-                            <form action="{{route('updateDoctor',['id'=>$doctor->id])}}" method="post">
+                            <form action="{{route('updateAssistant',['id'=>$assistant->id])}}" method="post">
                                 {{ csrf_field()}}
                                 <div class="row">
                                     <div class="col s12 m6">
                                         <div class="section">
-                                            <span>First Name<span class="red-text">*</span></span><input type="text" name="firstName" value="{{$doctor->firstName}}" required=""/>
+                                            <span>First Name<span class="red-text">*</span></span><input type="text" name="firstName" value="{{$assistant->firstName}}" required=""/>
                                         </div>
                                     </div>
                                     <div class="col s12 m6">
-                                        <div class="section"><span>Last Name<span class="red-text">*</span></span><input type="text" name="lastName" value="{{$doctor->lastName}}"  required=""/></div>
+                                        <div class="section"><span>Last Name<span class="red-text">*</span></span><input type="text" name="lastName" value="{{$assistant->lastName}}"  required=""/></div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col s12 m6">
-                                        <div class="section"><span>Registration number<span class="red-text">*</span></span><input type="text" name="regNo" value="{{$doctor->RegNo}}"  required="" validate="true"/></div>
+                                        <div class="section"><span>NIC<span class="red-text">*</span></span><input type="text" name="NIC" value="{{$assistant->NIC}}"  required="" validate="true"/></div>
                                     </div>
                                     <div class="col s12 m3 l3  ">
                                         <div class="section"><span>Gender<span class="red-text">*</span></span>
-                                            @if($doctor->getuser->gender==1)
+                                            @if($assistant->getuser->gender==1)
                                                 <p>
                                                     <input type="radio" name="gender" value="1" checked="true" id="gender_male">
                                                     <label for="gender_male" >Male</label>
@@ -56,41 +56,23 @@
                                             @endif
                                         </div>
                                     </div>
-                                    <div class="col col s12 m3 l3">
-                                        <div class="section"><span>Role<span class="red-text">*</span></span>
-                                            @if($doctor->getuser->role == "doctor")
-                                                <p>
-                                                    <input type="radio" name="role" value="doctor" checked="true" id="role_doc">
-                                                    <label for="role_doc" >Doctor</label>
-                                                </p>
-                                                <p>
-                                                    <input type="radio" name="role" value="assistantDoctor" id="role_assistant">
-                                                    <label for="role_assistant">Assistant doctor</label>
-                                                </p>
-                                            @else
-                                                <p>
-                                                    <input type="radio" name="role" value="doctor"  id="role_doc">
-                                                    <label for="role_doc" >Doctor</label>
-                                                </p>
-                                                <p>
-                                                    <input type="radio" name="role" value="assistantDoctor" checked="true" id="role_assistant">
-                                                    <label for="role_assistant">Assistant doctor</label>
-                                                </p>
-                                            @endif
-                                        </div>
-                                    </div>
                                 </div>
                                 <div class="row">
                                     <div class="col s12 m6">
                                         <div class="section"><span>Email<span class="red-text">*</span></span>
-                                            <input type="email" id="email" name="email" value="{{$doctor->getuser->email}}" required="" validate="True" />
+                                            <input type="email" id="email" name="email" value="{{$assistant->getuser->email}}" required="" validate="True" />
                                             <p id="checkResp"></p>
                                         </div>
                                     </div>
                                     <div class="col s12 m6">
                                         <div class="section"><span>Contact No<span class="red-text">*</span></span>
-                                            <input type="tel" name="contactNo" value="{{$doctor->telNumber}}" maxlength="10" />
+                                            <input type="tel" name="contactNo" value="{{$assistant->telephoneNo}}" maxlength="10" />
                                         </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="section"><span>Address<span class="red-text">*</span></span>
+                                            <input type="text" name="address" value="{{$assistant->homeAddress}}" />
                                     </div>
                                 </div>
                                 
@@ -108,7 +90,7 @@
             <div class="card">
                 <div class="card-title red white-text">Account Management</div>
                 <div class="card-content">
-                    <form action="{{route('changeUserPassword',[$doctor->getUser->id])}}" method="post">
+                    <form action="{{route('changeUserPassword',[$assistant->getUser->id])}}" method="post">
                         {{csrf_field()}}
                         <p class="grey-text">Change password</p>
                         <div class="section">
@@ -178,12 +160,12 @@
                         <div class="section">
                             <p class="grey-text">Account status</p>
                             <div class="section" >
-                                @if ($doctor->getUser->active == 1)
+                                @if ($assistant->getUser->active == 1)
                                 <p>The account is currently <mark style="background-color: green; color: white; border-radius: 16px; padding: 0 5px">active</mark> and the doctor can login remotely.</p><br>
-                                <a class="btn waves-effect waves-round red" href="{{route('userAccountStatus',[$doctor->getUser->id])}}">Deactivate</a>
+                                <a class="btn waves-effect waves-round red" href="{{route('userAccountStatus',[$assistant->getUser->id])}}">Deactivate</a>
                                 @else
                                 <p>The account is currently <mark style="background-color: red; color: white; border-radius: 16px; padding: 0 5px">inactive</mark> and the doctor cannot login remotely.</p>
-                                <a class="btn waves-effect waves-round green" href="{{route('userAccountStatus',[$doctor->getUser->id])}}">Activate</a>
+                                <a class="btn waves-effect waves-round green" href="{{route('userAccountStatus',[$assistant->getUser->id])}}">Activate</a>
                                 @endif
                             </div>
                         </div>

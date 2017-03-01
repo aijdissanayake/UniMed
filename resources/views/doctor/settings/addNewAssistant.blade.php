@@ -3,7 +3,7 @@
 
     <head>
         @include('doctor.nav_bar_doc')
-        <title>Unicare - Add new doctor</title>
+        <title>Unicare - Add new Assistant</title>
 
         <meta name="description" content="website description" />
         <meta name="keywords" content="website keywords, website keywords" />
@@ -15,9 +15,9 @@
             <div class="row" style="padding-top: 3rem">
                 <div class="col s12">
                     <div class="card">
-                        <div class="card-title blue white-text">New Doctor</div>
+                        <div class="card-title blue white-text">New Assistant</div>
                         <div class="card-content">
-                            <form action="{{route('saveNewDoctor')}}" method="post">
+                            <form action="{{route('saveNewAssistant')}}" method="post">
                                 {{ csrf_field()}}
                                 <div class="row">
                                     <div class="col s12 m6">
@@ -32,7 +32,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col s12 m6">
-                                        <div class="section"><span>Registration number<span class="red-text">*</span></span><input type="text" name="regNo" value="{{old('birthYear')}}"  required="" validate="true"/></div>
+                                        <div class="section"><span>NIC<span class="red-text">*</span></span><input type="text" name="NIC" value="{{old('birthYear')}}"  required="" validate="true"/></div>
                                     </div>
                                     <div class="col s12 m3 l3  ">
                                         <div class="section"><span>Gender<span class="red-text">*</span></span>
@@ -46,22 +46,10 @@
                                             </p>
                                         </div>
                                     </div>
-                                    <div class="col col s12 m3 l3">
-                                        <div class="section"><span>Role<span class="red-text">*</span></span>
-                                            <p>
-                                                <input type="radio" name="role" value="doctor" checked="true" id="role_doc">
-                                                <label for="role_doc" >Doctor</label>
-                                            </p>
-                                            <p>
-                                                <input type="radio" name="role" value="assistantDoctor" id="role_assistant">
-                                                <label for="role_assistant">Assistant doctor</label>
-                                            </p>
-                                        </div>
-                                    </div>
                                 </div>
                                 <div class="row">
                                     <div class="col s12 m6">
-                                        <div class="section"><span>Email<span class="red-text">*</span></span>
+                                        <div class="section"><span>email<span class="red-text">*</span></span>
                                             <input type="email" id="email" name="email" value="{{old('email')}}" required="" validate="True" />
                                             <p id="checkResp"></p>
                                         </div>
@@ -72,12 +60,17 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="section"><span>Address<span class="red-text">*</span></span>
+                                            <input type="text" name="address" value="{{old('address')}}" />
+                                    </div>
+                                </div>
                                 
 
                                 <div class="section">
                                     <input class="btn" type="submit" name="submitButton" value="Register" />
                                     <input class="btn" type="hidden" name="updateButton" value="Update" />
-                                    <a class='form_settings' href="{{route('manageDoctors')}}"><button class="btn" type="submit" name="backButton" value="Back">Back</button></a></p>
+                                    <a class='form_settings' href="{{route('viewManageAssistants')}}"><button class="btn" type="submit" name="backButton" value="Back">Back</button></a></p>
                                 </div>
                         </div>
                         </form>

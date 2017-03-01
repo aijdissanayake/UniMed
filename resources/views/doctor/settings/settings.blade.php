@@ -18,9 +18,10 @@
                         <div class="card-content">
                             <span class="card-title"><i class="material-icons left">account_box</i><strong>My profile</strong></span>
                             <table>
-                                <tr><td>Name</td><td>{{$doctor->doctorName}}</td></tr>
+                                <tr><td>Name</td><td>{{$doctor->firstName . " " . $doctor->lastName}}</td></tr>
                                 <tr><td>Registration Number</td><td>{{$doctor->RegNo}}</td></tr>
                                 <tr><td>Email</td><td>{{$doctor->getUser->email}}</td></tr>
+                                <tr><td>Contact No.</td><td>{{$doctor->telNumber}}</td></tr>
                             </table>
                             <a href="{{route('dViewDocProfile',['id'=>$doctor->id])}}" class="waves-effect green darken-3 btn">
                                 View Full Profile
@@ -52,7 +53,7 @@
                         <div class="card-content">
                             <span class="card-title"><strong>Doctors</strong></span>
                             @foreach ($doctors as $doctor)
-                                <p>{{$doctor->doctorName}}</p>
+                                <p>{{$doctor->firstName . " " . $doctor->lastName}}</p>
                             @endforeach
                             <a href="{{route('manageDoctors')}}" class="waves-effect red lighten-2 btn">
                                 Manage
@@ -66,7 +67,7 @@
                         <div class="card-content">
                             <span class="card-title"><strong>Assistants</strong></span>
                             <p>lorem ipsum...</p>
-                            <a href="#!" class="waves-effect blue-grey lighten-2 btn">
+                            <a href="{{route('viewManageAssistants')}}" class="waves-effect blue-grey lighten-2 btn">
                                 Manage
                             </a>
                         </div>
