@@ -10,12 +10,12 @@
 
     </head>
 
-    <body>
+    <body class="grey lighten-4">
 
             <div class="container">
 
                 <div class="row top-row">
-                    <div class="col s12 m10 l10 offset-m1 offset-l1">
+                    <div class="col s12">
 
                         <!--Appointment data-->
 
@@ -36,8 +36,8 @@
 
                                     @foreach ($appointments as $appointment)
                                     <tr><td >{{$appointment->patient->getUser->name}}</td>
-                                        <td align="right">{{date('Y:m:d',strtotime($appointment->aDate))}}</td>
-                                        <td align="right">{{$appointment->session}}</td>
+                                        <td align="right">{{date('Y-m-d',strtotime($appointment->aDate))}}</td>
+                                        <td align="right">{{$appointment->session->time_Period}}</td>
                                         <td align="right">{{$appointment->appointmentNo}}</td>
                                     </tr>
                                     @endforeach

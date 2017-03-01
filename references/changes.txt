@@ -1,0 +1,5 @@
+inventory - needs to keep track of supplier.
+
+finance - editing transactions should happen through the main doctor.
+
+lab assistant - can edit past reports

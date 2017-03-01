@@ -20,12 +20,18 @@ class HomeController extends Controller {
     /**
      * Show the application dashboard.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Respons
      */
     public function index() {
         if (Auth::guest()){
-            return view('login');
-        } else {
+            return view('auth.login');
+        }
+            
+        if (Auth::user()->active == 0){
+            Auth::logout();
+            // return view('auth.login');
+            return view('auth.account_inactive');
+        }
             
         /*
          *     Record login for analytical purposes
@@ -45,20 +51,17 @@ class HomeController extends Controller {
          * which need to be constructed each time.
          */
         
-        if ($user->role == 'doctor') {
+        if ($role == 'doctor' || $role == 'assistant') {
             return app('App\Http\Controllers\DoctorController')->home();
-        } elseif ($user->role == 'patient') {
+        } elseif ($role == 'patient') {
             return app('App\Http\Controllers\PatientController')->home();
 //            return view('patient.home.patientHome');
-        } elseif ($user->role == 'assistant') {
-            return view('assistant.index');
-        } elseif ($user->role == 'labTech') {
+        } elseif ($role == 'labTech') {
             return view('labTech.labTechHome');
-        } elseif ($user->role == 'admin'){
+        } elseif ($role == 'admin'){
             return app('App\Http\Controllers\AdminController')->home();
         }
 //        return view('home');
         }
-    }
 
 }

@@ -7,3 +7,4 @@ Homestead.json
 config.xml
 .idea
 /nbproject
+composer.lock

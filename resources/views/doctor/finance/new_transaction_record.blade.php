@@ -1,42 +1,95 @@
 <!DOCTYPE HTML>
 <html>
 
-<head>
-    @include('doctor.nav_bar_doc')
-  <title>Unicare - add_new_patients</title>
-  <meta name="description" content="website description" />
-  <meta name="keywords" content="website keywords, website keywords" />
-  <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
-  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine&amp;v1" />
-  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" />
-  <link rel="stylesheet" type="text/css" href="style/add_new_patient_style.css" />
-</head>
+    <head>
+        @include('doctor.nav_bar_doc')
+        <title>Unicare - New Transaction</title>
+        <script type="text/javascript" src="\js\transactions.js"></script>
+    </head>
 
-<body>
-  <div id="main">
-    <div id="header">
-      <div id="logo">
-        <h1>Unicare Medical</h1>
-        <div class="slogan"><img src="style/logo.png" /></div>
-      </div>
-      <div id="heading"><h2> New Transaction Entry</h2></div>
-    </div>
-    <div id="site_content">
-      <div id="content">
-        <h2>Transaction Details</h2>
-        <form action="#" method="post">
-          <div class="form_settings">
-          	<p><span>Transaction Type</span><select id="id" name="name"><option value="1">Income</option><option value="2">Expense</option></select></p>
-            <p><span>Value (LKR)</span><input type="text" name="name" value="" /></p>
-            <p><span>Description</span><textarea rows="4" cols="50" name="name"></textarea></p>
-            <p align = "right" style="padding-top: 15px"><input class="submit" type="submit" name="submitButton" value="Add Entry" /></p>
-          </div>
-        </form>
-      </div>
-    </div>
-    <div id="footer">
-      <p>&nbsp;</p>
-    </div>
-  </div>
-</body>
+    <body class="grey lighten-4">
+        <div class="container">
+            <div class="row top-row">
+
+                <div class="col s12">
+                    <div class="card">
+                        <div class="card-title green white-text">
+                            <i class="material-icons left">euro_symbol</i>
+                            New Transaction
+                        </div>
+                        <form action="{{route('createTx')}}">
+                            {{csrf_field()}}
+                            <div class="card-content">
+                                <div class="row" style="margin-bottom: 0px">
+                                    @if (count($errors) > 0)
+                                    <div class="amber darken-4 card-content white-text" style="margin-bottom: 20px">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                    @endif
+                                    <div class="input-field col s8 l6">
+                                        <label style="margin: -35px 0px 10px 0px">Transaction type</label>
+                                        <select name="tType" id="tType" class="browser-default" style="margin-bottom: 20px">
+                                            <option value="" disabled selected>Select</option>
+                                            <option value="1">Income</option>
+                                            <option value="2">Expense</option>
+                                        </select>
+
+                                    </div>
+                                    <div class="input-field col s8 l6">
+                                        <label style="margin: -35px 0px 10px 0px">Transaction Subtype</label>
+                                        <select name="tSubType" id="tSubType" class="browser-default">
+                                            <option value="" disabled selected id="subtypeSelector">Select</option>
+                                            <option value="-1">Create New...</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-bottom: 0px">
+                                    <div id="defineSubType">
+                                        <div class="input-field col s8 l6">
+                                            <input name="subTypeName" id="subTypeName" type="text" class="validate">
+                                            <label for="subTypeName">Subtype Name</label>
+                                        </div>
+                                        <div class="input-field col s8 l6">
+                                            <input name="subTypeDesc" id="subTypeDesc" type="text" class="validate">
+                                            <label for="subTypeDesc">Subtype Description</label>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <!--Transaction value input-->
+                                <div class="row" style="margin-bottom: 0px">
+                                    <div class="input-field col s8 l6">
+                                        <input name="trxn_value" type="number" class="validate" min="0" max="99999999" value="{{old('trxn_value')}}">             
+                                        <label for="trxn_value">Transaction Value (LKR)</label>
+                                    </div>
+                                    <div class="col s8 l6">
+                                        <label>Transaction Date :</label>
+                                        <input type="date" id="trxnDate" class="datepicker" name="trxnDate" required="true">
+                                        <p class="grey-text" style="font-size: 0.8rem">Change this value if recording past transactions.</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <textarea name="remarks" class="materialize-textarea" style="padding-bottom: 0px" value="{{old('remarks')}}"></textarea>
+                                        <label for="remarks">Remarks</label>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col s12 center-align">
+                                        <button class="waves-effect green btn" ><i class="material-icons right">send</i>Add Entry</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </body>
 </html>

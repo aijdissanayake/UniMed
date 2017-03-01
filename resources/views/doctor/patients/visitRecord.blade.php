@@ -26,26 +26,41 @@
                                                 <div class="col s12 m6"><p><span>PatientID: </span>{{$patient->id}}</p></div>
                                                 <div class="col s12 m6"><p><span>Name: </span>{{$patient->firstName}} {{$patient->lastName}}</p></div>
                                                 <div class="input-field col s12">
-                                                    <input id="diagnosis" type="text" class="validate" required>
+                                                    <input name="complaints" type="text" class="validate" required>
+                                                    <label for="complaints">Complaints & Problems</label>
+                                                </div>
+                                                <div class="input-field col s12">
+                                                    <input name="cFindings" type="text" class="validate" required>
+                                                    <label for="cFindings">Clinical Findings</label>
+                                                </div>
+                                                <div class="input-field col s12">
+                                                    <input name="investigations" type="text" class="validate" required>
+                                                    <label for="investigations">Investigations</label>
+                                                </div>
+                                                <div class="input-field col s12">
+                                                    <input name="diagnosis" type="text" class="validate" required>
                                                     <label for="diagnosis">Diagnosis</label>
                                                 </div>
                                                 <div class="input-field col s12">
-                                                    <input id="prognosis" type="text" class="validate" required>
+                                                    <input name="prognosis" type="text" class="validate" required>
                                                     <label for="prognosis">Prognosis</label>
                                                 </div>
                                                 <div class="input-field col s12 m6">
-                                                    <input id="prescDrugs" type="text" class="validate" required>
+                                                    <input name="prescDrugs" type="text" class="validate" required>
                                                     <label for="prescDrugs">Prescribed Drugs</label>
                                                 </div>
+                                                <div class="input-field col s12 m6">
+                                                    <input name="weight" type="number" min="0" max="200" step="0.001" class="validate" required>
+                                                    <label for="weight">Weight (in kg)</label>
+                                                </div>
                                                 <div class="input-field col s12">
-                                                    <input id="remarks" type="text" class="validate" required>
+                                                    <input name="remarks" type="text" class="validate" required>
                                                     <label for="remarks">Special Remarks</label>
                                                 </div>
                                                 <div class="input-field col s12 m6">
-                                                    <input type="date" class="datepicker" id="nextVisitDate"  required>
+                                                    <input type="date" class="datepicker" name="nextVisitDate"  required>
                                                     <label for="nextVisitDate">Next Visit Date</label>
                                                 </div>
-                                                <div class="input-field col s12 m6"></div>
                                             </div>
                                         </div>
 

@@ -8,17 +8,22 @@ use Illuminate\Support\Facades\DB;
 
 use Carbon\Carbon;
 
+use Illuminate\Http\Request;
+
 use \DateTime; 
+use Illuminate\Pagination\LengthAwarePaginator;
+use App\patientVisit;
+use Auth;
 
 class PatientController extends Controller
 {
     public function home() {
       
         $directing = 1;
-        $patient = \Illuminate\Support\Facades\Auth::user()->patient; 
+
+        $patient = Auth::user()->getPatient; 
         $pID=$patient->id;
         $hasAppointment = $patient->hasAppointment;
-
         if($hasAppointment){
 
             $currentPatientsAppointment = \App\appointment::orderBy('aDate', 'desc')
@@ -62,26 +67,43 @@ class PatientController extends Controller
         return view('patient.home.profileEditable_patient');
     }
     
+    public function viewAllVisitRecords(){
+        $vRecs = Auth::user()->getPatient->getPatientVisits->toArray();
+
+        $perPage = 10;
+        $currPage = Input::get('page')-1;
+        $pagedData = array_slice($vRecs, $currPage*$perPage, $perPage);
+
+        $vRecs = new LengthAwarePaginator($pagedData, count($vRecs),$perPage);
+
+        $vRecs->setPath('vr');
+
+        return view('patient.visits.visitRecords', compact('vRecs'));
+    }
+
+    public function viewSingleVisitRecord($recordID){
+        $VRec = patientVisit::find($recordID);
+        return view('doctor.patients.viewVisitRecord', compact('VRec'));
+    }
+
     public function createAppointment(){
         
         //takes inputs from the form
         $inputs = Input::all();
-        $appDate = $inputs['appointmentDate'];
-        $date = date_create($appDate);       
+        $appDate = $inputs['formattedDate'];
+        $date = date_create($appDate);      
         $appSession = $inputs['session'];    
         
         
-        $patient = \Illuminate\Support\Facades\Auth::user()->patient;  // get the patient object
+
+        $patient = \Illuminate\Support\Facades\Auth::user()->getPatient;  // get the patient object
         $hasAppointment = $patient->hasAppointment; 
         $pID = $patient->id; 
-        
-        $currentAppointments = \App\appointment::where('aDate','LIKE', '%'.$appDate.'%') //get current appointments for the requested slot
+        $currentAppointments = \App\appointment::where('aDate','LIKE', '%'.date_format($date,"Y-m-d").'%') //get current appointments for the requested slot
                 ->where('session_id','LIKE', $appSession)
                 ->where('expired',FALSE)
                 ->get();
         $noOfAppointments = count($currentAppointments);
-        
-        
             
         if (!$hasAppointment) {
 
@@ -92,7 +114,6 @@ class PatientController extends Controller
                     ->with('directing',$directing)
                     ->with('title','Appoinments Full')
                     ;
-  
             }
 
             else{             
@@ -106,25 +127,22 @@ class PatientController extends Controller
             $currAppNoArray = [];             
              
             foreach ($currentAppointments as $currentAppointment){
-                echo $currentAppointment->appointmentNo;
                 array_push($currAppNoArray, $currentAppointment->appointmentNo);
             }
             for($i=1; $i<=10; $i++ ){
-                echo $i;
                 if (in_array($i, $currAppNoArray)){
-                    echo "inside ".$i;
                     continue;
 
                 }
                 else {
                     $newAppNo = $i;
-                    echo "outside ".$i;
                     break;
                 }
             }
             //insert to appointment table
             $app = new \App\appointment();
             $app ->patient_id = $pID;
+            $date = date_format($date,"Y-m-d");
             $app->aDate =$date;
             $app->session_id = $appSession;
             $app->appointmentNo=$newAppNo;
@@ -133,14 +151,15 @@ class PatientController extends Controller
             $currentPatientsAppointment = $patient->appointments()->where('expired',FALSE)->first();
             $currentDate=substr($currentPatientsAppointment->aDate,0,10);
             
-            return view('patient.home.patientHome')
-                    ->with('hasAppointment',$hasAppointment)
-                    ->with('directing',$directing)
-                    ->with('session', $currentPatientsAppointment->session->time_Period)
-                    ->with('appNo',$currentPatientsAppointment->appointmentNo)
-                    ->with('appDate',$currentDate)
-                    ->with('title','Appointment Made!')
-                    ;
+            // return view('patient.home.patientHome')
+            //         ->with('hasAppointment',$hasAppointment)
+            //         ->with('directing',$directing)
+            //         ->with('session', $currentPatientsAppointment->session->time_Period)
+            //         ->with('appNo',$currentPatientsAppointment->appointmentNo)
+            //         ->with('appDate',$currentDate)
+            //         ->with('title','Appointment Made!')
+            //         ;
+            return redirect()->route('patient');
   
             }
         
@@ -164,7 +183,7 @@ class PatientController extends Controller
 
     public function cancelAppointment() {
         
-        $patient = \Illuminate\Support\Facades\Auth::user()->patient; 
+        $patient = \Illuminate\Support\Facades\Auth::user()->getPatient; 
         $pID = $patient->id ;
         $hasAppointment = $patient->hasAppointment;
         if($hasAppointment){
@@ -188,6 +207,79 @@ class PatientController extends Controller
                 ;
 
         }
-       
+    public function getUnavailableDates(){
+
+        $unavailableDates = [];
+        $unavailablePeriods = \App\unavailablePeriod::where('expired',FALSE)->where('holiday',TRUE)->get();
+        foreach ($unavailablePeriods as $unavailablePeriod) {
+            array_push($unavailableDates, [$unavailablePeriod->startDate,$unavailablePeriod->endDate]);            
+        }
+        return response()->json([
+                'unavailableDates' => $unavailableDates
+            ]);
+    }
+
+     public function addSession(Request $request) {
+        $startTime = $request->input('startTime');
+        $endTime = $request->input('endTime');
+        $timePeriod = date('h:i a', strtotime($startTime)) . " - " . date('h:i a', strtotime($endTime));
+        $session = new \App\session();
+        $session->time_Period = $timePeriod;
+        $session->start_time = $request->input('startTime');
+        $session->end_time = $request->input('endTime');
+        if ($request->input('availableNow')) {
+            $session->available = 1;
+        }
+        $session->save();
+        return view('doctor.settings.appointmentsettings');
+    }
+
+    public function unavailablePeriod(Request $request) {
+        $unavailablePeriod = new \App\unavailablePeriod();
+        $unavailablePeriod->startDate = $request->input('startDate');
+        $unavailablePeriod->endDate = $request->input('endDate');
+        $unavailablePeriod->message = $request->input('message');
+        $unavailablePeriod->save();
+
+        foreach (\App\session::where('available',TRUE)->get() as $avbSession) {
+            if ($request->input('dayType')=="holiday") {
+                DB::insert('INSERT INTO session_unavailableperiod (session_id, unavailable_period_id) values (?, ?)', [$avbSession->id,$unavailablePeriod->id]);
+            }
+            elseif ($request->input($avbSession->id)) {
+                DB::insert('INSERT INTO session_unavailableperiod (session_id, unavailable_period_id) values (?, ?)', [$avbSession->id,$unavailablePeriod->id]);
+            }
+        }
+    foreach ($unavailablePeriod->sessions as $session) {
+         } 
+
+        return view('doctor.settings.appointmentsettings');
+    }
+
+    public function getSessions(Request $request){
+        $date = date_create($request['date']);
+        $date = date_format($date,"Y-m-d");
+        $unavailablePeriods = \App\unavailablePeriod::where('expired',FALSE)->where('holiday',FALSE)->get();
+        $unavailableSessionIDs = [];
+        $availableSessions = [];
+        
+        foreach ($unavailablePeriods as $unavailablePeriod) {
+            if($unavailablePeriod->startDate <= $date && $unavailablePeriod->endDate >= $date){
+                foreach ($unavailablePeriod->sessions as $session) {
+                    array_push($unavailableSessionIDs, $session->id);
+                }
+            }
+        }
+
+        foreach (\App\session::where('available',TRUE)->get() as $avbSession){
+            if ((!in_array($avbSession->id, $unavailableSessionIDs))) {
+                array_push($availableSessions, [$avbSession->id, $avbSession->time_Period]);
+            }
+        }
+
+        return response()->json([
+                'sessions' => $availableSessions
+            ]);
+    }
+   
 
 }

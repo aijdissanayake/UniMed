@@ -24,7 +24,8 @@
                               <tr><td>Registered No.</td><td>{{$doctor->RegNo}}</td></tr>
                               <tr><td>Email</td><td>{{$doctor->getUser->email}}</td></tr>
                             </form>
-                          </table>
+                          </table>  
+                          <div class="section"> <a class="waves-effect waves-light green accent-4 btn" href="{{route('editDoctor',['id'=>$doctor->id])}}">Edit</a> </div>                      
                         </div>
                     </div>
                 </div>

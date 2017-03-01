@@ -9,21 +9,21 @@
     </head>
 
 
-    <body class="blue lighten-5">
+    <body class="grey lighten-4">
         <div class="container">
             
             <div class="row top-row">
                 <div class="col s12 m6">
                     <div class="card green white-text">
                         <div class="card-content">
-                            <span class="card-title"><strong>My profile</strong></span>
+                            <span class="card-title"><i class="material-icons left">account_box</i><strong>My profile</strong></span>
                             <table>
                                 <tr><td>Name</td><td>{{$doctor->doctorName}}</td></tr>
                                 <tr><td>Registration Number</td><td>{{$doctor->RegNo}}</td></tr>
                                 <tr><td>Email</td><td>{{$doctor->getUser->email}}</td></tr>
                             </table>
-                            <a href="#!" class="waves-effect green darken-3 btn">
-                                Edit
+                            <a href="{{route('dViewDocProfile',['id'=>$doctor->id])}}" class="waves-effect green darken-3 btn">
+                                View Full Profile
                             </a>
                         </div>
                     </div>
@@ -51,11 +51,10 @@
                     <div class="card red white-text" style="height:100%">
                         <div class="card-content">
                             <span class="card-title"><strong>Doctors</strong></span>
-                            <p>Kalana Ishanka</p>
-                            <p>lorem ipsum...</p>
-                            <p>lorem ipsum...</p>
-                            <p>lorem ipsum...</p>
-                            <a href="#!" class="waves-effect red lighten-2 btn">
+                            @foreach ($doctors as $doctor)
+                                <p>{{$doctor->doctorName}}</p>
+                            @endforeach
+                            <a href="{{route('manageDoctors')}}" class="waves-effect red lighten-2 btn">
                                 Manage
                             </a>
                         </div>
