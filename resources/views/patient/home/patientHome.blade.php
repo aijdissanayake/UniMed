@@ -1,7 +1,5 @@
 <!DOCTYPE HTML>
 <html>
-
-
     <head>
 
         @include('patient.nav_bar_pat')
@@ -105,7 +103,7 @@
                                                     <label for="appointmentDate" class="purple-text text-lighten-2" >Reservation Date :</label>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> 
                                         <!-- hidden field value is assigned at js file-->
                                         <input type="text" name="formattedDate" id="altFormat" style="display: none;" />
                                         <div class="row">
@@ -123,7 +121,6 @@
                                             </div>
                                         </div>
                                     </form>
-
                                         @if($directing == 5)
                                         <script type="text/javascript">
                                             Materialize.toast('Appointmtment Cancelled!', 4000, 'rounded red');
@@ -134,7 +131,6 @@
 
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>

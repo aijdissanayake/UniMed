@@ -122,7 +122,7 @@ class PatientController extends Controller
             //update patient table
             $patient->hasAppointment =TRUE;
             $patient->save();
-
+            //set new app no
             $newAppNo ;
             $currAppNoArray = [];             
              
@@ -197,8 +197,8 @@ class PatientController extends Controller
             $currentPatientsAppointment->save();        
             //return back to the page
             return view('patient.home.patientHome')
-                        ->with('directing',$directing)
-        ;
+                    ->with('directing',$directing)
+                    ;
         }
         $directing = 1 ;
         return view('patient.home.patientHome')
