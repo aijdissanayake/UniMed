@@ -6,50 +6,48 @@ use Illuminate\Support\Facades\Input;
 
 use Illuminate\Support\Facades\DB;
 
-use \DateTime; 
+use Carbon\Carbon;
 
-//use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+
+use \DateTime; 
+use Illuminate\Pagination\LengthAwarePaginator;
+use App\patientVisit;
+use Auth;
 
 class PatientController extends Controller
 {
     public function home() {
       
         $directing = 1;
-        $today = \Carbon\Carbon::today();
-        $id = \Illuminate\Support\Facades\Auth::user()->id ;
-        $patient= \App\patient::where('user_id','LIKE', $id)->get()[0];
+
+        $patient = Auth::user()->getPatient; 
         $pID=$patient->id;
         $hasAppointment = $patient->hasAppointment;
-        $currentAppDetails = "";
-        
         if($hasAppointment){
-        $currentPatientsAppointment = \App\appointment::orderBy('aDate', 'desc')
+
+            $currentPatientsAppointment = \App\appointment::orderBy('aDate', 'desc')
                                                 ->where('patient_id',$pID)
                                                 ->where('expired',FALSE)
                                                 ->take(2)->first();
-        $currentSession = $currentPatientsAppointment->session;
-        $currentDate=substr($currentPatientsAppointment->aDate,0,10);
+            
+            $currentDate=substr($currentPatientsAppointment->aDate,0,10);
 
-             if($currentSession==1){
-             $currentAppDetails = "Date : " . $currentDate ."\n Session : 8am - 11am \n Appointment No :"
-                     . $currentPatientsAppointment->appointmentNo ;
-                     
-             }
-             elseif($currentSession==2){
-             $currentAppDetails = "Date : " . $currentDate ."\n Session : 12noon - 3pm \n Appointment No :"
-                     . $currentPatientsAppointment->appointmentNo ;
-                     
-             }
-             elseif($currentSession==3){
-             $currentAppDetails = "Date : " . $currentDate ."\n Session : 4pm - 8pm \n Appointment No :"
-                     . $currentPatientsAppointment->appointmentNo ;
-                     
-        }}
-        //return view('patient.home.patientHome', compact('hasAppointment'));
+            return view('patient.home.patientHome')
+                ->with('hasAppointment', $hasAppointment)
+                ->with('directing', $directing)
+                ->with('had',FALSE)
+                ->with('session', $currentPatientsAppointment->session->time_Period)
+                ->with('appNo',$currentPatientsAppointment->appointmentNo)
+                ->with('appDate',$currentDate)
+                ->with('title','You have an Appointment!')
+                ;
+        }
+
         return view('patient.home.patientHome')
-                ->with('hasAppointment',$hasAppointment)
-                ->with('directing',$directing)
-                ->with('currentAppDetails',$currentAppDetails);
+                ->with('hasAppointment', $hasAppointment)
+                ->with('directing', $directing)
+                ;
     }
     
     /*
@@ -69,183 +67,219 @@ class PatientController extends Controller
         return view('patient.home.profileEditable_patient');
     }
     
+    public function viewAllVisitRecords(){
+        $vRecs = Auth::user()->getPatient->getPatientVisits->toArray();
+
+        $perPage = 10;
+        $currPage = Input::get('page')-1;
+        $pagedData = array_slice($vRecs, $currPage*$perPage, $perPage);
+
+        $vRecs = new LengthAwarePaginator($pagedData, count($vRecs),$perPage);
+
+        $vRecs->setPath('vr');
+
+        return view('patient.visits.visitRecords', compact('vRecs'));
+    }
+
+    public function viewSingleVisitRecord($recordID){
+        $VRec = patientVisit::find($recordID);
+        return view('doctor.patients.viewVisitRecord', compact('VRec'));
+    }
+
     public function createAppointment(){
         
         //takes inputs from the form
         $inputs = Input::all();
-        $appDate = $inputs['appointmentDate'];
-        $appSession = $inputs['session'];
-        $today = \Carbon\Carbon::today();
-        $today1= date_create($today);
-        $currentAppDetails = "";
-      
+        $appDate = $inputs['formattedDate'];
+        $date = date_create($appDate);      
+        $appSession = $inputs['session'];    
         
         
-        if($appDate<$today){
-           $directing = 0;
-            return view('patient.home.patientHome')
-                    ->with('hasAppointment',0)
-                    ->with('directing',$directing);
-   
-        }
-        else{
-        
-        // get the id of the current user
-        $id = \Illuminate\Support\Facades\Auth::user()->id ;
-        // check whether patient has an appointment
-        $patient =  \App\patient::where('user_id','LIKE', $id)->get()[0];
-        $hasAppointment = $patient->hasAppointment;
-        $pID = $patient->id ; 
-        $currentAppointments =    \App\appointment::where('aDate','LIKE', '%'.$appDate.'%')
-                ->where('session','LIKE', $appSession)
-                ->where('aDate', '>', $today)
+
+        $patient = \Illuminate\Support\Facades\Auth::user()->getPatient;  // get the patient object
+        $hasAppointment = $patient->hasAppointment; 
+        $pID = $patient->id; 
+        $currentAppointments = \App\appointment::where('aDate','LIKE', '%'.date_format($date,"Y-m-d").'%') //get current appointments for the requested slot
+                ->where('session_id','LIKE', $appSession)
                 ->where('expired',FALSE)
                 ->get();
-        $noOfAppointments = count($currentAppointments); 
-//        $newAppNo=$noOfAppointments+1;
-        
-        
+        $noOfAppointments = count($currentAppointments);
             
-        if ($hasAppointment == 0) {
+        if (!$hasAppointment) {
+
             if ($noOfAppointments==10){
-            // to recognize the condition caused to update the html view
-            $directing = 2;
+            $directing = 2; // to recognize the condition caused to update the html view
             return view('patient.home.patientHome')
                     ->with('hasAppointment',$hasAppointment)
                     ->with('directing',$directing)
-                    ->with('currentAppDetails',$currentAppDetails);
-  
-        }
-            else{
-            $directing = 3 ;             
-            $newAppNo ;
+                    ->with('title','Appoinments Full')
+                    ;
+            }
 
-            $currAppNoArray = [];
+            else{             
+        
+            $directing = 3 ; 
+            //update patient table
+            $patient->hasAppointment =TRUE;
+            $patient->save();
+
+            $newAppNo ;
+            $currAppNoArray = [];             
              
-             //set new app no
-             foreach ($currentAppointments as $currentAppointment){
-                 array_push($currAppNoArray, $currentAppointment->appointmentNo);
-             }
-             for($i=1; $i<=10; $i++ ){
-                 if (in_array($i, $currAppNoArray)){
-                     continue;
-                 }
-                 else {
-                     $newAppNo = $i;
-                     break;
-                 }
-             }
-             //update the patients table                                     
-            DB::table('patients')
-            ->where('user_id', $id)
-            ->update(['hasAppointment' => TRUE]);
-            //insert to the appointment table
+            foreach ($currentAppointments as $currentAppointment){
+                array_push($currAppNoArray, $currentAppointment->appointmentNo);
+            }
+            for($i=1; $i<=10; $i++ ){
+                if (in_array($i, $currAppNoArray)){
+                    continue;
+
+                }
+                else {
+                    $newAppNo = $i;
+                    break;
+                }
+            }
+            //insert to appointment table
             $app = new \App\appointment();
             $app ->patient_id = $pID;
-            $app->aDate =$appDate;
-            $app->session =$appSession;
+            $date = date_format($date,"Y-m-d");
+            $app->aDate =$date;
+            $app->session_id = $appSession;
             $app->appointmentNo=$newAppNo;
             $app->save();
             
-            $currentPatientsAppointment = \App\appointment::orderBy('aDate', 'desc')
-                                                ->where('patient_id',$pID)
-                                                ->where('expired',FALSE)
-                                                ->take(2)->get()[0];
-             
-             
-             $currentSession = $currentPatientsAppointment->session;
-             $currentDate=substr($currentPatientsAppointment->aDate,0,10);
-             
-             if($currentSession==1){
-             $currentAppDetails = "Date : " . $currentDate ."\n Session : 8am - 11am \n Appointment No :"
-                     . $currentPatientsAppointment->appointmentNo ;
-                     
-             }
-             elseif($currentSession==2){
-             $currentAppDetails = "Date : " . $currentDate ."\n Session : 12noon - 3pm \n Appointment No :"
-                     . $currentPatientsAppointment->appointmentNo ;
-                     
-             }
-             elseif($currentSession==3){
-             $currentAppDetails = "Date : " . $currentDate ." \n Session : 4pm - 8pm  \n Appointment No :"
-                     . $currentPatientsAppointment->appointmentNo ;
-                     
-             }
-            return view('patient.home.patientHome')
-                    ->with('hasAppointment',$hasAppointment)
-                    ->with('directing',$directing)
-                    ->with('currentAppDetails',$currentAppDetails);
+            $currentPatientsAppointment = $patient->appointments()->where('expired',FALSE)->first();
+            $currentDate=substr($currentPatientsAppointment->aDate,0,10);
+            
+            // return view('patient.home.patientHome')
+            //         ->with('hasAppointment',$hasAppointment)
+            //         ->with('directing',$directing)
+            //         ->with('session', $currentPatientsAppointment->session->time_Period)
+            //         ->with('appNo',$currentPatientsAppointment->appointmentNo)
+            //         ->with('appDate',$currentDate)
+            //         ->with('title','Appointment Made!')
+            //         ;
+            return redirect()->route('patient');
   
             }
         
         } 
         else{
-            $currentPatientsAppointment = \App\appointment::orderBy('aDate', 'desc')
-                                                ->where('patient_id',$pID)
-                                                ->where('expired',FALSE)
-                                                ->take(2)->get()[0];
-             
-             
-             $currentSession = $currentPatientsAppointment->session;
-             $currentDate=substr($currentPatientsAppointment->aDate,0,10);
-             
-             if($currentSession==1){
-             $currentAppDetails = "Date : " . $currentDate ."\n Session : 8am - 11am \n Appointment No :"
-                     . $currentPatientsAppointment->appointmentNo ;
-                     
-             }
-             elseif($currentSession==2){
-             $currentAppDetails = "Date : " . $currentDate ."\n Session : 12noon - 3pm \n Appointment No :"
-                     . $currentPatientsAppointment->appointmentNo ;
-                     
-             }
-             elseif($currentSession==3){
-             $currentAppDetails = "Date : " . $currentDate ." \n Session : 4pm - 8pm  \n Appointment No :"
-                     . $currentPatientsAppointment->appointmentNo ;
-                     
-             }
             $directing = 4;
-           return view('patient.home.patientHome')
+            $currentPatientsAppointment = $patient->appointments()->where('expired',FALSE)->first();
+            $currentDate=substr($currentPatientsAppointment->aDate,0,10);
+
+            return view('patient.home.patientHome')
                    ->with('hasAppointment',$hasAppointment)
                    ->with('directing',$directing)
-                   ->with('currentAppDetails',$currentAppDetails);
+                   ->with('session',$currentPatientsAppointment->session->time_Period)
+                   ->with('appNo',$currentPatientsAppointment->appointmentNo)
+                   ->with('appDate',$currentDate)
+                   ->with('title','You  have an appointment!')
+                   ;
+            }
+        
     }
-        }
-    }
+
     public function cancelAppointment() {
         
-        $directing = 5 ;
-        $currentAppDetails = '';
-        
-        $id = \Illuminate\Support\Facades\Auth::user()->id ;
-        // check whether patient has an appointment
-        $patient =  \App\patient::where('user_id','LIKE', $id)->get()[0];
-        $hasAppointment = $patient->hasAppointment;
+        $patient = \Illuminate\Support\Facades\Auth::user()->getPatient; 
         $pID = $patient->id ;
-        
-        
+        $hasAppointment = $patient->hasAppointment;
         if($hasAppointment){
-             //set patient table has appointment to 0
-            DB::table('patients')
-            ->where('user_id', $id)
-            ->update(['hasAppointment' => FALSE]);
-            
-        //get the appointment in appointment table
-        $currentPatientsAppointment = \App\appointment::orderBy('aDate', 'desc')
-                                                ->where('patient_id',$pID)
-                                                ->where('expired',FALSE)
-                                                ->take(2)->get()[0];
-        //change appointment to expired
-        $currentPatientsAppointment->expired=TRUE;
-        $currentPatientsAppointment->save();
-        
-        //return back to the page
-        
-        }
-        return view('patient.home.patientHome')
-                ->with('hasAppointment',$hasAppointment)
-                ->with('directing',$directing)
-                ->with('currentAppDetails',$currentAppDetails)
+            $directing = 5 ;
+            //set patient table has appointment
+            $patient->hasAppointment =FALSE;
+            $patient->save();
+            //expire the appointment
+            $currentPatientsAppointment=$patient->appointments()->where('expired',FALSE)->first();
+            $currentPatientsAppointment->expired=TRUE;
+            $currentPatientsAppointment->save();        
+            //return back to the page
+            return view('patient.home.patientHome')
+                        ->with('directing',$directing)
         ;
+        }
+        $directing = 1 ;
+        return view('patient.home.patientHome')
+                ->with('hasAppointment', $hasAppointment)
+                ->with('directing', $directing)
+                ;
+
+        }
+    public function getUnavailableDates(){
+
+        $unavailableDates = [];
+        $unavailablePeriods = \App\unavailablePeriod::where('expired',FALSE)->where('holiday',TRUE)->get();
+        foreach ($unavailablePeriods as $unavailablePeriod) {
+            array_push($unavailableDates, [$unavailablePeriod->startDate,$unavailablePeriod->endDate]);            
+        }
+        return response()->json([
+                'unavailableDates' => $unavailableDates
+            ]);
     }
+
+     public function addSession(Request $request) {
+        $startTime = $request->input('startTime');
+        $endTime = $request->input('endTime');
+        $timePeriod = date('h:i a', strtotime($startTime)) . " - " . date('h:i a', strtotime($endTime));
+        $session = new \App\session();
+        $session->time_Period = $timePeriod;
+        $session->start_time = $request->input('startTime');
+        $session->end_time = $request->input('endTime');
+        if ($request->input('availableNow')) {
+            $session->available = 1;
+        }
+        $session->save();
+        return view('doctor.settings.appointmentsettings');
+    }
+
+    public function unavailablePeriod(Request $request) {
+        $unavailablePeriod = new \App\unavailablePeriod();
+        $unavailablePeriod->startDate = $request->input('startDate');
+        $unavailablePeriod->endDate = $request->input('endDate');
+        $unavailablePeriod->message = $request->input('message');
+        $unavailablePeriod->save();
+
+        foreach (\App\session::where('available',TRUE)->get() as $avbSession) {
+            if ($request->input('dayType')=="holiday") {
+                DB::insert('INSERT INTO session_unavailableperiod (session_id, unavailable_period_id) values (?, ?)', [$avbSession->id,$unavailablePeriod->id]);
+            }
+            elseif ($request->input($avbSession->id)) {
+                DB::insert('INSERT INTO session_unavailableperiod (session_id, unavailable_period_id) values (?, ?)', [$avbSession->id,$unavailablePeriod->id]);
+            }
+        }
+    foreach ($unavailablePeriod->sessions as $session) {
+         } 
+
+        return view('doctor.settings.appointmentsettings');
+    }
+
+    public function getSessions(Request $request){
+        $date = date_create($request['date']);
+        $date = date_format($date,"Y-m-d");
+        $unavailablePeriods = \App\unavailablePeriod::where('expired',FALSE)->where('holiday',FALSE)->get();
+        $unavailableSessionIDs = [];
+        $availableSessions = [];
+        
+        foreach ($unavailablePeriods as $unavailablePeriod) {
+            if($unavailablePeriod->startDate <= $date && $unavailablePeriod->endDate >= $date){
+                foreach ($unavailablePeriod->sessions as $session) {
+                    array_push($unavailableSessionIDs, $session->id);
+                }
+            }
+        }
+
+        foreach (\App\session::where('available',TRUE)->get() as $avbSession){
+            if ((!in_array($avbSession->id, $unavailableSessionIDs))) {
+                array_push($availableSessions, [$avbSession->id, $avbSession->time_Period]);
+            }
+        }
+
+        return response()->json([
+                'sessions' => $availableSessions
+            ]);
+    }
+   
+
 }

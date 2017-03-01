@@ -2,140 +2,147 @@
 <html>
 
 
-<head>
-    @include('patient.navBarPatient')
-    <title>Unicare - Home</title>
-    <meta name="description" content="website description" />
-    <meta name="keywords" content="website keywords, website keywords" />
-    <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
-    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine&amp;v1" />
-    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" />
-    <link rel="stylesheet" type="text/css" href="style/style.css" />
-    <link rel="stylesheet" type="text/css" href="/style/style.css" />
+    <head>
 
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="style/jquery-ui.css">
-    <script src="style/jquery-1.10.2.js"></script>
-    <script src="style/jquery-ui.js"></script>
-    <link rel="stylesheet" href="/resources/demos/style.css" />
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.3/jquery.min.js"></script>
+        @include('patient.nav_bar_pat')
+        <title>Unicare - Home</title>
+        <meta name="description" content="website description" />
+        <meta name="keywords" content="website keywords, website keywords" />
+        <script src="//js.pusher.com/2.2/pusher.min.js"></script>
+        <script type="text/javascript" src="/js/patient.js"></script>
+        <link rel="stylesheet" type="text/css" href="/style/patientStyle.css">
 
     </head>
 
-<body>
-<div id="main">
-    <div id="header">
-        <div id="logo">
-            <h1>Unicare Medical</h1>
+    <body class="grey lighten-4">
 
-        </div>
-                <div id="menubar">
-                    <ul id="menu">
-                        <!-- put class="current" in the li tag for the selected finance - to highlight which finance you're on -->
-                        <li class="current"><a href="{{route('patient')}}">Home</a></li>
-                        <li><a href="{{route('patientLabTab')}}">Lab</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div id="site_content">
-                <div id="content">
-                    <!-- insert the finance content here -->
-                    <h2>Online Appointment Reservation</h2>
-                    <form action="{{route('appointment')}}" method="post">
-                        {{ csrf_field() }}
-                        <div class="form_settings">
-                            <p><span>Reservation Date :</span>
-                                <input type="date" id="reserveDate" name="appointmentDate"/>
-                                <script>
-        $(function () {
-            
-            $("#datepicker").datepicker();
-        });
-                                </script>
 
-                                <label>&nbsp;&nbsp; Session :
-                                    <select  name="session" id="sessionID" class="form-control input-sm">
-                                        <option value=1> 8am - 11am </option>
-                                        <option value=2> 12noon - 3pm </option>
-                                        <option value=3>4pm - 8pm</option>
-                                    </select>
-                                </label></p>
-                            <br>
-                            
-                            <h3><strong>Appointment Reservation Policy</strong></h3>
-                    <div
-                        <ul>
-                            <li>Appointments should be made at least day prior to the appointment date</li>
-                            <li>All reserved appointments are given reservation order based priority.</li><br>
-                            <li>Patients are advised to be present at the dispensary 10 minutes early.</li><br>
-                            <li>Patients can roughly calculate his/her appointment time by assuming 10 mins for each patient.</li><br>
-                            <li>If the patient is not available when his/her appointment number is called, then the next number will be called.</li><br>
-                            <li>In case of late arrival of a patient with a higher priority number and another patient is examined during the arrival,<br>&nbsp;&nbsp;&nbsp; the arrived patient will be called immediately after the current examination.</li><br>
-                        </ul>
-                    </div>
-                            <br>
-                            <input class="submit" type="submit" name="appointmentButton"  />	
+        <div class="container">
+            <div class="row" style="margin-top: 15px;">
+                <div class="col s12 ">
+                    <div class="card">
+                        <div class="card-title  white-text " style="background-color:#b31fa2">
+                            <span style="font-family:Calibri ,sans-serif">
+                                <i class="small material-icons" style="vertical-align:middle">event</i>&nbsp;&nbsp;Appointments
+                            </span>
+                        </div>
+                        <div class="card-content">
+                            <div class="row"> 
+                                <div class="section col s12 m6">
+                                    <div id="policyDiv" >
+                                        <div class="row hide-on-med-and-up" style="margin-left:10px">
+                                            <a  class="purple-text" id="policyButton">View Appointment Policy</a>
+                                        </div>
+                                        <div id="policyS" class="purple lighten-5 grey-text z-depth-1 hide-on-med-and-up" style="margin-top: 20px">
+                                            <div style="overflow-y: scroll; height: 250px;">
+                                                <ul class="purple lighten-5 ">
+                                                    <li>&nbsp;1. Appointments should be made at least a day prior to the appointment date.</li><br>
+                                                    <li>&nbsp;2. All reserved appointments are given reservation order based priority.</li><br>
+                                                    <li>&nbsp;3. Patients are advised to be present at the dispensary 10 minutes early.</li><br>
+                                                    <li>&nbsp;4. Patients can roughly calculate his/her appointment time by assuming 10 minutes for each patient.</li><br>
+                                                    <li>&nbsp;5. If a patient is not present when his/her appointment number is called, the next number will be called.</li><br>
+                                                    <li>&nbsp;6. 6. In case of late arrival of a patient with a higher priority number while another patient is being examined, the new patient will be called immediately after the current patient.</li><br>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div id="policyL" class="purple lighten-5 grey-text z-depth-1 hide-on-small-only" 
+                                             style="padding: 20px 20px 0px 20px; margin-top: 20px;  height: 380px; border-radius:0%">
+                                            <span class="purple-text" id="title"><h5> Appointment Policy </h5> <br> </span>
+                                            <div class="divider purple lighten-3"></div>
+                                            <div style="overflow-y: scroll; height: 250px;">
+                                                <ul id="sentences" class="purple lighten-5 " style="border-radius:0%">
+                                                    <li>1. Appointments should be made at least a day prior to the appointment date.</li><br>
+                                                    <li>2. All reserved appointments are given reservation order based priority.</li><br>
+                                                    <li>3. Patients are advised to be present at the dispensary 10 minutes early.</li><br>
+                                                    <li>4. Patients can roughly calculate his/her appointment time by assuming 10 minutes for each patient.</li><br>
+                                                    <li>5. If a patient is not present when his/her appointment number is called, the next number will be called.</li><br>
+                                                    <li>6. In case of late arrival of a patient with a higher priority number while another patient is being examined, the new patient will be called immediately after the current patient.</li><br>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="purple lighten-5 purple-text text-darken-4 z-depth-1 section col s12 m6" style="padding: 20px 20px 0px 20px; margin-top: 20px; height: 380px">
+
+                                    @if(($directing == 1 && $hasAppointment) || $directing == 3 || $directing == 4)
+                                    <span class="purple-text text-darken-4" id="title" title="Cancel this Appointment to create a new One">
+                                        <h5>{{$title or ''}}</h5> <br>
+                                    </span>
+                                    <div class="divider purple darken-4"></div>
+                                    <div style="height:58%; border-color:purple; border-style: solid; border-width:1px; border-radius:5px; padding:10px ;margin-top:10%">
+                                        <br>Date &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;{{$appDate or ''}}
+                                        <br><br>Session :&nbsp;&nbsp;{{$session or ''}}
+                                        <br><br>App. No :&nbsp;&nbsp;{{$appNo or ''}}<br>
+                                        <form  action="{{route('cancelAppointment')}}"  method="get">
+                                                <input id="cancelButton" class="btn tooltipped purple lighten-5 red-text" 
+                                                data-position="bottomt" data-delay="50" data-tooltip="Cancel this Appointment to create a new One"style="float:right;  border-color:red; border-style: solid; border-width:1px;" type="submit" name="cancelButton" value="Cancel" />
+                                        </form>
+                                    </div>
+
+                                        @if($directing == 3 || $directing == 1)
+                                        <script type="text/javascript">
+                                            Materialize.toast('You have an Appointment!', 4000, 'rounded blue');
+                                        </script>
+                                        @endif
+
+                                    @elseif ($directing == 2 && !$hasAppointment)
+                                    <span class="purple-text" id="title"><h5>{{$title or ''}}</h5> <br> </span>
+                                    <div class="divider purple"></div>
+                                    <div  class="purple darken-4" style=" width: 250px ; text-align:center ; color: white; font-size:20px ">
+                                        Sorry, All the Online Appointments are reserved. Please Contact Doctor for Arrangements.
+                                    </div>
+
+                                    @elseif( ($directing == 1 && !$hasAppointment) || $directing == 2 || $directing == 5)
+
+                                    <form action="{{route('appointment')}}" method="post" id="appForm">
+                                        {{ csrf_field() }}
+
+                                        <span class="purple-text" id="formtitle"><h5> Make Appointment </h5> <br> </span>
+                                        <div class="row">
+                                            <div class="input-field " style="padding:10px" >
+                                                <div class="black-text ">
+                                                    <input type="date" id="appointmentDate" name="appointmentDate" placeholder="Pick a Date" required=""/>
+                                                    <label for="appointmentDate" class="purple-text text-lighten-2" >Reservation Date :</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- hidden field value is assigned at js file-->
+                                        <input type="text" name="formattedDate" id="altFormat" style="display: none;" />
+                                        <div class="row">
+                                            <div id="sessionDiv" class="input-field"  style="padding:10px">
+                                                <select class="black-text text-lighten-1" name="session" id="session" >
+                                                    <option  value="0" disabled selected>Choose your preferred session</option>
+                                                    <option value="0" > Option Test</option>
+                                                </select>
+                                                <label for="session" class="purple-text text-lighten-2"> Session :</label>
+                                            </div>                                        
+                                        </div>
+                                        <div class="row">
+                                            <div class="input-field">                        
+                                                <input class="btn grey lighten-3 black-text" style="float:right" type="submit" name="appointmentButton" id="appSubmit" value="submit">
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                        @if($directing == 5)
+                                        <script type="text/javascript">
+                                            Materialize.toast('Appointmtment Cancelled!', 4000, 'rounded red');
+                                        </script>
+                                        @endif
+
+                                    @endif
+
+                                </div>
+                            </div>
 
                         </div>
-                    </form>
-                    <br>
-                                                           
-                    @if($directing == 0)
-                    <h2><div style=" width: 600px ; text-align:center ; background-color: red; color: white; font-size:20px ;">
-                            Invalid Date
-                        </div></h2>
-                    
-                    @elseif($directing == 1)
-                        @if($hasAppointment)
-
-                    <h2><div  style=" width: 250px ; text-align:center ; background-color: greenyellow; color: white; font-size:20px ; ">
-                            You have an Appointment<br> {{$currentAppDetails}}</div></h2>
-                        @endif
-                    @elseif ($directing == 2)
-                        @if(!$hasAppointment)
-                    <h2><div style=" width: 600px ; text-align:center ; background-color: red; color: white; font-size:20px ;">
-                            Sorry, All the Online Appointments are reserved. Please Contact Doctor for Arrangements.
-                        </div></h2>
-                        @endif
-                    @elseif ($directing == 3)
-                        @if(!$hasAppointment)
-                    <h2><div style=" width: 280px ; text-align:center ; background-color: greenyellow; color: white; font-size:20px ;">
-                            Appointment Created<br> {{$currentAppDetails}}
-                        </div></h2>
-                        @endif
-                    @elseif ($directing == 4)
-                        @if($hasAppointment)
-                         <h2><div style=" width: 600px ; text-align:center ; background-color: red; color: white; font-size:20px ;">
-                            You already have an Appointment.<br>{{$currentAppDetails}}<br> Cancel it to create a new appointment<br> 
-                        </div></h2>
-                            @endif
-                    @endif
-                    <br><br>
-                      
+                    </div>
                 </div>
-                 <div class="form_settings">
-        <form action="{{route('cancelAppointment')}}" method="get">
-            <input class="submit" type="submit" name="cancelButton" value="Cancel Appointment" />
-        </form>
-                     @if($directing == 5)
-                        @if($hasAppointment)
-                     <h2><div style=" width: 600px ; text-align:center ; background-color: orange; color: white; font-size:20px ;">
-                            Appointment Canceled !
-                        </div></h2>
-                        @else
-                        <h2><div style=" width: 600px ; text-align:center ; background-color: red; color: white; font-size:20px ;">
-                            No Appointments to Cancel !
-                        </div></h2>
-                        @endif
-                     @endif
-    </div>
-    <h1>&nbsp;</h1>
-</div>
-</div>
-<div id="footer">
-    <p>&nbsp;</p>
-</div>
-</div>
-</body>
+            </div>
+        </div> 
+        <div id="footer">
+            <p>&nbsp;</p>
+        </div>
+
+    </body>
 </html>

@@ -3,7 +3,7 @@
 
 <head>
   <title>Unicare - Statistics</title>
-  @include('doctor.navBarDoctor')
+  @include('doctor.nav_bar_doc')
   <meta name="description" content="website description" />
   <meta name="keywords" content="website keywords, website keywords" />
   <meta http-equiv="content-type" content="text/html; charset=windows-1252" />

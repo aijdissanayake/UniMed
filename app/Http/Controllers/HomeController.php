@@ -20,12 +20,22 @@ class HomeController extends Controller {
     /**
      * Show the application dashboard.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Respons
      */
     public function index() {
         if (Auth::guest()){
-            return view('login');
-        } else {
+            return view('auth.login');
+        }
+            
+        if (Auth::user()->active == 0){
+            Auth::logout();
+            // return view('auth.login');
+            return view('auth.account_inactive');
+        }
+            
+        /*
+         *     Record login for analytical purposes
+         */
         $user = Auth::user();
         $role = $user->role;
         
@@ -34,20 +44,24 @@ class HomeController extends Controller {
         $loginRec->user_id = $user->id;
         $loginRec->save();
         
-        if ($user->role == 'doctor') {
+        /*
+         * end login record.
+         * Below, the app(...) construct is made
+         * because we have added dynamic data to the pages,
+         * which need to be constructed each time.
+         */
+        
+        if ($role == 'doctor' || $role == 'assistant') {
             return app('App\Http\Controllers\DoctorController')->home();
-        } elseif ($user->role == 'patient') {
+        } elseif ($role == 'patient') {
             return app('App\Http\Controllers\PatientController')->home();
 //            return view('patient.home.patientHome');
-        } elseif ($user->role == 'assistant') {
-            return view('assistant.index');
-        } elseif ($user->role == 'labTech') {
+        } elseif ($role == 'labTech') {
             return view('labTech.labTechHome');
-        } elseif ($user->role == 'admin'){
-            return view('admin.profile_admin');
+        } elseif ($role == 'admin'){
+            return app('App\Http\Controllers\AdminController')->home();
         }
 //        return view('home');
         }
-    }
 
 }

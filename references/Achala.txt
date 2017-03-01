@@ -1,0 +1,2 @@
+1. change notifications firing point
+2. expire unavailable periods artisan command

@@ -2,52 +2,117 @@
 <html>
 
 <head>
-    @include('doctor.navBarDoctor')
+  @include('doctor.nav_bar_doc')
   <title>Unicare - View Patient</title>
   <meta name="description" content="website description" />
   <meta name="keywords" content="website keywords, website keywords" />
-  <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
-  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine&amp;v1" />
-  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" />
-  <link rel="stylesheet" type="text/css" href="/style/add_new_patient_style.css" />
 </head>
 
-<body>
-  <div id="main">
-    <div id="header">
-      <div id="logo">
-        <h1>Unicare Medical</h1>
-      </div>
-      <div id="heading"><h2>Patient Details</h2></div>
-    </div>
-    <div id="site_content">
-      <div id="content">
-        <h2>Patient Details</h2>
-        <form action="" method="get">
-            {{ csrf_field() }}
-          <div class="form_settings">
-              <p><span>First Name</span>{{$patient->firstName}}</p>
-              <p><span>Last Name</span>{{$patient->lastName}}</p>
-              <p><span>Birth Year</span>{{$patient->birthYear}}</p>
-              <p><span>Gender</span>
+<body class="grey lighten-4">
+  <div class="container">
+    <div class="row top-row">
+      <div class="row">
+        <div class="col s12 m6">
+          <div class="card">
+            <div class="card-title blue darken-2 white-text">Patient Details</div>
+            <div class="card-content">
+              <table>
+                <tr><td><strong>Name</strong></td><td>{{$patient->firstName}} {{$patient->lastName}}</td></tr>
+                <tr><td><strong>Birth Year</strong></td><td>{{$patient->birthYear}}</td></tr>
+                <tr><td><strong>Gender</strong></td><td>
                   @if ($patient->gender==0)
-                        Female
+                  Female
                   @else
-                        Male
-                  @endif</p>
-              <p><span>Email</span>{{$patient->getUser->email}}</p>
-              <p><span>Contact No.</span>{{$patient->telephoneNo}}</p>
-              <p><span>Locale</span>{{$patient->locale}}</p>
-              <p><span>Blood Group</span>{{$patient->bloodType}}</p>
+                  Male
+                  @endif</td></tr>
+                  <tr><td><strong>Blood Group</strong></td><td>{{$patient->bloodType}}</td></tr>
+                  <tr><td><strong>Height</strong></td><td>{{$patient->height}} cm</td></tr>
+                  <tr><td><strong>Weight</strong></td><td>@if ($patient->weight ==0) Not set. Add visit record. @else {{$patient->weight}} kg @endif</td></tr>
+                  <tr><td><strong>BMI</strong></td><td>@if ($patient->bmi==0) Not set. Add visit record. @else {{$patient->bmi}} @endif</td></tr>
+                  <tr><td><strong>Email</strong></td><td>{{$patient->getUser->email}}</td></tr>
+                  <tr><td><strong>Contact No.</strong></td><td>{{$patient->telephoneNo}}</td></tr>
+                  <tr><td><strong>Occupation</strong></td><td>{{$patient->occupation}}</td></tr>
+                  <tr><td><strong>Locale</strong></td><td>{{$patient->locale}}</td></tr>
+
+                </table>
+                @if (Auth::user()->role=='doctor')
+                <div class="section">
+                  <a class="btn waves-effect waves-ripple blue darken-1" href="{{route('editPatient',[$patient->id])}}">Edit</a>
+                </div>@endif
+              </div>
+            </div>
           </div>
-        </form>
-        <p align="leftt"><a class='form_settings' href="{{route('patientsTab')}}"><input class="submit" type="submit" name="backButton" value="Back" /></a></p>
-        <p align="right"><a class='form_settings' href="{{route('patientsTab')}}"><input class="submit" type="submit" name="backButton" value="View visit records" /></a></p>
+
+          <div class="col s12 m6">
+            <div class="card">
+              <div class="card-title orange white-text">Recent visits</div>
+              <div class="card-content">
+                <div class="section">
+
+                  @if (!($visitRecs->isEmpty()))
+                  <ul class="collapsible popout" data-collapsible="accordion">
+                    @foreach ($visitRecs as $VRec)
+                    <li>
+                      <div class="collapsible-header"><i class="material-icons">library_books</i>{{$VRec->created_at}}
+                      </div>
+                      <div class="collapsible-body">
+                        <div class="card-content">
+                          <table>
+                            <tr>
+                              <td>Complaints & Problems</td>
+                              <td class="truncate">{{$VRec->complaints}}</td>
+                            </tr>
+                            <tr>
+                              <td>Diagnosis</td>
+                              <td class="truncate">{{$VRec->diagnosis}}</td>
+                            </tr>
+                            <tr>
+                              <td>Prescribed Drugs</td>
+                              <td class="truncate">{{$VRec->prescDrugs}}</td>
+                            </tr>
+                            <tr>
+                              <td>Remarks</td>
+                              <td class="truncate">{{$VRec->remarks}}</td>
+                            </tr>
+                          </table>
+                          <a href="vr/{{$VRec->id}}" class="btn waves-effect waves-ripple" target="_blank">View</a>
+                        </div>
+                      </div>
+                    </li>
+
+                    @endforeach
+                  </ul>
+                  @else
+                  <p>There are no records yet.</p>
+                  @endif
+
+
+                </div>
+                @if (Auth::user()->role=='doctor')
+                <a class="btn waves-effect waves-ripple orange accent-4" href="{{route('createPatientVisitRecord',[$patient->id])}}">Add new record</a> @endif
+                @if (!($visitRecs->isEmpty()))
+                <a class="btn waves-effect waves-ripple orange accent-4" href="{{route('viewAllVisits',[$patient->id])}}">View All Visits</a>
+                @endif
+              </div>
+            </div>
+          </div>
+
+          @if (Auth::user()->role=='doctor')
+          <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+            <a class="btn-floating btn-large waves-effect waves-circle red" data-position="left" data-delay="15">
+              <i class="large material-icons">mode_edit</i>
+            </a>
+            <ul>
+              <li><a class="btn-floating blue tooltipped" data-position="left" data-delay="25" data-tooltip="New Patient" href="{{route('addPatient')}}"><i class="material-icons">person_add</i></a></li>
+              <li><a class="btn-floating yellow tooltipped" data-position="left" data-delay="25" data-tooltip="New Visit Record" href="{{route('newVisitRecord')}}"><i class="material-icons">note_add</i></a></li>
+              <li><a class="btn-floating green tooltipped"  data-position="left" data-delay="25" data-tooltip="View Statistics" href="{{route('stats')}}"><i class="material-icons">info_outline</i></a></li>
+            </ul>
+          </div>
+          @endif
+
+
+
+        </div>
       </div>
-    </div>
-    <div id="footer">
-      <p>&nbsp;</p>
-    </div>
-  </div>
-</body>
-</html>
+    </body>
+    </html>

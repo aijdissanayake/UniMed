@@ -2,49 +2,64 @@
 <html>
 
 <head>
-    @include('doctor.navBarDoctor')
-  <title>Unicare - add_new_patients</title>
-  <meta name="description" content="website description" />
-  <meta name="keywords" content="website keywords, website keywords" />
-  <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
-  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine&amp;v1" />
-  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" />
-  <link rel="stylesheet" type="text/css" href="style/view_clinical_report_style.css" />
+  @include('doctor.nav_bar_doc')
+  <title>Unicare - All Visit Records</title>
 </head>
-
-<body>
-  <div id="main">
-    <div id="header">
-      <div id="logo">
-        <h1>Unicare Medical</h1>
-        <div class="slogan"><img src="style/logo.png" /></div>
-      </div>
-      <div id="heading"><h2> Clinical Records</h2></div>
-    </div>
-    <div id="site_content">
-      <h2 style="padding:10px 20px 20px 20px">Patient Name:&nbsp;&nbsp;<span style="color:#555">name</span></h2>
-      <div id="content">
-      	<div class="leftSidePane">
-        <h2>Clinical reports</span></h2>
+<!-- This is a stub. Needs to be built. -->
+<body class="grey lighten-4">
+  <div class="container">
+    <div class="row top-row">
+      <div class="card">
+        <div class="card-title red lighten-2 white-text">
+          {{$Name}} - All Visit Records
         </div>
-        <div class="rightSidePane">
-        <form action="#" method="post">
-          <div class="form_settings">
-            <p><span>Visit date</span><input type="text" name="visitDate" value="" /></p>
-            <p><span>Diagnosis</span><input type="text" name="diagnosis" value="" style="resize:vertical" /></p>
-            <p><span>Prognosis</span><input type="text" name="prognosis" value="" style="resize:vertical"/></p>
-            <p><span>Prescribed Drugs</span><input type="text" name="prescDrugs" value="" style="resize:vertical"/></p>
-            <p><span>Remarks</span><input type="text" name="remarks" value="" style="resize:vertical"/></p>
-            <p><span>Next visit date</span><input type="text" name="nextVisitDate" value="" /></p>
-            <p align = "right" style="padding-top: 15px"><a href="patients.html"><input class="submit" type="submit" name="backButton" value="Back" /></a></p>
-          </div>
-        </form>
+        <div class="card-content">
+          <p>There are {{$Count}} records.</p>
+          <ul class="collapsible popout" data-collapsible="accordion">
+            @foreach ($VRecs as $VRec)
+            <li>
+              <div class="collapsible-header"><i class="material-icons">library_books</i>{{$VRec->created_at}}</div>
+              <div class="collapsible-body">
+                <div class="card-content">
+                  <table>
+                    <tr>
+                      <td>Complaints & Problems</td>
+                      <td>{{$VRec->complaints}}</td>
+                    </tr>
+                    <tr>
+                      <td>Diagnosis</td>
+                      <td>{{$VRec->diagnosis}}</td>
+                    </tr>
+                    <tr>
+                      <td>Prescribed Drugs</td>
+                      <td>{{$VRec->prescDrugs}}</td>
+                    </tr>
+                    <tr>
+                      <td>Remarks</td>
+                      <td>{{$VRec->remarks}}</td>
+                    </tr>
+                  </table>
+                  <a href="{{route('viewVisitRecord',[$VRec->id])}}" class="btn waves-effect waves-ripple" target="_blank">View</a>
+                </div>
+              </div>
+            </li>
+            @endforeach
+          </ul>
+          {!! (new Landish\Pagination\Materialize($VRecs))->render() !!}
         </div>
+        @if (Auth::user()->role=='doctor')
+        <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+          <a class="btn-floating btn-large waves-effect waves-circle red" data-position="left" data-delay="15">
+            <i class="large material-icons">mode_edit</i>
+          </a>
+          <ul>
+            <li><a class="btn-floating blue tooltipped" data-position="left" data-delay="25" data-tooltip="New Patient" href="{{route('addPatient')}}"><i class="material-icons">person_add</i></a></li>
+            <li><a class="btn-floating yellow tooltipped" data-position="left" data-delay="25" data-tooltip="New Visit Record" href="{{route('newVisitRecord')}}"><i class="material-icons">note_add</i></a></li>
+          </ul>
+        </div> @endif 
       </div>
-    </div>
-    <div id="footer">
-      <p>&nbsp;</p>
     </div>
   </div>
+  
 </body>
 </html>

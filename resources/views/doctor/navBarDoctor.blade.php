@@ -8,7 +8,7 @@
 			<div>
 				<ul>
                                     <li><a href="{{route('stats')}}">Statistics</a></li>
-					<li><a href="{{route('dViewProfile')}}">View</a></li>
+					<li><a href="{{route('dViewDocProfile')}}">View</a></li>
 					<li><a href="{{route('dEditProfile')}}">Edit</a></li>
                                         <li><a href="/logout">Log Out</a></li>
 				</ul>

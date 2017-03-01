@@ -2,79 +2,135 @@
 <html>
 
     <head>
-        @include('doctor.navBarDoctor')
-        <title>Unicare - Home</title>
+        @include('doctor.nav_bar_doc')
+        <title>Settings</title>
         <meta name="description" content="website description" />
         <meta name="keywords" content="website keywords, website keywords" />
-        <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
-        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine&amp;v1" />
-        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" />
-        <link rel="stylesheet" type="text/css" href="/style/style.css" />
     </head>
-    
-    
-    <body>
-        <div id="main">
-            <div id="header">
-                <div id="menubar">
-                    <ul id="menu">
-                        <!-- put class="current" in the li tag for the selected finance - to highlight which finance you're on -->
-                        <li class="current"><a href="{{route('homeTab')}}">Home</a></li>
-                        <li><a href="{{route('patientsTab')}}">Patients</a></li>
-                        <li><a href="{{route('financeTab')}}">Finance</a></li>
-                        <li><a href="{{route('inventoryTab')}}">Inventory</a></li>
-                        <li><a href="{{route('labTab')}}">Lab</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div id="site_content">
-                <div id="content">
-                    <!-- insert the finance content here -->
 
-                    <div id="appointments">Appointments
-                        <?php $appointments = $homeData[0]; ?>
-                        @if ($appointments)
-                        <table style="width:50%; border-spacing:0;">
-                        <tr><th width = 40%>Patient</th><th>Appointment Date</th></tr>
-                        
-                        
-                        @foreach ($appointments as $appointment)
-                        <tr><td>{{$appointment->getPatient->getUser->name}}</td><td>{{date('Y:m:d',strtotime($appointment->aDate))}}</td></tr>
-                        @endforeach
-                        </table>
-                        @else <div>You currently have no appointments.</div>
-                        @endif
+
+    <body class="grey lighten-4">
+        <div class="container">
+            
+            <div class="row top-row">
+                <div class="col s12 m6">
+                    <div class="card green white-text">
+                        <div class="card-content">
+                            <span class="card-title"><i class="material-icons left">account_box</i><strong>My profile</strong></span>
+                            <table>
+                                <tr><td>Name</td><td>{{$doctor->doctorName}}</td></tr>
+                                <tr><td>Registration Number</td><td>{{$doctor->RegNo}}</td></tr>
+                                <tr><td>Email</td><td>{{$doctor->getUser->email}}</td></tr>
+                            </table>
+                            <a href="{{route('dViewDocProfile',['id'=>$doctor->id])}}" class="waves-effect green darken-3 btn">
+                                View Full Profile
+                            </a>
+                        </div>
                     </div>
-<!--                    <div id="inventory">Inventory Status
-                        <?php $inventory = $homeData[1]; ?>
-                        @if ($inventory)
-                        <table style="width:50%; border-spacing:0;">
-                        <tr><th width = 40%>Inventory Item</th><th>Current Stock</th></tr>
-                        
-                        @foreach ($inventory as $inventoryItem)
-                        <tr><td>{{$inventoryItem->itemName}}</td><td>{{$inventoryItem->currStock}}</td></tr>
-                        @endforeach
-                        </table>
-                        @else <div>You have no items in your inventory.</div>
-                        @endif
-                    </div>-->
-                    <p></p>
-                    <p></p>
-                    <!--<div id="clarification">Clarification Requests
-                        <ol class="list">
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                        </ol> 
-                    </div> -->
+                </div>
 
-                    <p></p>
+                <div class="col s12 m6">
+                    <div class="card light-blue white-text">
+                        <div class="card-content">
+                            <span class="card-title"><strong>Statistics</strong></span>
+                            <table>
+                                <tr><td></td><td>lorem ipsum</td></tr>
+                                <tr><td></td><td>lorem ipsum</td></tr>
+                                <tr><td></td><td>lorem ipsum</td></tr>
+                            </table>
 
+                            <a href="#!" class="waves-effect light-blue darken-3 btn">
+                                See more...
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div id="footer">
-                <p>&nbsp;</p>
+            <div class="row" style="height:auto; display: flex">
+                <div class="col s12 m4" style="align-self:stretch">
+                    <div class="card red white-text" style="height:100%">
+                        <div class="card-content">
+                            <span class="card-title"><strong>Doctors</strong></span>
+                            @foreach ($doctors as $doctor)
+                                <p>{{$doctor->doctorName}}</p>
+                            @endforeach
+                            <a href="{{route('manageDoctors')}}" class="waves-effect red lighten-2 btn">
+                                Manage
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col s12 m4" style="align-self:stretch">
+                    <div class="card blue-grey darken-2 white-text" style="height:100%">
+                        <div class="card-content">
+                            <span class="card-title"><strong>Assistants</strong></span>
+                            <p>lorem ipsum...</p>
+                            <a href="#!" class="waves-effect blue-grey lighten-2 btn">
+                                Manage
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col s12 m4" style="align-self:stretch">
+                    <div class="card yellow darken-1 white-text" style="height:100%">
+                        <div class="card-content">
+                            <span class="card-title"><strong>Lab Assistants</strong></span>
+                            <p>lorem ipsum...</p>
+                            <a href="#!" class="waves-effect yellow darken-3 btn">
+                                Manage
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row" style="height:auto; display: flex">
+                <div class="col s12 m6" style="height:auto">
+                    <div class="card grey white-text" style="height:100%; margin-bottom:1%" >
+                        <div class="card-content" style="padding:5% 5% 0 5%;">
+                            <span class="card-title" style="padding:0%;">Finances</span>
+                            <div class="white divider"></div>
+                            <div style=" height:150px; overflow:auto; padding-top:2%">
+                            <p>lorem ipsum</p>
+                            <p>lorem ipsum</p>
+                            <p>lorem ipsum</p>
+                            <p>lorem ipsum</p>
+                            <p>lorem ipsum</p>
+                            <p>lorem ipsum</p>
+                            <p>lorem ipsum</p>
+                            <p>lorem ipsum</p>
+                            <p>lorem ipsum</p>
+                            <p>lorem ipsum</p>
+                            <p>lorem ipsum</p>
+                            <p>lorem ipsum</p>
+                            
+                            
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col s12 m6" style="height:auto">
+                    <div class="card purple white-text" style="height:100%; margin-bottom:1%"  >
+                        <div class="card-content" style="padding:5% 5% 0 5%;">
+                            <span class="card-title" style="padding:0%;">Appointments</span>
+                            <div class="white divider"></div>
+                            <div style=" height:125px; overflow:auto; padding-top:2%">
+                            <p>There are no of appintments for Today!</p><br>
+                            <p>X sessions are available now !</p><br>                       
+                            </div>
+                            <a href="{{route('docAppSettings')}}" class="waves-effect purple darken-3 btn" style="margin:5% 0 0 0 ">
+                                Change Settings
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
+
     </body>
 </html>

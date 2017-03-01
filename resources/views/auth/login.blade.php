@@ -1,87 +1,78 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
         <title>Unicare Medical Centre</title>
-
-
-        <link rel="stylesheet" href="/style/reset.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" 
-              integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-        <link rel="stylesheet prefetch" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900|RobotoDraft:400,100,300,500,700,900">
-        <link rel="stylesheet prefetch" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-
-        <link rel="stylesheet" href="/style/login_style.css">
-
+        <meta name="viewport" content="width=device-width, initial-scale=1">      
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="/materialize2/materialize.min.css">
+        <script type="text/javascript" src="/materialize2/jquery-2.2.4.min.js"></script>           
+        <script src="materialize2/materialize.min.js"></script>             
     </head>
 
-    <body>
+    <body class="blue-grey" style="padding-top: 5rem">
 
-
-        <!-- Mixins-->
-        <!-- Pen Title-->
-        <div class="pen-title">
-            <h1>Unicare Medical Centre</h1>
-        </div>
-        <div class='rerun'><img src="/style/logo.png"></div>
-        <div class="container">
-            <div class="card"></div>
-            <div class="card">
-                <h1 class="title">Login</h1>
-                <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
-                    {!! csrf_field() !!}
-
-                    <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                        <label class="col-md-4 control-label">E-Mail Address</label>
-
-                        <div class="col-md-6">
-                            <input type="email" class="form-control" name="email" value="{{ old('email') }}">
-
-                            @if ($errors->has('email'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('email') }}</strong>
-                            </span>
-                            @endif
+        <div class="row">
+            <!--            <div class="section">
+                            <h3 class="center-align white-text">Unicare Medical Centre</h3>
                         </div>
-                    </div>
-
-                    <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                        <label class="col-md-4 control-label">Password</label>
-
-                        <div class="col-md-6">
-                            <input type="password" class="form-control" name="password">
-
-                            @if ($errors->has('password'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('password') }}</strong>
-                            </span>
-                            @endif
+                        <div class="divider"></div>-->
+            <div class="row">
+                <div class="col s10 m6 l4 offset-s1 offset-m3 offset-l4 center white z-depth-4 card-panel">
+                    <div class="card-content">
+                        <div class="card-title">
+                            <h4 class="center-align blue-text">Unicare Medical Centre</h4>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <div class="col-md-6 col-md-offset-4">
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" name="remember"> Remember Me
-                                </label>
+                        <form role="form" method="POST" action="{{url('/login')}}">
+                            {!! csrf_field() !!}
+                            <div class="row">
+                                <div class="section">
+                                    <div class="input-field col s9 offset-s1 {{ $errors->has('email') ? ' has-error' : '' }}">
+                                        <i class="material-icons prefix">account_circle</i>
+                                        <input id="username" type="text" class="validate" name="email" value="{{ old('email') }}">
+                                        <label for="username" class="left-align">Username</label>
+
+                                        @if ($errors->has('email'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('email') }}</strong>
+                                        </span>
+                                        @endif
+                                    </div>
+                                    <div class="input-field col s9 offset-s1 {{ $errors->has('password') ? ' has-error' : '' }}">
+                                        <i class="material-icons prefix">lock</i>
+                                        <input id="password" type="password" class="validate" name="password">
+                                        <label for="password" class="left-align">Password</label>
+
+                                        @if ($errors->has('password'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('password') }}</strong>
+                                        </span>
+                                        @endif
+                                    </div>
+
+                                </div>
+                                <div>
+                                    <button class="btn waves-effect waves-light" type="submit">Login</button>
+                                </div>
+                                
                             </div>
-                        </div>
+
+                            <div class="divider"></div>
+
+                            <div class="row">
+                                <div class="section">
+                                    <a href="#">
+                                        <p class="center-align">Forgot password?</p>
+                                    </a>
+                                </div>
+                            </div>
+                        </form>
                     </div>
 
-                    <div class="form-group">
-                        <div class="col-md-6 col-md-offset-4">
-                            <button type="submit" class="btn btn-primary">
-                                <i class="fa fa-btn fa-sign-in"></i>Login
-                            </button>
+                </div>
 
-                            <a class="btn btn-link" href="{{ url('/password/reset') }}">Forgot Your Password?</a>
-                        </div>
-                    </div>
-                </form>
             </div>
-
         </div>
+
     </body>
 </html>

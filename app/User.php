@@ -30,7 +30,7 @@ class User extends Authenticatable
      */
     
     public function getPatient() {
-        return $this->hasOne('App\patient','user_id','id');
+        return $this->hasOne('App\patient');
     }
     
     public function getDoctor() {
