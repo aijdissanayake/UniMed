@@ -17,99 +17,10 @@ class inventoryItemController extends Controller
     /**
      *
      */
-    public function updateInventoryItem()
+    public function addItem()
     {
+        
 
-        $input = Input::all();
-        $itemType = $input['update_type'];
-        $add_remove = $input['add_remove'];
-        $name = $input['update_items'];
-        $quantity = (int)$input['quantity'];
-        $feedback = "error!";
-        $type="";
-
-        if($add_remove=='add'){
-
-            if ($itemType == "1") {
-            
-                $requiredItem = \App\inventoryItem::where('itemName', 'LIKE', '%' . $name . '%')->get()[0];
-                $currentStock = (int)$requiredItem->currStock;
-                $minimum = (int)$requiredItem->minStock;
-
-                if($currentStock<$minimum && $minimum<$currentStock + $quantity){
-                    //remove the warning
-                    DB::table('inventory_items')->where('itemName', 'LIKE', '%' . $name . '%')->update(['restockNeeded'=>'0']);
-
-                }
-                DB::table('inventory_items')->where('itemName', 'LIKE', '%' . $name . '%')->update(['currStock'=>$currentStock+$quantity]);
-
-            }else{
-
-                $requiredItem = \App\inventoryItem::where('itemName', 'LIKE', '%' . $name . '%')->get()[0];
-                $currentStock = (int)$requiredItem->currStock;
-                $minimum = (int)$requiredItem->minStock;
-
-                if($currentStock<$minimum && $minimum<$currentStock + $quantity){
-                    //remove the warning
-                    DB::table('inventory_items')->where('itemName', 'LIKE', '%' . $name . '%')->update(['restockNeeded'=>'0']);
-
-                }
-                DB::table('inventory_items')->where('itemName', 'LIKE', '%' . $name . '%')->update(['currStock'=>$currentStock+$quantity]);
-
-            }
-
-            $feedback = "Items added!";
-
-        }else{
-
-            if ($itemType == "1") {
-
-                $requiredItem = \App\inventoryItem::where('itemName', 'LIKE', '%' . $name . '%')->get()[0];
-                $currentStock = $requiredItem->currStock;
-                $minimum = $requiredItem->minStock;
-
-                if($quantity<$currentStock){
-                    DB::table('inventory_items')->where('itemName', 'LIKE', '%' . $name . '%')->update(['currStock'=>$currentStock-(int)$quantity]);
-                    $feedback = "Items removed!";
-
-                    if($currentStock-$quantity<$minimum){         // logic to display stock level critical warning
-                        DB::table('inventory_items')->where('itemName', 'LIKE', '%' . $name . '%')->update(['restockNeeded'=>'1']);
-                        $feedback = "Items removed. Restock required!";
-
-                    }
-                }else{
-                    $feedback = "not enough stocks!";
-                }
-
-
-            }else{
-
-                $requiredItem = \App\inventoryItem::where('itemName', 'LIKE', '%' . $name . '%')->get()[0];
-                $currentStock = $requiredItem->currStock;
-                $minimum = $requiredItem->minStock;
-
-                if($quantity<$currentStock){
-                    DB::table('inventory_items')->where('itemName', 'LIKE', '%' . $name . '%')->update(['currStock'=>$currentStock-(int)$quantity]);
-                     $feedback = "Items removed!";
-
-
-                    // logic to dispaly stock level critical warning
-                    if($currentStock-$quantity<$minimum){         // logic to dispaly stock level critical warning
-                        DB::table('inventory_items')->where('itemName', 'LIKE', '%' . $name . '%')->update(['restockNeeded'=>'1']);
-                        $feedback = "Items removed. Restock required!";
-
-                    }
-                }else{
-                    $feedback = "not enough stocks!";
-
-                }
-            }
-
-        }
-
-        return response()->json([
-                'feedback' => $feedback
-        ]);
     }
 
 
@@ -124,29 +35,21 @@ class inventoryItemController extends Controller
         $itemType = $input['search_type'];
 
 
-        if ($itemType == "1") {
-
-            $name = $input['search_items'];
-            $requiredItem = \App\inventoryItem::where('itemName', 'LIKE', '%' . $name . '%')->get()[0];
-            $quantity = $requiredItem->currStock;
-            $description = \App\drug::where('drugName', 'LIKE', '%' . $name . '%')->get()[0]->description;
-            $type="Drug";
-
-        }else{
-            $name = $input['search_items'];
-            $requiredItem = \App\inventoryItem::where('itemName', 'LIKE', '%' . $name . '%')->get()[0];
-            $quantity = $requiredItem->currStock;
-            $description = \App\equipment::where('equipmentName', 'LIKE', '%' . $name . '%')->get()[0]->description;
-            $type="Equipment";
-        }
+        
+        $name = $input['search_items'];
+        $requiredItem = \App\inventoryItem::where('itemName', 'LIKE', '%' . $name . '%')->get()[0];
+        $quantity = $requiredItem->currStock;
+        $description = \App\equipment::where('equipmentName', 'LIKE', '%' . $name . '%')->get()[0]->description;
+        $type="Equipment";
+        
 
         
         return response()->json([
-                'name' => $name,
-                'type' => $type,
-                'quantity' => $quantity,
-                'description' => $description
-        ]);
+            'name' => $name,
+            'type' => $type,
+            'quantity' => $quantity,
+            'description' => $description
+            ]);
     }
 
 
@@ -155,17 +58,17 @@ class inventoryItemController extends Controller
 
     public function updateDropdown(Request $request)  //used to dynamically update dropdown menus
     {
-        
+
         if($request->type_id=='1'){
             $items = DB::table('drugs')->pluck('drugName');
             return response()->json([
                 'items' => $items
-            ]);
+                ]);
         }else{
             $items = DB::table('equipment')->pluck('equipmentName');
             return response()->json([
                 'items' => $items
-            ]);
+                ]);
         } 
     }
 
@@ -177,7 +80,7 @@ class inventoryItemController extends Controller
     {
         $refillNeeded = DB::table('inventory_items')->where('restockNeeded', '=', 1)->pluck('itemName');
         return response()->json([
-                'items' => $refillNeeded
+            'items' => $refillNeeded
             ]);
 
     }

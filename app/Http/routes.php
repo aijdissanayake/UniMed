@@ -45,7 +45,9 @@ Route::group(['middleware' => 'authorizer:doctor'], function() {
     }]);
 
     
-    Route::post('doc/inventory/add',['as' => 'addItem',  'uses' => 'inventoryItemController@updateInventoryItem']);
+    Route::get('doc/inventory/add',['as' => 'addItem',  'uses' => function(){
+        return view('doctor.inventory.add_item');
+    }]);
     Route::post('doc/inventory/search',['as' => 'searchItem',  'uses' => 'inventoryItemController@searchInventoryItem']);
     Route::get('doc/inventory/settings',['as'=> 'inventorySettings', 'uses' => 'DoctorController@viewInventorySettings']);
     
