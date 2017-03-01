@@ -11,6 +11,7 @@
 </head>
 
 
+
 <body class="grey lighten-4">
     <div class="container">
         <div class="row" style="height:auto; display: flex">
@@ -57,10 +58,11 @@
                                             </td>
                                         </tr>
                                         @endforeach 
-                                    </table>                                    
+                                    </table> 
                         </div>
                                 
                 </div>
+
             </div>
 
             <div class="col s12 m6" style="height:auto">
@@ -151,7 +153,6 @@
                         </ul>
                         </table>
                     </div>
-
                 </div>
             </div>
 

@@ -20,10 +20,10 @@ class PatientController extends Controller
     public function home() {
       
         $directing = 1;
+
         $patient = Auth::user()->getPatient; 
         $pID=$patient->id;
         $hasAppointment = $patient->hasAppointment;
-
         if($hasAppointment){
 
             $currentPatientsAppointment = \App\appointment::orderBy('aDate', 'desc')
@@ -95,6 +95,7 @@ class PatientController extends Controller
         $appSession = $inputs['session'];    
         
         
+
         $patient = \Illuminate\Support\Facades\Auth::user()->getPatient;  // get the patient object
         $hasAppointment = $patient->hasAppointment; 
         $pID = $patient->id; 
@@ -103,7 +104,6 @@ class PatientController extends Controller
                 ->where('expired',FALSE)
                 ->get();
         $noOfAppointments = count($currentAppointments);
-        
             
         if (!$hasAppointment) {
 
@@ -114,7 +114,6 @@ class PatientController extends Controller
                     ->with('directing',$directing)
                     ->with('title','Appoinments Full')
                     ;
-  
             }
 
             else{             
@@ -123,7 +122,7 @@ class PatientController extends Controller
             //update patient table
             $patient->hasAppointment =TRUE;
             $patient->save();
-
+            //set new app no
             $newAppNo ;
             $currAppNoArray = [];             
              
@@ -198,8 +197,8 @@ class PatientController extends Controller
             $currentPatientsAppointment->save();        
             //return back to the page
             return view('patient.home.patientHome')
-                        ->with('directing',$directing)
-        ;
+                    ->with('directing',$directing)
+                    ;
         }
         $directing = 1 ;
         return view('patient.home.patientHome')

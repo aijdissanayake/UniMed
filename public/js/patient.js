@@ -9,7 +9,6 @@ function formatDate(date) {
 
     return [year, month, day].join('-');
 }
-
 $(document).ready(function(){
 	//date picker initialization for appointments
 		var d = new Date();
